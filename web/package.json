@@ -1,0 +1,33 @@
+{
+  "name": "exampath-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ExamPath — student-facing tracker for Indian government exams (SSC, UPSC, IBPS, RRB, state PSCs). Next.js App Router, static export.",
+  "scripts": {
+    "dev": "node scripts/export-static.mjs && node scripts/serve.mjs",
+    "dev:next": "next dev",
+    "build": "node scripts/export-static.mjs",
+    "build:next": "next build",
+    "start": "node scripts/serve.mjs",
+    "serve": "node scripts/serve.mjs",
+    "lint": "next lint",
+    "test:e2e": "node tests/e2e.mjs"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5"
+  }
+}

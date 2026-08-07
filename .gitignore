@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+web/node_modules/
+
+# builds
+web/.next/
+web/out/
+dist/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# local data / db
+*.db
+backend/exampath.db
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# test artifacts
+web/test-screenshots/
+.playwright/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

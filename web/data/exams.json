@@ -1,0 +1,891 @@
+{
+  "generated_at": "2026-08-07",
+  "source": "exampath-pipeline",
+  "bodies": [
+    {
+      "slug": "ssc",
+      "name": "Staff Selection Commission",
+      "short": "SSC",
+      "level": "Central",
+      "color": "#1d4ed8",
+      "official_url": "https://ssc.gov.in"
+    },
+    {
+      "slug": "upsc",
+      "name": "Union Public Service Commission",
+      "short": "UPSC",
+      "level": "Central",
+      "color": "#7c3aed",
+      "official_url": "https://upsc.gov.in"
+    },
+    {
+      "slug": "ibps",
+      "name": "Institute of Banking Personnel Selection",
+      "short": "IBPS",
+      "level": "Banking",
+      "color": "#0e9f6e",
+      "official_url": "https://ibps.in"
+    },
+    {
+      "slug": "rrb",
+      "name": "Railway Recruitment Board",
+      "short": "RRB",
+      "level": "Railways",
+      "color": "#c2410c",
+      "official_url": "https://indianrailways.gov.in"
+    },
+    {
+      "slug": "mppsc",
+      "name": "Madhya Pradesh Public Service Commission",
+      "short": "MPPSC",
+      "level": "State · MP",
+      "color": "#be123c",
+      "official_url": "https://mppsc.mp.gov.in"
+    }
+  ],
+  "cycles": [
+    {
+      "id": "ssc-cgl-2026",
+      "body": "ssc",
+      "exam": "SSC CGL",
+      "title": "SSC CGL 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "closing_soon",
+      "vacancy": 17727,
+      "age_min": 18,
+      "age_max": 32,
+      "summary": "Combined Graduate Level — Group B & C posts across central government ministries and departments.",
+      "posts": "Assistant Section Officer, Income Tax Inspector, Inspector (CBIC), Auditor",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-06-28",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-06-28",
+          "done": true
+        },
+        {
+          "name": "Tier-1 Exam",
+          "date": "2026-09-22",
+          "done": false
+        },
+        {
+          "name": "Tier-2 Exam",
+          "date": "2026-12-05",
+          "done": false
+        },
+        {
+          "name": "DV / Doc",
+          "date": null,
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": null,
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Application Start",
+          "date": "2026-06-28",
+          "is_deadline": false
+        },
+        {
+          "label": "Last Date to Apply",
+          "date": "2026-08-19",
+          "is_deadline": true
+        },
+        {
+          "label": "Last Date to Pay Fee",
+          "date": "2026-08-20",
+          "is_deadline": true
+        },
+        {
+          "label": "Tier-1 Exam",
+          "date": "2026-09-22",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Tier-1 (Prelims)",
+        "Tier-2 (Mains)",
+        "Document Verification",
+        "Final Result"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2022,
+          "seats": 20000
+        },
+        {
+          "year": 2023,
+          "seats": 7500
+        },
+        {
+          "year": 2024,
+          "seats": 17727
+        },
+        {
+          "year": 2025,
+          "seats": 14582
+        },
+        {
+          "year": 2026,
+          "seats": 17727
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 158.9
+        },
+        {
+          "category": "OBC",
+          "marks": 154.2
+        },
+        {
+          "category": "SC",
+          "marks": 140.1
+        },
+        {
+          "category": "ST",
+          "marks": 132.6
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification (PDF)",
+          "url": "https://ssc.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://ssc.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://ssc.gov.in",
+          "kind": "Website"
+        }
+      ],
+      "updates": [
+        {
+          "text": "Last date to apply extended to 19 Aug 2026",
+          "kind": "date",
+          "when": "2h ago"
+        },
+        {
+          "text": "Tier-1 exam city details to be released soon",
+          "kind": "info",
+          "when": "1d ago"
+        }
+      ],
+      "related": [
+        "ssc-chsl-2026",
+        "ssc-mts-2026",
+        "ibps-po-2026"
+      ]
+    },
+    {
+      "id": "ssc-chsl-2026",
+      "body": "ssc",
+      "exam": "SSC CHSL",
+      "title": "SSC CHSL 2026",
+      "qualification": "12th Pass",
+      "qualification_code": "12th",
+      "status": "application_open",
+      "vacancy": 3712,
+      "age_min": 18,
+      "age_max": 27,
+      "summary": "Combined Higher Secondary Level — LDC, DEO and postal assistant posts for 12th-pass candidates.",
+      "posts": "LDC/JSA, DEO, Postal Assistant",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-07-26",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-07-26",
+          "done": false
+        },
+        {
+          "name": "Tier-1 Exam",
+          "date": "2026-10-15",
+          "done": false
+        },
+        {
+          "name": "Tier-2 Exam",
+          "date": "2027-01-10",
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": null,
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Application Start",
+          "date": "2026-07-26",
+          "is_deadline": false
+        },
+        {
+          "label": "Last Date to Apply",
+          "date": "2026-08-25",
+          "is_deadline": true
+        },
+        {
+          "label": "Tier-1 Exam",
+          "date": "2026-10-15",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Tier-1",
+        "Tier-2",
+        "Skill / Typing Test",
+        "Final Result"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2023,
+          "seats": 1600
+        },
+        {
+          "year": 2024,
+          "seats": 3712
+        },
+        {
+          "year": 2025,
+          "seats": 2049
+        },
+        {
+          "year": 2026,
+          "seats": 3712
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 151.2
+        },
+        {
+          "category": "OBC",
+          "marks": 148.0
+        },
+        {
+          "category": "SC",
+          "marks": 135.4
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification (PDF)",
+          "url": "https://ssc.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://ssc.gov.in",
+          "kind": "Apply"
+        }
+      ],
+      "updates": [
+        {
+          "text": "SSC CHSL 2026 notification released — 3,712 vacancies",
+          "kind": "new",
+          "when": "12d ago"
+        }
+      ],
+      "related": [
+        "ssc-cgl-2026",
+        "ssc-mts-2026"
+      ]
+    },
+    {
+      "id": "ssc-mts-2026",
+      "body": "ssc",
+      "exam": "SSC MTS",
+      "title": "SSC MTS 2026",
+      "qualification": "10th Pass",
+      "qualification_code": "10th",
+      "status": "upcoming",
+      "vacancy": 8000,
+      "age_min": 18,
+      "age_max": 25,
+      "summary": "Multi-Tasking Staff & Havaldar — 10th-pass entry into central government service.",
+      "posts": "MTS, Havaldar (CBIC & CBN)",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-08-27",
+          "done": false
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-08-27",
+          "done": false
+        },
+        {
+          "name": "Exam",
+          "date": "2026-11-10",
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": null,
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Notification (expected)",
+          "date": "2026-08-27",
+          "is_deadline": false
+        },
+        {
+          "label": "Exam (tentative)",
+          "date": "2026-11-10",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Session-1 & 2 (CBT)",
+        "PET/PST (Havaldar)",
+        "Document Verification",
+        "Result"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2023,
+          "seats": 1558
+        },
+        {
+          "year": 2024,
+          "seats": 9583
+        },
+        {
+          "year": 2025,
+          "seats": 8000
+        },
+        {
+          "year": 2026,
+          "seats": 8000
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 79.5
+        },
+        {
+          "category": "OBC",
+          "marks": 76.2
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Website",
+          "url": "https://ssc.gov.in",
+          "kind": "Website"
+        }
+      ],
+      "updates": [
+        {
+          "text": "SSC MTS 2026 expected to be notified this month",
+          "kind": "info",
+          "when": "3d ago"
+        }
+      ],
+      "related": [
+        "ssc-chsl-2026",
+        "ssc-cgl-2026"
+      ]
+    },
+    {
+      "id": "upsc-cse-2026",
+      "body": "upsc",
+      "exam": "UPSC CSE",
+      "title": "UPSC Civil Services 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "admit_card",
+      "vacancy": 979,
+      "age_min": 21,
+      "age_max": 32,
+      "summary": "The Civil Services Examination — recruitment to IAS, IPS, IFS and allied central services.",
+      "posts": "IAS, IPS, IFS, IRS and allied services",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-05-09",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-06-08",
+          "done": true
+        },
+        {
+          "name": "Prelims",
+          "date": "2026-08-16",
+          "done": false
+        },
+        {
+          "name": "Mains",
+          "date": "2026-12-25",
+          "done": false
+        },
+        {
+          "name": "Interview",
+          "date": null,
+          "done": false
+        },
+        {
+          "name": "Final Result",
+          "date": null,
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Admit Card Released",
+          "date": "2026-08-04",
+          "is_deadline": false
+        },
+        {
+          "label": "Prelims Exam",
+          "date": "2026-08-16",
+          "is_deadline": true
+        },
+        {
+          "label": "Mains Exam (tentative)",
+          "date": "2026-12-25",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Prelims (CSAT)",
+        "Mains (9 papers)",
+        "Personality Test (Interview)",
+        "Final Merit"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2022,
+          "seats": 1011
+        },
+        {
+          "year": 2023,
+          "seats": 1105
+        },
+        {
+          "year": 2024,
+          "seats": 1056
+        },
+        {
+          "year": 2025,
+          "seats": 979
+        },
+        {
+          "year": 2026,
+          "seats": 979
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 88.0
+        },
+        {
+          "category": "OBC",
+          "marks": 85.9
+        },
+        {
+          "category": "SC",
+          "marks": 84.2
+        },
+        {
+          "category": "ST",
+          "marks": 83.5
+        }
+      ],
+      "links": [
+        {
+          "label": "e-Admit Card",
+          "url": "https://upsc.gov.in",
+          "kind": "Admit"
+        },
+        {
+          "label": "Official Notification",
+          "url": "https://upsc.gov.in",
+          "kind": "Notification"
+        }
+      ],
+      "updates": [
+        {
+          "text": "Prelims admit card released — download now",
+          "kind": "admit",
+          "when": "3d ago"
+        }
+      ],
+      "related": [
+        "ssc-cgl-2026",
+        "mppsc-ss-2026"
+      ]
+    },
+    {
+      "id": "ibps-po-2026",
+      "body": "ibps",
+      "exam": "IBPS PO",
+      "title": "IBPS PO 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "application_open",
+      "vacancy": 4455,
+      "age_min": 20,
+      "age_max": 30,
+      "summary": "Probationary Officer / Management Trainee recruitment across public-sector banks.",
+      "posts": "Probationary Officer / Management Trainee",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-07-30",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-07-30",
+          "done": false
+        },
+        {
+          "name": "Prelims",
+          "date": "2026-09-16",
+          "done": false
+        },
+        {
+          "name": "Mains",
+          "date": "2026-11-05",
+          "done": false
+        },
+        {
+          "name": "Interview",
+          "date": null,
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": null,
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Application Start",
+          "date": "2026-07-30",
+          "is_deadline": false
+        },
+        {
+          "label": "Last Date to Apply",
+          "date": "2026-08-18",
+          "is_deadline": true
+        },
+        {
+          "label": "Prelims Exam",
+          "date": "2026-09-16",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Prelims",
+        "Mains",
+        "Interview",
+        "Provisional Allotment"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2023,
+          "seats": 3049
+        },
+        {
+          "year": 2024,
+          "seats": 4455
+        },
+        {
+          "year": 2025,
+          "seats": 3955
+        },
+        {
+          "year": 2026,
+          "seats": 4455
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 74.5
+        },
+        {
+          "category": "OBC",
+          "marks": 71.2
+        },
+        {
+          "category": "SC",
+          "marks": 63.0
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification (PDF)",
+          "url": "https://ibps.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://ibps.in",
+          "kind": "Apply"
+        }
+      ],
+      "updates": [
+        {
+          "text": "IBPS PO 2026 registration is now open — 4,455 posts",
+          "kind": "new",
+          "when": "8d ago"
+        }
+      ],
+      "related": [
+        "ssc-cgl-2026",
+        "upsc-cse-2026"
+      ]
+    },
+    {
+      "id": "rrb-ntpc-2026",
+      "body": "rrb",
+      "exam": "RRB NTPC",
+      "title": "RRB NTPC 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "result_awaited",
+      "vacancy": 11558,
+      "age_min": 18,
+      "age_max": 33,
+      "summary": "Non-Technical Popular Categories — station master, clerk, guard and more across Indian Railways.",
+      "posts": "Station Master, Goods Guard, Senior Clerk, Commercial Apprentice",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-03-01",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-03-30",
+          "done": true
+        },
+        {
+          "name": "CBT-1",
+          "date": "2026-07-08",
+          "done": true
+        },
+        {
+          "name": "CBT-2",
+          "date": "2026-10-06",
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": null,
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "CBT-1 Result (awaited)",
+          "date": "2026-08-21",
+          "is_deadline": false
+        },
+        {
+          "label": "CBT-2 (tentative)",
+          "date": "2026-10-06",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "CBT-1",
+        "CBT-2",
+        "Typing / Skill Test",
+        "Document Verification"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2021,
+          "seats": 35281
+        },
+        {
+          "year": 2024,
+          "seats": 11558
+        },
+        {
+          "year": 2025,
+          "seats": 8113
+        },
+        {
+          "year": 2026,
+          "seats": 11558
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 77.4
+        },
+        {
+          "category": "OBC",
+          "marks": 73.1
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Website",
+          "url": "https://indianrailways.gov.in",
+          "kind": "Website"
+        }
+      ],
+      "updates": [
+        {
+          "text": "CBT-1 result expected within two weeks",
+          "kind": "info",
+          "when": "5d ago"
+        }
+      ],
+      "related": [
+        "ssc-cgl-2026",
+        "ssc-mts-2026"
+      ]
+    },
+    {
+      "id": "mppsc-ss-2026",
+      "body": "mppsc",
+      "exam": "MPPSC SS",
+      "title": "MPPSC State Service 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "application_open",
+      "vacancy": 158,
+      "age_min": 21,
+      "age_max": 40,
+      "summary": "Madhya Pradesh State Service — Deputy Collector, DSP and other state administrative posts.",
+      "posts": "Deputy Collector, DSP, Naib Tehsildar",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-07-23",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-07-23",
+          "done": false
+        },
+        {
+          "name": "Prelims",
+          "date": "2026-10-01",
+          "done": false
+        },
+        {
+          "name": "Mains",
+          "date": "2027-01-15",
+          "done": false
+        },
+        {
+          "name": "Interview",
+          "date": null,
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Application Start",
+          "date": "2026-07-23",
+          "is_deadline": false
+        },
+        {
+          "label": "Last Date to Apply",
+          "date": "2026-08-16",
+          "is_deadline": true
+        },
+        {
+          "label": "Prelims Exam",
+          "date": "2026-10-01",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Prelims",
+        "Mains",
+        "Interview",
+        "Final Merit"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2023,
+          "seats": 227
+        },
+        {
+          "year": 2024,
+          "seats": 110
+        },
+        {
+          "year": 2025,
+          "seats": 158
+        },
+        {
+          "year": 2026,
+          "seats": 158
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 145.0
+        },
+        {
+          "category": "OBC",
+          "marks": 139.0
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://mppsc.mp.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://mponline.gov.in",
+          "kind": "Apply"
+        }
+      ],
+      "updates": [
+        {
+          "text": "MPPSC State Service 2026 applications open — 158 posts",
+          "kind": "new",
+          "when": "15d ago"
+        }
+      ],
+      "related": [
+        "upsc-cse-2026",
+        "ssc-cgl-2026"
+      ]
+    }
+  ]
+}

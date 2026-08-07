@@ -1,0 +1,23 @@
+# ExamPath — backend API + n8n (for when you add n8n later).
+# n8n calls the API webhook at  http://api:8000/webhook/n8n
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - N8N_WEBHOOK_SECRET=${N8N_WEBHOOK_SECRET:-change-me}
+
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_SECURE_COOKIE=false
+      - GENERIC_TIMEZONE=Asia/Kolkata
+    volumes:
+      - ./.n8n:/home/node/.n8n
+    depends_on:
+      - api
