@@ -1,0 +1,23 @@
+# Render Blueprint — deploy ExamPath with one click.
+# In Render:  New → Blueprint → pick this repo → Apply.
+# (Render reads this file and provisions the services below.)
+services:
+  # The student website (static site built by the zero-dependency exporter)
+  - type: web
+    name: exampath-web
+    runtime: static
+    buildCommand: cd web && node scripts/export-static.mjs
+    staticPublishPath: web/out
+    autoDeploy: true
+
+  # OPTIONAL: the Python API + n8n webhook (comment out if you only want the site)
+  - type: web
+    name: exampath-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: N8N_WEBHOOK_SECRET
+        generateValue: true

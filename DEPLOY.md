@@ -4,7 +4,15 @@ The website is a **static site** (`web/out/`) produced by a zero-dependency buil
 (`node web/scripts/export-static.mjs`). That means you can host it anywhere in minutes and
 get a public URL. Pick one:
 
-## Option A — Netlify (drag & drop, ~2 min) ⭐ easiest
+## Option A — Render (this repo has a `render.yaml` blueprint) ⭐ you chose this
+1. Push this repo to GitHub (see the bottom of this file).
+2. In the Render dashboard: **New → Blueprint**, pick the `exampath` repo, **Apply**.
+   Render reads `render.yaml` and provisions the static site (`exampath-web`) — you get a
+   `https://exampath-web.onrender.com` URL. (It also sets up the optional Python API.)
+   *Manual alternative:* **New → Static Site** → connect the repo → Build command
+   `cd web && node scripts/export-static.mjs`, Publish directory `web/out`.
+
+## Option B — Netlify (drag & drop, ~2 min) ⭐ no GitHub needed
 1. Run `cd web && npm run build` (creates `web/out`).
 2. Go to https://app.netlify.com/drop and **drag the `web/out` folder** onto the page.
 3. You get a live URL instantly (e.g. `https://your-name.netlify.app`).
