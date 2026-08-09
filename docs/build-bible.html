@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Portal — Engineering & Product Build Bible</title>
+<style>
+  :root{
+    --ink:#0f172a; --ink-soft:#334155; --muted:#64748b; --faint:#94a3b8;
+    --line:#e2e8f0; --line-soft:#eef2f7; --bg:#ffffff; --bg-soft:#f8fafc; --bg-code:#0f172a;
+    --brand:#1e40af; --brand-2:#3b82f6; --brand-soft:#eff6ff;
+    --accent:#c2410c; --accent-soft:#fff7ed; --saffron:#ea8a2b;
+    --green:#15803d; --green-soft:#f0fdf4; --red:#b91c1c; --red-soft:#fef2f2;
+    --amber:#b45309; --amber-soft:#fffbeb; --violet:#6d28d9; --violet-soft:#f5f3ff;
+    --radius:14px; --shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px -12px rgba(15,23,42,.14);
+    --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg-soft);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ---------- Layout ---------- */
+  .shell{display:grid;grid-template-columns:290px 1fr;max-width:1500px;margin:0 auto;min-height:100vh}
+  .sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#cbd5e1;padding:22px 16px 60px}
+  .content{padding:0;min-width:0;background:var(--bg-soft)}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 40px 120px}
+
+  /* ---------- Sidebar ---------- */
+  .brand{display:flex;align-items:center;gap:11px;padding:6px 8px 18px;border-bottom:1px solid #1e293b;margin-bottom:14px}
+  .brand .mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brand-2),var(--saffron));display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:18px;flex:none}
+  .brand b{color:#fff;font-size:15px;letter-spacing:-.2px;display:block;line-height:1.25}
+  .brand span{font-size:11.5px;color:#64748b}
+  .nav a{display:flex;gap:10px;align-items:baseline;color:#cbd5e1;padding:6.5px 10px;border-radius:8px;font-size:13.3px;line-height:1.35}
+  .nav a:hover{background:#1e293b;color:#fff;text-decoration:none}
+  .nav a .n{color:#64748b;font-variant-numeric:tabular-nums;font-size:12px;min-width:20px;text-align:right;flex:none}
+  .nav a.star .n{color:var(--saffron)}
+  .nav .grp{font-size:10.5px;text-transform:uppercase;letter-spacing:.13em;color:#475569;padding:16px 10px 6px;font-weight:700}
+
+  /* ---------- Typography ---------- */
+  h1{font-size:34px;line-height:1.12;letter-spacing:-.9px;margin:0 0 10px;font-weight:800}
+  h2{font-size:23px;letter-spacing:-.5px;margin:0;font-weight:750}
+  h3{font-size:16.5px;margin:26px 0 8px;font-weight:700;letter-spacing:-.2px}
+  h4{font-size:14px;margin:18px 0 6px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em}
+  p{margin:11px 0}
+  .lead{font-size:17.5px;color:var(--ink-soft)}
+  strong{font-weight:650}
+  ul,ol{margin:11px 0;padding-left:22px}
+  li{margin:5px 0}
+  code{font-family:var(--mono);font-size:.86em;background:#eef2f7;padding:1.5px 6px;border-radius:5px;color:#0b3a86;white-space:nowrap}
+  pre{background:var(--bg-code);color:#e2e8f0;padding:18px 20px;border-radius:12px;overflow-x:auto;font-family:var(--mono);font-size:12.9px;line-height:1.65;margin:14px 0;box-shadow:var(--shadow)}
+  pre code{background:none;padding:0;color:inherit;white-space:pre;font-size:inherit}
+  .cm{color:#7c8aa5}.kw{color:#93c5fd}.st{color:#86efac}.fn{color:#fcd34d}.nu{color:#fca5a5}
+
+  /* ---------- Section frame ---------- */
+  section{scroll-margin-top:16px;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:30px 34px;margin:20px 0;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  section.plain{background:none;border:none;box-shadow:none;padding:6px 0;margin:34px 0 8px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px;border-bottom:1px solid var(--line-soft);padding-bottom:14px}
+  .sec-num{width:40px;height:40px;border-radius:11px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex:none}
+  .sec-head.star .sec-num{background:linear-gradient(135deg,#fff2df,#ffe4c4);color:var(--accent)}
+  .sec-kicker{font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700}
+
+  /* ---------- Callouts ---------- */
+  .note{border-left:3px solid var(--brand-2);background:var(--brand-soft);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;font-size:14.5px}
+  .note.warn{border-color:var(--amber);background:var(--amber-soft)}
+  .note.ok{border-color:var(--green);background:var(--green-soft)}
+  .note.map{border-color:var(--violet);background:var(--violet-soft)}
+  .note b{display:block;margin-bottom:2px}
+
+  /* ---------- Tables ---------- */
+  .tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.6px}
+  .tbl th{text-align:left;background:var(--bg-soft);color:var(--muted);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;padding:9px 12px;border-bottom:2px solid var(--line)}
+  .tbl td{padding:9px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl code{white-space:normal}
+
+  /* ---------- Pills / chips ---------- */
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;letter-spacing:.02em;vertical-align:middle}
+  .p-brand{background:var(--brand-soft);color:var(--brand)}
+  .p-green{background:var(--green-soft);color:var(--green)}
+  .p-red{background:var(--red-soft);color:var(--red)}
+  .p-amber{background:var(--amber-soft);color:var(--amber)}
+  .p-violet{background:var(--violet-soft);color:var(--violet)}
+  .p-gray{background:#f1f5f9;color:var(--muted)}
+
+  /* ---------- Grids / cards ---------- */
+  .grid{display:grid;gap:14px;margin:16px 0}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  .card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--bg)}
+  .card h4{margin:0 0 6px;color:var(--ink);text-transform:none;letter-spacing:-.2px;font-size:14.5px}
+  .card p{margin:4px 0;font-size:13.6px;color:var(--ink-soft)}
+
+  /* ---------- Pipeline flow ---------- */
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:18px 0}
+  .flow .step{flex:1 1 0;min-width:120px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 12px;text-align:center;position:relative}
+  .flow .step .ic{font-size:19px}
+  .flow .step b{display:block;font-size:12.7px;margin-top:3px}
+  .flow .step small{color:var(--muted);font-size:11px;line-height:1.3;display:block}
+  .flow .arw{display:flex;align-items:center;color:var(--faint);font-size:18px;padding:0 4px}
+  .stagebar{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+  .stagebar .s{flex:1;min-width:88px;border:1px solid var(--line);border-top:3px solid var(--brand-2);border-radius:8px;padding:8px 9px;font-size:11.5px;background:var(--bg)}
+  .stagebar .s b{display:block;font-size:12px}
+  .stagebar .s.done{border-top-color:var(--green)}
+  .stagebar .s.now{border-top-color:var(--accent);background:var(--accent-soft)}
+
+  /* wireframe */
+  .wire{border:1.5px dashed var(--line);border-radius:12px;padding:14px;background:repeating-linear-gradient(45deg,var(--bg-soft),var(--bg-soft) 10px,#fff 10px,#fff 20px);margin:16px 0}
+  .wire .box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:12.5px;color:var(--ink-soft)}
+  .wire .box b{color:var(--ink)}
+  .wire .row{display:flex;gap:8px}.wire .row>.box{flex:1}
+
+  hr{border:none;border-top:1px solid var(--line);margin:26px 0}
+  .kbd{font-family:var(--mono);font-size:11.5px;background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;color:var(--ink-soft)}
+  .toc-mini{columns:2;column-gap:26px;font-size:14px;margin:10px 0}
+  .toc-mini a{display:block;padding:3px 0}
+  .foot{color:var(--muted);font-size:13px;text-align:center;padding:30px 0 10px}
+  .anchor{color:var(--faint);font-weight:400;margin-left:8px;opacity:0;font-size:15px}
+  h2:hover .anchor{opacity:1}
+
+  /* mobile */
+  .menuBtn{display:none}
+  @media(max-width:960px){
+    .shell{grid-template-columns:1fr}
+    .sidebar{position:fixed;z-index:50;width:280px;left:-300px;transition:left .25s ease;top:0}
+    .sidebar.open{left:0}
+    .menuBtn{display:inline-flex;position:fixed;top:14px;left:14px;z-index:60;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:10px 13px;font-size:15px;box-shadow:var(--shadow);cursor:pointer}
+    .wrap{padding:64px 18px 90px}
+    section{padding:22px 18px}
+    .g2,.g3{grid-template-columns:1fr}
+    .toc-mini{columns:1}
+    h1{font-size:27px}
+    .backdrop.show{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:40}
+  }
+  @media print{.sidebar,.menuBtn{display:none}.shell{grid-template-columns:1fr}section{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<button class="menuBtn" onclick="document.querySelector('.sidebar').classList.toggle('open');document.querySelector('.backdrop').classList.toggle('show')">☰ Contents</button>
+<div class="backdrop" onclick="document.querySelector('.sidebar').classList.remove('open');this.classList.remove('show')"></div>
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark">प</div>
+      <div><b>Exam Portal</b><span>Build Bible · v1.0</span></div>
+    </div>
+    <nav class="nav">
+      <a href="#overview"><span class="n">·</span> Overview &amp; Vision</a>
+      <a href="#pipeline"><span class="n">·</span> The Automation Pipeline</a>
+      <a href="#stack"><span class="n">·</span> Tech Stack</a>
+      <div class="grp">Foundations</div>
+      <a href="#s1"><span class="n">1</span> Product Constitution</a>
+      <a href="#s2"><span class="n">2</span> Information Architecture</a>
+      <a href="#s3"><span class="n">3</span> Database Design</a>
+      <a href="#s4"><span class="n">4</span> URL Structure</a>
+      <div class="grp">Data Engine</div>
+      <a href="#s5"><span class="n">5</span> Scrapers</a>
+      <a href="#s6"><span class="n">6</span> AI Extraction</a>
+      <a href="#s7"><span class="n">7</span> Validation Engine</a>
+      <a href="#s8"><span class="n">8</span> Version Control</a>
+      <a href="#s9"><span class="n">9</span> Publishing Engine</a>
+      <div class="grp">Experience</div>
+      <a href="#s10"><span class="n">10</span> Design System</a>
+      <a href="#s11"><span class="n">11</span> Universal Components</a>
+      <a class="star" href="#s12"><span class="n">12</span> Exam Dashboard ★</a>
+      <a class="star" href="#s13"><span class="n">13</span> Homepage ★</a>
+      <a href="#s14"><span class="n">14</span> Conducting Body Page</a>
+      <a href="#s15"><span class="n">15</span> Search</a>
+      <a href="#s16"><span class="n">16</span> User Profile</a>
+      <a href="#s17"><span class="n">17</span> Notification Engine</a>
+      <a class="star" href="#s18"><span class="n">18</span> SEO System ★</a>
+      <div class="grp">Operate &amp; Grow</div>
+      <a href="#s19"><span class="n">19</span> Cloud Infrastructure</a>
+      <a href="#s20"><span class="n">20</span> Testing</a>
+      <a href="#s21"><span class="n">21</span> Launch</a>
+      <a href="#s22"><span class="n">22</span> Growth</a>
+      <div class="grp">Reference</div>
+      <a href="#roadmap"><span class="n">→</span> Roadmap / Timeline</a>
+      <a href="#features"><span class="n">→</span> Feature Map (F1–F16)</a>
+    </nav>
+  </aside>
+
+  <!-- ================= CONTENT ================= -->
+  <main class="content">
+  <div class="wrap">
+
+    <!-- ===== HERO / OVERVIEW ===== -->
+    <section id="overview">
+      <div class="sec-kicker">Engineering &amp; Product Blueprint</div>
+      <h1>The AI-Automated Government Exam Portal</h1>
+      <p class="lead">A single source of truth for Indian government-exam aspirants — every notification, date, vacancy, eligibility rule and result, scraped from official sources, verified by AI, and published automatically. This document is the build bible: 22 components, one coherent system.</p>
+      <div class="grid g3">
+        <div class="card"><h4>The problem</h4><p>Exam information is scattered across dozens of official sites and stale aggregators. Aspirants miss deadlines and trust the wrong sources.</p></div>
+        <div class="card"><h4>The wedge</h4><p>An <strong>exam-centric dashboard</strong> — timelines, days-left, eligibility, vacancy history and comparisons — that no incumbent does well, kept live by automation.</p></div>
+        <div class="card"><h4>The moat</h4><p>A self-updating data engine (scrape → AI extract → validate → publish) + programmatic SEO. Fresh, structured, trustworthy data compounds.</p></div>
+      </div>
+      <div class="note map"><b>How to read this</b>Sections 1–4 are foundations, 5–9 are the automated data engine (this is your differentiator and maps directly to your n8n flow), 10–18 are the product experience, 19–22 operate and grow it. Starred (★) sections are your launch priorities. A phased build order is in the <a href="#roadmap">Roadmap</a>.</div>
+    </section>
+
+    <!-- ===== PIPELINE ===== -->
+    <section id="pipeline">
+      <div class="sec-kicker">The core loop · from your notes</div>
+      <h2>The automation pipeline <span class="anchor">#</span></h2>
+      <p>This is the heartbeat of the product and a faithful expansion of your handwritten flow. Every fact on the site is produced by this loop and is traceable back to the exact page it came from.</p>
+      <div class="flow">
+        <div class="step"><div class="ic">🕷️</div><b>1 · Scrape</b><small>Watch official sources on a schedule; snapshot changes</small></div>
+        <div class="arw">→</div>
+        <div class="step"><div class="ic">🗄️</div><b>2 · Store</b><small>Raw docs + hash into Supabase</small></div>
+        <div class="arw">→</div>
+        <div class="step"><div class="ic">🤖</div><b>3 · Extract</b><small>AI reads doc → structured JSON</small></div>
+        <div class="arw">→</div>
+        <div class="step"><div class="ic">✅</div><b>4 · Validate</b><small>Score &amp; report; gate at &gt;90%</small></div>
+        <div class="arw">→</div>
+        <div class="step"><div class="ic">🗂️</div><b>5 · Arrange</b><small>Route to the right exam/cycle/page</small></div>
+        <div class="arw">→</div>
+        <div class="step"><div class="ic">🚀</div><b>6 · Publish</b><small>Upsert + version; page updates live</small></div>
+      </div>
+      <div class="note ok"><b>Your flow, mapped 1:1</b>“Scraper → Save to Supabase → Trigger n8n → (1) verifies detail &amp; sends report → (2) score &gt; 90% → publish → (3) decide/arrange the data → (4) feed data to the website page → (5) page gets updated.” Sections 5–9 detail each stage; the n8n node list lives in <a href="#s9">§9 Publishing Engine</a>.</div>
+      <div class="note warn"><b>The one rule that protects the brand</b>Nothing reaches a user below the confidence gate. High-confidence facts auto-publish; the grey zone (70–90%) queues for a 10-second human tap; low confidence is rejected and re-queued. Accuracy &gt; speed, always.</div>
+    </section>
+
+    <!-- ===== STACK ===== -->
+    <section id="stack">
+      <div class="sec-kicker">Decisions</div>
+      <h2>Recommended tech stack <span class="anchor">#</span></h2>
+      <p>Chosen for a small team that needs SEO, speed, and automation without a DevOps burden. Every piece has a generous free/low-cost tier and swaps cleanly at scale.</p>
+      <table class="tbl">
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Frontend / SSR</td><td><strong>Next.js 14 (App Router) + React + TypeScript</strong>, Tailwind CSS</td><td>SEO-native (SSR/SSG/ISR), fast, huge ecosystem. Non-negotiable for a content+SEO product.</td></tr>
+        <tr><td>Database / Auth / Storage</td><td><strong>Supabase</strong> (Postgres, Auth, Storage, Realtime)</td><td>Already your choice. Postgres gives relational integrity + FTS + pgvector; RLS secures user data; Storage holds raw scrapes.</td></tr>
+        <tr><td>Automation / Orchestration</td><td><strong>n8n</strong> (self-hosted)</td><td>Already your choice. Schedules scrapers, runs the extract→validate→publish flow, human-review branches, notifications.</td></tr>
+        <tr><td>Scraping runtime</td><td><strong>Playwright</strong> + Crawlee (Node/TS) in a container</td><td>Handles JS-heavy govt sites &amp; PDFs; politeness, retries, proxy rotation built in.</td></tr>
+        <tr><td>AI extraction</td><td>LLM with <strong>structured output / tool-use</strong> (Claude / GPT class)</td><td>Turns messy notices &amp; PDFs into validated JSON against your schema.</td></tr>
+        <tr><td>Search</td><td>Postgres FTS + <code>pg_trgm</code> now → <strong>Meilisearch/Typesense</strong> or <code>pgvector</code> later</td><td>Start free inside the DB; graduate to instant/semantic search when traffic warrants.</td></tr>
+        <tr><td>Hosting / CDN</td><td>Vercel (web) · a small VPS/Railway (n8n + scrapers) · Supabase cloud</td><td>Zero-ops web with edge CDN; cheap always-on box for workers.</td></tr>
+        <tr><td>Notifications</td><td>Web Push (VAPID) · Email (Resend/SES) · WhatsApp (later)</td><td>Meet aspirants where they are; web push is free and high-retention.</td></tr>
+        <tr><td>Observability</td><td>Sentry · Supabase logs · UptimeRobot · Plausible/GA4</td><td>Errors, data-quality alerts, uptime, privacy-friendly analytics.</td></tr>
+      </table>
+    </section>
+
+    <!-- ============ 1. PRODUCT CONSTITUTION ============ -->
+    <section id="s1">
+      <div class="sec-head"><div class="sec-num">1</div><div><div class="sec-kicker">Foundations</div><h2>Product Constitution <span class="anchor">#</span></h2></div></div>
+      <p>The constitution is the tie-breaker for every future decision. When two features conflict, these principles decide.</p>
+      <h3>Mission</h3>
+      <p>Help every Indian government-exam aspirant know <em>exactly</em> what to do next — never miss a date, never trust a wrong source, never feel lost — through information that is complete, correct, and always current.</p>
+      <h3>Who we serve</h3>
+      <p>Primary: aspirants aged 18–32 preparing for SSC, UPSC, Banking, Railways, State PSCs, Police &amp; Teaching exams, mostly on mobile, often on modest data plans, comfortable in Hindi + English. Secondary: parents, coaching institutes, and search engines (a first-class “user”).</p>
+      <h3>Principles (in priority order)</h3>
+      <table class="tbl">
+        <tr><th>#</th><th>Principle</th><th>What it means in practice</th></tr>
+        <tr><td>1</td><td><strong>Accuracy over speed</strong></td><td>Never publish an unverified fact. The 90% gate is sacred. A wrong date is worse than a late one.</td></tr>
+        <tr><td>2</td><td><strong>Official-source anchored</strong></td><td>Every date/link shows its official source. We inform &amp; link; we never impersonate a government body.</td></tr>
+        <tr><td>3</td><td><strong>Exam-centric, not notice-centric</strong></td><td>Organise the world around the <em>exam’s journey</em> (timeline, stages, days-left), not a reverse-chron list of notices.</td></tr>
+        <tr><td>4</td><td><strong>Mobile-first &amp; fast</strong></td><td>Sub-2.5s LCP on a mid-range phone. Works on 3G. Every KB counts.</td></tr>
+        <tr><td>5</td><td><strong>Automation-first, human-gated</strong></td><td>Machines do the toil; humans approve the grey zone. The system scales content without scaling headcount.</td></tr>
+        <tr><td>6</td><td><strong>SEO is a product surface</strong></td><td>Structured data, clean URLs and freshness are features, not afterthoughts.</td></tr>
+      </table>
+      <h3>Non-negotiables (guardrails)</h3>
+      <ul>
+        <li>No fact goes live below the confidence threshold without human approval.</li>
+        <li>Every published entity keeps a version history and its source document.</li>
+        <li>Clear disclaimer + official link on every page; no government insignia/impersonation.</li>
+        <li>User eligibility data is private (RLS), never sold, used only to personalise.</li>
+      </ul>
+      <h3>North-star &amp; guardrail metrics</h3>
+      <p><strong>North star:</strong> weekly aspirants who complete a “next action” (viewed a live deadline / applied via official link / set an alert). <strong>Guardrails:</strong> data-accuracy rate (audited sample), time-from-official-update-to-live, and organic sessions.</p>
+    </section>
+
+    <!-- ============ 2. INFORMATION ARCHITECTURE ============ -->
+    <section id="s2">
+      <div class="sec-head"><div class="sec-num">2</div><div><div class="sec-kicker">Foundations</div><h2>Information Architecture <span class="anchor">#</span></h2></div></div>
+      <p>The whole product rests on one modelling insight: separate the <strong>evergreen exam</strong> from its <strong>yearly cycle</strong>. Almost every question a user asks (“when does the form close?”, “how many seats?”) is about a <em>cycle</em>, while SEO authority and “about this exam” content live on the <em>exam</em>.</p>
+      <h3>The entity model</h3>
+      <pre><code><span class="cm">Conducting Body</span>  (SSC, UPSC, IBPS, RRB, MPPSC…)
+   └── <span class="kw">Exam</span>  (evergreen: "SSC CGL")            ── overview, syllabus, SEO hub
+         └── <span class="kw">Exam Cycle</span>  (time-bound: "SSC CGL 2026")   ── THE dashboard entity
+               ├── Stages        (Notification → Tier-1 → Tier-2 → DV → Result)
+               ├── Key Dates     (form start/end, exam date)  → "days left"
+               ├── Vacancy       (headline + post/category breakdown)
+               ├── Eligibility   (age, qualification, category → the Engine)
+               ├── Cutoffs       (per year/category → trends)
+               ├── Official Links(notification, apply, admit card, result)
+               └── Updates       ("what's changed" feed items)</code></pre>
+      <h3>Sitemap &amp; page inventory</h3>
+      <table class="tbl">
+        <tr><th>Page</th><th>Purpose</th><th>Primary entity</th><th>Section</th></tr>
+        <tr><td>Homepage</td><td>Discover + smart search + latest updates</td><td>—</td><td><a href="#s13">§13 ★</a></td></tr>
+        <tr><td>Conducting Body</td><td>All exams by a body (SSC/UPSC…): current/upcoming/past + calendar</td><td>Conducting Body</td><td><a href="#s14">§14</a></td></tr>
+        <tr><td>Exam hub</td><td>Evergreen “about”, syllabus, all cycles</td><td>Exam</td><td>§2</td></tr>
+        <tr><td>Exam Dashboard</td><td>The live cockpit for one cycle</td><td>Exam Cycle</td><td><a href="#s12">§12 ★</a></td></tr>
+        <tr><td>Compare</td><td>Two+ exams side by side</td><td>Exam ×N</td><td><a href="#s12">§12</a></td></tr>
+        <tr><td>Vacancy / Cutoff history</td><td>5-year trend views</td><td>Exam</td><td>§12</td></tr>
+        <tr><td>Calendar</td><td>All deadlines, month view + “days left”</td><td>Key Dates</td><td>§12</td></tr>
+        <tr><td>State map</td><td>Browse by state → active exams</td><td>Body/State</td><td><a href="#features">F-13</a></td></tr>
+        <tr><td>Search results</td><td>Free-text + structured filters</td><td>—</td><td><a href="#s15">§15</a></td></tr>
+        <tr><td>Article / guide</td><td>Programmatic SEO content</td><td>Article</td><td><a href="#s18">§18 ★</a></td></tr>
+        <tr><td>Profile / My Exams</td><td>Follows, alerts, eligibility profile</td><td>User</td><td><a href="#s16">§16</a></td></tr>
+      </table>
+      <div class="note"><b>Navigation model</b>Global: Search · Exams (by body) · Calendar · State Map · Latest · Login. Everything is ≤3 taps from the homepage; every cycle page cross-links to its exam, body, related exams and compare.</div>
+    </section>
+
+    <!-- ============ 3. DATABASE DESIGN ============ -->
+    <section id="s3">
+      <div class="sec-head"><div class="sec-num">3</div><div><div class="sec-kicker">Foundations</div><h2>Database Design <span class="anchor">#</span></h2></div></div>
+      <p>A production-grade Postgres schema ships alongside this document (<code>schema.sql</code> + <code>seed.sql</code>), already tested end-to-end on Postgres 16. It has <strong>25 tables</strong> across three domains, plus read-model views, full RLS, and a search index.</p>
+      <div class="grid g3">
+        <div class="card"><h4>A · Content domain</h4><p>conducting_body, exam, exam_cycle, exam_stage, key_date, vacancy, eligibility, cutoff, official_link, update_feed, article, exam_relation</p></div>
+        <div class="card"><h4>B · Pipeline domain</h4><p>source, scrape_run, raw_document, extraction, validation, content_version, publish_event</p></div>
+        <div class="card"><h4>C · User domain</h4><p>profile, user_follow, subscription, notification, notification_delivery, push_subscription</p></div>
+      </div>
+      <h3>Design decisions worth keeping</h3>
+      <ul>
+        <li><strong>Evergreen vs time-bound split</strong> — <code>exam</code> ↔ <code>exam_cycle</code> (unique on <code>exam_id, year</code>). Dates/vacancy/cutoffs hang off the cycle.</li>
+        <li><strong>Structured + flexible</strong> — hot fields are real columns (fast filters for the eligibility engine &amp; “days left”); the long tail lives in <code>jsonb</code> (<code>rules</code>, <code>meta</code>).</li>
+        <li><strong>Pipeline is data</strong> — every published fact traces to an <code>extraction</code> → <code>raw_document</code> → <code>source</code>. Auditable by construction.</li>
+        <li><strong>Everything versioned</strong> — <code>content_version</code> stores a JSON snapshot + diff per change → powers “what’s changed”, rollback, audit.</li>
+        <li><strong>Security by default</strong> — RLS: content is world-readable only when <code>published_at</code> is set; user tables are owner-only; pipeline tables are service-role-only.</li>
+      </ul>
+      <h4>Core relationships (abridged DDL)</h4>
+      <pre><code><span class="kw">create table</span> exam_cycle (
+  id            uuid <span class="kw">primary key default</span> gen_random_uuid(),
+  exam_id       uuid <span class="kw">references</span> exam(id) <span class="kw">on delete cascade</span>,
+  slug          text <span class="kw">unique</span>,          <span class="cm">-- 'ssc-cgl-2026'</span>
+  year          int,  status cycle_status,      <span class="cm">-- enum: application_open…</span>
+  total_vacancy int,  published_at timestamptz,  <span class="cm">-- null = draft (hidden by RLS)</span>
+  <span class="kw">unique</span> (exam_id, year)
+);
+<span class="cm">-- key_date drives "days left"; is_deadline flags feed the countdown</span>
+<span class="kw">create view</span> v_cycle_next_deadline <span class="kw">as</span>            <span class="cm">-- next upcoming deadline per cycle</span>
+  <span class="kw">select</span> c.slug, k.label, (k.event_on - current_date) <span class="kw">as</span> days_left …</code></pre>
+      <div class="note ok"><b>Verified</b>The shipped schema was executed on Postgres 16 with a realistic SSC-CGL-2026 seed: the days-left view returned <code>12</code>, the timeline ordered correctly, full-text search matched “income tax”, and eligibility matching (age 25 + graduate) returned true. Run <code>schema.sql</code> then <code>seed.sql</code> in the Supabase SQL editor to reproduce.</div>
+    </section>
+
+    <!-- ============ 4. URL STRUCTURE ============ -->
+    <section id="s4">
+      <div class="sec-head"><div class="sec-num">4</div><div><div class="sec-kicker">Foundations</div><h2>URL Structure <span class="anchor">#</span></h2></div></div>
+      <p>URLs are permanent public contracts and a top SEO lever. Design them once, keep them forever, and make them human-readable and keyword-rich.</p>
+      <table class="tbl">
+        <tr><th>Page type</th><th>Pattern</th><th>Example</th></tr>
+        <tr><td>Conducting body</td><td><code>/{body}</code></td><td><code>/ssc</code></td></tr>
+        <tr><td>Exam hub (evergreen)</td><td><code>/{body}/{exam}</code></td><td><code>/ssc/cgl</code></td></tr>
+        <tr><td>Exam cycle (dashboard)</td><td><code>/{body}/{exam}-{year}</code></td><td><code>/ssc/cgl-2026</code></td></tr>
+        <tr><td>Sub-view</td><td><code>/{body}/{exam}-{year}/{view}</code></td><td><code>/ssc/cgl-2026/vacancy</code></td></tr>
+        <tr><td>Compare</td><td><code>/compare/{examA}-vs-{examB}</code></td><td><code>/compare/ssc-cgl-vs-ssc-chsl</code></td></tr>
+        <tr><td>State</td><td><code>/state/{state}</code></td><td><code>/state/madhya-pradesh</code></td></tr>
+        <tr><td>Calendar</td><td><code>/calendar</code> · <code>/calendar/{year}/{month}</code></td><td><code>/calendar/2026/08</code></td></tr>
+        <tr><td>Article / guide</td><td><code>/{exam}-{topic}</code> (or <code>/guides/…</code>)</td><td><code>/ssc-cgl-syllabus</code></td></tr>
+        <tr><td>Search</td><td><code>/search?q=…&amp;body=…&amp;age=…</code></td><td><code>/search?q=graduate&amp;age=21</code></td></tr>
+      </table>
+      <h3>Rules</h3>
+      <ul>
+        <li><strong>Slug source of truth</strong>: stored on the row (<code>slug</code>), generated once, never silently changed.</li>
+        <li><strong>Canonical + redirects</strong>: one canonical URL per entity; keep a <code>redirect</code> map for any slug change (301). Trailing-slash and case normalised at the edge.</li>
+        <li><strong>Lowercase, hyphenated, ASCII</strong>; no dates-in-query for indexable pages; no session IDs.</li>
+        <li><strong>Stable years</strong>: cycle URLs embed the year so last year’s page keeps its rankings and links.</li>
+      </ul>
+      <div class="note map"><b>Maps to your notes</b>Your SEO page lists “URL Structure” first for a reason — it’s the spine the internal-linking and sitemap systems (<a href="#s18">§18</a>) hang from.</div>
+    </section>
+
+    <!-- ============ 5. SCRAPERS ============ -->
+    <section id="s5">
+      <div class="sec-head"><div class="sec-num">5</div><div><div class="sec-kicker">Data Engine</div><h2>Scrapers <span class="anchor">#</span></h2></div></div>
+      <p>The scraper’s only job: reliably notice when an official source changes and capture a faithful snapshot. It does <em>not</em> interpret content — that’s the AI’s job (§6). Keeping scrape and understanding separate is what makes the “upgraded, AI-connected” scraper robust.</p>
+      <h3>Architecture</h3>
+      <div class="flow">
+        <div class="step"><b>Source registry</b><small><code>source</code> table: URL, type, frequency, selectors, politeness</small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Scheduler</b><small>n8n cron per source / per body</small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Fetch worker</b><small>Playwright renders JS &amp; PDFs</small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Change detect</b><small>sha256 vs <code>last_hash</code></small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Raw store</b><small>blob→Storage, row→<code>raw_document</code></small></div>
+      </div>
+      <h3>What good looks like</h3>
+      <ul>
+        <li><strong>Source-typed parsers</strong>: a small adapter per source shape (SSC notice list, PDF notification, RSS, a state PSC page). <code>parser_hint</code> selects it.</li>
+        <li><strong>Change detection first</strong>: hash the normalised content; only changed docs flow downstream → cheap, avoids re-processing.</li>
+        <li><strong>Politeness &amp; resilience</strong>: per-domain rate limits, randomised delays, retries with backoff, rotating user-agents/proxies, <code>robots.txt</code> respect, caching.</li>
+        <li><strong>PDF-native</strong>: most notifications are PDFs — extract text layer, OCR fallback (Tesseract) for scans.</li>
+        <li><strong>Observability</strong>: every run writes a <code>scrape_run</code> row (status, changed?, stats); dead sources alert.</li>
+      </ul>
+      <div class="note warn"><b>Grey-hat guardrail</b>Scrape only public official pages, honour robots and rate limits, and cache aggressively. The goal is a respectful mirror of public information, with attribution — not a hammer.</div>
+    </section>
+
+    <!-- ============ 6. AI EXTRACTION ============ -->
+    <section id="s6">
+      <div class="sec-head"><div class="sec-num">6</div><div><div class="sec-kicker">Data Engine</div><h2>AI Extraction <span class="anchor">#</span></h2></div></div>
+      <p>The AI turns a messy notice or PDF into <strong>structured JSON that matches your schema</strong>. Use tool-use / structured-output so the model must return a valid object, not prose.</p>
+      <h3>How it runs</h3>
+      <ol>
+        <li><strong>Classify</strong> the document: is this a new notification, a date change, an admit-card notice, a result, a cutoff PDF?</li>
+        <li><strong>Extract</strong> to a target schema (<code>exam_cycle</code>, <code>key_date[]</code>, <code>vacancy[]</code>, <code>eligibility</code>, <code>official_link[]</code>) with a confidence per field.</li>
+        <li><strong>Resolve entities</strong>: match to an existing <code>exam</code>/<code>exam_cycle</code> (fuzzy + rules) or propose a new one. This prevents duplicate “SSC CGL 2026” rows.</li>
+        <li><strong>Persist</strong> an <code>extraction</code> row (model, prompt_version, payload, confidence) linked to the raw doc.</li>
+      </ol>
+      <h4>Extraction contract (illustrative)</h4>
+      <pre><code>{
+  <span class="st">"target_type"</span>: <span class="st">"exam_cycle"</span>,
+  <span class="st">"match"</span>: { <span class="st">"exam_slug"</span>: <span class="st">"ssc-cgl"</span>, <span class="st">"year"</span>: <span class="nu">2026</span>, <span class="st">"confidence"</span>: <span class="nu">0.97</span> },
+  <span class="st">"fields"</span>: {
+    <span class="st">"total_vacancy"</span>: { <span class="st">"value"</span>: <span class="nu">17727</span>, <span class="st">"confidence"</span>: <span class="nu">0.93</span>, <span class="st">"evidence"</span>: <span class="st">"para 2, notice PDF"</span> },
+    <span class="st">"key_dates"</span>: [
+      { <span class="st">"label"</span>:<span class="st">"Last Date to Apply"</span>, <span class="st">"event_on"</span>:<span class="st">"2026-07-24"</span>, <span class="st">"confidence"</span>:<span class="nu">0.95</span> }
+    ]
+  },
+  <span class="st">"source_url"</span>: <span class="st">"https://ssc.gov.in/notice/cgl-2026.pdf"</span>
+}</code></pre>
+      <h3>Cost &amp; quality controls</h3>
+      <ul>
+        <li><strong>Cheap-first cascade</strong>: a small/cheap model does classification &amp; simple fields; escalate to a stronger model only for hard docs.</li>
+        <li><strong>Evidence spans</strong>: model cites where each value came from → makes validation &amp; human review fast.</li>
+        <li><strong>Prompt versioning</strong>: <code>prompt_version</code> stored per extraction so you can A/B and measure accuracy over time (see the eval harness in <a href="#s20">§20</a>).</li>
+      </ul>
+    </section>
+
+    <!-- ============ 7. VALIDATION ENGINE ============ -->
+    <section id="s7">
+      <div class="sec-head"><div class="sec-num">7</div><div><div class="sec-kicker">Data Engine</div><h2>Validation Engine <span class="anchor">#</span></h2></div></div>
+      <p>This is your <em>“verifies the detail &amp; sends report → score &gt; 90% → publish”</em> step, made concrete. It converts an extraction into a single <strong>0–100 score</strong> with a breakdown and a human-readable report, then routes it.</p>
+      <h3>The scoring pipeline</h3>
+      <table class="tbl">
+        <tr><th>Check</th><th>Type</th><th>Example</th><th>Weight</th></tr>
+        <tr><td>Schema valid</td><td>Rule (hard)</td><td>Dates parse; vacancy is a number; required fields present</td><td>gate</td></tr>
+        <tr><td>Sanity</td><td>Rule</td><td>End date ≥ start date; year matches; vacancy in plausible range</td><td>high</td></tr>
+        <tr><td>Source reachable</td><td>Rule</td><td>Official links resolve (HTTP 200) and are on official domains</td><td>high</td></tr>
+        <tr><td>Cross-source agreement</td><td>Rule</td><td>Two independent sources agree on the last date</td><td>high</td></tr>
+        <tr><td>Model confidence</td><td>AI</td><td>Field-level confidence from §6</td><td>medium</td></tr>
+        <tr><td>Consistency w/ history</td><td>AI</td><td>“This year’s pattern vs last 3 cycles” — flags anomalies</td><td>medium</td></tr>
+        <tr><td>Adversarial re-read</td><td>AI</td><td>A second model tries to <em>refute</em> the extraction from the same doc</td><td>medium</td></tr>
+      </table>
+      <h3>Routing by score</h3>
+      <div class="stagebar">
+        <div class="s done"><b>≥ 90 · Auto-publish</b>Passes all hard rules → straight to §9. Report archived.</div>
+        <div class="s now"><b>70–89 · Human queue</b>One-tap approve/edit in a review inbox. &lt;30s per item.</div>
+        <div class="s"><b>&lt; 70 · Reject</b>Re-queue with reason; may escalate model or flag source.</div>
+      </div>
+      <p>The <code>validation</code> row stores <code>score</code>, <code>passed</code>, the <code>checks[]</code> breakdown and a <code>report</code> string (this is the “report” your n8n step sends to Slack/Telegram/email). Human decisions are recorded (<code>reviewed_by</code>, <code>reviewed_at</code>) for audit and to build a training set.</p>
+      <div class="note ok"><b>Why this is the moat</b>Anyone can scrape. Very few build a trustworthy <em>gate</em>. This engine is what lets you automate aggressively without ever betraying an aspirant with a wrong date.</div>
+    </section>
+
+    <!-- ============ 8. VERSION CONTROL ============ -->
+    <section id="s8">
+      <div class="sec-head"><div class="sec-num">8</div><div><div class="sec-kicker">Data Engine</div><h2>Version Control <span class="anchor">#</span></h2></div></div>
+      <p>Government dates change constantly (extensions, corrigenda). Versioning turns that churn into a <em>feature</em>: the “What’s changed” feed (F-12), safe rollback, and a full audit trail.</p>
+      <ul>
+        <li><strong>Snapshot per change</strong>: on every approved publish, write a <code>content_version</code> (full JSON snapshot + <code>version_no</code>).</li>
+        <li><strong>Automatic diff</strong>: compute <code>{field:[old,new]}</code> vs the previous current version. e.g. <code>{"last_date":["25 Aug","30 Aug"]}</code>.</li>
+        <li><strong>Feed generation</strong>: a meaningful diff auto-creates an <code>update_feed</code> row (“Last date extended to 30 Aug”) → homepage, dashboard, and notifications.</li>
+        <li><strong>Rollback</strong>: flip <code>is_current</code> to a prior version if a bad extraction slips through — instant, non-destructive.</li>
+        <li><strong>Audit</strong>: <code>created_by</code> (pipeline vs staff email) + link to the <code>extraction</code>/<code>validation</code> that produced it.</li>
+      </ul>
+      <div class="note"><b>User-facing payoff</b>“What changed since you last visited” and per-cycle changelogs build trust and bring people back — a retention loop powered entirely by data you already keep.</div>
+    </section>
+
+    <!-- ============ 9. PUBLISHING ENGINE ============ -->
+    <section id="s9">
+      <div class="sec-head"><div class="sec-num">9</div><div><div class="sec-kicker">Data Engine</div><h2>Publishing Engine <span class="anchor">#</span></h2></div></div>
+      <p>Steps 3–5 of your flow: <em>decide/arrange the data → feed it to the right page → page gets updated.</em> The publisher takes an approved version and makes it live, correctly placed and instantly visible.</p>
+      <h3>What it does</h3>
+      <ol>
+        <li><strong>Arrange / route</strong>: resolve the extraction to the exact target (which <code>exam_cycle</code>, which <code>key_date</code>) — create the exam/cycle if new, else update in place.</li>
+        <li><strong>Upsert + version</strong>: write content tables inside a transaction; snapshot a <code>content_version</code>; emit <code>update_feed</code> + fan out <code>notification</code>s (§17).</li>
+        <li><strong>Reveal</strong>: trigger Next.js <strong>on-demand revalidation</strong> for the affected paths (<code>/ssc/cgl-2026</code>, homepage, calendar) and purge the CDN. The page updates within seconds — no full redeploy.</li>
+        <li><strong>Confirm</strong>: write a <code>publish_event</code> (path, revalidated?) so publishing is itself auditable.</li>
+      </ol>
+      <h4>The n8n workflow (node-by-node)</h4>
+      <pre><code><span class="cm"># WF-1  Scrape (per source, on schedule)</span>
+Cron → HTTP/Playwright fetch → Hash → IF changed → Supabase insert raw_document → emit doc.id
+
+<span class="cm"># WF-2  Understand &amp; gate (triggered by new raw_document)</span>
+Supabase trigger → AI Extract (structured) → insert extraction
+   → Validation (rules + AI) → insert validation, compute score
+   → IF score ≥ 90  → WF-3 (publish)
+   → IF 70–89       → Review queue (Telegram/Slack approve buttons) → on approve → WF-3
+   → ELSE           → mark rejected + notify ops
+
+<span class="cm"># WF-3  Publish (approved version)</span>
+Resolve target (exam/cycle) → Upsert content (txn) → Snapshot content_version + diff
+   → Create update_feed → Fan-out notifications → POST /api/revalidate (Next.js)
+   → Insert publish_event → done</code></pre>
+      <div class="note map"><b>Exactly your five steps</b>WF-2 = “verify &amp; send report” + “score &gt; 90 → publish”; WF-3 = “decide/arrange” → “feed to page” → “page updated”. n8n owns orchestration; Supabase is the state; Next.js renders.</div>
+    </section>
+
+    <!-- ============ 10. DESIGN SYSTEM ============ -->
+    <section id="s10">
+      <div class="sec-head"><div class="sec-num">10</div><div><div class="sec-kicker">Experience</div><h2>Design System <span class="anchor">#</span></h2></div></div>
+      <p>One visual language so every page feels like one product and new pages are cheap to build. Ship it as design tokens + a Tailwind config + a component library (§11).</p>
+      <div class="grid g2">
+        <div class="card"><h4>Tokens</h4><p><strong>Color</strong>: a trustworthy blue primary, a warm saffron accent (a nod to the Indian civic palette, used sparingly), semantic green/amber/red for status. <strong>Type</strong>: Inter for Latin + Noto Sans Devanagari for Hindi. <strong>Spacing</strong>: 4-pt scale. <strong>Radius/shadow</strong>: soft, modern, calm.</p></div>
+        <div class="card"><h4>Modes &amp; a11y</h4><p>Light + dark from day one (respect <code>prefers-color-scheme</code>). WCAG 2.1 AA contrast, full keyboard nav, visible focus, semantic HTML, 44px tap targets, reduced-motion support.</p></div>
+        <div class="card"><h4>Bilingual-ready</h4><p>Hindi + English are first-class. Keep copy in an i18n layer, avoid text-in-images, and pick fonts that render Devanagari cleanly. Huge for reach and SEO.</p></div>
+        <div class="card"><h4>Performance budget</h4><p>≤ 2.5s LCP on mid-range mobile, ≤ 150KB critical JS, system-ish fonts, lazy images, no layout shift (CLS &lt; 0.1). Speed is a design principle here.</p></div>
+      </div>
+      <p>Status colors are shared across the app (they encode meaning, not decoration):
+        <span class="pill p-green">Result Out</span>
+        <span class="pill p-brand">Application Open</span>
+        <span class="pill p-amber">Admit Card</span>
+        <span class="pill p-red">Closing Soon</span>
+        <span class="pill p-gray">Completed</span>
+        <span class="pill p-violet">Upcoming</span>
+      </p>
+    </section>
+
+    <!-- ============ 11. UNIVERSAL COMPONENTS ============ -->
+    <section id="s11">
+      <div class="sec-head"><div class="sec-num">11</div><div><div class="sec-kicker">Experience</div><h2>Universal Components <span class="anchor">#</span></h2></div></div>
+      <p>Build these once; compose every page from them. Each is typed, responsive, themeable, and has loading/empty/error states.</p>
+      <table class="tbl">
+        <tr><th>Component</th><th>Used by</th><th>Notes</th></tr>
+        <tr><td><code>TimelineStrip</code></td><td>Dashboard, Body page</td><td>Horizontal stage tracker with done/now/upcoming states. The signature UI.</td></tr>
+        <tr><td><code>DaysLeftChip</code> / <code>Countdown</code></td><td>Everywhere</td><td>Live “12 days left”; turns red under threshold. Fed by <code>v_cycle_next_deadline</code>.</td></tr>
+        <tr><td><code>ExamCard</code></td><td>Home, Body, Search</td><td>Name, body, status pill, next deadline, vacancy. The atom of listings.</td></tr>
+        <tr><td><code>UpdateFeedItem</code></td><td>Home, Dashboard</td><td>“What’s changed” row with kind icon + relative time.</td></tr>
+        <tr><td><code>VacancyTable</code> / <code>CutoffChart</code></td><td>Dashboard, history</td><td>Breakdown table + 5-year trend chart (accessible, dark-mode aware).</td></tr>
+        <tr><td><code>EligibilityChecker</code></td><td>Dashboard, Home</td><td>Interactive: enter age/qualification → instant eligible/not + why.</td></tr>
+        <tr><td><code>SourceLinkList</code></td><td>Dashboard</td><td>Official links with “official” badge + last-checked time (trust anchor).</td></tr>
+        <tr><td><code>CompareTable</code></td><td>Compare page</td><td>Two+ exams across dates, eligibility, vacancy, pattern.</td></tr>
+        <tr><td><code>SmartSearchBox</code></td><td>Home, header</td><td>Natural-language + structured chips (see §15).</td></tr>
+        <tr><td><code>FilterPanel</code></td><td>Search, Body, Home</td><td>By body, level, state, eligibility, status.</td></tr>
+        <tr><td><code>StateMap</code></td><td>Home, State page</td><td>SVG India map → click a state → active exams (F-13).</td></tr>
+        <tr><td>Primitives</td><td>All</td><td><code>Tabs</code>, <code>Breadcrumbs</code>, <code>Skeleton</code>, <code>EmptyState</code>, <code>Toast</code>, <code>Badge</code>, <code>Modal</code>.</td></tr>
+      </table>
+    </section>
+
+    <!-- ============ 12. EXAM DASHBOARD ============ -->
+    <section id="s12">
+      <div class="sec-head star"><div class="sec-num">12</div><div><div class="sec-kicker">Experience · Priority ★</div><h2>Exam Dashboard <span class="anchor">#</span></h2></div></div>
+      <p>The cockpit for a single exam cycle and the reason people return. This is a direct build of your page-3 notes: a timeline on top, then everything an aspirant needs, in order of urgency.</p>
+      <div class="wire">
+        <div class="box"><b>① Timeline (top)</b> — all stages: Notification → Application → Tier-1 → Tier-2 → Interview/DV → Medical → Result, with done/now/next states</div>
+        <div class="row">
+          <div class="box"><b>② Form filling</b><br>Start → End · <span class="pill p-red">Days left</span></div>
+          <div class="box"><b>③ Exam dates</b><br>Pre · Mains · Interview · DV · Medical</div>
+        </div>
+        <div class="row">
+          <div class="box"><b>④ Vacancy</b> → last 5 years comparison (new page)</div>
+          <div class="box"><b>⑤ Official Sources</b> (badged, trust anchor)</div>
+        </div>
+        <div class="box"><b>⑥ “Anything New” (pinned on top)</b> — latest change for this cycle</div>
+        <div class="row">
+          <div class="box"><b>⑦ My Exam</b> (follow / set alerts)</div>
+          <div class="box"><b>⑧ Related &amp; Compare Exams</b> (bottom → compare page)</div>
+        </div>
+      </div>
+      <table class="tbl">
+        <tr><th>Block</th><th>Data source</th><th>Feature</th></tr>
+        <tr><td>Timeline</td><td><code>exam_stage</code> (ordered) + <code>key_date</code></td><td>F-2 Exam Timeline</td></tr>
+        <tr><td>Days left</td><td><code>v_cycle_next_deadline</code></td><td>F-8 Deadline + days-left</td></tr>
+        <tr><td>Exam-date breakdown</td><td><code>exam_stage.kind</code> (prelims/mains/interview/DV/medical)</td><td>F-1</td></tr>
+        <tr><td>Vacancy history</td><td><code>vacancy</code> across cycles</td><td>F-5 Vacancy history</td></tr>
+        <tr><td>Cutoff trend</td><td><code>cutoff</code> across cycles</td><td>F-6 Cutoff trends</td></tr>
+        <tr><td>Official sources</td><td><code>official_link</code></td><td>F-11</td></tr>
+        <tr><td>Anything new</td><td><code>update_feed</code> (this cycle, newest)</td><td>F-12 What’s changed</td></tr>
+        <tr><td>My Exam</td><td><code>user_follow</code></td><td>F-14/15 Bookmark</td></tr>
+        <tr><td>Related / Compare</td><td><code>exam_relation</code> → compare page</td><td>F-4 Compare, F-16 Graph</td></tr>
+      </table>
+      <div class="note ok"><b>Definition of done</b>Loads &lt; 2.5s on mobile; timeline shows correct current stage; days-left is live; every date has an official source link; “follow” works logged-in; related exams cross-link. Fully server-rendered for SEO.</div>
+    </section>
+
+    <!-- ============ 13. HOMEPAGE ============ -->
+    <section id="s13">
+      <div class="sec-head star"><div class="sec-num">13</div><div><div class="sec-kicker">Experience · Priority ★</div><h2>Homepage <span class="anchor">#</span></h2></div></div>
+      <p>Two jobs: get a returning aspirant to their exam in one tap, and get a new visitor to discover theirs. Built from your page-5 notes.</p>
+      <div class="wire">
+        <div class="box"><b>Smart Search bar</b> — “search anything”: <code>age=21</code>, <code>eligibility=B.A.</code>, “SSC graduate exams” → §15</div>
+        <div class="row">
+          <div class="box"><b>Latest Updates</b><br>live feed (what’s changed)</div>
+          <div class="box"><b>Available Exams</b><br>SSC · UPSC · RRB · PSC · MP · UP · … grid</div>
+        </div>
+        <div class="box"><b>“Filter your Exam”</b> — by date · eligibility · body · state · status</div>
+        <div class="box"><b>Personalized (logged-in)</b> — your followed exams, your deadlines first (F-9)</div>
+      </div>
+      <table class="tbl">
+        <tr><th>Block</th><th>Source</th><th>Feature</th></tr>
+        <tr><td>Smart search</td><td>search index + NL parser</td><td>F-7 Smart Search</td></tr>
+        <tr><td>Latest updates</td><td><code>update_feed</code> by importance/recency</td><td>F-12</td></tr>
+        <tr><td>Available exams</td><td><code>conducting_body</code> + featured <code>exam_cycle</code></td><td>—</td></tr>
+        <tr><td>Filter your exam</td><td>faceted query over cycles</td><td>F-3 Eligibility</td></tr>
+        <tr><td>Personalized</td><td><code>user_follow</code> + eligibility profile</td><td>F-9 Personalized home</td></tr>
+      </table>
+      <div class="note"><b>Logged-out vs logged-in</b>Logged-out = discovery + SEO (statically generated, cached). Logged-in = a personal cockpit (client-hydrated). Same shell, two data sources.</div>
+    </section>
+
+    <!-- ============ 14. CONDUCTING BODY PAGE ============ -->
+    <section id="s14">
+      <div class="sec-head"><div class="sec-num">14</div><div><div class="sec-kicker">Experience</div><h2>Conducting Body Page <span class="anchor">#</span></h2></div></div>
+      <p>The hub for one body (your page-4 “SSC” sketch). It answers “what is this body doing right now, and what’s coming?”</p>
+      <div class="wire">
+        <div class="row">
+          <div class="box"><b>Current Exams</b><br>live cycles</div>
+          <div class="box"><b>Upcoming</b><br>announced/expected</div>
+          <div class="box"><b>Past</b><br>completed cycles</div>
+        </div>
+        <div class="row">
+          <div class="box"><b>Exam Calendar</b><br>this body’s dates</div>
+          <div class="box"><b>Latest Update</b><br>body-scoped feed</div>
+        </div>
+        <div class="box"><b>Month strip</b> — J F M A M J Jul … → jump to a month’s deadlines</div>
+      </div>
+      <table class="tbl">
+        <tr><th>Block</th><th>Source</th></tr>
+        <tr><td>Current / Upcoming / Past</td><td><code>exam_cycle</code> grouped by <code>status</code> for this <code>conducting_body</code></td></tr>
+        <tr><td>Exam calendar &amp; month strip</td><td><code>key_date</code> joined via cycles → grouped by month</td></tr>
+        <tr><td>Latest update</td><td><code>update_feed</code> filtered by <code>body_id</code></td></tr>
+      </table>
+      <p>Great programmatic-SEO surface: one strong, always-fresh page per body (<code>/ssc</code>, <code>/upsc</code>, <code>/ibps</code>, <code>/rrb</code>, each state PSC).</p>
+    </section>
+
+    <!-- ============ 15. SEARCH ============ -->
+    <section id="s15">
+      <div class="sec-head"><div class="sec-num">15</div><div><div class="sec-kicker">Experience</div><h2>Search <span class="anchor">#</span></h2></div></div>
+      <p>Your “Smart Search” (F-7) is a headline feature: users type natural things like <em>“age 21, B.A., all-India”</em> and get matching exams. Deliver it in two layers.</p>
+      <h3>Layer 1 — structured + full-text (ship first)</h3>
+      <ul>
+        <li><strong>Query parser</strong>: split input into <em>structured filters</em> (age, qualification, body, state, level) and <em>free text</em>. “age=21” and “B.A.” become filters; the rest hits full-text.</li>
+        <li><strong>Engine</strong>: Postgres FTS + <code>pg_trgm</code> (typo-tolerant) over the <code>search_index</code> materialised view; structured filters map to the eligibility engine.</li>
+        <li><strong>Ranking</strong>: text relevance × freshness × status (open cycles first).</li>
+      </ul>
+      <h3>Layer 2 — natural language &amp; semantic (upgrade)</h3>
+      <ul>
+        <li>A small LLM turns a free sentence into the structured filter object (“graduate exams I can give at 21 in MP” → <code>{qualification:'graduate', age:21, state:'MP'}</code>).</li>
+        <li><code>pgvector</code> or Meilisearch/Typesense for instant, semantic, as-you-type results at scale.</li>
+      </ul>
+      <div class="note map"><b>Ties into the Eligibility Engine (F-3)</b>Search and eligibility share one filter model, so “find exams I’m eligible for” is the same code path as the checker on the dashboard.</div>
+    </section>
+
+    <!-- ============ 16. USER PROFILE ============ -->
+    <section id="s16">
+      <div class="sec-head"><div class="sec-num">16</div><div><div class="sec-kicker">Experience</div><h2>User Profile <span class="anchor">#</span></h2></div></div>
+      <p>Accounts unlock the sticky features: follows, alerts, and personalisation. Keep sign-up frictionless and the value obvious.</p>
+      <ul>
+        <li><strong>Auth</strong>: Supabase Auth — email OTP + Google. No passwords to manage.</li>
+        <li><strong>Eligibility profile</strong>: DOB, category, qualification, home state → powers personalised eligibility and <em>relevant</em> notifications (F-3). Stored on <code>profile</code>, private via RLS.</li>
+        <li><strong>My Exams</strong>: follow exams/cycles (<code>user_follow</code>) with a role (interested / preparing / applied) → drives the personalized home (F-9) and dashboard “My Exam”.</li>
+        <li><strong>Alert preferences</strong>: which topics, which channels (<code>subscription</code>).</li>
+        <li><strong>Bookmarks &amp; history</strong>: quick access to saved pages (F-14/15).</li>
+      </ul>
+      <div class="note"><b>Progressive value</b>Everything works logged-out; logging in <em>adds</em> (alerts, personalisation). Prompt sign-in at the moment of intent — when a user taps “notify me” on a deadline.</div>
+    </section>
+
+    <!-- ============ 17. NOTIFICATION ENGINE ============ -->
+    <section id="s17">
+      <div class="sec-head"><div class="sec-num">17</div><div><div class="sec-kicker">Experience</div><h2>Notification Engine <span class="anchor">#</span></h2></div></div>
+      <p>The retention flywheel. When the pipeline publishes a change, the right users hear about it — and only the <em>relevant</em> ones (your F-3 note: “Eligibility Engine → Notification (Relevant)”).</p>
+      <h3>How an alert is born</h3>
+      <div class="flow">
+        <div class="step"><b>Trigger</b><small>publish_event / update_feed created</small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Audience</b><small>match followers + eligible + subscribed topics</small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Relevance</b><small>score per user (eligibility fit, follow, importance)</small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Fan-out</b><small>web push · email · (WhatsApp later)</small></div>
+        <div class="arw">→</div>
+        <div class="step"><b>Track</b><small>delivery status, dedupe, rate-limit</small></div>
+      </div>
+      <ul>
+        <li><strong>Channels</strong>: Web Push (VAPID, free, high-retention) first; transactional email (Resend/SES); WhatsApp/SMS later for high-value deadline reminders.</li>
+        <li><strong>Relevance &gt; volume</strong>: use the eligibility profile so a 12th-pass user isn’t pinged about graduate-only exams. Cap frequency; batch digests.</li>
+        <li><strong>Deadline reminders</strong>: scheduled nudges (T-7, T-2, T-1 days) generated from <code>key_date</code> for followed cycles.</li>
+        <li><strong>Auditable</strong>: <code>notification</code> + <code>notification_delivery</code> record what was sent where, with provider refs.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 18. SEO SYSTEM ============ -->
+    <section id="s18">
+      <div class="sec-head star"><div class="sec-num">18</div><div><div class="sec-kicker">Experience · Priority ★</div><h2>SEO System <span class="anchor">#</span></h2></div></div>
+      <p>For a content product, SEO is the growth engine — and you already listed its parts. Here they are as an executable checklist, straight from your page-6 notes.</p>
+      <table class="tbl">
+        <tr><th>Lever</th><th>Implementation</th></tr>
+        <tr><td><strong>URL structure</strong></td><td>Clean, keyword-rich, permanent (see <a href="#s4">§4</a>). Canonical tags everywhere.</td></tr>
+        <tr><td><strong>Internal linking</strong></td><td>Every cycle ↔ exam ↔ body ↔ related ↔ compare ↔ state. Auto-generated contextual links from <code>exam_relation</code>. Breadcrumbs on all pages.</td></tr>
+        <tr><td><strong>Metadata</strong></td><td>Per-page <code>&lt;title&gt;</code>/description templates driven by data (“SSC CGL 2026 — Notification, Dates, Vacancy &amp; Apply”). OpenGraph + Twitter cards.</td></tr>
+        <tr><td><strong>Schema markup</strong></td><td>JSON-LD: <code>JobPosting</code>/<code>Event</code> for cycles, <code>BreadcrumbList</code>, <code>FAQPage</code>, <code>Organization</code>. Rich results = higher CTR.</td></tr>
+        <tr><td><strong>Sitemaps</strong></td><td>Segmented sitemaps (bodies, exams, cycles, articles) under a sitemap index; auto-updated on publish; <code>lastmod</code> from <code>updated_at</code>.</td></tr>
+        <tr><td><strong>Content templates</strong></td><td>Programmatic pages: syllabus, how-to-apply, eligibility, cutoff, PYQ (F-10) — one template × thousands of exams = scale.</td></tr>
+        <tr><td><strong>Crawl efficiency</strong></td><td>ISR so pages are pre-rendered &amp; fast; correct <code>robots.txt</code>; no crawl traps; fast TTFB; freshness pings on change.</td></tr>
+      </table>
+      <h4>JSON-LD example (exam cycle)</h4>
+      <pre><code>{
+  <span class="st">"@context"</span>:<span class="st">"https://schema.org"</span>,
+  <span class="st">"@type"</span>:<span class="st">"JobPosting"</span>,
+  <span class="st">"title"</span>:<span class="st">"SSC CGL 2026 — 17,727 Vacancies"</span>,
+  <span class="st">"datePosted"</span>:<span class="st">"2026-06-24"</span>,
+  <span class="st">"validThrough"</span>:<span class="st">"2026-07-24"</span>,
+  <span class="st">"hiringOrganization"</span>:{<span class="st">"@type"</span>:<span class="st">"Organization"</span>,<span class="st">"name"</span>:<span class="st">"Staff Selection Commission"</span>},
+  <span class="st">"employmentType"</span>:<span class="st">"FULL_TIME"</span>,
+  <span class="st">"jobLocation"</span>:{<span class="st">"@type"</span>:<span class="st">"Place"</span>,<span class="st">"address"</span>:<span class="st">"India"</span>}
+}</code></pre>
+      <div class="note ok"><b>The flywheel</b>Automation publishes fresh, structured pages → search rewards freshness + schema → traffic → follows &amp; alerts → return visits. Compounding, and cheap because it’s automated.</div>
+    </section>
+
+    <!-- ============ 19. CLOUD INFRASTRUCTURE ============ -->
+    <section id="s19">
+      <div class="sec-head"><div class="sec-num">19</div><div><div class="sec-kicker">Operate &amp; Grow</div><h2>Cloud Infrastructure <span class="anchor">#</span></h2></div></div>
+      <p>Small, cheap, and boring on purpose. Managed services where possible; one small always-on box for the workers.</p>
+      <pre><code>            ┌────────────────────────────────────────────┐
+  Aspirant →│  Next.js on Vercel (SSR/ISR, edge CDN)      │→ fast pages
+            └───────────────┬────────────────────────────┘
+                            │ reads (RLS) / on-demand revalidate
+            ┌───────────────▼────────────────────────────┐
+            │  Supabase: Postgres · Auth · Storage · RT   │  ← single source of truth
+            └───────────────▲───────────────▲─────────────┘
+       service-role writes  │               │ raw blobs
+            ┌───────────────┴───┐   ┌───────┴──────────────┐
+            │  n8n (VPS)        │   │  Scraper workers      │
+            │  orchestration    │──▶│  Playwright + Crawlee │→ official sites/PDFs
+            └───────────────────┘   └──────────────────────┘
+                    │ AI Extract/Validate (LLM API) · Notifications (Push/Email)</code></pre>
+      <table class="tbl">
+        <tr><th>Concern</th><th>Approach</th></tr>
+        <tr><td>Environments</td><td>dev · staging · prod; migrations via Supabase CLI; infra in git.</td></tr>
+        <tr><td>Secrets</td><td>Vercel/n8n env vars + a vault; service-role key never in the browser.</td></tr>
+        <tr><td>Storage</td><td>Supabase Storage for raw scrapes (lifecycle-expire old blobs).</td></tr>
+        <tr><td>Queues/retries</td><td>n8n handles retries/backoff; a durable queue (e.g. pg-boss/Redis) when volume grows.</td></tr>
+        <tr><td>Monitoring</td><td>Sentry (web+workers), Supabase logs, UptimeRobot, data-quality alerts (see §20).</td></tr>
+        <tr><td>Cost (early)</td><td>Vercel Hobby/Pro + Supabase Pro + a ~₹500–1000/mo VPS + metered LLM. Starts small, scales with traffic.</td></tr>
+      </table>
+    </section>
+
+    <!-- ============ 20. TESTING ============ -->
+    <section id="s20">
+      <div class="sec-head"><div class="sec-num">20</div><div><div class="sec-kicker">Operate &amp; Grow</div><h2>Testing <span class="anchor">#</span></h2></div></div>
+      <p>Two things must never break: the site, and the <em>truth of the data</em>. Test both.</p>
+      <table class="tbl">
+        <tr><th>Layer</th><th>What</th><th>Tooling</th></tr>
+        <tr><td>Unit</td><td>Parsers, slug/date logic, relevance scoring</td><td>Vitest/Jest</td></tr>
+        <tr><td>Integration</td><td>Pipeline: raw doc → extraction → validation → publish (fixtures)</td><td>Vitest + test DB</td></tr>
+        <tr><td>E2E</td><td>Key journeys: search → dashboard → follow → alert</td><td>Playwright</td></tr>
+        <tr><td><strong>Data-quality</strong></td><td>SQL assertions: no cycle without a source, dates sane, no orphan rows, published ⇒ has version</td><td>dbt-style checks / scheduled SQL</td></tr>
+        <tr><td><strong>Extraction eval</strong></td><td>Golden set of notices with known answers → track field accuracy per prompt_version</td><td>Custom harness + CI gate</td></tr>
+        <tr><td>Scraper health</td><td>Source freshness monitors; alert on “no change in N days” or fetch failures</td><td>n8n + UptimeRobot</td></tr>
+        <tr><td>Performance</td><td>Core Web Vitals budgets in CI</td><td>Lighthouse CI</td></tr>
+      </table>
+      <div class="note warn"><b>The eval harness is not optional</b>Because AI writes your content, you need a regression test for <em>accuracy</em>. A 50–100 doc golden set, scored automatically, catches a prompt/model change that would otherwise quietly publish wrong dates.</div>
+    </section>
+
+    <!-- ============ 21. LAUNCH ============ -->
+    <section id="s21">
+      <div class="sec-head"><div class="sec-num">21</div><div><div class="sec-kicker">Operate &amp; Grow</div><h2>Launch <span class="anchor">#</span></h2></div></div>
+      <p>Launch narrow and deep, not wide and thin. Own a few exam families completely before expanding.</p>
+      <h3>Pre-launch checklist</h3>
+      <ul>
+        <li><strong>Seed depth</strong>: 20–40 high-demand exams (SSC CGL/CHSL/MTS, a few state PSCs, IBPS, RRB) fully populated with real cycles, dates, vacancy, eligibility.</li>
+        <li><strong>Accuracy audit</strong>: manually verify every seeded fact against the official source — day-one trust is everything.</li>
+        <li><strong>SEO ready</strong>: sitemaps submitted, Search Console + analytics live, JSON-LD validated, canonical/robots checked.</li>
+        <li><strong>Legal/trust</strong>: disclaimer + “not a government website” + official-source attribution on every page.</li>
+        <li><strong>Perf</strong>: pass Core Web Vitals on mobile; test on a real budget Android + 3G.</li>
+        <li><strong>Alerts</strong>: web push working end-to-end; a first “deadline reminder” demonstrably fires.</li>
+      </ul>
+      <h3>Rollout</h3>
+      <p>Soft launch to a student community (one exam family) → gather corrections → tune the pipeline → widen exam coverage weekly. Let the automation prove itself on a small surface before you scale it.</p>
+    </section>
+
+    <!-- ============ 22. GROWTH ============ -->
+    <section id="s22">
+      <div class="sec-head"><div class="sec-num">22</div><div><div class="sec-kicker">Operate &amp; Grow</div><h2>Growth <span class="anchor">#</span></h2></div></div>
+      <p>Growth here is a system, not a campaign — the same automation that keeps data fresh also produces the surfaces that acquire and retain.</p>
+      <div class="grid g2">
+        <div class="card"><h4>Acquisition — SEO flywheel</h4><p>Programmatic pages × freshness × schema. Every new cycle is a new fast, structured, internally-linked page. This is your cheapest, most durable channel.</p></div>
+        <div class="card"><h4>Retention — the alert loop</h4><p>Follows → relevant push/email → return visits → more follows. Deadline reminders are inherently sticky. “What’s changed” brings people back.</p></div>
+        <div class="card"><h4>Virality — shareable tools</h4><p>Compare pages, eligibility checker results, state map, and “days left” cards are made to be screenshotted and shared in coaching WhatsApp groups.</p></div>
+        <div class="card"><h4>Monetization (later, tasteful)</h4><p>Non-intrusive ads, a premium tier (advanced alerts, PYQ/test portal F-10, deep analytics), and coaching/affiliate partnerships. Never at the cost of trust.</p></div>
+      </div>
+      <div class="note map"><b>Sequencing</b>Nail acquisition (SEO) + retention (alerts) first. Virality and monetization compound once the data engine and audience exist — don’t rush them.</div>
+    </section>
+
+    <!-- ============ ROADMAP ============ -->
+    <section id="roadmap" class="plain"><h2 style="padding-left:4px">Roadmap — “Timeline: how to go” <span class="anchor">#</span></h2></section>
+    <section>
+      <p>A build order that gets a trustworthy, SEO-earning product live fast, then compounds. Each phase is shippable.</p>
+      <table class="tbl">
+        <tr><th>Phase</th><th>Focus</th><th>Ships</th><th>Sections</th></tr>
+        <tr><td><span class="pill p-brand">0 · Foundations</span></td><td>Schema, URLs, design tokens, component skeletons</td><td>Repo, DB live, Next.js shell, CI</td><td>1–4, 10–11</td></tr>
+        <tr><td><span class="pill p-brand">1 · Data engine</span></td><td>Scrape → extract → validate → publish for one body (SSC)</td><td>n8n flows, the 90% gate, versioning</td><td>5–9</td></tr>
+        <tr><td><span class="pill p-amber">2 · Core pages + SEO</span></td><td>Dashboard, Homepage, Body page, sitemaps, schema</td><td>Public MVP that ranks</td><td>12–14, 18 ★</td></tr>
+        <tr><td><span class="pill p-amber">3 · Accounts + alerts</span></td><td>Auth, follows, eligibility profile, notifications</td><td>Retention loop</td><td>15–17</td></tr>
+        <tr><td><span class="pill p-green">4 · Smart features</span></td><td>Compare, cutoff/vacancy trends, state map, NL search, relationship graph</td><td>Differentiators</td><td>12, 15, F-4/6/13/16</td></tr>
+        <tr><td><span class="pill p-green">5 · Scale + grow</span></td><td>More bodies, PYQ/test portal, semantic search, monetization</td><td>Coverage &amp; revenue</td><td>19–22, F-10</td></tr>
+      </table>
+      <div class="note ok"><b>The critical path</b>Phase 1 (the data engine) is the whole ballgame. Get one body flowing end-to-end through the 90% gate before building breadth. Everything else renders data this engine produces.</div>
+    </section>
+
+    <!-- ============ FEATURE MAP ============ -->
+    <section id="features" class="plain"><h2 style="padding-left:4px">Feature map — your F-1…F-16 <span class="anchor">#</span></h2></section>
+    <section>
+      <p>Every feature from your notes, mapped to where it lives in this blueprint.</p>
+      <table class="tbl">
+        <tr><th>#</th><th>Feature</th><th>Home</th></tr>
+        <tr><td>F-1</td><td>Exam Dashboard</td><td><a href="#s12">§12 ★</a></td></tr>
+        <tr><td>F-2</td><td>Exam Timeline</td><td><a href="#s12">§12</a> · <code>TimelineStrip</code></td></tr>
+        <tr><td>F-3</td><td>Eligibility Engine → relevant notifications</td><td><a href="#s16">§16</a> + <a href="#s17">§17</a></td></tr>
+        <tr><td>F-4</td><td>Compare Exams</td><td><a href="#s12">§12</a> Compare</td></tr>
+        <tr><td>F-5</td><td>Vacancy History</td><td><a href="#s12">§12</a> · <code>vacancy</code></td></tr>
+        <tr><td>F-6</td><td>Cutoff Trends</td><td><a href="#s12">§12</a> · <code>cutoff</code></td></tr>
+        <tr><td>F-7</td><td>Smart Search</td><td><a href="#s15">§15</a></td></tr>
+        <tr><td>F-8</td><td>Deadline Calendar + “days left”</td><td><a href="#s12">§12</a> · <code>key_date</code></td></tr>
+        <tr><td>F-9</td><td>Personalized Homepage (logged-in)</td><td><a href="#s13">§13 ★</a></td></tr>
+        <tr><td>F-10</td><td>PYQ · Papers · Test portal (later)</td><td><a href="#s22">§22</a> · Phase 5</td></tr>
+        <tr><td>F-11</td><td>Official Sources</td><td><a href="#s12">§12</a> · <code>official_link</code></td></tr>
+        <tr><td>F-12</td><td>What’s changed / Update</td><td><a href="#s8">§8</a> + <code>update_feed</code></td></tr>
+        <tr><td>F-13</td><td>State Map (India → state → active/results)</td><td><a href="#s11">§11</a> · <code>StateMap</code></td></tr>
+        <tr><td>F-14/15</td><td>Bookmark / follow (login)</td><td><a href="#s16">§16</a> · <code>user_follow</code></td></tr>
+        <tr><td>F-16</td><td>Exam Relationship Graph</td><td><a href="#s2">§2</a> · <code>exam_relation</code></td></tr>
+      </table>
+    </section>
+
+    <div class="foot">
+      Exam Portal · Engineering &amp; Product Build Bible · v1.0 &nbsp;·&nbsp; ships with <code>schema.sql</code> + <code>seed.sql</code> (tested on Postgres 16)<br>
+      Built from your notes &amp; 22-component plan. Reference model: an upgraded, AI-automated Sarkari-Result-class portal.
+    </div>
+
+  </div>
+  </main>
+</div>
+<script>
+  // Scrollspy: highlight the current section in the sidebar
+  const links=[...document.querySelectorAll('.nav a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.style.background='');const a=map.get(e.target.id);if(a){a.style.background='#1e293b';a.style.color='#fff';}}});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+  // Close mobile nav on link tap
+  document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.sidebar').classList.remove('open');document.querySelector('.backdrop').classList.remove('show');}));
+</script>
+</body>
+</html>

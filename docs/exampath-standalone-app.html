@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ExamPath — Every exam. Every date. One place.</title>
+<meta name="description" content="Track every Indian government exam — notifications, dates, vacancies, eligibility, results — in one clean place.">
+<style>
+:root{
+  --brand:#1d4ed8; --brand-d:#1e3a8a; --brand-l:#3b82f6; --brand-soft:#eff4ff; --brand-100:#dbe6fe;
+  --saffron:#f97316; --saffron-d:#ea580c; --saffron-soft:#fff4ec;
+  --ink:#0f1c33; --ink-2:#334155; --muted:#64748b; --faint:#94a3b8;
+  --line:#e6ebf2; --line-2:#eef2f7; --bg:#f5f7fb; --card:#ffffff;
+  --green:#0e9f6e; --green-soft:#e7f8f0; --red:#e02424; --red-soft:#fdeaea;
+  --amber:#c27803; --amber-soft:#fdf6e3; --violet:#7c3aed; --violet-soft:#f3ecfe;
+  --r:16px; --r-sm:11px; --r-lg:22px;
+  --sh-s:0 1px 2px rgba(16,32,64,.06); --sh:0 6px 20px -10px rgba(16,32,64,.18);
+  --sh-l:0 20px 48px -20px rgba(16,32,64,.28);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Arial,sans-serif;
+  --head:"Segoe UI",var(--sans);
+  --wrap:1160px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;font-size:15.5px;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img,svg{display:block}
+h1,h2,h3,h4{margin:0;font-family:var(--head);letter-spacing:-.02em;line-height:1.18}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.mono{font-variant-numeric:tabular-nums}
+
+/* ---------------- Header ---------------- */
+header.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.top .bar{display:flex;align-items:center;gap:18px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.03em;color:var(--ink);flex:none}
+.logo .glyph{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand-l),var(--saffron));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;box-shadow:var(--sh-s)}
+.logo b{color:var(--brand)} .logo i{font-style:normal;color:var(--saffron)}
+.navlinks{display:flex;gap:4px;margin-left:6px}
+.navlinks a{padding:8px 13px;border-radius:9px;font-weight:600;font-size:14.5px;color:var(--ink-2)}
+.navlinks a:hover{background:var(--brand-soft);color:var(--brand)}
+.navlinks a.active{color:var(--brand);background:var(--brand-soft)}
+.top .search{margin-left:auto;flex:1;max-width:340px;position:relative}
+.top .search input{width:100%;height:42px;border:1px solid var(--line);border-radius:11px;padding:0 14px 0 40px;font-size:14.5px;background:#fff;color:var(--ink)}
+.top .search input:focus{outline:none;border-color:var(--brand-l);box-shadow:0 0 0 4px var(--brand-soft)}
+.top .search svg{position:absolute;left:13px;top:12px;color:var(--faint)}
+.btn-login{flex:none;height:42px;padding:0 16px;border-radius:11px;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;gap:7px}
+.btn-login:hover{background:var(--brand-d)}
+@media(max-width:860px){.navlinks,.top .search,.btn-login{display:none}}
+
+/* ---------------- Buttons / chips ---------------- */
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:12px;font-weight:700;font-size:14.5px;transition:.15s}
+.btn.pri{background:var(--brand);color:#fff}.btn.pri:hover{background:var(--brand-d)}
+.btn.saf{background:var(--saffron);color:#fff}.btn.saf:hover{background:var(--saffron-d)}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--brand-l);color:var(--brand)}
+.btn.sm{height:36px;padding:0 13px;font-size:13px;border-radius:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;letter-spacing:.01em;padding:4px 10px;border-radius:999px;text-transform:uppercase}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.p-open{background:var(--brand-soft);color:var(--brand)} .p-result{background:var(--green-soft);color:var(--green)}
+.p-admit{background:var(--amber-soft);color:var(--amber)} .p-soon{background:var(--red-soft);color:var(--red)}
+.p-up{background:var(--violet-soft);color:var(--violet)} .p-done{background:#eef1f5;color:var(--muted)}
+.tag{display:inline-block;font-size:11.5px;font-weight:600;color:var(--ink-2);background:#f1f5fb;border:1px solid var(--line);padding:3px 9px;border-radius:8px}
+
+/* ---------------- Cards ---------------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh-s)}
+.sec-title{display:flex;align-items:center;justify-content:space-between;margin:0 0 14px}
+.sec-title h2{font-size:21px;font-weight:800}
+.sec-title a{font-size:13.5px;font-weight:700;color:var(--brand)}
+.muted{color:var(--muted)} .small{font-size:13px}
+
+/* ---------------- Home hero ---------------- */
+.hero{position:relative;background:
+   radial-gradient(1200px 380px at 80% -60%, rgba(249,115,22,.14), transparent 60%),
+   radial-gradient(900px 420px at 0% -40%, rgba(59,130,246,.18), transparent 55%),
+   linear-gradient(180deg,#0e1a34,#12244a);
+   color:#fff;padding:46px 0 120px;overflow:hidden}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#bcd0f5;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px}
+.hero h1{font-size:39px;font-weight:800;margin:16px 0 10px;letter-spacing:-.035em;max-width:640px}
+.hero h1 .u{background:linear-gradient(120deg,#ffd7a8,var(--saffron));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.sub{font-size:17px;color:#c9d6ee;max-width:560px;margin:0 0 24px}
+.searchbig{background:#fff;border-radius:16px;padding:8px;display:flex;gap:8px;max-width:640px;box-shadow:var(--sh-l)}
+.searchbig input{flex:1;border:none;height:48px;padding:0 8px 0 16px;font-size:16px;color:var(--ink);border-radius:12px}
+.searchbig input:focus{outline:none}
+.searchbig .btn{height:48px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chips .c{font-size:13px;font-weight:600;color:#dbe6fe;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);padding:7px 13px;border-radius:999px}
+.chips .c:hover{background:rgba(255,255,255,.18)}
+.hero-stats{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap}
+.hero-stats .s b{display:block;font-size:24px;font-weight:800}
+.hero-stats .s span{font-size:12.5px;color:#bcd0f5}
+
+/* pull content up over hero */
+.pull{margin-top:-84px;position:relative;z-index:5}
+
+/* ---------------- Deadline strip ---------------- */
+.dl-strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:12px;overflow-x:auto;padding:4px 2px 8px;scroll-snap-type:x mandatory}
+.dl-strip::-webkit-scrollbar{height:6px}.dl-strip::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.dl-card{scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:14px;padding:14px 15px;box-shadow:var(--sh-s)}
+.dl-card:hover{box-shadow:var(--sh);transform:translateY(-1px);transition:.15s}
+.dl-card .cd{font-size:26px;font-weight:800;color:var(--red);letter-spacing:-.03em}
+.dl-card .cd small{font-size:12px;font-weight:700;color:var(--muted)}
+.dl-card h4{font-size:14.5px;margin:6px 0 2px;font-weight:750}
+
+/* ---------------- Exam card ---------------- */
+.exam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:14px}
+.xcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--sh-s);display:flex;flex-direction:column;gap:10px;transition:.15s}
+.xcard:hover{box-shadow:var(--sh);transform:translateY(-2px);border-color:var(--brand-100)}
+.xcard .row1{display:flex;align-items:center;gap:10px}
+.xcard .badge{width:40px;height:40px;border-radius:11px;background:var(--brand-soft);color:var(--brand);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.xcard h3{font-size:16px;font-weight:750}
+.xcard .meta{font-size:12.5px;color:var(--muted)}
+.xcard .facts{display:flex;gap:16px;padding-top:4px;border-top:1px dashed var(--line);margin-top:2px}
+.xcard .facts .f b{display:block;font-size:15px;font-weight:800}
+.xcard .facts .f span{font-size:11px;color:var(--muted)}
+.xcard .cta{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
+.xcard .heart{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--faint)}
+.xcard .heart.on{color:var(--saffron);border-color:var(--saffron);background:var(--saffron-soft)}
+
+/* body-grid (conducting bodies) */
+.body-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.bcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--sh-s);transition:.15s}
+.bcard:hover{box-shadow:var(--sh);transform:translateY(-2px);border-color:var(--brand-100)}
+.bcard .ic{width:48px;height:48px;border-radius:13px;margin:0 auto 9px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:15px}
+.bcard b{font-size:14.5px} .bcard span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ---------------- Feed ---------------- */
+.feed{display:flex;flex-direction:column}
+.feed .it{display:flex;gap:13px;padding:14px 4px;border-bottom:1px solid var(--line-2)}
+.feed .it:last-child{border-bottom:none}
+.feed .it .ic{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:16px}
+.feed .it h4{font-size:14.5px;font-weight:700;margin-bottom:2px}
+.feed .it p{margin:0;font-size:13px;color:var(--muted)}
+.feed .it .t{margin-left:auto;font-size:11.5px;color:var(--faint);white-space:nowrap;flex:none}
+
+/* ---------------- Dashboard ---------------- */
+.dash-hero{background:linear-gradient(135deg,#12244a,#1d3f7a);color:#fff;border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.dash-hero:before{content:"";position:absolute;right:-40px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.35),transparent 65%)}
+.dash-hero .body-tag{font-size:12.5px;font-weight:700;color:#bcd0f5}
+.dash-hero h1{font-size:29px;font-weight:800;margin:4px 0 12px}
+.dash-hero .countbox{display:flex;gap:10px;margin-top:6px}
+.count-unit{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:9px 14px;text-align:center;min-width:62px}
+.count-unit b{display:block;font-size:24px;font-weight:800}
+.count-unit span{font-size:10.5px;color:#bcd0f5;text-transform:uppercase;letter-spacing:.05em}
+.dash-hero .deadline-label{font-size:13px;color:#dbe6fe;margin-top:10px}
+
+.dash-grid{display:grid;grid-template-columns:1fr 320px;gap:16px;margin-top:16px}
+@media(max-width:900px){.dash-grid{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px;box-shadow:var(--sh-s);margin-bottom:16px}
+.panel h3{font-size:16px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.panel h3 .n{width:26px;height:26px;border-radius:8px;background:var(--brand-soft);color:var(--brand);font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:800}
+
+/* timeline */
+.timeline{display:flex;gap:0;overflow-x:auto;padding:10px 2px 6px}
+.timeline::-webkit-scrollbar{height:6px}.timeline::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.tl-node{flex:1;min-width:104px;position:relative;text-align:center;padding-top:26px}
+.tl-node:before{content:"";position:absolute;top:9px;left:calc(-50% + 9px);width:100%;height:3px;background:var(--line)}
+.tl-node:first-child:before{display:none}
+.tl-node .dot{position:absolute;top:2px;left:calc(50% - 9px);width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--line);z-index:2}
+.tl-node.done .dot{background:var(--green);border-color:var(--green)}
+.tl-node.done:before{background:var(--green)}
+.tl-node.now .dot{background:var(--saffron);border-color:var(--saffron);box-shadow:0 0 0 5px var(--saffron-soft)}
+.tl-node.now:before{background:linear-gradient(90deg,var(--green),var(--saffron))}
+.tl-node b{font-size:12.5px;font-weight:700;display:block}
+.tl-node span{font-size:11px;color:var(--muted)}
+
+/* key-date list */
+.kd{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line-2)}
+.kd:last-child{border-bottom:none}
+.kd .date{width:56px;text-align:center;flex:none;background:var(--brand-soft);border-radius:10px;padding:6px 0;color:var(--brand)}
+.kd .date b{display:block;font-size:17px;font-weight:800;line-height:1}
+.kd .date span{font-size:10.5px;font-weight:700;text-transform:uppercase}
+.kd .lab b{font-size:14px;font-weight:700}.kd .lab span{font-size:12px;color:var(--muted)}
+.kd .rt{margin-left:auto;font-size:12px;font-weight:700}
+
+/* table */
+.dtable{width:100%;border-collapse:collapse;font-size:13.5px}
+.dtable th{text-align:left;color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;border-bottom:2px solid var(--line)}
+.dtable td{padding:9px 10px;border-bottom:1px solid var(--line-2)}
+.dtable tr:last-child td{border-bottom:none}
+.dtable td b{font-weight:750}
+
+/* mini bar chart */
+.bars{display:flex;align-items:flex-end;gap:12px;height:130px;padding:8px 4px 0}
+.bars .b{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bars .b .bar{width:100%;max-width:42px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,var(--brand-l),var(--brand));position:relative}
+.bars .b .bar.hl{background:linear-gradient(180deg,#fdba74,var(--saffron))}
+.bars .b .bar span{position:absolute;top:-19px;left:0;right:0;text-align:center;font-size:11.5px;font-weight:800;color:var(--ink)}
+.bars .b em{font-style:normal;font-size:11.5px;color:var(--muted)}
+
+/* eligibility checker */
+.elig{background:linear-gradient(135deg,var(--saffron-soft),#fff);border:1px solid #fde3cd}
+.elig .inrow{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.elig label{font-size:12px;font-weight:700;color:var(--ink-2);display:block;margin-bottom:4px}
+.elig input,.elig select{height:42px;border:1px solid var(--line);border-radius:10px;padding:0 12px;font-size:14px;background:#fff;color:var(--ink)}
+.elig input{width:96px}
+.elig .res{margin-top:8px;padding:12px 14px;border-radius:12px;font-weight:700;font-size:14px;display:none}
+.elig .res.ok{display:block;background:var(--green-soft);color:var(--green)}
+.elig .res.no{display:block;background:var(--red-soft);color:var(--red)}
+
+/* sources */
+.src{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line-2)}
+.src:last-child{border-bottom:none}
+.src .ic{width:34px;height:34px;border-radius:9px;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;flex:none}
+.src b{font-size:13.5px;font-weight:700}.src span{font-size:11.5px;color:var(--muted)}
+.src .go{margin-left:auto;color:var(--brand);font-weight:700;font-size:13px}
+
+/* breadcrumb */
+.crumb{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);margin:16px 0 10px;flex-wrap:wrap}
+.crumb a:hover{color:var(--brand)}
+
+/* tabs */
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.tabs button{padding:11px 15px;font-weight:700;font-size:14px;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button.on{color:var(--brand);border-bottom-color:var(--brand)}
+
+/* month strip */
+.months{display:flex;gap:8px;overflow-x:auto;padding:6px 0 10px}
+.months .m{flex:none;width:58px;text-align:center;border:1px solid var(--line);border-radius:12px;padding:9px 0;background:#fff}
+.months .m.has{border-color:var(--brand-100);background:var(--brand-soft)}
+.months .m b{font-size:13px;font-weight:800;color:var(--ink)}
+.months .m span{font-size:10.5px;color:var(--muted);display:block}
+.months .m.has span{color:var(--brand);font-weight:700}
+
+/* filter panel */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters .fchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.filters .fchip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* ---------------- Mobile bottom nav ---------------- */
+.tabbar{display:none}
+@media(max-width:860px){
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 0;font-size:10.5px;font-weight:700;color:var(--muted)}
+  .tabbar a.active{color:var(--brand)}
+  .tabbar a svg{width:22px;height:22px}
+  body{padding-bottom:66px}
+  .hero h1{font-size:30px}.hero{padding:26px 0 110px}
+  .dash-hero h1{font-size:23px}
+  .wrap{padding:0 15px}
+}
+section.page{padding:24px 0 40px;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.blk{margin-bottom:30px}
+.foot{padding:26px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px;margin-top:20px}
+.foot b{color:var(--ink)}
+.note-demo{background:var(--amber-soft);border:1px solid #f3e2b8;color:#8a5a00;font-size:12.5px;padding:8px 13px;border-radius:10px;display:flex;gap:8px;align-items:center}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#/" onclick="go('/')"><span class="glyph"> E</span><span><b>Exam</b><i>Path</i></span></a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#/" data-route="/">Home</a>
+      <a href="#/bodies" data-route="/bodies">Exams</a>
+      <a href="#/calendar" data-route="/calendar">Calendar</a>
+      <a href="#/search" data-route="/search">Search</a>
+    </nav>
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="topSearch" placeholder="Search exams, e.g. SSC, age 21, graduate…" onkeydown="if(event.key==='Enter')doSearch(this.value)">
+    </div>
+    <button class="btn-login" onclick="toast('Login is wired to Supabase Auth in the full build ✨')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      Login
+    </button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<nav class="tabbar" id="tabbar">
+  <a href="#/" data-route="/" onclick="go('/')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a>
+  <a href="#/bodies" data-route="/bodies" onclick="go('/bodies')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg>Exams</a>
+  <a href="#/calendar" data-route="/calendar" onclick="go('/calendar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Calendar</a>
+  <a href="#/alerts" data-route="/alerts" onclick="go('/alerts')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Alerts</a>
+  <a href="#/profile" data-route="/profile" onclick="go('/profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</a>
+</nav>
+
+<div id="toast" style="position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:var(--sh-l);z-index:80;opacity:0;transition:.25s;pointer-events:none;max-width:90vw;text-align:center"></div>
+
+<script>
+/* =====================================================================
+   ExamPath — student-facing prototype
+   Single-file demo. In-memory state (no storage). Data is illustrative.
+   ===================================================================== */
+
+/* ---------- helpers: dates relative to "today" so demo stays fresh ---------- */
+const NOW = new Date();
+const addDays = n => { const d = new Date(NOW); d.setDate(d.getDate()+n); return d; };
+const iso = d => d.toISOString().slice(0,10);
+const fmt = d => new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+const fmtShort = d => new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+const daysLeft = d => Math.ceil((new Date(d) - NOW)/86400000);
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+/* ---------- sample data ---------- */
+const BODIES = {
+  ssc:  {slug:'ssc',  name:'Staff Selection Commission', short:'SSC',  color:'#1d4ed8', level:'Central'},
+  upsc: {slug:'upsc', name:'Union Public Service Commission', short:'UPSC', color:'#7c3aed', level:'Central'},
+  ibps: {slug:'ibps', name:'Institute of Banking Personnel Selection', short:'IBPS', color:'#0e9f6e', level:'Banking'},
+  rrb:  {slug:'rrb',  name:'Railway Recruitment Board', short:'RRB', color:'#c2410c', level:'Railways'},
+  mppsc:{slug:'mppsc',name:'Madhya Pradesh PSC', short:'MPPSC', color:'#be123c', level:'State · MP'},
+};
+
+// status → pill meta
+const ST = {
+  application_open:{cls:'p-open', label:'Applications Open'},
+  closing_soon:{cls:'p-soon', label:'Closing Soon'},
+  upcoming:{cls:'p-up', label:'Upcoming'},
+  admit_card:{cls:'p-admit', label:'Admit Card Out'},
+  result_awaited:{cls:'p-admit', label:'Result Awaited'},
+  result_out:{cls:'p-result', label:'Result Out'},
+  completed:{cls:'p-done', label:'Completed'},
+};
+
+// Each cycle: rich object powering the dashboard
+const CYCLES = [
+  {
+    id:'ssc-cgl-2026', body:'ssc', exam:'SSC CGL', title:'SSC CGL 2026', qual:'Graduate', qcode:'graduate',
+    status:'closing_soon', vacancy:17727, ageMin:18, ageMax:32,
+    summary:'Combined Graduate Level — Group B & C posts across central ministries.',
+    posts:'ASO, Income Tax Inspector, Inspector (CBIC), Auditor…',
+    stages:[
+      {k:'Notification', d:addDays(-40), done:true},
+      {k:'Apply Online', d:addDays(-40), done:true},
+      {k:'Tier-1 Exam', d:addDays(46), done:false},
+      {k:'Tier-2 Exam', d:addDays(120), done:false},
+      {k:'DV / Doc', d:null, done:false},
+      {k:'Result', d:null, done:false},
+    ],
+    dates:[
+      {lab:'Application Start', d:addDays(-40), dl:false},
+      {lab:'Last Date to Apply', d:addDays(6), dl:true},
+      {lab:'Last Date to Pay Fee', d:addDays(7), dl:true},
+      {lab:'Tier-1 Exam', d:addDays(46), dl:false},
+    ],
+    breakdown:['Tier-1 (Prelims)','Tier-2 (Mains)','Document Verification','Final Result'],
+    vhist:[{y:2022,n:20000},{y:2023,n:7500},{y:2024,n:17727},{y:2025,n:14582},{y:2026,n:17727}],
+    cutoff:[{cat:'UR',m:158.9},{cat:'OBC',m:154.2},{cat:'SC',m:140.1},{cat:'ST',m:132.6}],
+    links:[
+      {t:'Official Notification (PDF)',u:'ssc.gov.in',k:'Notification'},
+      {t:'Apply Online',u:'ssc.gov.in',k:'Apply'},
+      {t:'Official Website',u:'ssc.gov.in',k:'Website'},
+    ],
+    updates:[
+      {t:'Last date to apply extended to '+fmtShort(addDays(6)), k:'date', when:'2h ago'},
+      {t:'Tier-1 exam city details to be released soon', k:'info', when:'1d ago'},
+    ],
+    related:['ssc-chsl-2026','ssc-mts-2026','ibps-po-2026'],
+  },
+  {
+    id:'ssc-chsl-2026', body:'ssc', exam:'SSC CHSL', title:'SSC CHSL 2026', qual:'12th Pass', qcode:'12th',
+    status:'application_open', vacancy:3712, ageMin:18, ageMax:27,
+    summary:'Combined Higher Secondary Level — LDC, DEO, and postal assistant posts.',
+    posts:'LDC/JSA, DEO, Postal Assistant',
+    stages:[
+      {k:'Notification', d:addDays(-12), done:true},
+      {k:'Apply Online', d:addDays(-12), done:false},
+      {k:'Tier-1 Exam', d:addDays(70), done:false},
+      {k:'Tier-2 Exam', d:addDays(150), done:false},
+      {k:'Result', d:null, done:false},
+    ],
+    dates:[
+      {lab:'Application Start', d:addDays(-12), dl:false},
+      {lab:'Last Date to Apply', d:addDays(18), dl:true},
+      {lab:'Tier-1 Exam', d:addDays(70), dl:false},
+    ],
+    breakdown:['Tier-1','Tier-2','Skill/Typing Test','Final Result'],
+    vhist:[{y:2023,n:1600},{y:2024,n:3712},{y:2025,n:2049},{y:2026,n:3712}],
+    cutoff:[{cat:'UR',m:151.2},{cat:'OBC',m:148.0},{cat:'SC',m:135.4}],
+    links:[{t:'Official Notification (PDF)',u:'ssc.gov.in',k:'Notification'},{t:'Apply Online',u:'ssc.gov.in',k:'Apply'}],
+    updates:[{t:'SSC CHSL 2026 notification released — 3,712 vacancies', k:'new', when:'12d ago'}],
+    related:['ssc-cgl-2026','ssc-mts-2026'],
+  },
+  {
+    id:'ssc-mts-2026', body:'ssc', exam:'SSC MTS', title:'SSC MTS 2026', qual:'10th Pass', qcode:'10th',
+    status:'upcoming', vacancy:8000, ageMin:18, ageMax:25,
+    summary:'Multi-Tasking Staff & Havaldar — 10th-pass entry to central government.',
+    posts:'MTS, Havaldar (CBIC & CBN)',
+    stages:[
+      {k:'Notification', d:addDays(20), done:false},
+      {k:'Apply Online', d:addDays(20), done:false},
+      {k:'Exam', d:addDays(95), done:false},
+      {k:'Result', d:null, done:false},
+    ],
+    dates:[{lab:'Notification (expected)', d:addDays(20), dl:false},{lab:'Exam (tentative)', d:addDays(95), dl:false}],
+    breakdown:['Session-1 & 2 (CBT)','PET/PST (Havaldar)','Document Verification','Result'],
+    vhist:[{y:2023,n:1558},{y:2024,n:9583},{y:2025,n:8000},{y:2026,n:8000}],
+    cutoff:[{cat:'UR',m:79.5},{cat:'OBC',m:76.2}],
+    links:[{t:'Official Website',u:'ssc.gov.in',k:'Website'}],
+    updates:[{t:'SSC MTS 2026 expected next month', k:'info', when:'3d ago'}],
+    related:['ssc-chsl-2026','ssc-cgl-2026'],
+  },
+  {
+    id:'upsc-cse-2026', body:'upsc', exam:'UPSC CSE', title:'UPSC Civil Services 2026', qual:'Graduate', qcode:'graduate',
+    status:'admit_card', vacancy:979, ageMin:21, ageMax:32,
+    summary:'The Civil Services Examination — IAS, IPS, IFS and allied services.',
+    posts:'IAS, IPS, IFS, IRS…',
+    stages:[
+      {k:'Notification', d:addDays(-90), done:true},
+      {k:'Apply Online', d:addDays(-60), done:true},
+      {k:'Prelims', d:addDays(9), done:false},
+      {k:'Mains', d:addDays(140), done:false},
+      {k:'Interview', d:null, done:false},
+      {k:'Final Result', d:null, done:false},
+    ],
+    dates:[
+      {lab:'Admit Card Released', d:addDays(-3), dl:false},
+      {lab:'Prelims Exam', d:addDays(9), dl:true},
+      {lab:'Mains Exam (tentative)', d:addDays(140), dl:false},
+    ],
+    breakdown:['Prelims (CSAT)','Mains (9 papers)','Personality Test (Interview)','Final Merit'],
+    vhist:[{y:2022,n:1011},{y:2023,n:1105},{y:2024,n:1056},{y:2025,n:979},{y:2026,n:979}],
+    cutoff:[{cat:'UR',m:88},{cat:'OBC',m:85.9},{cat:'SC',m:84.2},{cat:'ST',m:83.5}],
+    links:[{t:'e-Admit Card',u:'upsc.gov.in',k:'Admit'},{t:'Official Notification',u:'upsc.gov.in',k:'Notification'}],
+    updates:[{t:'Prelims admit card released — download now', k:'admit', when:'3d ago'}],
+    related:['ssc-cgl-2026','mppsc-ss-2026'],
+  },
+  {
+    id:'ibps-po-2026', body:'ibps', exam:'IBPS PO', title:'IBPS PO 2026', qual:'Graduate', qcode:'graduate',
+    status:'application_open', vacancy:4455, ageMin:20, ageMax:30,
+    summary:'Probationary Officer recruitment across public-sector banks.',
+    posts:'Probationary Officer / Management Trainee',
+    stages:[
+      {k:'Notification', d:addDays(-8), done:true},
+      {k:'Apply Online', d:addDays(-8), done:false},
+      {k:'Prelims', d:addDays(40), done:false},
+      {k:'Mains', d:addDays(90), done:false},
+      {k:'Interview', d:null, done:false},
+      {k:'Result', d:null, done:false},
+    ],
+    dates:[
+      {lab:'Application Start', d:addDays(-8), dl:false},
+      {lab:'Last Date to Apply', d:addDays(11), dl:true},
+      {lab:'Prelims Exam', d:addDays(40), dl:false},
+    ],
+    breakdown:['Prelims','Mains','Interview','Provisional Allotment'],
+    vhist:[{y:2023,n:3049},{y:2024,n:4455},{y:2025,n:3955},{y:2026,n:4455}],
+    cutoff:[{cat:'UR',m:74.5},{cat:'OBC',m:71.2},{cat:'SC',m:63.0}],
+    links:[{t:'Official Notification (PDF)',u:'ibps.in',k:'Notification'},{t:'Apply Online',u:'ibps.in',k:'Apply'}],
+    updates:[{t:'IBPS PO 2026 registration is now open', k:'new', when:'8d ago'}],
+    related:['ssc-cgl-2026','upsc-cse-2026'],
+  },
+  {
+    id:'rrb-ntpc-2026', body:'rrb', exam:'RRB NTPC', title:'RRB NTPC 2026', qual:'Graduate', qcode:'graduate',
+    status:'result_awaited', vacancy:11558, ageMin:18, ageMax:33,
+    summary:'Non-Technical Popular Categories — station master, clerk, guard and more.',
+    posts:'Station Master, Goods Guard, Sr. Clerk, CA',
+    stages:[
+      {k:'Notification', d:addDays(-160), done:true},
+      {k:'Apply Online', d:addDays(-130), done:true},
+      {k:'CBT-1', d:addDays(-30), done:true},
+      {k:'CBT-2', d:addDays(60), done:false},
+      {k:'Result', d:null, done:false},
+    ],
+    dates:[
+      {lab:'CBT-1 Result (awaited)', d:addDays(14), dl:false},
+      {lab:'CBT-2 (tentative)', d:addDays(60), dl:false},
+    ],
+    breakdown:['CBT-1','CBT-2','Typing/Skill Test','Document Verification'],
+    vhist:[{y:2021,n:35281},{y:2024,n:11558},{y:2025,n:8113},{y:2026,n:11558}],
+    cutoff:[{cat:'UR',m:77.4},{cat:'OBC',m:73.1}],
+    links:[{t:'Official Website',u:'rrb.gov.in',k:'Website'}],
+    updates:[{t:'CBT-1 result expected within 2 weeks', k:'info', when:'5d ago'}],
+    related:['ssc-cgl-2026','ssc-mts-2026'],
+  },
+  {
+    id:'mppsc-ss-2026', body:'mppsc', exam:'MPPSC SS', title:'MPPSC State Service 2026', qual:'Graduate', qcode:'graduate',
+    status:'application_open', vacancy:158, ageMin:21, ageMax:40,
+    summary:'Madhya Pradesh State Service — Deputy Collector, DSP and state posts.',
+    posts:'Deputy Collector, DSP, Naib Tehsildar',
+    stages:[
+      {k:'Notification', d:addDays(-15), done:true},
+      {k:'Apply Online', d:addDays(-15), done:false},
+      {k:'Prelims', d:addDays(55), done:false},
+      {k:'Mains', d:addDays(150), done:false},
+      {k:'Interview', d:null, done:false},
+    ],
+    dates:[
+      {lab:'Application Start', d:addDays(-15), dl:false},
+      {lab:'Last Date to Apply', d:addDays(9), dl:true},
+      {lab:'Prelims Exam', d:addDays(55), dl:false},
+    ],
+    breakdown:['Prelims','Mains','Interview','Final Merit'],
+    vhist:[{y:2023,n:227},{y:2024,n:110},{y:2025,n:158},{y:2026,n:158}],
+    cutoff:[{cat:'UR',m:145},{cat:'OBC',m:139}],
+    links:[{t:'Official Notification',u:'mppsc.mp.gov.in',k:'Notification'},{t:'Apply Online',u:'mponline.gov.in',k:'Apply'}],
+    updates:[{t:'MPPSC SS 2026 applications open — 158 posts', k:'new', when:'15d ago'}],
+    related:['upsc-cse-2026','ssc-cgl-2026'],
+  },
+];
+const byId = id => CYCLES.find(c=>c.id===id);
+
+/* global updates feed (newest first) */
+const FEED = [
+  {t:'SSC CGL 2026 last date extended', s:'Now closing on '+fmt(addDays(6))+'. 17,727 vacancies.', k:'date', when:'2h', to:'ssc-cgl-2026'},
+  {t:'UPSC CSE 2026 Prelims admit card out', s:'Download from the official portal. Exam in '+daysLeft(addDays(9))+' days.', k:'admit', when:'3h', to:'upsc-cse-2026'},
+  {t:'IBPS PO 2026 registration open', s:'4,455 PO posts across public-sector banks.', k:'new', when:'1d', to:'ibps-po-2026'},
+  {t:'RRB NTPC 2026 CBT-1 result awaited', s:'Expected within two weeks.', k:'info', when:'2d', to:'rrb-ntpc-2026'},
+  {t:'MPPSC State Service 2026 notification', s:'158 posts — Deputy Collector, DSP and more.', k:'new', when:'4d', to:'mppsc-ss-2026'},
+];
+const FEED_ICON = {date:['📅','var(--amber-soft)'],admit:['🎫','var(--brand-soft)'],new:['🆕','var(--green-soft)'],info:['ℹ️','#eef1f5'],result:['🏆','var(--green-soft)']};
+
+/* ---------- app state (in-memory) ---------- */
+const state = { following:new Set(['ssc-cgl-2026']), elig:{age:'',qual:'any'}, search:'' };
+
+/* ---------- router ---------- */
+function go(path){ location.hash = '#'+path; }
+function doSearch(q){ state.search=q; go('/search?q='+encodeURIComponent(q||'')); }
+window.addEventListener('hashchange', render);
+window.addEventListener('load', render);
+
+function parseHash(){
+  const h = location.hash.replace(/^#/,'') || '/';
+  const [path, qs] = h.split('?');
+  const q = new URLSearchParams(qs||'');
+  return {path, q};
+}
+function setActiveNav(path){
+  const base = '/'+(path.split('/')[1]||'');
+  document.querySelectorAll('[data-route]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.route===base && base!=='/' || (a.dataset.route==='/'&&path==='/'));
+    a.classList.toggle('active', a.dataset.route===(path==='/'?'/':base));
+  });
+}
+function render(){
+  const {path,q} = parseHash();
+  const app = document.getElementById('app');
+  let html='';
+  if(path==='/' ) html = viewHome();
+  else if(path==='/bodies') html = viewBodies();
+  else if(path.startsWith('/body/')) html = viewBody(path.split('/')[2]);
+  else if(path.startsWith('/exam/')) html = viewExam(path.split('/')[2]);
+  else if(path==='/search') html = viewSearch(q.get('q')||'');
+  else if(path==='/calendar') html = viewCalendar();
+  else if(path==='/alerts') html = viewAlerts();
+  else if(path==='/profile') html = viewProfile();
+  else html = viewHome();
+  app.innerHTML = html;
+  setActiveNav(path);
+  window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
+  startCountdowns();
+}
+
+/* ---------- shared components ---------- */
+function pill(status){ const m=ST[status]||ST.upcoming; return `<span class="pill ${m.cls}"><span class="dot"></span>${m.label}</span>`; }
+function bodyBadge(bslug){ const b=BODIES[bslug]; return `<span class="badge" style="background:${b.color}1a;color:${b.color}">${b.short}</span>`; }
+
+function examCard(c){
+  const b=BODIES[c.body];
+  const dl = c.dates.find(d=>d.dl);
+  const dleft = dl?daysLeft(dl.d):null;
+  const following = state.following.has(c.id);
+  return `<div class="xcard">
+    <div class="row1">
+      <span class="badge" style="background:${b.color}1a;color:${b.color}">${b.short}</span>
+      <div style="min-width:0">
+        <h3>${c.exam}</h3>
+        <div class="meta">${b.name.split(' ').slice(0,3).join(' ')} · ${c.qual}</div>
+      </div>
+      <div style="margin-left:auto">${pill(c.status)}</div>
+    </div>
+    <div class="facts">
+      <div class="f"><b>${c.vacancy.toLocaleString('en-IN')}</b><span>Vacancies</span></div>
+      <div class="f"><b>${c.ageMin}–${c.ageMax}</b><span>Age</span></div>
+      ${dleft!==null&&dleft>=0?`<div class="f"><b style="color:${dleft<=7?'var(--red)':'var(--ink)'}">${dleft}d</b><span>${dl.lab.includes('Apply')?'To apply':'To go'}</span></div>`:`<div class="f"><b>—</b><span>Dates soon</span></div>`}
+    </div>
+    <div class="cta">
+      <button class="btn pri sm" onclick="go('/exam/${c.id}')">View Dashboard</button>
+      <button class="heart ${following?'on':''}" onclick="toggleFollow('${c.id}',this)" aria-label="Follow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="${following?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 5.5 6 5.5c2 0 3.2 1 4 2.2.8-1.2 2-2.2 4-2.2 3.5 0 5.5 3.5 3.5 7C19 16.65 12 21 12 21z"/></svg>
+      </button>
+    </div>
+  </div>`;
+}
+
+/* ---------- HOME ---------- */
+function viewHome(){
+  const soon = CYCLES.filter(c=>c.dates.some(d=>d.dl&&daysLeft(d.d)>=0))
+     .map(c=>({c, d:c.dates.filter(x=>x.dl&&daysLeft(x.d)>=0).sort((a,b)=>new Date(a.d)-new Date(b.d))[0]}))
+     .sort((a,b)=>new Date(a.d.d)-new Date(b.d.d));
+  const featured = ['ssc-cgl-2026','upsc-cse-2026','ibps-po-2026','ssc-chsl-2026','rrb-ntpc-2026','mppsc-ss-2026'].map(byId);
+  return `
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">🇮🇳 ${CYCLES.length} live exams · ${Object.keys(BODIES).length} bodies · updated daily</span>
+      <h1>Every government exam. <span class="u">Every date.</span> One place.</h1>
+      <p class="sub">Notifications, deadlines, vacancies, eligibility and results — verified from official sources and always current. Never miss a form again.</p>
+      <div class="searchbig">
+        <input id="heroSearch" placeholder="Try “SSC graduate”, “age 21”, or “bank exams”…" onkeydown="if(event.key==='Enter')doSearch(this.value)">
+        <button class="btn saf" onclick="doSearch(document.getElementById('heroSearch').value)">Search</button>
+      </div>
+      <div class="chips">
+        <button class="c" onclick="doSearch('graduate')">🎓 Graduate exams</button>
+        <button class="c" onclick="doSearch('12th')">📗 12th pass</button>
+        <button class="c" onclick="doSearch('banking')">🏦 Banking</button>
+        <button class="c" onclick="doSearch('closing soon')">⏰ Closing soon</button>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><b>${CYCLES.reduce((s,c)=>s+c.vacancy,0).toLocaleString('en-IN')}+</b><span>Total vacancies tracked</span></div>
+        <div class="s"><b>${soon.length}</b><span>Deadlines this month</span></div>
+        <div class="s"><b>100%</b><span>Official-source verified</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap pull">
+    <div class="blk">
+      <div class="sec-title"><h2 style="color:#fff">⏰ Closing soon</h2><a href="#/calendar" onclick="go('/calendar')" style="color:#dbe6fe">Full calendar →</a></div>
+      <div class="dl-strip">
+        ${soon.map(({c,d})=>`
+          <div class="dl-card" onclick="go('/exam/${c.id}')">
+            <div class="cd" data-countdown="${iso(d.d)}">${daysLeft(d.d)}<small> days left</small></div>
+            <h4>${c.title}</h4>
+            <div class="small muted">${d.lab} · ${fmt(d.d)}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="sec-title"><h2>Popular exams</h2><a href="#/bodies" onclick="go('/bodies')">Browse all →</a></div>
+      <div class="exam-grid">${featured.map(examCard).join('')}</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:20px" class="blk home-2col">
+      <div>
+        <div class="sec-title"><h2>Browse by body</h2></div>
+        <div class="body-grid">
+          ${Object.values(BODIES).map(b=>{
+            const n=CYCLES.filter(c=>c.body===b.slug).length;
+            return `<div class="bcard" onclick="go('/body/${b.slug}')">
+              <div class="ic" style="background:${b.color}">${b.short}</div>
+              <b>${b.short}</b><span>${n} exam${n>1?'s':''} · ${b.level}</span>
+            </div>`}).join('')}
+        </div>
+      </div>
+      <div>
+        <div class="sec-title"><h2>Latest updates</h2></div>
+        <div class="card" style="padding:6px 16px">
+          <div class="feed">
+            ${FEED.map(f=>{const ic=FEED_ICON[f.k]||FEED_ICON.info;return `
+              <div class="it" onclick="go('/exam/${f.to}')">
+                <div class="ic" style="background:${ic[1]}">${ic[0]}</div>
+                <div><h4>${f.t}</h4><p>${f.s}</p></div>
+                <div class="t">${f.when}</div>
+              </div>`}).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    ${footer()}
+  </div>`;
+}
+
+/* ---------- BODIES index ---------- */
+function viewBodies(){
+  return `<section class="page"><div class="wrap">
+    <div class="crumb"><a href="#/" onclick="go('/')">Home</a> › <span>All exams</span></div>
+    <div class="sec-title"><h2>Browse by conducting body</h2></div>
+    <div class="body-grid blk">
+      ${Object.values(BODIES).map(b=>{const n=CYCLES.filter(c=>c.body===b.slug).length;
+        return `<div class="bcard" onclick="go('/body/${b.slug}')"><div class="ic" style="background:${b.color}">${b.short}</div><b>${b.short}</b><span>${n} exam${n>1?'s':''} · ${b.level}</span></div>`}).join('')}
+    </div>
+    <div class="sec-title"><h2>All tracked exams</h2></div>
+    <div class="exam-grid">${CYCLES.map(examCard).join('')}</div>
+    ${footer()}
+  </div></section>`;
+}
+
+/* ---------- CONDUCTING BODY page ---------- */
+function viewBody(slug){
+  const b=BODIES[slug]; if(!b) return viewBodies();
+  const list=CYCLES.filter(c=>c.body===slug);
+  const groups={
+    'Current / Open':list.filter(c=>['application_open','closing_soon','admit_card'].includes(c.status)),
+    'Upcoming':list.filter(c=>c.status==='upcoming'),
+    'Results & Past':list.filter(c=>['result_awaited','result_out','completed'].includes(c.status)),
+  };
+  // month strip
+  const monthHas={};
+  list.forEach(c=>c.dates.forEach(d=>{monthHas[new Date(d.d).getMonth()]=true}));
+  const updates=list.flatMap(c=>c.updates.map(u=>({...u,to:c.id,title:c.exam}))).slice(0,5);
+  return `<section class="page"><div class="wrap">
+    <div class="crumb"><a href="#/" onclick="go('/')">Home</a> › <a href="#/bodies" onclick="go('/bodies')">Exams</a> › <span>${b.short}</span></div>
+    <div class="dash-hero" style="background:linear-gradient(135deg,${b.color},${shade(b.color,-24)})">
+      <div class="body-tag">${b.level} · Conducting Body</div>
+      <h1>${b.name}</h1>
+      <p style="color:#e6eefc;margin:6px 0 0;max-width:560px">Tracking ${list.length} exam${list.length>1?'s':''} · ${list.reduce((s,c)=>s+c.vacancy,0).toLocaleString('en-IN')} vacancies. Current openings, calendar and the latest official updates.</p>
+    </div>
+
+    <div class="dash-grid">
+      <div>
+        ${Object.entries(groups).map(([g,arr])=>arr.length?`
+          <div class="panel">
+            <h3>${g} <span class="tag" style="margin-left:6px">${arr.length}</span></h3>
+            <div class="exam-grid" style="margin-top:12px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">${arr.map(examCard).join('')}</div>
+          </div>`:'').join('')}
+      </div>
+      <div>
+        <div class="panel">
+          <h3>📅 Exam calendar</h3>
+          <div class="months">
+            ${MONTHS.map((m,i)=>`<div class="m ${monthHas[i]?'has':''}"><b>${m}</b><span>${monthHas[i]?'●':' '}</span></div>`).join('')}
+          </div>
+          <p class="small muted" style="margin:6px 0 0">Highlighted months have scheduled dates.</p>
+        </div>
+        <div class="panel">
+          <h3>🔔 Latest updates</h3>
+          <div class="feed">
+            ${updates.map(u=>{const ic=FEED_ICON[u.k]||FEED_ICON.info;return `<div class="it" onclick="go('/exam/${u.to}')"><div class="ic" style="background:${ic[1]}">${ic[0]}</div><div><h4>${u.title}</h4><p>${u.t}</p></div><div class="t">${u.when}</div></div>`}).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+    ${footer()}
+  </div></section>`;
+}
+
+/* ---------- EXAM DASHBOARD ---------- */
+function viewExam(id){
+  const c=byId(id); if(!c) return viewHome();
+  const b=BODIES[c.body];
+  const dl=c.dates.filter(d=>d.dl&&daysLeft(d.d)>=0).sort((a,b)=>new Date(a.d)-new Date(b.d))[0] || c.dates.find(d=>d.dl) || c.dates[0];
+  const dleft=daysLeft(dl.d);
+  const following=state.following.has(c.id);
+  const maxV=Math.max(...c.vhist.map(v=>v.n));
+  return `<section class="page"><div class="wrap">
+    <div class="crumb"><a href="#/" onclick="go('/')">Home</a> › <a href="#/body/${b.slug}" onclick="go('/body/${b.slug}')">${b.short}</a> › <span>${c.title}</span></div>
+
+    <div class="dash-hero">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;position:relative;z-index:2">
+        <div>
+          <div class="body-tag">${b.name}</div>
+          <h1>${c.title}</h1>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">${pill(c.status)}<span class="tag" style="background:rgba(255,255,255,.12);color:#dbe6fe;border-color:rgba(255,255,255,.2)">${c.qual}</span><span class="tag" style="background:rgba(255,255,255,.12);color:#dbe6fe;border-color:rgba(255,255,255,.2)">${c.vacancy.toLocaleString('en-IN')} posts</span></div>
+        </div>
+        <button class="btn ${following?'ghost':'saf'}" onclick="toggleFollow('${c.id}',this,true)" id="followBtn" style="${following?'background:#fff;color:var(--brand)':''}">
+          ${following?'✓ Following':'☆ Follow this exam'}
+        </button>
+      </div>
+      ${dleft>=0?`<div class="deadline-label">⏰ ${dl.lab} · ${fmt(dl.d)}</div>
+      <div class="countbox" data-count-to="${iso(dl.d)}">
+        <div class="count-unit"><b class="cu-d">${dleft}</b><span>Days</span></div>
+        <div class="count-unit"><b class="cu-h">–</b><span>Hours</span></div>
+        <div class="count-unit"><b class="cu-m">–</b><span>Mins</span></div>
+      </div>`:`<div class="deadline-label">Key dates to be announced — follow to get notified.</div>`}
+    </div>
+
+    <div class="dash-grid">
+      <!-- LEFT -->
+      <div>
+        <div class="panel">
+          <h3><span class="n">1</span> Timeline</h3>
+          <div class="timeline">
+            ${c.stages.map((s,i)=>{
+              const isNow = !s.done && (i===0 || c.stages[i-1].done);
+              return `<div class="tl-node ${s.done?'done':''} ${isNow?'now':''}"><span class="dot"></span><b>${s.k}</b><span>${s.d?fmtShort(s.d):'TBA'}</span></div>`}).join('')}
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3><span class="n">2</span> Important dates</h3>
+          ${c.dates.map(d=>{const dlft=daysLeft(d.d);return `
+            <div class="kd">
+              <div class="date"><b>${new Date(d.d).getDate()}</b><span>${MONTHS[new Date(d.d).getMonth()]}</span></div>
+              <div class="lab"><b>${d.lab}</b><br><span>${fmt(d.d)}</span></div>
+              <div class="rt" style="color:${d.dl&&dlft>=0&&dlft<=7?'var(--red)':(dlft<0?'var(--muted)':'var(--brand)')}">${dlft<0?'Done':dlft===0?'Today':dlft+' days'}</div>
+            </div>`}).join('')}
+          <div style="margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)">
+            <div class="small muted" style="margin-bottom:6px">Selection process</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">${c.breakdown.map((x,i)=>`<span class="tag">${i+1}. ${x}</span>`).join('')}</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3><span class="n">3</span> Vacancy trend <span class="small muted" style="font-weight:600;margin-left:auto">last ${c.vhist.length} years</span></h3>
+          <div class="bars">
+            ${c.vhist.map((v,i)=>`<div class="b"><div class="bar ${i===c.vhist.length-1?'hl':''}" style="height:${Math.max(8,Math.round(v.n/maxV*100))}%"><span>${v.n>=1000?(v.n/1000).toFixed(v.n%1000?1:0)+'k':v.n}</span></div><em>${v.y}</em></div>`).join('')}
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3><span class="n">4</span> Previous cut-offs <span class="small muted" style="font-weight:600;margin-left:auto">out of 100</span></h3>
+          <table class="dtable"><tr><th>Category</th><th>Cut-off</th><th></th></tr>
+            ${c.cutoff.map(o=>`<tr><td><b>${o.cat}</b></td><td>${o.m}</td><td style="width:55%"><div style="height:8px;border-radius:6px;background:var(--brand-soft)"><div style="height:8px;border-radius:6px;width:${o.m}%;background:var(--brand)"></div></div></td></tr>`).join('')}
+          </table>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <div class="panel elig">
+          <h3>🎯 Am I eligible?</h3>
+          <p class="small muted" style="margin:2px 0 0">Check instantly for ${c.exam}.</p>
+          <div class="inrow">
+            <div><label>Your age</label><input type="number" id="eAge" placeholder="21" value="${state.elig.age||''}"></div>
+            <div><label>Qualification</label>
+              <select id="eQual">
+                <option value="10th">10th pass</option>
+                <option value="12th">12th pass</option>
+                <option value="graduate">Graduate</option>
+                <option value="pg">Post-graduate</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn saf sm" onclick="checkElig('${c.id}')">Check eligibility</button>
+          <div class="res" id="eligRes"></div>
+          <div class="small muted" style="margin-top:8px">Needs: ${c.qual} · Age ${c.ageMin}–${c.ageMax} (relaxations apply)</div>
+        </div>
+
+        <div class="panel">
+          <h3>🆕 What's new</h3>
+          <div class="feed">
+            ${c.updates.map(u=>{const ic=FEED_ICON[u.k]||FEED_ICON.info;return `<div class="it"><div class="ic" style="background:${ic[1]}">${ic[0]}</div><div><h4 style="font-weight:600;font-size:13.5px">${u.t}</h4><p>${u.when}</p></div></div>`}).join('')}
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>🔗 Official sources</h3>
+          ${c.links.map(l=>`<a class="src" href="https://${l.u}" target="_blank" rel="noopener">
+            <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <div><b>${l.t}</b><br><span>${l.u} · verified</span></div><span class="go">Open ↗</span></a>`).join('')}
+        </div>
+
+        <div class="panel">
+          <h3>🔀 Related exams</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            ${c.related.map(byId).filter(Boolean).map(r=>`<button class="src" style="width:100%;text-align:left" onclick="go('/exam/${r.id}')"><span class="badge" style="width:34px;height:34px;background:${BODIES[r.body].color}1a;color:${BODIES[r.body].color}">${BODIES[r.body].short}</span><div><b>${r.exam}</b><br><span>${r.qual} · ${r.vacancy.toLocaleString('en-IN')} posts</span></div><span class="go">View →</span></button>`).join('')}
+          </div>
+          <button class="btn ghost sm" style="width:100%;margin-top:10px;justify-content:center" onclick="toast('Compare view opens a side-by-side table in the full build')">⚖️ Compare these exams</button>
+        </div>
+      </div>
+    </div>
+    ${footer()}
+  </div></section>`;
+}
+
+/* ---------- SEARCH ---------- */
+function viewSearch(qraw){
+  const q=(qraw||'').toLowerCase().trim();
+  // naive natural-language parse
+  const ageMatch=q.match(/age\s*(\d{2})|(\d{2})\s*(?:yrs?|years?)|\b(1[89]|2[0-9]|3[0-5])\b/);
+  const age=ageMatch?parseInt(ageMatch[1]||ageMatch[2]||ageMatch[3]):null;
+  let qualF=null;
+  if(/graduat|degree|b\.?a|b\.?sc|b\.?com|b\.?tech/.test(q))qualF='graduate';
+  else if(/12th|higher second|intermediate/.test(q))qualF='12th';
+  else if(/10th|matric/.test(q))qualF='10th';
+  let bodyF=null; Object.values(BODIES).forEach(b=>{if(q.includes(b.short.toLowerCase())||q.includes(b.name.toLowerCase().split(' ')[0]))bodyF=b.slug});
+  if(/bank/.test(q))bodyF='ibps'; if(/rail|train/.test(q))bodyF='rrb';
+  const soonF=/clos|soon|deadline|last date/.test(q);
+
+  let res=CYCLES.filter(c=>{
+    let ok=true;
+    if(bodyF)ok=ok&&c.body===bodyF;
+    if(qualF)ok=ok&&c.qcode===qualF;
+    if(age)ok=ok&&(age>=c.ageMin&&age<=c.ageMax);
+    if(soonF)ok=ok&&c.dates.some(d=>d.dl&&daysLeft(d.d)>=0&&daysLeft(d.d)<=30);
+    if(!bodyF&&!qualF&&q&&!soonF)ok=ok&&(c.title+c.exam+c.summary+c.posts).toLowerCase().includes(q);
+    return ok;
+  });
+  if(!q)res=CYCLES;
+  const activeF=[bodyF&&BODIES[bodyF].short, qualF&&({graduate:'Graduate','12th':'12th pass','10th':'10th pass'})[qualF], age&&('Age '+age), soonF&&'Closing soon'].filter(Boolean);
+
+  return `<section class="page"><div class="wrap">
+    <div class="crumb"><a href="#/" onclick="go('/')">Home</a> › <span>Search</span></div>
+    <div class="searchbig" style="max-width:100%;box-shadow:var(--sh-s);border:1px solid var(--line)">
+      <input id="pageSearch" value="${(qraw||'').replace(/"/g,'&quot;')}" placeholder="Search exams, eligibility, body…" onkeydown="if(event.key==='Enter')doSearch(this.value)">
+      <button class="btn pri" onclick="doSearch(document.getElementById('pageSearch').value)">Search</button>
+    </div>
+    <div class="filters" style="margin-top:16px">
+      ${['graduate','12th','banking','closing soon','ssc','upsc'].map(f=>`<button class="fchip ${q.includes(f)?'on':''}" onclick="doSearch('${f}')">${f}</button>`).join('')}
+    </div>
+    ${activeF.length?`<div class="note-demo" style="margin-bottom:14px">🔎 Understood your search as: ${activeF.map(f=>`<b>${f}</b>`).join(' · ')} — this is the natural-language parser (§15).</div>`:''}
+    <div class="sec-title"><h2>${res.length} exam${res.length!==1?'s':''} found</h2></div>
+    ${res.length?`<div class="exam-grid">${res.map(examCard).join('')}</div>`:`<div class="card" style="padding:40px;text-align:center"><div style="font-size:34px">🔍</div><h3 style="margin:8px 0">No matches</h3><p class="muted">Try “graduate”, “SSC”, or “age 21”.</p></div>`}
+    ${footer()}
+  </div></section>`;
+}
+
+/* ---------- CALENDAR ---------- */
+function viewCalendar(){
+  const all=[];
+  CYCLES.forEach(c=>c.dates.forEach(d=>{if(daysLeft(d.d)>=-3)all.push({...d,c})}));
+  all.sort((a,b)=>new Date(a.d)-new Date(b.d));
+  return `<section class="page"><div class="wrap">
+    <div class="crumb"><a href="#/" onclick="go('/')">Home</a> › <span>Calendar</span></div>
+    <div class="sec-title"><h2>📅 Deadline calendar</h2><span class="small muted">${all.length} upcoming dates</span></div>
+    <div class="card" style="padding:6px 18px">
+      ${all.map(d=>{const dlft=daysLeft(d.d);return `
+        <div class="kd" onclick="go('/exam/${d.c.id}')" style="cursor:pointer">
+          <div class="date" style="${d.dl&&dlft<=7&&dlft>=0?'background:var(--red-soft);color:var(--red)':''}"><b>${new Date(d.d).getDate()}</b><span>${MONTHS[new Date(d.d).getMonth()]}</span></div>
+          <div class="lab"><b>${d.c.exam} — ${d.lab}</b><br><span>${d.c.title} · ${fmt(d.d)}</span></div>
+          <div class="rt" style="color:${d.dl&&dlft<=7&&dlft>=0?'var(--red)':(dlft<0?'var(--muted)':'var(--brand)')}">${dlft<0?'Passed':dlft===0?'Today':dlft+'d'}</div>
+        </div>`}).join('')}
+    </div>
+    ${footer()}
+  </div></section>`;
+}
+
+/* ---------- ALERTS ---------- */
+function viewAlerts(){
+  const followed=[...state.following].map(byId).filter(Boolean);
+  return `<section class="page"><div class="wrap">
+    <div class="crumb"><a href="#/" onclick="go('/')">Home</a> › <span>Alerts</span></div>
+    <div class="sec-title"><h2>🔔 Your alerts</h2></div>
+    <div class="note-demo" style="margin-bottom:16px">In the full build these are personalised push/email alerts, powered by the Notification Engine (§17) and your eligibility profile.</div>
+    ${followed.length?`
+      <div class="sec-title"><h2 style="font-size:16px">Deadlines for exams you follow</h2></div>
+      <div class="card" style="padding:6px 18px;margin-bottom:20px">
+        ${followed.flatMap(c=>c.dates.filter(d=>d.dl&&daysLeft(d.d)>=0).map(d=>({d,c}))).sort((a,b)=>new Date(a.d.d)-new Date(b.d.d)).map(({d,c})=>{
+          const dlft=daysLeft(d.d);return `<div class="kd" onclick="go('/exam/${c.id}')" style="cursor:pointer"><div class="date"><b>${new Date(d.d).getDate()}</b><span>${MONTHS[new Date(d.d).getMonth()]}</span></div><div class="lab"><b>${c.exam} — ${d.lab}</b><br><span>${fmt(d.d)}</span></div><div class="rt" style="color:${dlft<=7?'var(--red)':'var(--brand)'}">${dlft}d</div></div>`}).join('')||'<p class="muted" style="padding:14px 0">No upcoming deadlines for your exams.</p>'}
+      </div>`:''}
+    <div class="sec-title"><h2 style="font-size:16px">Exams you follow (${followed.length})</h2></div>
+    ${followed.length?`<div class="exam-grid">${followed.map(examCard).join('')}</div>`:`<div class="card" style="padding:36px;text-align:center"><div style="font-size:32px">🔔</div><h3 style="margin:8px 0">No exams followed yet</h3><p class="muted">Tap the ♥ on any exam to get its deadline alerts here.</p><button class="btn pri" style="margin-top:10px" onclick="go('/bodies')">Browse exams</button></div>`}
+    ${footer()}
+  </div></section>`;
+}
+
+/* ---------- PROFILE ---------- */
+function viewProfile(){
+  return `<section class="page"><div class="wrap">
+    <div class="crumb"><a href="#/" onclick="go('/')">Home</a> › <span>Profile</span></div>
+    <div class="dash-hero" style="text-align:center">
+      <div style="width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:30px">🧑‍🎓</div>
+      <h1 style="font-size:22px">Guest Aspirant</h1>
+      <p style="color:#dbe6fe;margin:4px 0 14px">Sign in to sync your exams, eligibility & alerts across devices.</p>
+      <button class="btn saf" onclick="toast('Supabase Auth: email OTP + Google, in the full build')" style="margin:0 auto">Sign in / Create account</button>
+    </div>
+    <div class="dash-grid" style="margin-top:16px">
+      <div>
+        <div class="panel">
+          <h3>🎯 Eligibility profile</h3>
+          <p class="small muted">Set once → we highlight exams you qualify for and filter alerts.</p>
+          <div class="elig" style="border:none;background:none;padding:0">
+            <div class="inrow">
+              <div><label>Age</label><input type="number" id="pAge" placeholder="21" value="${state.elig.age||''}"></div>
+              <div><label>Highest qualification</label>
+                <select id="pQual">
+                  <option value="10th">10th pass</option><option value="12th">12th pass</option>
+                  <option value="graduate" selected>Graduate</option><option value="pg">Post-graduate</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn pri sm" onclick="saveProfile()">Save profile</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="panel"><h3>📌 Following</h3><p class="muted small">${state.following.size} exam${state.following.size!==1?'s':''}</p><button class="btn ghost sm" style="width:100%;justify-content:center;margin-top:6px" onclick="go('/alerts')">Manage alerts</button></div>
+        <div class="panel"><h3>⚙️ About this demo</h3><p class="small muted">ExamPath prototype · illustrative data · in-memory only. Wire to Supabase + n8n for live data.</p></div>
+      </div>
+    </div>
+    ${footer()}
+  </div></section>`;
+}
+
+/* ---------- footer ---------- */
+function footer(){
+  return `<div class="foot"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center">
+    <div><b>ExamPath</b> — every exam, every date, one place.</div>
+    <div class="small">Prototype · illustrative data. Verify on official sources. Not a government website.</div>
+  </div></div>`;
+}
+
+/* ---------- interactions ---------- */
+function toggleFollow(id,el,isBtn){
+  if(state.following.has(id)){state.following.delete(id);toast('Removed from your exams')}
+  else{state.following.add(id);toast('★ Added — you\'ll get deadline alerts')}
+  if(isBtn){render();return;}
+  if(el){const on=state.following.has(id);el.classList.toggle('on',on);const svg=el.querySelector('svg');if(svg)svg.setAttribute('fill',on?'currentColor':'none');}
+}
+function checkElig(id){
+  const c=byId(id);
+  const age=parseInt(document.getElementById('eAge').value);
+  const qual=document.getElementById('eQual').value;
+  state.elig={age:age||'',qual};
+  const rank={'10th':1,'12th':2,'graduate':3,'pg':4};
+  const box=document.getElementById('eligRes');
+  if(!age){box.className='res no';box.textContent='Please enter your age.';return;}
+  const ageOk=age>=c.ageMin&&age<=c.ageMax;
+  const qualOk=rank[qual]>=rank[c.qcode];
+  if(ageOk&&qualOk){box.className='res ok';box.innerHTML='✓ You\'re eligible for '+c.exam+'! Age & qualification both match.';}
+  else{box.className='res no';box.innerHTML='✕ Not eligible: '+[!ageOk?'age must be '+c.ageMin+'–'+c.ageMax:null,!qualOk?'needs '+c.qual:null].filter(Boolean).join(' · ')+'.';}
+}
+function saveProfile(){
+  state.elig={age:parseInt(document.getElementById('pAge').value)||'',qual:document.getElementById('pQual').value};
+  toast('✓ Profile saved — exams you qualify for will be highlighted');
+}
+let toastT;
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+  clearTimeout(toastT);toastT=setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)'},2600);
+}
+
+/* ---------- live countdowns ---------- */
+let cdTimer;
+function startCountdowns(){
+  clearInterval(cdTimer);
+  const tick=()=>{
+    const now=new Date();
+    document.querySelectorAll('[data-countdown]').forEach(el=>{
+      const d=Math.ceil((new Date(el.dataset.countdown)-now)/86400000);
+      el.firstChild.textContent=d;
+    });
+    document.querySelectorAll('[data-count-to]').forEach(box=>{
+      const target=new Date(box.dataset.countTo+'T23:59:59');
+      let diff=Math.max(0,target-now);
+      const dd=Math.floor(diff/86400000);diff-=dd*86400000;
+      const hh=Math.floor(diff/3600000);diff-=hh*3600000;
+      const mm=Math.floor(diff/60000);
+      const D=box.querySelector('.cu-d'),H=box.querySelector('.cu-h'),M=box.querySelector('.cu-m');
+      if(D)D.textContent=dd;if(H)H.textContent=hh;if(M)M.textContent=mm;
+    });
+  };
+  tick();cdTimer=setInterval(tick,30000);
+}
+
+/* ---------- tiny color shade util ---------- */
+function shade(hex,pct){
+  const n=parseInt(hex.slice(1),16);let r=(n>>16)+pct,g=(n>>8&255)+pct,b=(n&255)+pct;
+  r=Math.max(0,Math.min(255,r));g=Math.max(0,Math.min(255,g));b=Math.max(0,Math.min(255,b));
+  return '#'+(1<<24|r<<16|g<<8|b).toString(16).slice(1);
+}
+</script>
+</body>
+</html>

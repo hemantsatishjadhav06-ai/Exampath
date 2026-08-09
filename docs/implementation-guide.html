@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExamPath — Frontend & Backend Implementation Guide</title>
+<style>
+  :root{
+    --ink:#0f172a;--ink2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#e6ebf2;--line2:#eef2f7;
+    --bg:#f6f8fc;--card:#fff;--code:#0f1b34;--brand:#1d4ed8;--brand2:#3b82f6;--bsoft:#eef4ff;
+    --saf:#ea580c;--safsoft:#fff4ec;--green:#0e9f6e;--gsoft:#e7f8f0;--amber:#c27803;--asoft:#fdf6e3;--violet:#7c3aed;--vsoft:#f3ecfe;
+    --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;font-size:15.5px}
+  a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+  .shell{display:grid;grid-template-columns:280px 1fr;max-width:1440px;margin:0 auto}
+  .side{position:sticky;top:0;height:100vh;overflow-y:auto;background:#0e1a30;color:#c3d0e6;padding:22px 15px 60px}
+  .brand{display:flex;gap:11px;align-items:center;padding:4px 8px 16px;border-bottom:1px solid #1e2c48;margin-bottom:12px}
+  .brand .m{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brand2),var(--saf));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex:none}
+  .brand b{color:#fff;font-size:15px;display:block;line-height:1.2}.brand span{font-size:11px;color:#64748b}
+  .side a{display:block;color:#c3d0e6;padding:7px 11px;border-radius:8px;font-size:13.5px}
+  .side a:hover{background:#1b2942;color:#fff;text-decoration:none}
+  .side .g{font-size:10.5px;text-transform:uppercase;letter-spacing:.13em;color:#5a6b88;padding:15px 11px 6px;font-weight:700}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 40px 120px}
+  h1{font-size:32px;letter-spacing:-.03em;margin:0 0 8px}
+  h2{font-size:22px;letter-spacing:-.02em;margin:0}
+  h3{font-size:16px;margin:24px 0 8px}
+  h4{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:18px 0 7px}
+  p{margin:10px 0}.lead{font-size:17px;color:var(--ink2)}
+  code{font-family:var(--mono);font-size:.86em;background:#e9eef6;padding:1.5px 6px;border-radius:5px;color:#0b3a86}
+  pre{background:var(--code);color:#dfe7f3;padding:16px 18px;border-radius:11px;overflow-x:auto;font-family:var(--mono);font-size:12.6px;line-height:1.6;margin:12px 0}
+  pre code{background:none;color:inherit;padding:0}
+  .cm{color:#7488a8}.kw{color:#93c5fd}.st{color:#86efac}.fn{color:#fcd34d}
+  section{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:26px 30px;margin:18px 0;box-shadow:0 1px 2px rgba(16,32,64,.05)}
+  .head{display:flex;gap:13px;align-items:center;border-bottom:1px solid var(--line2);padding-bottom:13px;margin-bottom:6px}
+  .num{width:38px;height:38px;border-radius:10px;background:var(--bsoft);color:var(--brand);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+  .num.be{background:var(--gsoft);color:var(--green)}.num.fe{background:var(--vsoft);color:var(--violet)}
+  .kick{font-size:11px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:14px 0}
+  th{text-align:left;background:var(--bg);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:9px 11px;border-bottom:2px solid var(--line)}
+  td{padding:9px 11px;border-bottom:1px solid var(--line2);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .note{border-left:3px solid var(--brand2);background:var(--bsoft);padding:11px 15px;border-radius:0 9px 9px 0;margin:13px 0;font-size:14px}
+  .note.be{border-color:var(--green);background:var(--gsoft)}
+  .note.fe{border-color:var(--violet);background:var(--vsoft)}
+  .note.warn{border-color:var(--amber);background:var(--asoft)}
+  .pill{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.02em;vertical-align:middle}
+  .pb{background:var(--bsoft);color:var(--brand)}.pg{background:var(--gsoft);color:var(--green)}.pv{background:var(--vsoft);color:var(--violet)}.pa{background:var(--asoft);color:var(--amber)}
+  ul.todo{list-style:none;padding:0;margin:12px 0}
+  ul.todo li{position:relative;padding:6px 0 6px 30px;font-size:14.5px;border-bottom:1px solid var(--line2)}
+  ul.todo li:last-child{border-bottom:none}
+  ul.todo li:before{content:"";position:absolute;left:0;top:9px;width:17px;height:17px;border:2px solid var(--faint);border-radius:5px}
+  ul.todo li b{font-weight:700}
+  ul.todo li .ac{color:var(--muted);font-size:12.5px;display:block}
+  .grid{display:grid;gap:13px;margin:14px 0}.g2{grid-template-columns:1fr 1fr}
+  .cardlet{border:1px solid var(--line);border-radius:11px;padding:14px 16px}
+  .cardlet h4{margin:0 0 5px;color:var(--ink);text-transform:none;letter-spacing:-.01em;font-size:14.5px}
+  .cardlet p{margin:3px 0;font-size:13px;color:var(--ink2)}
+  .foot{color:var(--muted);font-size:13px;text-align:center;padding:26px 0}
+  .menu{display:none}
+  @media(max-width:940px){
+    .shell{grid-template-columns:1fr}.side{position:fixed;left:-300px;width:270px;z-index:50;transition:.25s}.side.open{left:0}
+    .menu{display:block;position:fixed;top:12px;left:12px;z-index:60;background:#0e1a30;color:#fff;border-radius:10px;padding:9px 13px;font-size:15px}
+    .wrap{padding:60px 16px 90px}section{padding:20px 17px}.g2{grid-template-columns:1fr}
+  }
+  @media print{.side,.menu{display:none}.shell{grid-template-columns:1fr}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<button class="menu" onclick="document.querySelector('.side').classList.toggle('open')">☰</button>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><div class="m">E</div><div><b>ExamPath</b><span>Implementation Guide</span></div></div>
+    <a href="#start">Quick start</a>
+    <a href="#repo">Repo &amp; folder structure</a>
+    <a href="#env">Environments &amp; secrets</a>
+    <div class="g">Backend track</div>
+    <a href="#b1">B1 · Supabase &amp; schema</a>
+    <a href="#b2">B2 · Auth &amp; RLS</a>
+    <a href="#b3">B3 · Scraper workers</a>
+    <a href="#b4">B4 · AI extract + validate</a>
+    <a href="#b5">B5 · n8n workflows</a>
+    <a href="#b6">B6 · Publish &amp; API</a>
+    <div class="g">Frontend track</div>
+    <a href="#f1">F1 · Next.js setup</a>
+    <a href="#f2">F2 · Design tokens</a>
+    <a href="#f3">F3 · Data layer</a>
+    <a href="#f4">F4 · Routes &amp; pages</a>
+    <a href="#f5">F5 · Components</a>
+    <a href="#f6">F6 · SEO implementation</a>
+    <div class="g">Ship</div>
+    <a href="#order">Build order &amp; checklist</a>
+    <a href="#dod">Definition of done</a>
+  </aside>
+  <main class="wrap">
+
+    <div class="kick">Engineering Playbook · companion to the Build Bible</div>
+    <h1>Frontend &amp; Backend — Implementation Guide</h1>
+    <p class="lead">The concrete “things to do” to build ExamPath: every setup step, the exact folder structure, backend and frontend task lists in build order, with acceptance criteria. Pair this with the <b>Build Bible</b> (the architecture) and the <b>schema.sql</b> (the database).</p>
+    <div class="note"><b>How the pieces fit:</b> <span class="pill pb">Next.js</span> renders pages &amp; talks to Supabase · <span class="pill pg">Supabase</span> is the database/auth/storage · <span class="pill pa">n8n</span> orchestrates scrape→extract→validate→publish · <span class="pill pv">Workers</span> run Playwright scrapers &amp; the AI extractor. Build them in the order below.</div>
+
+    <!-- QUICK START -->
+    <section id="start">
+      <div class="head"><div class="num">▶</div><div><div class="kick">Day one</div><h2>Quick start</h2></div></div>
+      <p>Get the whole stack running locally in under an hour.</p>
+      <pre><code><span class="cm"># 1. Create the monorepo</span>
+mkdir exampath &amp;&amp; cd exampath
+npm init -y &amp;&amp; git init
+
+<span class="cm"># 2. Web app (Next.js + TS + Tailwind)</span>
+npx create-next-app@latest web --ts --tailwind --app --eslint
+
+<span class="cm"># 3. Supabase (local dev stack: Postgres+Auth+Storage in Docker)</span>
+npm i -g supabase &amp;&amp; supabase init &amp;&amp; supabase start
+supabase db push        <span class="cm"># applies db/schema.sql migration</span>
+
+<span class="cm"># 4. n8n (orchestration)</span>
+docker run -it -p 5678:5678 -v ~/.n8n:/home/node/.n8n n8nio/n8n
+
+<span class="cm"># 5. Scraper worker</span>
+mkdir workers &amp;&amp; cd workers &amp;&amp; npm init -y
+npm i playwright crawlee @supabase/supabase-js
+npx playwright install chromium</code></pre>
+      <div class="note warn"><b>Prereqs:</b> Node 20+, Docker, a Supabase account (or local), and an LLM API key (Claude/OpenAI) for extraction. Keep <code>db/schema.sql</code> from the Build Bible as your first migration.</div>
+    </section>
+
+    <!-- REPO -->
+    <section id="repo">
+      <div class="head"><div class="num">▤</div><div><div class="kick">Structure</div><h2>Repo &amp; folder structure</h2></div></div>
+      <p>A pragmatic monorepo — one place for web, workers, automation and database.</p>
+      <pre><code>exampath/
+├── web/                      <span class="cm"># Next.js app (App Router)</span>
+│   ├── app/
+│   │   ├── (marketing)/page.tsx            <span class="cm"># Homepage  §13</span>
+│   │   ├── [body]/page.tsx                 <span class="cm"># Conducting body  §14  → /ssc</span>
+│   │   ├── [body]/[cycle]/page.tsx         <span class="cm"># Exam dashboard  §12  → /ssc/cgl-2026</span>
+│   │   ├── compare/[slug]/page.tsx         <span class="cm"># Compare  F-4</span>
+│   │   ├── calendar/page.tsx               <span class="cm"># Deadlines  F-8</span>
+│   │   ├── search/page.tsx                 <span class="cm"># Search  §15</span>
+│   │   ├── (auth)/profile/page.tsx         <span class="cm"># Profile  §16</span>
+│   │   ├── api/revalidate/route.ts         <span class="cm"># on-demand ISR (called by n8n)</span>
+│   │   ├── sitemap.ts  ·  robots.ts        <span class="cm"># SEO  §18</span>
+│   │   └── layout.tsx
+│   ├── components/           <span class="cm"># TimelineStrip, ExamCard, Countdown… §11</span>
+│   ├── lib/                  <span class="cm"># supabase client, queries, seo, format</span>
+│   └── styles/tokens.css     <span class="cm"># design tokens  §10</span>
+├── workers/                  <span class="cm"># Playwright scrapers + AI extractor</span>
+│   ├── scrape/               <span class="cm"># per-source adapters  §5</span>
+│   ├── extract/              <span class="cm"># LLM structured extraction  §6</span>
+│   └── validate/             <span class="cm"># scoring engine  §7</span>
+├── automation/n8n/           <span class="cm"># exported workflow JSON  §9</span>
+├── db/                       <span class="cm"># schema.sql, seed.sql, migrations</span>
+└── infra/                    <span class="cm"># docker-compose, env templates  §19</span></code></pre>
+    </section>
+
+    <!-- ENV -->
+    <section id="env">
+      <div class="head"><div class="num">⚿</div><div><div class="kick">Config</div><h2>Environments &amp; secrets</h2></div></div>
+      <table>
+        <tr><th>Variable</th><th>Used by</th><th>Notes</th></tr>
+        <tr><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td>web</td><td>Public project URL</td></tr>
+        <tr><td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td><td>web</td><td>Anon key — RLS-guarded, safe in browser</td></tr>
+        <tr><td><code>SUPABASE_SERVICE_ROLE_KEY</code></td><td>workers, n8n</td><td><b>Server only.</b> Bypasses RLS to write content</td></tr>
+        <tr><td><code>LLM_API_KEY</code></td><td>workers/extract</td><td>Claude/OpenAI for extraction &amp; validation</td></tr>
+        <tr><td><code>REVALIDATE_SECRET</code></td><td>web, n8n</td><td>Shared secret to authorise ISR revalidation</td></tr>
+        <tr><td><code>VAPID_PUBLIC / PRIVATE</code></td><td>web, n8n</td><td>Web Push keys  §17</td></tr>
+        <tr><td><code>RESEND_API_KEY</code></td><td>n8n</td><td>Transactional email</td></tr>
+      </table>
+      <div class="note warn"><b>Golden rule:</b> the service-role key never touches the browser. Only workers and n8n use it. The web app uses the anon key and relies on RLS.</div>
+    </section>
+
+    <!-- ============ BACKEND ============ -->
+    <section id="b1">
+      <div class="head"><div class="num be">B1</div><div><div class="kick">Backend</div><h2>Supabase project &amp; schema</h2></div></div>
+      <ul class="todo">
+        <li><b>Create the Supabase project</b><span class="ac">Note the URL + anon + service-role keys.</span></li>
+        <li><b>Apply <code>db/schema.sql</code> as the first migration</b><span class="ac">25 tables, enums, views, RLS, search index — already tested on Postgres 16.</span></li>
+        <li><b>Load <code>db/seed.sql</code></b><span class="ac">Gives you a real SSC CGL 2026 row to build the frontend against immediately.</span></li>
+        <li><b>Create a Storage bucket <code>raw-docs</code></b><span class="ac">Holds scraped HTML/PDF snapshots; set a lifecycle rule to expire old blobs.</span></li>
+        <li><b>Verify the read-model views</b><span class="ac"><code>v_cycle_next_deadline</code>, <code>v_active_cycles</code> return rows.</span></li>
+      </ul>
+      <div class="note be"><b>Acceptance:</b> <code>select * from v_active_cycles;</code> returns the seeded SSC CGL 2026 with body + exam joined.</div>
+    </section>
+
+    <section id="b2">
+      <div class="head"><div class="num be">B2</div><div><div class="kick">Backend</div><h2>Auth &amp; Row-Level Security</h2></div></div>
+      <ul class="todo">
+        <li><b>Enable Supabase Auth</b><span class="ac">Email OTP (magic link) + Google OAuth. No passwords.</span></li>
+        <li><b>Confirm the <code>profile</code> trigger fires</b><span class="ac">A row auto-creates in <code>profile</code> on signup (<code>handle_new_user</code>).</span></li>
+        <li><b>Test RLS boundaries</b><span class="ac">Anon can read published cycles; cannot read draft (null <code>published_at</code>) or another user's <code>user_follow</code>.</span></li>
+        <li><b>Wire the eligibility profile</b><span class="ac">DOB, category, qualification saved to <code>profile</code> → feeds personalisation &amp; alerts.</span></li>
+      </ul>
+      <div class="note be"><b>Acceptance:</b> a logged-out request returns only published content; a user can read/write only their own follows &amp; subscriptions.</div>
+    </section>
+
+    <section id="b3">
+      <div class="head"><div class="num be">B3</div><div><div class="kick">Backend · §5</div><h2>Scraper workers</h2></div></div>
+      <ul class="todo">
+        <li><b>Seed the <code>source</code> table</b><span class="ac">One row per official page/PDF to watch, with <code>crawl_frequency</code> + <code>parser_hint</code>.</span></li>
+        <li><b>Build the fetch worker (Playwright)</b><span class="ac">Render page, handle PDFs, respect robots + rate limits, retry w/ backoff.</span></li>
+        <li><b>Change detection</b><span class="ac">sha256 the normalised content; skip if equal to <code>source.last_hash</code>.</span></li>
+        <li><b>Persist snapshots</b><span class="ac">Blob → Storage; metadata row → <code>raw_document</code>; log a <code>scrape_run</code>.</span></li>
+        <li><b>Per-source adapters</b><span class="ac">Start with SSC (notice list + PDF). Add UPSC, IBPS, RRB, one state PSC.</span></li>
+      </ul>
+      <div class="note be"><b>Acceptance:</b> running the worker on the SSC source with a changed page creates one <code>raw_document</code> and marks <code>scrape_run.changed = true</code>.</div>
+    </section>
+
+    <section id="b4">
+      <div class="head"><div class="num be">B4</div><div><div class="kick">Backend · §6–7</div><h2>AI extraction + validation</h2></div></div>
+      <ul class="todo">
+        <li><b>Extraction service</b><span class="ac">LLM w/ structured output → JSON matching the schema; store an <code>extraction</code> row w/ confidence + evidence spans.</span></li>
+        <li><b>Entity resolution</b><span class="ac">Fuzzy-match to an existing <code>exam</code>/<code>exam_cycle</code> or propose new — prevents duplicates.</span></li>
+        <li><b>Validation scorer</b><span class="ac">Rule checks (schema, sanity, links resolve, cross-source) + AI re-read → 0–100 score + report → <code>validation</code> row.</span></li>
+        <li><b>The 90% gate</b><span class="ac">≥90 auto; 70–89 human queue; &lt;70 reject. Store the report string for the n8n notification.</span></li>
+        <li><b>Eval harness</b><span class="ac">50–100 golden docs w/ known answers; track field accuracy per <code>prompt_version</code>.</span></li>
+      </ul>
+      <div class="note warn"><b>Acceptance:</b> feed a known SSC notice → extraction matches the golden answer; a deliberately corrupted date drops the score below 90 and routes to review.</div>
+    </section>
+
+    <section id="b5">
+      <div class="head"><div class="num be">B5</div><div><div class="kick">Backend · §9</div><h2>n8n workflows</h2></div></div>
+      <p>Three workflows wire the whole engine together. Build them in n8n, export JSON to <code>automation/n8n/</code>.</p>
+      <table>
+        <tr><th>WF</th><th>Trigger</th><th>Does</th></tr>
+        <tr><td><b>WF-1 Scrape</b></td><td>Cron / source</td><td>Fetch → hash → if changed → insert <code>raw_document</code></td></tr>
+        <tr><td><b>WF-2 Gate</b></td><td>New <code>raw_document</code></td><td>Extract → validate → score → branch (auto / review / reject) + send report</td></tr>
+        <tr><td><b>WF-3 Publish</b></td><td>Approved version</td><td>Upsert content → snapshot version → feed + notify → call <code>/api/revalidate</code></td></tr>
+      </table>
+      <ul class="todo">
+        <li><b>Human-review branch</b><span class="ac">Telegram/Slack with Approve/Edit buttons for the 70–89 zone.</span></li>
+        <li><b>Notification fan-out</b><span class="ac">On publish, match audience &amp; send web push/email  §17.</span></li>
+      </ul>
+      <div class="note be"><b>Acceptance:</b> a changed SSC page flows end-to-end and the dashboard reflects it within seconds — no code deploy.</div>
+    </section>
+
+    <section id="b6">
+      <div class="head"><div class="num be">B6</div><div><div class="kick">Backend · §9,18</div><h2>Publish hooks &amp; API</h2></div></div>
+      <ul class="todo">
+        <li><b><code>/api/revalidate</code> route</b><span class="ac">Auth by <code>REVALIDATE_SECRET</code>; calls <code>revalidatePath()</code> for the changed URLs + homepage + calendar.</span></li>
+        <li><b>Diff → update feed</b><span class="ac">Meaningful <code>content_version</code> diff auto-creates an <code>update_feed</code> row (“last date extended…”).</span></li>
+        <li><b>Sitemap ping</b><span class="ac">On publish, ping search engines / refresh <code>sitemap.ts</code> lastmod.</span></li>
+      </ul>
+    </section>
+
+    <!-- ============ FRONTEND ============ -->
+    <section id="f1">
+      <div class="head"><div class="num fe">F1</div><div><div class="kick">Frontend</div><h2>Next.js setup</h2></div></div>
+      <ul class="todo">
+        <li><b>App Router + TypeScript + Tailwind</b><span class="ac">Server Components by default; client components only where interactive.</span></li>
+        <li><b>Supabase clients</b><span class="ac">A server client (cookies) and a browser client in <code>lib/supabase</code>.</span></li>
+        <li><b>Rendering strategy</b><span class="ac">Public pages = static/ISR (fast + SEO); logged-in views = client-hydrated.</span></li>
+        <li><b>Fonts &amp; base layout</b><span class="ac">Inter + Noto Sans Devanagari; header + mobile bottom-nav shell.</span></li>
+      </ul>
+      <div class="note fe"><b>Tip:</b> the delivered prototype (<code>exampath-app.html</code>) is your visual spec — port its layouts and interactions component-by-component into React.</div>
+    </section>
+
+    <section id="f2">
+      <div class="head"><div class="num fe">F2</div><div><div class="kick">Frontend · §10</div><h2>Design tokens</h2></div></div>
+      <p>Lift these straight from the prototype into <code>tokens.css</code> / <code>tailwind.config</code>.</p>
+      <pre><code><span class="cm">/* brand */</span>
+--brand:#1d4ed8;  --brand-soft:#eff4ff;   <span class="cm">/* trustworthy blue */</span>
+--saffron:#f97316; --saffron-soft:#fff4ec; <span class="cm">/* warm accent, used sparingly */</span>
+<span class="cm">/* status (semantic — shared app-wide) */</span>
+--green:#0e9f6e;  --amber:#c27803;  --red:#e02424;  --violet:#7c3aed;
+<span class="cm">/* surface */</span>
+--ink:#0f172a; --muted:#64748b; --line:#e6ebf2; --bg:#f6f8fc; --card:#fff;
+--radius:16px;  --font: Inter, "Noto Sans Devanagari", system-ui;</code></pre>
+      <ul class="todo">
+        <li><b>Light + dark mode</b><span class="ac">Respect <code>prefers-color-scheme</code>.</span></li>
+        <li><b>Accessibility</b><span class="ac">WCAG AA contrast, focus rings, 44px targets, reduced-motion.</span></li>
+        <li><b>Performance budget</b><span class="ac">LCP ≤ 2.5s mobile, JS ≤ 150KB critical, CLS &lt; 0.1.</span></li>
+      </ul>
+    </section>
+
+    <section id="f3">
+      <div class="head"><div class="num fe">F3</div><div><div class="kick">Frontend · §3</div><h2>Data layer</h2></div></div>
+      <ul class="todo">
+        <li><b>Typed queries in <code>lib/queries</code></b><span class="ac">One function per read: <code>getCycle(slug)</code>, <code>getBody(slug)</code>, <code>listFeatured()</code>, <code>search(params)</code>.</span></li>
+        <li><b>Generate DB types</b><span class="ac"><code>supabase gen types typescript</code> → end-to-end type safety.</span></li>
+        <li><b>Use the views</b><span class="ac"><code>v_cycle_next_deadline</code> for “days left”, <code>v_active_cycles</code> for cards.</span></li>
+        <li><b>ISR revalidation tags</b><span class="ac">Tag fetches by entity so <code>/api/revalidate</code> can bust exactly the right pages.</span></li>
+      </ul>
+    </section>
+
+    <section id="f4">
+      <div class="head"><div class="num fe">F4</div><div><div class="kick">Frontend · §4,12–16</div><h2>Routes &amp; pages</h2></div></div>
+      <table>
+        <tr><th>Route</th><th>Page</th><th>Build (from prototype)</th></tr>
+        <tr><td><code>/</code></td><td>Homepage <span class="pill pa">★</span></td><td>Hero search, closing-soon strip, featured grid, body grid, updates feed</td></tr>
+        <tr><td><code>/[body]</code></td><td>Conducting body</td><td>Current/upcoming/past tabs, month calendar, updates</td></tr>
+        <tr><td><code>/[body]/[cycle]</code></td><td>Exam dashboard <span class="pill pa">★</span></td><td>Countdown hero, timeline, dates, vacancy chart, cutoffs, eligibility, sources, related</td></tr>
+        <tr><td><code>/search</code></td><td>Search</td><td>NL parser → filters, results grid</td></tr>
+        <tr><td><code>/calendar</code></td><td>Calendar</td><td>Chronological deadlines w/ days-left</td></tr>
+        <tr><td><code>/profile</code>·<code>/alerts</code></td><td>User</td><td>Eligibility profile, follows, alerts (auth-gated)</td></tr>
+      </table>
+      <div class="note fe"><b>Acceptance:</b> each route is server-rendered with correct data, passes Lighthouse SEO ≥ 95, and matches the prototype layout on mobile + desktop.</div>
+    </section>
+
+    <section id="f5">
+      <div class="head"><div class="num fe">F5</div><div><div class="kick">Frontend · §11</div><h2>Components to build</h2></div></div>
+      <div class="grid g2">
+        <div class="cardlet"><h4>TimelineStrip</h4><p>Horizontal stage tracker, done/now/upcoming states. The signature UI.</p></div>
+        <div class="cardlet"><h4>Countdown / DaysLeftChip</h4><p>Live client component; days+hours+mins; turns red under threshold.</p></div>
+        <div class="cardlet"><h4>ExamCard</h4><p>Badge, status pill, vacancy/age/deadline facts, follow heart.</p></div>
+        <div class="cardlet"><h4>EligibilityChecker</h4><p>Client: age + qualification → instant eligible/not + reason.</p></div>
+        <div class="cardlet"><h4>VacancyBars / CutoffTable</h4><p>Accessible mini-charts; dark-mode aware.</p></div>
+        <div class="cardlet"><h4>UpdateFeed · SourceLinkList · MonthStrip</h4><p>Feed rows, verified official links, calendar month picker.</p></div>
+      </div>
+      <div class="note fe"><b>All six page layouts + these components already exist</b> — fully styled and interactive — in the delivered prototype. Porting is translation, not design.</div>
+    </section>
+
+    <section id="f6">
+      <div class="head"><div class="num fe">F6</div><div><div class="kick">Frontend · §18 ★</div><h2>SEO implementation</h2></div></div>
+      <ul class="todo">
+        <li><b>Metadata per page</b><span class="ac">Data-driven <code>generateMetadata()</code> — title/description templates.</span></li>
+        <li><b>JSON-LD</b><span class="ac"><code>JobPosting</code>/<code>Event</code> for cycles, <code>BreadcrumbList</code>, <code>FAQPage</code>.</span></li>
+        <li><b>Sitemaps + robots</b><span class="ac"><code>sitemap.ts</code> segmented by type, <code>lastmod</code> from <code>updated_at</code>.</span></li>
+        <li><b>Internal linking</b><span class="ac">Auto cross-links from <code>exam_relation</code>; breadcrumbs everywhere.</span></li>
+        <li><b>Programmatic pages</b><span class="ac">Syllabus / how-to-apply / cutoff templates × every exam.</span></li>
+      </ul>
+    </section>
+
+    <!-- BUILD ORDER -->
+    <section id="order">
+      <div class="head"><div class="num">✓</div><div><div class="kick">Ship</div><h2>Build order &amp; checklist</h2></div></div>
+      <table>
+        <tr><th>Sprint</th><th>Goal</th><th>Tasks</th></tr>
+        <tr><td><span class="pill pb">0</span></td><td>Foundations</td><td>Quick start · schema · seed · design tokens · Next.js shell</td></tr>
+        <tr><td><span class="pill pb">1</span></td><td>Data engine (SSC only)</td><td>B1–B6 for one body: scrape → extract → validate → publish</td></tr>
+        <tr><td><span class="pill pa">2</span></td><td>Public MVP that ranks</td><td>F1–F6: dashboard + homepage + body page + SEO</td></tr>
+        <tr><td><span class="pill pa">3</span></td><td>Accounts &amp; alerts</td><td>Auth, follows, eligibility profile, notifications</td></tr>
+        <tr><td><span class="pill pg">4</span></td><td>Smart features</td><td>Compare, trends, state map, NL search</td></tr>
+        <tr><td><span class="pill pg">5</span></td><td>Scale &amp; grow</td><td>More bodies, PYQ/test portal, monetization</td></tr>
+      </table>
+      <div class="note"><b>Critical path:</b> finish Sprint 1 (data engine, one body, through the 90% gate) before building breadth. Everything the frontend shows is produced by that engine.</div>
+    </section>
+
+    <section id="dod">
+      <div class="head"><div class="num">◎</div><div><div class="kick">Ship</div><h2>Definition of done (MVP)</h2></div></div>
+      <ul class="todo">
+        <li><b>Data</b><span class="ac">20–40 exams fully populated &amp; manually accuracy-audited against official sources.</span></li>
+        <li><b>Pipeline</b><span class="ac">SSC flows automatically end-to-end; the 90% gate demonstrably blocks a bad date.</span></li>
+        <li><b>Frontend</b><span class="ac">All ★ pages live, mobile-first, LCP ≤ 2.5s, Lighthouse SEO ≥ 95.</span></li>
+        <li><b>SEO</b><span class="ac">Sitemaps submitted, JSON-LD validated, canonical/robots correct.</span></li>
+        <li><b>Accounts</b><span class="ac">Sign-in, follow, and a first deadline push notification all working.</span></li>
+        <li><b>Trust</b><span class="ac">Disclaimer + official-source links on every page; “not a government website”.</span></li>
+      </ul>
+    </section>
+
+    <div class="foot">ExamPath · Implementation Guide · companion to the Build Bible &amp; schema.sql<br>Frontend: Next.js · Backend: Supabase + n8n + Playwright/LLM workers</div>
+  </main>
+</div>
+<script>document.querySelectorAll('.side a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.side').classList.remove('open')));</script>
+</body>
+</html>
