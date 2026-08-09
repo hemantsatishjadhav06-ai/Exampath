@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Dream — Canonical Data Model v1.0</title>
+<style>
+  :root{
+    --ink:#0f1b31;--ink2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#e5eaf1;--line2:#eef2f7;
+    --bg:#f6f8fc;--card:#fff;--code:#0d1a2f;--brand:#1d4ed8;--brand2:#3b82f6;--bsoft:#eef4ff;--b100:#dbe6fe;
+    --saf:#ea580c;--safsoft:#fff4ec;--green:#0e9f6e;--gsoft:#e7f8f0;--amber:#b45309;--asoft:#fffbeb;
+    --violet:#7c3aed;--vsoft:#f3ecfe;--red:#dc2626;--rsoft:#fef2f2;--teal:#0d9488;--tsoft:#effcfa;
+    --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;font-size:15.5px}
+  a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+  .shell{display:grid;grid-template-columns:288px 1fr;max-width:1480px;margin:0 auto}
+  .side{position:sticky;top:0;height:100vh;overflow-y:auto;background:#0c1830;color:#c3d0e6;padding:22px 15px 60px}
+  .brand{display:flex;gap:11px;align-items:center;padding:4px 8px 15px;border-bottom:1px solid #1d2c48;margin-bottom:12px}
+  .brand .m{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--brand2),var(--saf));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex:none;font-size:19px}
+  .brand b{color:#fff;font-size:15px;display:block;line-height:1.2}.brand span{font-size:11px;color:#64748b}
+  .side a{display:flex;gap:9px;color:#c3d0e6;padding:6.5px 10px;border-radius:8px;font-size:13.3px;line-height:1.35}
+  .side a:hover{background:#1a2942;color:#fff;text-decoration:none}
+  .side a .n{color:#64748b;font-variant-numeric:tabular-nums;min-width:18px;text-align:right;font-size:12px}
+  .side .g{font-size:10.5px;text-transform:uppercase;letter-spacing:.13em;color:#56668a;padding:15px 10px 6px;font-weight:700}
+  .wrap{max-width:940px;margin:0 auto;padding:40px 42px 130px}
+  h1{font-size:33px;letter-spacing:-.03em;margin:0 0 8px;font-weight:800}
+  h2{font-size:22px;letter-spacing:-.02em;margin:0;font-weight:750}
+  h3{font-size:16.5px;margin:24px 0 8px;font-weight:700}
+  h4{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:20px 0 8px;font-weight:700}
+  p{margin:10px 0}.lead{font-size:17.5px;color:var(--ink2)}
+  code{font-family:var(--mono);font-size:.85em;background:#eaf0f8;padding:1.5px 6px;border-radius:5px;color:#0b3a86;white-space:nowrap}
+  pre{background:var(--code);color:#dfe7f3;padding:16px 18px;border-radius:12px;overflow-x:auto;font-family:var(--mono);font-size:12.6px;line-height:1.62;margin:13px 0;box-shadow:0 8px 22px -12px rgba(15,23,42,.4)}
+  pre code{background:none;color:inherit;padding:0;white-space:pre;font-size:inherit}
+  .cm{color:#7488a8}.kw{color:#93c5fd}.st{color:#86efac}.ty{color:#fcd34d}.nu{color:#fca5a5}
+  section{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:28px 32px;margin:18px 0;box-shadow:0 1px 2px rgba(16,32,64,.04)}
+  section.plain{background:none;border:none;box-shadow:none;padding:6px 2px;margin:30px 0 6px}
+  .head{display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line2);padding-bottom:14px;margin-bottom:4px}
+  .num{width:40px;height:40px;border-radius:11px;background:var(--bsoft);color:var(--brand);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;font-size:16px}
+  .kick{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:13.4px;margin:14px 0}
+  th{text-align:left;background:var(--bg);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:9px 11px;border-bottom:2px solid var(--line)}
+  td{padding:9px 11px;border-bottom:1px solid var(--line2);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td code{white-space:normal}
+  .note{border-left:3px solid var(--brand2);background:var(--bsoft);padding:12px 15px;border-radius:0 10px 10px 0;margin:13px 0;font-size:14px}
+  .note.ok{border-color:var(--green);background:var(--gsoft)}
+  .note.warn{border-color:var(--amber);background:var(--asoft)}
+  .note.map{border-color:var(--violet);background:var(--vsoft)}
+  .note b{display:block;margin-bottom:2px}
+  .pill{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.02em;vertical-align:middle}
+  .pb{background:var(--bsoft);color:var(--brand)}.pg{background:var(--gsoft);color:var(--green)}.pr{background:var(--rsoft);color:var(--red)}.pa{background:var(--asoft);color:var(--amber)}.pv{background:var(--vsoft);color:var(--violet)}.pt{background:var(--tsoft);color:var(--teal)}
+  .ent{border:1px solid var(--line);border-radius:12px;padding:0;margin:12px 0;overflow:hidden}
+  .ent>.t{display:flex;align-items:center;gap:9px;background:var(--bg);padding:10px 14px;border-bottom:1px solid var(--line)}
+  .ent>.t code{background:#e2e8f4;font-size:13px;font-weight:700;color:var(--ink)}
+  .ent>.t span{font-size:12.5px;color:var(--muted)}
+  .ent>.b{padding:8px 14px 12px}
+  .fld{font-family:var(--mono);font-size:12.2px;color:var(--ink2);padding:3px 0}
+  .fld b{color:var(--brand)}.fld .c{color:var(--muted)}
+  .grid{display:grid;gap:13px;margin:14px 0}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  .card{border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .card h4{margin:0 0 6px;color:var(--ink);text-transform:none;letter-spacing:-.01em;font-size:14.5px}
+  .card p{margin:3px 0;font-size:13.3px;color:var(--ink2)}
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;margin:16px 0;gap:0}
+  .flow .s{flex:1 1 0;min-width:96px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 9px;text-align:center}
+  .flow .s b{display:block;font-size:12px;margin-top:2px}.flow .s small{color:var(--muted);font-size:10.5px;line-height:1.25;display:block}
+  .flow .a{display:flex;align-items:center;color:var(--faint);padding:0 3px;font-size:16px}
+  .foot{color:var(--muted);font-size:13px;text-align:center;padding:26px 0}
+  .menu{display:none}
+  @media(max-width:960px){
+    .shell{grid-template-columns:1fr}.side{position:fixed;left:-300px;width:274px;z-index:50;transition:.25s}.side.open{left:0}
+    .menu{display:block;position:fixed;top:12px;left:12px;z-index:60;background:#0c1830;color:#fff;border-radius:10px;padding:9px 13px;font-size:15px;border:none}
+    .wrap{padding:60px 16px 90px}section{padding:20px 17px}.g2,.g3{grid-template-columns:1fr}h1{font-size:26px}
+    .backdrop.show{position:fixed;inset:0;background:rgba(8,15,30,.5);z-index:40}
+  }
+  @media print{.side,.menu{display:none}.shell{grid-template-columns:1fr}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<button class="menu" onclick="document.querySelector('.side').classList.toggle('open');document.querySelector('.backdrop').classList.toggle('show')">☰ Contents</button>
+<div class="backdrop" onclick="document.querySelector('.side').classList.remove('open');this.classList.remove('show')"></div>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><div class="m">प</div><div><b>Project Dream</b><span>Canonical Data Model · v1.0</span></div></div>
+    <a href="#intro"><span class="n">·</span> Overview &amp; constitution</a>
+    <a href="#idea"><span class="n">·</span> The core idea</a>
+    <a href="#s1"><span class="n">1</span> Identity, slugs &amp; URLs</a>
+    <a href="#s2"><span class="n">2</span> Controlled vocabularies</a>
+    <div class="g">The 28 entities</div>
+    <a href="#s3a"><span class="n">A</span> Taxonomy</a>
+    <a href="#s3b"><span class="n">B</span> Dates &amp; process</a>
+    <a href="#s3c"><span class="n">C</span> Requirements &amp; offer</a>
+    <a href="#s3d"><span class="n">D</span> Outputs &amp; artifacts</a>
+    <a href="#s3e"><span class="n">E</span> Content &amp; discovery</a>
+    <a href="#s3f"><span class="n">F</span> Governance &amp; pipeline</a>
+    <a href="#s3g"><span class="n">G</span> User</a>
+    <div class="g">Assembly &amp; rules</div>
+    <a href="#dash"><span class="n">★</span> Dashboard object (cache)</a>
+    <a href="#valid"><span class="n">✓</span> Validation rules (gate)</a>
+    <a href="#flow"><span class="n">→</span> How data flows</a>
+    <a href="#map"><span class="n">◎</span> Maps to your build</a>
+  </aside>
+  <main class="wrap">
+
+    <section id="intro">
+      <div class="kick">Project Dream · Phase 1 · Information Architecture</div>
+      <h1>Canonical Data Model</h1>
+      <p class="lead">The single source of truth for the whole platform. Every scraper, AI agent, Supabase table, Next.js component, SEO tag and notification uses <em>these</em> shapes — if a field isn't defined here, it doesn't exist anywhere. This is the foundation to lock before finalizing the database and the dashboard.</p>
+      <div class="note ok"><b>Ships as runnable code</b>The exact model is encoded in <code>canonical-model.ts</code> (34 interfaces, 18 vocabularies) — type-checked clean in strict mode. Your Next.js app imports it directly; the Python pipeline mirrors it 1:1; the Supabase tables are its normalized persistence. This document is the readable companion.</div>
+      <h3>The constitution — 10 rules that govern every decision</h3>
+      <table>
+        <tr><th>#</th><th>Rule</th><th>How the model enforces it</th></tr>
+        <tr><td>1</td><td>Automation-first</td><td>Pipeline entities (RawSource → Extraction → Validation) are first-class.</td></tr>
+        <tr><td>2</td><td>Every page from structured data</td><td>Pages read the canonical model only — never hand-written content.</td></tr>
+        <tr><td>3</td><td>No duplicate data</td><td>Evergreen <code>Exam</code> vs time-bound <code>ExamCycle</code>; content hashing on documents.</td></tr>
+        <tr><td>4</td><td>One source of truth (Supabase)</td><td>These entities are the only schema; everything derives from them.</td></tr>
+        <tr><td>5</td><td>Every update = a new version</td><td><code>VersionHistory</code> snapshot + diff on every change.</td></tr>
+        <tr><td>6</td><td>Every change reversible</td><td><code>is_current</code> flip restores any prior version.</td></tr>
+        <tr><td>7</td><td>SEO-ready by default</td><td><code>SEOMetadata</code> on bodies, exams &amp; the dashboard object.</td></tr>
+        <tr><td>8</td><td>Mobile-first</td><td>The dashboard object is compact &amp; section-ordered by urgency.</td></tr>
+        <tr><td>9</td><td>Performance before visuals</td><td>Pages read ONE pre-built <code>ExamDashboard</code> object, not 20 queries.</td></tr>
+        <tr><td>10</td><td>Humans only below the gate</td><td><code>Validation.status</code> routes by confidence: auto / review / reject.</td></tr>
+      </table>
+    </section>
+
+    <section id="idea" class="plain"><h2 style="padding-left:2px">The core idea <span style="color:var(--faint)">— body → exam → cycle</span></h2></section>
+    <section>
+      <p>One modelling decision underpins everything: separate the <strong>evergreen exam</strong> from its <strong>yearly cycle</strong>. This is what makes “one universal template, not individual pages” possible and keeps the data non-duplicated.</p>
+      <pre><code><span class="cm">ConductingBody</span>  (SSC, UPSC, IBPS, RRB, NTA, State PSCs…)        /ssc
+   └── <span class="kw">Exam</span>  (evergreen brand: "SSC CGL")                    /ssc/cgl
+         └── <span class="kw">ExamCycle</span>  (a year: "SSC CGL 2027")  ◀── the spine   /exam/ssc-cgl-2027
+               ├── ImportantDate · TimelineEvent          (when)
+               ├── Eligibility · Vacancy · Fee · Salary   (who / how many / cost / reward)
+               ├── SelectionStage · ExamPattern · Syllabus(how you're selected)
+               ├── Notification · AdmitCard · Result · AnswerKey · Cutoff · PreviousPaper
+               ├── Document · OfficialLink · FAQ · Update (artifacts, links, changes)
+               └── SEOMetadata · VersionHistory · AuditLog (SEO + governance)</code></pre>
+      <p>Every <code>/exam/[slug]</code> page uses the <em>same</em> React components; only the cycle's data changes. Because the exam is evergreen, last year's page keeps its URL, links and SEO authority while a new cycle spins up beside it.</p>
+    </section>
+
+    <section id="s1">
+      <div class="head"><div class="num">1</div><div><div class="kick">Foundations</div><h2>Identity, slugs &amp; URLs</h2></div></div>
+      <p>IDs are UUIDs (stable, internal). <strong>Slugs</strong> are the human, permanent, SEO-facing identity — generated once and never silently changed (a change writes a 301 redirect).</p>
+      <table>
+        <tr><th>Entity</th><th>Slug pattern</th><th>URL</th></tr>
+        <tr><td>ConductingBody</td><td><code>{body}</code></td><td><code>/ssc</code></td></tr>
+        <tr><td>Exam (evergreen)</td><td><code>{body}-{exam}</code></td><td><code>/ssc/cgl</code></td></tr>
+        <tr><td>ExamCycle</td><td><code>{exam}-{year}</code></td><td><code>/exam/ssc-cgl-2027</code></td></tr>
+        <tr><td>Update</td><td>—</td><td>links to its cycle's <code>url_path</code></td></tr>
+      </table>
+      <div class="note"><b>Rule</b>Lowercase, hyphenated, ASCII. Year is embedded in the cycle slug so 2026 and 2027 coexist permanently. Canonical URL is stored on the row and echoed in <code>SEOMetadata.canonical</code>.</div>
+    </section>
+
+    <section id="s2">
+      <div class="head"><div class="num">2</div><div><div class="kick">Foundations</div><h2>Controlled vocabularies</h2></div></div>
+      <p>Centralised enums so the scraper, AI, database and UI never disagree on a string. (Full list in <code>canonical-model.ts</code>.)</p>
+      <table>
+        <tr><th>Vocabulary</th><th>Values</th></tr>
+        <tr><td><code>CycleStatus</code></td><td>upcoming · notification_out · application_open · application_closed · admit_card · exam_over · answer_key · result_awaited · result_out · cutoff_out · completed · cancelled · postponed</td></tr>
+        <tr><td><code>Category</code></td><td>UR · OBC · SC · ST · EWS · PwD · ESM · ALL</td></tr>
+        <tr><td><code>StageKind</code></td><td>prelims · mains · tier1–4 · cbt1 · cbt2 · skill_test · typing_test · physical_test · interview · document_verification · medical · final</td></tr>
+        <tr><td><code>DateKind</code></td><td>notification · application_start · application_end · fee_last_date · correction_* · admit_card · exam · answer_key · result · interview · dv · medical</td></tr>
+        <tr><td><code>LinkKind</code> / <code>DocumentKind</code></td><td>official_website · notification_pdf · apply_online · admit_card · result · answer_key · syllabus · cutoff · previous_paper · corrigendum</td></tr>
+        <tr><td><code>UpdateKind</code></td><td>new_notification · date_change · admit_card · result · answer_key · cutoff · vacancy_change · corrigendum · general</td></tr>
+        <tr><td><code>NotificationChannel</code></td><td>web_push · email · telegram · whatsapp · in_app</td></tr>
+        <tr><td><code>ValidationStatus</code></td><td>auto_publish · needs_review · rejected</td></tr>
+      </table>
+    </section>
+
+    <!-- ENTITIES -->
+    <section id="s3a">
+      <div class="head"><div class="num">A</div><div><div class="kick">Entities · 1–3</div><h2>Taxonomy / identity</h2></div></div>
+      <div class="ent"><div class="t"><code>ConductingBody</code><span>the org that conducts exams</span></div><div class="b">
+        <div class="fld"><b>slug</b> <span class="c">Slug</span> · <b>name</b> <span class="c">string</span> · <b>short_name</b> · <b>level</b> <span class="c">ExamLevel</span> · <b>state_code?</b> · <b>official_url</b> · <b>logo_url?</b> · <b>overview?</b> · <b>is_active</b> · <b>seo?</b> <span class="c">SEOMetadata</span></div>
+      </div></div>
+      <div class="ent"><div class="t"><code>Exam</code><span>evergreen exam brand · → ConductingBody</span></div><div class="b">
+        <div class="fld"><b>slug</b> · <b>conducting_body_id</b> <span class="c">UUID</span> · <b>name</b> · <b>short_name</b> · <b>qualification_tier</b> · <b>overview?</b> · <b>tags[]</b> · <b>related_exam_ids[]</b> <span class="c">→ Exam</span> · <b>seo?</b></div>
+      </div></div>
+      <div class="ent"><div class="t"><code>ExamCycle</code><span>a year/cycle — the spine · → Exam</span></div><div class="b">
+        <div class="fld"><b>slug</b> · <b>exam_id</b> · <b>year</b> <span class="c">number</span> · <b>title</b> · <b>status</b> <span class="c">CycleStatus</span> · <b>notification_no?</b> · <b>short_summary?</b> · <b>is_featured</b> · <b>published_at?</b> <span class="c">(null = draft)</span></div>
+      </div></div>
+    </section>
+
+    <section id="s3b">
+      <div class="head"><div class="num">B</div><div><div class="kick">Entities · 4–8</div><h2>Dates &amp; process</h2></div></div>
+      <div class="ent"><div class="t"><code>ImportantDate</code><span>drives “Important Dates” + days-left</span></div><div class="b"><div class="fld"><b>cycle_id</b> · <b>kind</b> <span class="c">DateKind</span> · <b>label</b> · <b>date?</b> <span class="c">ISODate</span> · <b>end_date?</b> · <b>is_deadline</b> · <b>status</b> <span class="c">confirmed|tentative|extended|postponed</span></div></div></div>
+      <div class="ent"><div class="t"><code>TimelineEvent</code><span>ordered milestone for the Timeline strip</span></div><div class="b"><div class="fld"><b>cycle_id</b> · <b>order</b> · <b>title</b> · <b>kind</b> · <b>date?</b> · <b>done</b> <span class="c">(computed vs today)</span></div></div></div>
+      <div class="ent"><div class="t"><code>SelectionStage</code><span>one step of selection</span></div><div class="b"><div class="fld"><b>cycle_id</b> · <b>order</b> · <b>kind</b> <span class="c">StageKind</span> · <b>name</b> · <b>is_qualifying?</b></div></div></div>
+      <div class="ent"><div class="t"><code>ExamPattern</code><span>sections, marks, duration, negative marking</span></div><div class="b"><div class="fld"><b>cycle_id</b> · <b>stage_kind</b> · <b>sections[]</b> <span class="c">{name,questions,marks,duration_min}</span> · <b>total_marks?</b> · <b>negative_marking?</b> · <b>mode?</b></div></div></div>
+      <div class="ent"><div class="t"><code>Syllabus</code><span>stage → subject → topics · cycle or evergreen</span></div><div class="b"><div class="fld"><b>cycle_id?</b> / <b>exam_id?</b> · <b>stage_kind?</b> · <b>subjects[]</b> <span class="c">{subject, topics[]}</span> · <b>source_document_id?</b></div></div></div>
+    </section>
+
+    <section id="s3c">
+      <div class="head"><div class="num">C</div><div><div class="kick">Entities · 9–12</div><h2>Requirements &amp; offer</h2></div></div>
+      <div class="ent"><div class="t"><code>Eligibility</code><span>structured for the Eligibility Engine</span></div><div class="b"><div class="fld"><b>cycle_id?</b> / <b>exam_id?</b> · <b>post_name?</b> · <b>age_min?</b> · <b>age_max?</b> · <b>age_as_on?</b> · <b>age_relaxation?</b> <span class="c">{OBC:3,…}</span> · <b>min_qualification?</b> · <b>qualification_codes[]</b> · <b>gender</b> · <b>attempts_max?</b> · <b>rules?</b></div></div></div>
+      <div class="ent"><div class="t"><code>Vacancy</code><span>headline + breakdown → history</span></div><div class="b"><div class="fld"><b>cycle_id</b> · <b>post_name?</b> · <b>category?</b> <span class="c">Category</span> · <b>state_code?</b> · <b>seats</b> <span class="c">number</span></div></div></div>
+      <div class="ent"><div class="t"><code>Fee</code><span>application fee by category</span></div><div class="b"><div class="fld"><b>cycle_id</b> · <b>category</b> · <b>amount</b> <span class="c">INR</span> · <b>notes?</b> <span class="c">exemptions, payment mode</span></div></div></div>
+      <div class="ent"><div class="t"><code>Salary</code><span>pay &amp; perks per post</span></div><div class="b"><div class="fld"><b>cycle_id?</b> / <b>exam_id?</b> · <b>post_name</b> · <b>pay_level?</b> · <b>pay_min?</b> · <b>pay_max?</b> · <b>in_hand_approx?</b> · <b>grade_pay?</b> · <b>perks?</b></div></div></div>
+    </section>
+
+    <section id="s3d">
+      <div class="head"><div class="num">D</div><div><div class="kick">Entities · 13–20</div><h2>Outputs &amp; artifacts</h2></div></div>
+      <div class="grid g2">
+        <div class="card"><h4><code>NotificationRecord</code></h4><p>title · notification_no · released_on · <b>document_id</b> (PDF) · summary</p></div>
+        <div class="card"><h4><code>AdmitCard</code></h4><p>stage_kind · released_on · download_from/till · link_id · instructions</p></div>
+        <div class="card"><h4><code>Result</code></h4><p>stage_kind · declared_on · document_id · link_id · summary</p></div>
+        <div class="card"><h4><code>AnswerKey</code></h4><p>stage_kind · released_on · <b>is_provisional</b> · objection_till · link_id</p></div>
+        <div class="card"><h4><code>Cutoff</code></h4><p>stage_kind · post_name · <b>category</b> · marks · max_marks → trend</p></div>
+        <div class="card"><h4><code>PreviousPaper</code></h4><p>exam_id · year · stage_kind · title · document_id · <b>has_solution</b></p></div>
+        <div class="card"><h4><code>DocumentFile</code></h4><p>kind · title · <b>storage_path</b> · source_url · <b>content_hash</b> (dedupe)</p></div>
+        <div class="card"><h4><code>OfficialLink</code></h4><p>kind · label · <b>url</b> · is_official · active_from/to · <b>last_checked_at</b></p></div>
+      </div>
+      <div class="note map"><b>The product’s purpose lives here</b>We are an information/navigation medium: <code>OfficialLink</code> and <code>DocumentFile</code> are how students reach the official source. <code>last_checked_at</code> (liveness) and <code>is_official</code> are the trust anchors.</div>
+    </section>
+
+    <section id="s3e">
+      <div class="head"><div class="num">E</div><div><div class="kick">Entities · 21–23</div><h2>Content &amp; discovery</h2></div></div>
+      <div class="ent"><div class="t"><code>FAQ</code><span>→ FAQPage JSON-LD</span></div><div class="b"><div class="fld"><b>cycle_id?</b> / <b>exam_id?</b> · <b>question</b> · <b>answer</b> <span class="c">markdown</span> · <b>order</b></div></div></div>
+      <div class="ent"><div class="t"><code>Update</code><span>the “what changed” feed</span></div><div class="b"><div class="fld"><b>kind</b> <span class="c">UpdateKind</span> · <b>title</b> · <b>summary?</b> · <b>url_path</b> · <b>importance</b> <span class="c">0–100</span> · <b>published_at</b> · <b>changed?</b> <span class="c">{field:[old,new]}</span></div></div></div>
+      <div class="ent"><div class="t"><code>SEOMetadata</code><span>embedded on bodies, exams &amp; the dashboard object</span></div><div class="b"><div class="fld"><b>title</b> · <b>description</b> · <b>canonical</b> · <b>og_image?</b> · <b>keywords[]</b> · <b>jsonld[]</b> <span class="c">JobPosting|Event|FAQPage|BreadcrumbList</span> · <b>noindex?</b></div></div></div>
+    </section>
+
+    <section id="s3f">
+      <div class="head"><div class="num">F</div><div><div class="kick">Entities · 24–26 + pipeline</div><h2>Governance &amp; pipeline</h2></div></div>
+      <p>Rules 5 &amp; 6 made concrete — plus the three support tables that implement the automation.</p>
+      <div class="grid g2">
+        <div class="card"><h4><code>VersionHistory</code></h4><p>entity_type · entity_id · version_no · <b>snapshot</b> · <b>diff</b> · <b>is_current</b> · source_extraction_id · validation_id · created_by</p></div>
+        <div class="card"><h4><code>AuditLog</code></h4><p>actor · action (publish/rollback/approve…) · entity_type · entity_id · detail</p></div>
+        <div class="card"><h4><code>RawSource</code> <span class="pill pt">pipeline</span></h4><p>url · <b>content_hash</b> (change detection) · storage_path · fetched_at · changed</p></div>
+        <div class="card"><h4><code>Extraction</code> <span class="pill pt">pipeline</span></h4><p>raw_source_id · model · prompt_version · target_type · <b>payload</b> · <b>confidence</b></p></div>
+        <div class="card"><h4><code>Validation</code> <span class="pill pt">pipeline</span></h4><p>extraction_id · <b>score</b> · <b>status</b> · threshold · <b>checks[]</b> · report · reviewed_by/at</p></div>
+      </div>
+    </section>
+
+    <section id="s3g">
+      <div class="head"><div class="num">G</div><div><div class="kick">Entities · 27–28 (+user)</div><h2>User</h2></div></div>
+      <p>Accounts are optional; their only job is personalisation + <em>relevant</em> notifications.</p>
+      <div class="ent"><div class="t"><code>User</code><span>+ eligibility profile</span></div><div class="b"><div class="fld"><b>display_name?</b> · <b>date_of_birth?</b> · <b>category?</b> · <b>gender?</b> · <b>highest_qualification?</b> · <b>qualification_codes[]</b> · <b>home_state?</b></div></div></div>
+      <div class="ent"><div class="t"><code>NotificationPreference</code></div><div class="b"><div class="fld"><b>user_id</b> · <b>topic</b> <span class="c">'exam:ssc-cgl' | 'body:ssc' | 'deadline:*'</span> · <b>channels[]</b> · <b>is_active</b></div></div></div>
+      <div class="ent"><div class="t"><code>Bookmark</code></div><div class="b"><div class="fld"><b>user_id</b> · <b>exam_id?</b> / <b>cycle_id?</b> · <b>role</b> <span class="c">interested|preparing|applied</span></div></div></div>
+    </section>
+
+    <!-- DASHBOARD OBJECT -->
+    <section id="dash">
+      <div class="head"><div class="num">★</div><div><div class="kick">Assembly · the performance keystone</div><h2>The Universal Exam Dashboard object</h2></div></div>
+      <p>Rule 9 in one artifact. Rather than run 20 queries per visitor, the pipeline pre-assembles <strong>one denormalized <code>ExamDashboard</code> object per cycle</strong> whenever a validated change lands, stores it (Supabase JSONB + Cloudflare/ISR cache), and every <code>/exam/[slug]</code> visit renders straight from it. Each of your 22 dashboard sections maps to one field → one React component.</p>
+      <table>
+        <tr><th>#</th><th>Section</th><th>Dashboard field</th><th>Source entity</th></tr>
+        <tr><td>1–2</td><td>Overview + Quick Facts</td><td><code>hero</code></td><td>ExamCycle, Vacancy, Eligibility, Fee</td></tr>
+        <tr><td>3</td><td>Latest Update</td><td><code>latest_update</code></td><td>Update</td></tr>
+        <tr><td>4</td><td>Important Dates</td><td><code>important_dates</code></td><td>ImportantDate</td></tr>
+        <tr><td>5</td><td>Timeline</td><td><code>timeline</code></td><td>TimelineEvent</td></tr>
+        <tr><td>6</td><td>Eligibility</td><td><code>eligibility</code></td><td>Eligibility</td></tr>
+        <tr><td>7</td><td>Vacancy (+ history)</td><td><code>vacancy</code></td><td>Vacancy</td></tr>
+        <tr><td>8</td><td>Application Fee</td><td><code>fees</code></td><td>Fee</td></tr>
+        <tr><td>9</td><td>Salary</td><td><code>salary</code></td><td>Salary</td></tr>
+        <tr><td>10</td><td>Selection Process</td><td><code>selection</code></td><td>SelectionStage</td></tr>
+        <tr><td>11</td><td>Exam Pattern</td><td><code>pattern</code></td><td>ExamPattern</td></tr>
+        <tr><td>12</td><td>Syllabus</td><td><code>syllabus</code></td><td>Syllabus</td></tr>
+        <tr><td>13</td><td>Notification / PDF</td><td><code>notification</code></td><td>NotificationRecord, DocumentFile</td></tr>
+        <tr><td>14</td><td>Admit Card</td><td><code>admit_cards</code></td><td>AdmitCard</td></tr>
+        <tr><td>15</td><td>Result</td><td><code>results</code></td><td>Result</td></tr>
+        <tr><td>16</td><td>Answer Key</td><td><code>answer_keys</code></td><td>AnswerKey</td></tr>
+        <tr><td>17</td><td>Cutoff</td><td><code>cutoffs</code></td><td>Cutoff</td></tr>
+        <tr><td>18</td><td>Previous Papers</td><td><code>previous_papers</code></td><td>PreviousPaper</td></tr>
+        <tr><td>19</td><td>How to Apply</td><td><code>how_to_apply</code></td><td>derived + OfficialLink</td></tr>
+        <tr><td>20</td><td>FAQs</td><td><code>faqs</code></td><td>FAQ</td></tr>
+        <tr><td>21</td><td>Related Exams</td><td><code>related_exams</code></td><td>Exam.related_exam_ids</td></tr>
+        <tr><td>22</td><td>Official Links</td><td><code>official_links</code></td><td>OfficialLink</td></tr>
+        <tr><td>—</td><td>SEO (baked in)</td><td><code>seo</code></td><td>SEOMetadata + JSON-LD</td></tr>
+      </table>
+      <div class="note ok"><b>Why this shape wins at 60–70M visits/month</b>The heavy work happens once per change (not once per visitor). A results-day traffic spike hits a static cached object on the CDN edge — the database is barely touched. The object also carries its own SEO, so the page is fast <em>and</em> rankable.</div>
+    </section>
+
+    <!-- VALIDATION -->
+    <section id="valid">
+      <div class="head"><div class="num">✓</div><div><div class="kick">The gate</div><h2>Validation rules</h2></div></div>
+      <p>Your validation checklist, made executable. Each extraction is scored; <strong>hard</strong> failures block regardless of score, and the confidence band decides the route (rule 10).</p>
+      <table>
+        <tr><th>Check</th><th>Rule</th><th>Severity</th></tr>
+        <tr><td>Required fields</td><td>title, status, and the section's key fields present</td><td><span class="pill pr">hard</span></td></tr>
+        <tr><td>Date format</td><td>every date parses as ISO <code>YYYY-MM-DD</code></td><td><span class="pill pr">hard</span></td></tr>
+        <tr><td>Date logic</td><td><code>application_end ≥ application_start</code>; <code>exam ≥ application_end</code>; <code>result ≥ exam</code></td><td><span class="pill pr">hard</span></td></tr>
+        <tr><td>Age range</td><td><code>14 ≤ age_min ≤ age_max ≤ 60</code></td><td><span class="pill pa">soft</span></td></tr>
+        <tr><td>Vacancy</td><td>integer &gt; 0; category breakdown sums ≈ total</td><td><span class="pill pa">soft</span></td></tr>
+        <tr><td>Fee</td><td>non-negative; category ∈ vocabulary</td><td><span class="pill pa">soft</span></td></tr>
+        <tr><td>Duplicate detection</td><td>same cycle+kind+content_hash already present → skip</td><td><span class="pill pa">soft</span></td></tr>
+        <tr><td>Difference detection</td><td>diff vs current version; no diff → no update emitted</td><td><span class="pill pb">gate</span></td></tr>
+        <tr><td>Confidence</td><td>weighted score of all checks + model confidence</td><td><span class="pill pb">gate</span></td></tr>
+      </table>
+      <div class="flow">
+        <div class="s"><b>≥ threshold</b><small>auto_publish → version + cache rebuild</small></div>
+        <div class="a">→</div>
+        <div class="s"><b>mid band</b><small>needs_review → Telegram + dashboard preview</small></div>
+        <div class="a">→</div>
+        <div class="s"><b>below / hard fail</b><small>rejected → re-queue, alert ops</small></div>
+      </div>
+      <p>Example (your rule): <code>exam_end_date &lt; application_start_date</code> → hard fail → rejected. Approved changes always write a <code>VersionHistory</code> row, so any bad publish is one <code>is_current</code> flip from being undone.</p>
+    </section>
+
+    <!-- FLOW -->
+    <section id="flow">
+      <div class="head"><div class="num">→</div><div><div class="kick">Consumption</div><h2>How every subsystem uses one model</h2></div></div>
+      <div class="flow">
+        <div class="s"><b>Scraper</b><small>writes RawSource (+hash)</small></div><div class="a">→</div>
+        <div class="s"><b>AI extract</b><small>emits Extraction payload</small></div><div class="a">→</div>
+        <div class="s"><b>Validate</b><small>score → status</small></div><div class="a">→</div>
+        <div class="s"><b>Persist</b><small>canonical tables + Version</small></div><div class="a">→</div>
+        <div class="s"><b>Build cache</b><small>ExamDashboard object</small></div><div class="a">→</div>
+        <div class="s"><b>Serve</b><small>Next.js + SEO + notify</small></div>
+      </div>
+      <table>
+        <tr><th>Subsystem</th><th>Reads / writes</th></tr>
+        <tr><td>n8n / scrapers</td><td>write <code>RawSource</code>; change detection via <code>content_hash</code></td></tr>
+        <tr><td>AI extraction</td><td>emit <code>Extraction.payload</code> shaped to the target entity + confidence</td></tr>
+        <tr><td>Validation engine</td><td>write <code>Validation</code>; on pass, upsert canonical entities + <code>VersionHistory</code></td></tr>
+        <tr><td>Cache builder</td><td>assemble &amp; store the <code>ExamDashboard</code> object per cycle</td></tr>
+        <tr><td>Next.js dashboard</td><td>read the one object; each section = one component</td></tr>
+        <tr><td>SEO system</td><td>read <code>SEOMetadata</code> + emit JSON-LD from canonical fields</td></tr>
+        <tr><td>Notifications</td><td>match <code>Update</code> → <code>NotificationPreference</code> (+ user eligibility)</td></tr>
+      </table>
+    </section>
+
+    <!-- MAP -->
+    <section id="map">
+      <div class="head"><div class="num">◎</div><div><div class="kick">Alignment</div><h2>How this maps to what's already built</h2></div></div>
+      <p>The ExamPath codebase already implements a large slice of this model — this canonical layer formalizes it and shows exactly what to add before finalizing the DB.</p>
+      <table>
+        <tr><th>Already built</th><th>Add to reach full canonical coverage</th></tr>
+        <tr><td>conducting_body, exam, exam_cycle, important dates, timeline/stages, vacancy, eligibility, cutoff, official_link, update, versioning, RLS, pipeline (scrape→extract→validate→publish)</td><td>fee, salary, exam_pattern, syllabus, notification, admit_card, answer_key, previous_paper, faq, document, seo_metadata, <b>dashboard_cache</b>, audit_log</td></tr>
+      </table>
+      <div class="note"><b>Recommended next 3 steps</b>(1) Generate the updated Supabase migration from this model (adds the tables above + a <code>dashboard_cache</code> JSONB table). (2) Build the cache-builder that assembles the <code>ExamDashboard</code> object. (3) Expand the Universal Exam Dashboard UI from ~10 to all 22 sections, each reading its field. Cycles move to <b>2027</b> going forward, per your examples.</div>
+      <div class="note warn"><b>Lock this first</b>Per your roadmap, finalize this Canonical Data Model before finalizing the database schema and dashboard architecture — everything downstream keys off these exact shapes and vocabularies.</div>
+    </section>
+
+    <div class="foot">Project Dream · Canonical Data Model v1.0 · ships with <code>canonical-model.ts</code> (type-checked, strict)<br>Body → Exam → Cycle · one universal template · one pre-built dashboard object · automation-first, versioned, SEO-native.</div>
+  </main>
+</div>
+<script>
+  const links=[...document.querySelectorAll('.side a')];const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.style.background='');const a=map.get(e.target.id);if(a){a.style.background='#1a2942';a.style.color='#fff';}}}),{rootMargin:'-8% 0px -85% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+  document.querySelectorAll('.side a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.side').classList.remove('open');document.querySelector('.backdrop').classList.remove('show');}));
+</script>
+</body>
+</html>
