@@ -60,6 +60,110 @@ def extract_from_html(html: str, hint: str = "generic") -> dict:
     }
 
 
+_MONTHS = {
+    m: i + 1 for i, m in enumerate(
+        ["jan", "feb", "mar", "apr", "may", "jun",
+         "jul", "aug", "sep", "oct", "nov", "dec"])
+}
+
+
+def _parse_date(text: str) -> str | None:
+    """Best-effort parse of the FIRST date in `text` to ISO YYYY-MM-DD.
+
+    Candidates from every supported format are collected with their position;
+    the earliest one wins, so "…apply 19/08/2026 … exam 2026-11-05" yields the
+    19 Aug value rather than whichever format is tried first.
+    """
+    t = text.strip()
+    cands: list[tuple[int, str]] = []
+
+    for m in re.finditer(r"\b(20\d{2})-(\d{1,2})-(\d{1,2})\b", t):  # 2026-03-01
+        y, mo, d = map(int, m.groups())
+        if 1 <= mo <= 12 and 1 <= d <= 31:
+            cands.append((m.start(), f"{y:04d}-{mo:02d}-{d:02d}"))
+
+    for m in re.finditer(r"\b(\d{1,2})[/-](\d{1,2})[/-](20\d{2})\b", t):  # 01/03/2026
+        d, mo, y = map(int, m.groups())
+        if 1 <= mo <= 12 and 1 <= d <= 31:
+            cands.append((m.start(), f"{y:04d}-{mo:02d}-{d:02d}"))
+
+    for m in re.finditer(r"\b(\d{1,2})\s+([A-Za-z]{3,9})\s+(20\d{2})\b", t):  # 1 March 2026
+        mon = _MONTHS.get(m.group(2)[:3].lower())
+        if mon:
+            d, y = int(m.group(1)), int(m.group(3))
+            if 1 <= d <= 31:
+                cands.append((m.start(), f"{y:04d}-{mon:02d}-{d:02d}"))
+
+    return min(cands)[1] if cands else None
+
+
+def extract_generic(html: str, hint: str = "generic") -> dict:
+    """Extract fields from an arbitrary official page (no `data-field` markup).
+
+    Real government pages are messy, so this is deliberately conservative: it
+    reports low confidence unless it finds strong signals, and the pipeline only
+    reconciles a curated cycle when confidence clears the bar. Never raises.
+    """
+    try:
+        soup = BeautifulSoup(html, "lxml")
+        for tag in soup(["script", "style", "noscript"]):
+            tag.decompose()
+        text = re.sub(r"\s+", " ", soup.get_text(" "))
+    except Exception:
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
+
+    low = text.lower()
+
+    # Vacancy: a number sitting next to a vacancy/post keyword.
+    vacancy = None
+    for m in re.finditer(
+        r"([\d,]{2,})\s*(?:vacanc|post|seat)|"
+        r"(?:vacanc\w*|posts?|seats?)\D{0,20}?([\d,]{2,})",
+        low,
+    ):
+        cand = _to_int(m.group(1) or m.group(2))
+        if cand and 1 <= cand <= 500000:
+            vacancy = cand
+            break
+
+    # Dates: label -> ISO, keyed off common notice phrases.
+    date_labels = [
+        ("last date", "Last date to apply", True),
+        ("closing date", "Closing date", True),
+        ("last date to apply", "Last date to apply", True),
+        ("start date", "Application starts", False),
+        ("application begin", "Application starts", False),
+        ("exam date", "Exam date", False),
+        ("notification", "Notification", False),
+    ]
+    dates: list[dict] = []
+    seen: set[str] = set()
+    for needle, label, is_deadline in date_labels:
+        idx = low.find(needle)
+        if idx == -1:
+            continue
+        window = text[idx: idx + 80]
+        iso = _parse_date(window)
+        if iso and label not in seen:
+            dates.append({"label": label, "date": iso, "is_deadline": is_deadline})
+            seen.add(label)
+
+    signals = (1 if vacancy else 0) + (1 if dates else 0)
+    confidence = round(min(0.4 + 0.2 * signals, 0.9), 2) if signals else 0.3
+
+    return {
+        "title": None,
+        "vacancy": vacancy,
+        "qualification": None,
+        "age_min": None,
+        "age_max": None,
+        "dates": dates,
+        "confidence": confidence,
+        "hint": hint,
+        "_via": "generic",
+    }
+
+
 class LLMExtractor:
     """LLM structured extraction via OpenRouter — returns the SAME dict shape as
     `extract_from_html`, so the validation gate never changes. Falls back to the

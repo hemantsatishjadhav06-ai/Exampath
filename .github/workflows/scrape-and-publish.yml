@@ -1,0 +1,90 @@
+name: Scrape, publish to Supabase & deploy
+
+# Automated data refresh: scrape official sources -> validate (>90% gate) ->
+# update data/exams.json -> upsert to Supabase -> rebuild & deploy the site.
+on:
+  schedule:
+    - cron: "30 1 * * *"        # daily at 01:30 UTC
+  workflow_dispatch:
+    inputs:
+      live:
+        description: "Fetch live official sources (else use the curated dataset)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write               # commit refreshed data back to main
+  pages: write                  # deploy the rebuilt site
+  id-token: write
+
+concurrency:
+  group: pages                  # serialise with the push-triggered Pages deploy
+  cancel-in-progress: false
+
+jobs:
+  refresh-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline (scrape -> validate -> publish -> Supabase)
+        working-directory: backend
+        env:
+          # Live by default on schedule; honour the manual toggle otherwise.
+          EXAMPATH_LIVE: ${{ github.event_name == 'workflow_dispatch' && inputs.live || 'true' }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: python -m app.pipeline.run
+
+      - name: Sync dataset into the web build input
+        run: cp data/exams.json web/data/exams.json
+
+      - name: Commit refreshed dataset (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/exams.json web/data/exams.json; then
+            echo "No data changes to commit."
+          else
+            git add data/exams.json web/data/exams.json
+            git commit -m "chore(data): automated refresh $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      # ---- rebuild & deploy the site from the refreshed data ----
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build static site
+        working-directory: web
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Optional: build directly from the latest Supabase snapshot.
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          node scripts/fetch-data.mjs || echo "using committed dataset"
+          node scripts/export-static.mjs
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
