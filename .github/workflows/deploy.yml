@@ -60,7 +60,8 @@ jobs:
         working-directory: web
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # Primary site is Render; Pages mirrors it and points canonical there.
+          SITE_URL: https://exampath.onrender.com
           MINIFY: "1"
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

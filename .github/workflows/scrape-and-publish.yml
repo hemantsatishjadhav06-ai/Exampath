@@ -75,7 +75,7 @@ jobs:
         working-directory: web
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          SITE_URL: https://exampath.onrender.com
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           # Optional: build directly from the latest Supabase snapshot.
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
