@@ -32,6 +32,8 @@ jobs:
         # Project sites are served at /<repo>/, so build under that base path.
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: node scripts/export-static.mjs
       - uses: actions/upload-pages-artifact@v3
         with:

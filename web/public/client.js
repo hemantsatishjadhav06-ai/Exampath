@@ -256,6 +256,140 @@
     paintFollow();
   }
 
+  /* ---------- shared data accessor ---------- */
+  var _data = null;
+  function getData() {
+    if (_data) return _data;
+    var el = document.getElementById("exampath-data");
+    if (!el) return null;
+    try { _data = JSON.parse(el.textContent); } catch (e) { _data = null; }
+    return _data;
+  }
+
+  /* ---------- theme toggle (light/dark) ---------- */
+  function applyTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    try { localStorage.setItem("exampath:theme", t); } catch (e) {}
+  }
+  function initTheme() {
+    var saved;
+    try { saved = localStorage.getItem("exampath:theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+    var btn = document.getElementById("themeToggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var cur = document.documentElement.getAttribute("data-theme");
+      if (!cur) cur = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      applyTheme(cur === "dark" ? "light" : "dark");
+    });
+  }
+
+  /* ---------- AI assistant (answers from the embedded dataset) ---------- */
+  function firstDeadline(c) {
+    var ds = (c.dates || []).filter(function (d) { return d.is_deadline && daysLeft(d.date) >= 0; })
+      .sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+    return ds[0] || null;
+  }
+  function miniCard(c, bodies) {
+    var b = bodies[c.body] || { short: "", color: "#1d4ed8" };
+    var dl = firstDeadline(c);
+    var right = dl ? daysLeft(dl.date) + "d left" : (c.status || "").replace(/_/g, " ");
+    return '<a class="ai-card" href="' + BASE + '/exam/' + c.id + '/">' +
+      '<span class="ai-badge" style="background:' + b.color + '1a;color:' + b.color + '">' + esc(b.short) + '</span>' +
+      '<span class="ai-card-t"><b>' + esc(c.exam) + '</b><small>' + inr(c.vacancy) + ' posts · ' + esc(c.qualification || "") + '</small></span>' +
+      '<span class="ai-card-r">' + esc(right) + '</span></a>';
+  }
+  function aiAnswerLocal(qraw) {
+    var data = getData();
+    if (!data) return { text: "Data is still loading — please try again in a moment.", cards: [] };
+    var bodies = data.bodies, cycles = data.cycles;
+    var q = (qraw || "").toLowerCase();
+    var parsed = parseQuery(qraw, bodies);
+    var wantSoon = /clos|soon|deadline|last date|this week|expir/.test(q);
+    var wantCount = /how many|total|number of|count/.test(q);
+    var res;
+    if (wantSoon) {
+      var win = /week/.test(q) ? 7 : 30;
+      res = cycles.filter(function (c) {
+        var dl = firstDeadline(c); return dl && daysLeft(dl.date) <= win;
+      }).sort(function (a, b) { return daysLeft(firstDeadline(a).date) - daysLeft(firstDeadline(b).date); });
+      var w = /week/.test(q) ? "this week" : "in the next 30 days";
+      return { text: res.length ? "📅 " + res.length + " exam" + (res.length !== 1 ? "s" : "") + " closing " + w + ". Apply soon!" : "Good news — nothing is closing " + w + ".", cards: res.slice(0, 6) };
+    }
+    res = qraw ? filterCycles(parsed, cycles) : cycles;
+    if (wantCount) {
+      var vac = res.reduce(function (s, c) { return s + (c.vacancy || 0); }, 0);
+      return { text: "🎯 I found " + res.length + " matching exam" + (res.length !== 1 ? "s" : "") + " with " + inr(vac) + " total vacancies.", cards: res.slice(0, 6) };
+    }
+    var lead;
+    if (parsed.age != null && parsed.labels.length) lead = "✅ At age " + parsed.age + (parsed.qual ? " with " + parsed.qual : "") + ", you're eligible for " + res.length + " exam" + (res.length !== 1 ? "s" : "") + ":";
+    else if (parsed.labels.length) lead = "Here " + (res.length === 1 ? "is" : "are") + " " + res.length + " exam" + (res.length !== 1 ? "s" : "") + " for " + parsed.labels.join(" · ") + ":";
+    else if (res.length) lead = "Here " + (res.length === 1 ? "is" : "are") + " " + res.length + " exam" + (res.length !== 1 ? "s" : "") + " I found:";
+    else lead = "I couldn't find a match. Try “graduate”, “SSC”, “banking”, or “age 21”.";
+    return { text: lead, cards: res.slice(0, 6) };
+  }
+  function aiRender(log, role, html) {
+    var d = document.createElement("div");
+    d.className = "ai-msg " + role;
+    d.innerHTML = html;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    return d;
+  }
+  function initAI() {
+    var fab = document.getElementById("aiFab");
+    var panel = document.getElementById("aiPanel");
+    if (!fab || !panel) return;
+    var log = document.getElementById("aiLog");
+    var form = document.getElementById("aiForm");
+    var input = document.getElementById("aiText");
+    var data = getData();
+    function open() { panel.hidden = false; fab.classList.add("on"); setTimeout(function () { input && input.focus(); }, 60); }
+    function close() { panel.hidden = true; fab.classList.remove("on"); }
+    fab.addEventListener("click", function () { panel.hidden ? open() : close(); });
+    var xb = document.getElementById("aiClose");
+    if (xb) xb.addEventListener("click", close);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+
+    function respond(q) {
+      var out = aiAnswerLocal(q);
+      var bodies = (data || getData() || {}).bodies || {};
+      var cards = out.cards && out.cards.length
+        ? '<div class="ai-cards">' + out.cards.map(function (c) { return miniCard(c, bodies); }).join("") + "</div>" : "";
+      aiRender(log, "bot", esc(out.text) + cards);
+    }
+    function ask(q) {
+      q = (q || "").trim();
+      if (!q) return;
+      aiRender(log, "me", esc(q));
+      input.value = "";
+      var api = window.__AI_API__;
+      if (api) {
+        var typing = aiRender(log, "bot typing", "…");
+        fetch(api, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q }) })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+          .then(function (j) { typing.remove(); aiRender(log, "bot", esc(j.answer || j.text || "").trim() || "…"); })
+          .catch(function () { typing.remove(); respond(q); });
+      } else {
+        respond(q);
+      }
+    }
+    form.addEventListener("submit", function (e) { e.preventDefault(); ask(input.value); });
+    log.addEventListener("click", function (e) {
+      var chip = e.target.closest ? e.target.closest(".ai-chip") : null;
+      if (chip) ask(chip.getAttribute("data-q"));
+    });
+  }
+
+  /* ---------- service worker (offline / installable) ---------- */
+  function registerSW() {
+    if (!("serviceWorker" in navigator)) return;
+    if (location.protocol === "file:") return;
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register(BASE + "/sw.js").catch(function () {});
+    });
+  }
+
   /* ---------- boot ---------- */
   function boot() {
     try { startCountdowns(); } catch (e) {}
@@ -263,6 +397,9 @@
     try { initFollow(); } catch (e) {}
     try { initTopSearch(); } catch (e) {}
     try { initSearch(); } catch (e) {}
+    try { initTheme(); } catch (e) {}
+    try { initAI(); } catch (e) {}
+    try { registerSW(); } catch (e) {}
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();

@@ -5,7 +5,7 @@
 import { mkdirSync, writeFileSync, rmSync, copyFileSync, readdirSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { allRoutes, sitemapXml, robotsTxt, CSS } from "./site.mjs";
+import { allRoutes, sitemapXml, robotsTxt, rssXml, CSS, DATA } from "./site.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -28,6 +28,34 @@ function withBase(html) {
     `<script>window.__BASE__=${JSON.stringify(BASE)};</script>\n</head>`
   );
   return html;
+}
+
+// Branded 1200×630 social share card (self-contained SVG).
+function ogSvg() {
+  const exams = DATA.cycles.length;
+  const bodies = DATA.bodies.length;
+  const vac = DATA.cycles.reduce((s, c) => s + (c.vacancy || 0), 0);
+  const vacStr = vac >= 100000 ? (vac / 100000).toFixed(1) + "L+" : vac.toLocaleString("en-IN") + "+";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Segoe UI, Arial, sans-serif">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1d4ed8"/><stop offset="1" stop-color="#1e3a8a"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="1050" cy="120" r="220" fill="#ffffff" opacity="0.06"/>
+  <circle cx="150" cy="560" r="180" fill="#f97316" opacity="0.10"/>
+  <g transform="translate(90,150)">
+    <rect x="0" y="0" width="64" height="64" rx="16" fill="#f97316"/>
+    <text x="32" y="45" font-size="38" font-weight="800" fill="#fff" text-anchor="middle">E</text>
+    <text x="82" y="46" font-size="42" font-weight="800" fill="#fff">ExamPath</text>
+  </g>
+  <text x="90" y="320" font-size="72" font-weight="800" fill="#ffffff">Every government exam.</text>
+  <text x="90" y="400" font-size="72" font-weight="800" fill="#93c5fd">Every date. One place.</text>
+  <g fill="#dbeafe" font-size="30" font-weight="600">
+    <text x="90" y="500">📋 ${exams} live exams</text>
+    <text x="430" y="500">🏛️ ${bodies} bodies</text>
+    <text x="700" y="500">🎯 ${vacStr} vacancies</text>
+  </g>
+  <text x="90" y="575" font-size="24" fill="#93c5fd">SSC · UPSC · IBPS · RRB · State PSCs — verified from official sources</text>
+</svg>`;
 }
 
 function write(rel, content) {
@@ -67,9 +95,54 @@ try {
   }
 } catch (e) {}
 
-// SEO
+// SEO + feeds + public data API (for readers, AI agents and automations)
 write("sitemap.xml", sitemapXml());
 write("robots.txt", robotsTxt());
+write("rss.xml", rssXml());
+write("exams.json", JSON.stringify(DATA));            // stable public JSON endpoint
+write("api/exams.json", JSON.stringify(DATA));
+
+// ---- PWA: installable + offline ----
+const u = (p) => `${BASE}${p}`;                        // base-aware absolute path
+write("manifest.webmanifest", JSON.stringify({
+  name: "ExamPath — Government Exam Tracker",
+  short_name: "ExamPath",
+  description: "Every Indian government exam, every date, one place.",
+  start_url: u("/"),
+  scope: u("/"),
+  display: "standalone",
+  background_color: "#f5f7fb",
+  theme_color: "#1d4ed8",
+  lang: "en-IN",
+  categories: ["education", "productivity", "reference"],
+  icons: [
+    { src: u("/favicon.svg"), sizes: "any", type: "image/svg+xml", purpose: "any maskable" },
+  ],
+}, null, 2));
+
+// Service worker: cache-first for assets, network-first for pages, offline fallback.
+const CACHE = `exampath-v${DATA.generated_at}`;
+write("sw.js", `const CACHE=${JSON.stringify(CACHE)};
+const CORE=[${JSON.stringify(u("/"))},${JSON.stringify(u("/assets/styles.css"))},${JSON.stringify(u("/assets/client.js"))},${JSON.stringify(u("/search/"))},${JSON.stringify(u("/404.html"))}];
+self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).catch(()=>{})))});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener("fetch",e=>{
+  const req=e.request;
+  if(req.method!=="GET"||new URL(req.url).origin!==location.origin)return;
+  if(req.mode==="navigate"){
+    e.respondWith(fetch(req).then(r=>{const cp=r.clone();caches.open(CACHE).then(c=>c.put(req,cp));return r}).catch(()=>caches.match(req).then(r=>r||caches.match(${JSON.stringify(u("/404.html"))}))));
+    return;
+  }
+  e.respondWith(caches.match(req).then(c=>c||fetch(req).then(r=>{const cp=r.clone();caches.open(CACHE).then(cc=>cc.put(req,cp));return r})));
+});
+`);
+
+// Social share image (SVG, 1200×630).
+write("og.svg", ogSvg());
+
+// IndexNow verification key file (instant search-engine indexing). The daily
+// workflow submits changed URLs to IndexNow when INDEXNOW_KEY is set.
+if (process.env.INDEXNOW_KEY) write(`${process.env.INDEXNOW_KEY}.txt`, process.env.INDEXNOW_KEY);
 
 // A simple 404 (static hosts serve this on unknown paths)
 write("404.html", withBase(routes[0].html.replace(/<main id="app">[\s\S]*<\/main>/,

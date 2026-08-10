@@ -9,7 +9,11 @@ import { dirname, join } from "node:path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 
-export const SITE_URL = "https://exampath.example";
+// Absolute site origin+path used for canonical/OG/sitemap. On GitHub Pages the
+// project site lives under /Exampath/, so the default includes that base. The
+// deploy workflow overrides this via the SITE_URL env (configure-pages base_url).
+export const SITE_URL = (process.env.SITE_URL || "https://hemantsatishjadhav06-ai.github.io/Exampath").replace(/\/+$/, "");
+export const abs = (path = "/") => SITE_URL + (path.startsWith("/") ? path : "/" + path);
 export const DATA = JSON.parse(readFileSync(join(ROOT, "data/exams.json"), "utf8"));
 export const CSS = readFileSync(join(ROOT, "app/globals.css"), "utf8");
 
@@ -144,7 +148,79 @@ const ICONS = {
   search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
 };
 
-export function layout({ title, description, body, active = "/", jsonld = "", embedData = false }) {
+/* ---------- structured data (JSON-LD) ---------- */
+function ld(obj) {
+  return `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`;
+}
+function websiteLD() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "ExamPath",
+    url: abs("/"),
+    description: "Track every Indian government exam — notifications, deadlines, vacancies, eligibility and results.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: { "@type": "EntryPoint", urlTemplate: abs("/search/?q={query}") },
+      "query-input": "required name=query",
+    },
+  };
+}
+function orgLD() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: "ExamPath",
+    url: abs("/"),
+    logo: abs("/favicon.svg"),
+    description: "A free, student-first tracker for Indian government exams.",
+  };
+}
+function breadcrumbLD(items) {
+  if (!items || items.length < 2) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: abs(it.path),
+    })),
+  };
+}
+
+/* ---------- AI assistant widget (client-powered, works on static hosting) ---------- */
+function aiWidget() {
+  const prompts = [
+    "Which exams close this week?",
+    "Graduate exams I can apply for",
+    "Am I eligible at age 21?",
+    "Banking exams",
+  ];
+  return `<button id="aiFab" class="ai-fab" aria-label="Ask ExamPath AI" title="Ask ExamPath AI">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 0 1 9 9 9 9 0 0 1-9 9H3l2.3-2.3A9 9 0 0 1 12 3Z"/><circle cx="8.5" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
+    <span>Ask AI</span>
+  </button>
+  <div id="aiPanel" class="ai-panel" role="dialog" aria-label="ExamPath AI assistant" aria-modal="false" hidden>
+    <div class="ai-head">
+      <div class="ai-id"><span class="ai-dot"></span><b>ExamPath AI</b><small>your exam guide</small></div>
+      <button id="aiClose" class="ai-x" aria-label="Close assistant">&times;</button>
+    </div>
+    <div id="aiLog" class="ai-log" aria-live="polite">
+      <div class="ai-msg bot">Hi! 👋 Ask me about deadlines, eligibility, or which exams fit you. Try one:</div>
+      <div class="ai-quick">${prompts.map((p) => `<button class="ai-chip" data-q="${esc(p)}">${esc(p)}</button>`).join("")}</div>
+    </div>
+    <form id="aiForm" class="ai-input">
+      <input id="aiText" autocomplete="off" placeholder="Ask anything about govt exams…" aria-label="Ask the assistant">
+      <button class="ai-send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+      </button>
+    </form>
+  </div>`;
+}
+
+export function layout({ title, description, body, active = "/", jsonld = [], path = "/", breadcrumbs = null, embedData = true }) {
   const navItem = (href, label, base) =>
     `<a href="${href}" class="${active === base ? "active" : ""}">${label}</a>`;
   const tabItem = (href, label, base, icon) =>
@@ -156,6 +232,13 @@ export function layout({ title, description, body, active = "/", jsonld = "", em
         now: Date.now(),
       }).replace(/</g, "\\u003c")}</script>`
     : "";
+  const pageLD = Array.isArray(jsonld) ? jsonld : (jsonld ? [jsonld] : []);
+  const ldBlocks = [websiteLD(), orgLD(), breadcrumbLD(breadcrumbs), ...pageLD.map((x) => (typeof x === "string" ? null : x))]
+    .filter(Boolean).map(ld).join("\n");
+  const rawLD = pageLD.filter((x) => typeof x === "string")
+    .map((s) => `<script type="application/ld+json">${s}</script>`).join("\n");
+  const canonical = abs(path);
+  const ogImage = abs("/og.svg");
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,19 +246,36 @@ export function layout({ title, description, body, active = "/", jsonld = "", em
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
+<meta name="theme-color" content="#1d4ed8">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="${canonical}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="canonical" href="${SITE_URL}${active === "/" ? "/" : ""}">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta property="og:site_name" content="ExamPath">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:type" content="website">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${ogImage}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${ogImage}">
+<link rel="preload" as="style" href="/assets/styles.css">
 <link rel="stylesheet" href="/assets/styles.css">
-${jsonld ? `<script type="application/ld+json">${jsonld}</script>` : ""}
+${ldBlocks}
+${rawLD}
 </head>
 <body>
+<a class="skip" href="#app">Skip to content</a>
 <header class="top">
   <div class="wrap bar">
-    <a class="logo" href="/"><span class="glyph"> E</span><span><b>Exam</b><i>Path</i></span></a>
-    <nav class="navlinks">
+    <a class="logo" href="/" aria-label="ExamPath home"><span class="glyph"> E</span><span><b>Exam</b><i>Path</i></span></a>
+    <nav class="navlinks" aria-label="Primary">
       ${navItem("/", "Home", "/")}
       ${navItem("/bodies/", "Exams", "/bodies")}
       ${navItem("/calendar/", "Calendar", "/calendar")}
@@ -185,6 +285,10 @@ ${jsonld ? `<script type="application/ld+json">${jsonld}</script>` : ""}
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="topSearch" placeholder="Search exams, e.g. SSC, age 21, graduate\u2026" aria-label="Search exams">
     </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
     <a class="btn-login" href="/search/">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
       Login
@@ -194,12 +298,14 @@ ${jsonld ? `<script type="application/ld+json">${jsonld}</script>` : ""}
 
 <main id="app">${body}</main>
 
-<nav class="tabbar">
+<nav class="tabbar" aria-label="Mobile">
   ${tabItem("/", "Home", "/", ICONS.home)}
   ${tabItem("/bodies/", "Exams", "/bodies", ICONS.exams)}
   ${tabItem("/calendar/", "Calendar", "/calendar", ICONS.cal)}
   ${tabItem("/search/", "Search", "/search", ICONS.search)}
 </nav>
+
+${aiWidget()}
 
 <div id="toast" role="status" style="position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:var(--sh-l);z-index:80;opacity:0;transition:.25s;pointer-events:none;max-width:90vw;text-align:center"></div>
 ${dataScript}
@@ -223,26 +329,41 @@ export function renderHome() {
     .map(byId).filter(Boolean);
   const totalVac = CYCLES.reduce((s, c) => s + c.vacancy, 0);
 
+  const artCards = soon.slice(0, 3).map(({ c, d }, i) => {
+    const b = BODIES[c.body];
+    return `<div class="ha-card ha-${i}">
+      <span class="ha-badge" style="background:${b.color}">${b.short}</span>
+      <div class="ha-body"><b>${esc(c.exam)}</b><span>${daysLeft(d.date)} days left \u00b7 ${esc(d.label)}</span></div>
+    </div>`;
+  }).join("");
+
   const body = `
   <section class="hero">
-    <div class="wrap">
-      <span class="eyebrow">\u{1F1EE}\u{1F1F3} ${CYCLES.length} live exams &middot; ${Object.keys(BODIES).length} bodies &middot; updated daily</span>
-      <h1>Every government exam. <span class="u">Every date.</span> One place.</h1>
-      <p class="sub">Notifications, deadlines, vacancies, eligibility and results &mdash; compiled from official sources and always current. Never miss a form again.</p>
-      <form class="searchbig" action="/search/" method="get">
-        <input id="heroSearch" name="q" placeholder="Try \u201cSSC graduate\u201d, \u201cage 21\u201d, or \u201cbank exams\u201d\u2026" aria-label="Search exams">
-        <button class="btn saf" type="submit">Search</button>
-      </form>
-      <div class="chips">
-        <a class="c" href="/search/?q=graduate">\u{1F393} Graduate exams</a>
-        <a class="c" href="/search/?q=12th">\u{1F4D7} 12th pass</a>
-        <a class="c" href="/search/?q=banking">\u{1F3E6} Banking</a>
-        <a class="c" href="/search/?q=closing%20soon">\u23F0 Closing soon</a>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">\u{1F1EE}\u{1F1F3} ${CYCLES.length} live exams &middot; ${Object.keys(BODIES).length} bodies &middot; updated daily</span>
+        <h1>Every government exam. <span class="u">Every date.</span> One place.</h1>
+        <p class="sub">Notifications, deadlines, vacancies, eligibility and results &mdash; compiled from official sources and always current. Never miss a form again.</p>
+        <form class="searchbig" action="/search/" method="get">
+          <input id="heroSearch" name="q" placeholder="Try \u201cSSC graduate\u201d, \u201cage 21\u201d, or \u201cbank exams\u201d\u2026" aria-label="Search exams">
+          <button class="btn saf" type="submit">Search</button>
+        </form>
+        <div class="chips">
+          <a class="c" href="/search/?q=graduate">\u{1F393} Graduate exams</a>
+          <a class="c" href="/search/?q=12th">\u{1F4D7} 12th pass</a>
+          <a class="c" href="/search/?q=banking">\u{1F3E6} Banking</a>
+          <a class="c" href="/search/?q=closing%20soon">\u23F0 Closing soon</a>
+        </div>
+        <div class="hero-stats">
+          <div class="s"><b>${inr(totalVac)}+</b><span>Total vacancies tracked</span></div>
+          <div class="s"><b>${soon.length}</b><span>Deadlines this month</span></div>
+          <div class="s"><b>100%</b><span>Official-source verified</span></div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="s"><b>${inr(totalVac)}+</b><span>Total vacancies tracked</span></div>
-        <div class="s"><b>${soon.length}</b><span>Deadlines this month</span></div>
-        <div class="s"><b>100%</b><span>Official-source verified</span></div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="ha-glow"></div>
+        ${artCards}
+        <div class="ha-tip"><span>\u{1F916}</span> Ask AI which exam fits you</div>
       </div>
     </div>
   </section>
@@ -288,6 +409,7 @@ export function renderHome() {
       "Track every Indian government exam (SSC, UPSC, IBPS, RRB, state PSCs) \u2014 notifications, deadlines, vacancies, eligibility and results, compiled from official sources.",
     body,
     active: "/",
+    path: "/",
   });
 }
 
@@ -307,6 +429,8 @@ export function renderBodies() {
       "Browse every tracked Indian government exam by conducting body \u2014 SSC, UPSC, IBPS, RRB and state PSCs \u2014 with live dates, vacancies and eligibility.",
     body,
     active: "/bodies",
+    path: "/bodies/",
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: "All exams", path: "/bodies/" }],
   });
 }
 
@@ -368,6 +492,8 @@ export function renderBody(slug) {
     description: `All ${b.short} (${b.name}) exams tracked on ExamPath \u2014 ${list.length} exam${list.length > 1 ? "s" : ""}, ${inr(totalVac)} vacancies. Notifications, deadlines and eligibility.`,
     body,
     active: "/bodies",
+    path: `/body/${slug}/`,
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: "Exams", path: "/bodies/" }, { name: b.short, path: `/body/${slug}/` }],
   });
 }
 
@@ -501,8 +627,24 @@ export function renderExam(id) {
     description: `${c.title}: ${c.summary} ${inr(c.vacancy)} vacancies, age ${c.age_min}\u2013${c.age_max}, ${c.qualification}. Live countdown, timeline, cut-offs and official links.`,
     body,
     active: "/bodies",
-    jsonld: jobPostingLD(c, b),
+    path: `/exam/${c.id}/`,
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: b.short, path: `/body/${b.slug}/` }, { name: c.title, path: `/exam/${c.id}/` }],
+    jsonld: [jobPostingLD(c, b), faqLD(c)].filter(Boolean),
   });
+}
+
+function faqLD(c) {
+  const faqs = Array.isArray(c.faqs) ? c.faqs.filter((f) => f && f.q && f.a) : [];
+  if (!faqs.length) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 }
 
 function jobPostingLD(c, b) {
@@ -548,6 +690,8 @@ export function renderSearch() {
       "Search Indian government exams by free text or filters: qualification (graduate, 12th, 10th), age, conducting body (SSC, UPSC, IBPS) or closing soon.",
     body,
     active: "/search",
+    path: "/search/",
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: "Search", path: "/search/" }],
     embedData: true,
   });
 }
@@ -580,6 +724,8 @@ export function renderCalendar() {
       "Every upcoming Indian government exam deadline in one calendar, sorted by date with live days-left counters. SSC, UPSC, IBPS, RRB and state PSCs.",
     body,
     active: "/calendar",
+    path: "/calendar/",
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: "Calendar", path: "/calendar/" }],
   });
 }
 
@@ -606,10 +752,41 @@ ${items}
 `;
 }
 export function robotsTxt() {
-  return `User-agent: *
+  return `# ExamPath — all content is public and crawlable.
+User-agent: *
+Allow: /
+
+# AI crawlers welcome (public exam info).
+User-agent: GPTBot
+Allow: /
+User-agent: PerplexityBot
 Allow: /
 
 Sitemap: ${SITE_URL}/sitemap.xml
+`;
+}
+
+/* RSS 2.0 feed of the latest exam updates — for readers, agents and automations. */
+export function rssXml() {
+  const items = [];
+  for (const c of CYCLES) for (const u of c.updates)
+    items.push({ c, u, rank: whenRank(u.when) });
+  items.sort((a, b) => a.rank - b.rank);
+  const entries = items.slice(0, 30).map(({ c, u }) => `    <item>
+      <title>${esc(c.exam)}: ${esc(u.text)}</title>
+      <link>${abs(`/exam/${c.id}/`)}</link>
+      <guid isPermaLink="false">${esc(c.id)}-${esc(u.text).slice(0, 40)}</guid>
+      <description>${esc(u.text)} (${esc(u.when)})</description>
+    </item>`).join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+    <title>ExamPath — latest government exam updates</title>
+    <link>${abs("/")}</link>
+    <description>Notifications, admit cards, results and deadlines for Indian government exams.</description>
+    <language>en-in</language>
+    <lastBuildDate>${DATA.generated_at}</lastBuildDate>
+${entries}
+</channel></rss>
 `;
 }
 

@@ -75,6 +75,8 @@ jobs:
         working-directory: web
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           # Optional: build directly from the latest Supabase snapshot.
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
@@ -88,3 +90,16 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Instant indexing (Bing/Yandex/etc.) — no-op unless INDEXNOW_KEY is set.
+      - name: Submit to IndexNow
+        if: ${{ secrets.INDEXNOW_KEY != '' }}
+        env:
+          KEY: ${{ secrets.INDEXNOW_KEY }}
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          host=$(echo "$BASE_URL" | sed -E 's#https?://([^/]+)/?.*#\1#')
+          curl -sS -m 30 "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d "{\"host\":\"$host\",\"key\":\"$KEY\",\"keyLocation\":\"${BASE_URL}${KEY}.txt\",\"urlList\":[\"${BASE_URL}\",\"${BASE_URL}sitemap.xml\"]}" \
+            && echo "IndexNow submitted" || echo "IndexNow ping skipped"
