@@ -1,0 +1,88 @@
+name: Deploy (test · minify · ship)
+
+# Production pipeline: run tests, build a minified static bundle, deploy to
+# GitHub Pages. Fully env-driven so the same build command ports to Render
+# (see render.yaml) without code changes.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Install backend deps
+        working-directory: backend
+        run: pip install -r requirements.txt
+      - name: Backend tests + pipeline smoke
+        working-directory: backend
+        run: |
+          python -m unittest discover -s tests -t . -v
+          python -m app.pipeline.run
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Cache node tooling
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('web/package.json') }}
+          restore-keys: npm-
+      - name: Install web deps (only if a lockfile exists)
+        working-directory: web
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else echo "zero-dependency build — nothing to install"; fi
+      - name: Build (base path + minified)
+        working-directory: web
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          MINIFY: "1"
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          node scripts/fetch-data.mjs || echo "using committed dataset"
+          node scripts/export-static.mjs
+      - name: Verify build output
+        run: |
+          test -f web/out/index.html
+          test -f web/out/sitemap.xml
+          test -f web/out/manifest.webmanifest
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

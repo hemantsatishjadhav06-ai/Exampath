@@ -120,11 +120,37 @@ function bodyCard(b) {
   </a>`;
 }
 
+/* A latest-update row with the conducting-body badge (focal update text). */
+function updateRow(f) {
+  const c = byId(f.cycleId);
+  if (!c) return "";
+  const b = BODIES[c.body];
+  const ic = FEED_ICON[f.kind] || FEED_ICON.info;
+  return `<a class="uprow" href="/exam/${c.id}/">
+    <span class="up-badge" style="background:${b.color}1a;color:${b.color}" title="${esc(b.short)}">${b.short}</span>
+    <span class="up-main"><b>${esc(f.text)}</b><small>${esc(f.title)} &middot; ${esc(f.when)}</small></span>
+    <span class="up-ic" aria-hidden="true">${ic[0]}</span>
+  </a>`;
+}
+
 function footer() {
-  return `<div class="foot"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center">
-    <div><b>ExamPath</b> &mdash; every exam, every date, one place.</div>
-    <div class="small">Data compiled from official sources. Always verify on the official website. Not a government website.</div>
-  </div></div>`;
+  const year = new Date().getFullYear();
+  return `<footer class="foot">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span class="glyph"> E</span><b>Exam</b><i>Path</i></div>
+        <p class="small muted" style="margin:8px 0 0;max-width:320px">Every Indian government exam &mdash; notifications, deadlines, vacancies, eligibility and results, in one fast, free place.</p>
+      </div>
+      <div class="foot-cols">
+        <div><h4>Explore</h4><a href="/notifications/">Notifications</a><a href="/admit-cards/">Admit cards</a><a href="/results/">Results</a><a href="/calendar/">Calendar</a></div>
+        <div><h4>Exams</h4><a href="/bodies/">All exams</a><a href="/search/">Search</a>${DATA.bodies.slice(0,3).map((b)=>`<a href="/body/${b.slug}/">${b.short}</a>`).join("")}</div>
+        <div><h4>About</h4><a href="/about/">About</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="/disclaimer/">Disclaimer</a></div>
+      </div>
+    </div>
+    <div class="foot-base small">
+      <span>&copy; ${year} ExamPath &middot; Data compiled from official sources &mdash; always verify on the official website. Not a government website.</span>
+    </div>
+  </footer>`;
 }
 
 const whenRank = (when) => {
@@ -225,10 +251,18 @@ export function layout({ title, description, body, active = "/", jsonld = [], pa
     `<a href="${href}" class="${active === base ? "active" : ""}">${label}</a>`;
   const tabItem = (href, label, base, icon) =>
     `<a href="${href}" class="${active === base ? "active" : ""}">${icon}${label}</a>`;
+  // Embed only the fields the client (AI assistant + search) needs, so every
+  // page stays light for sub-second loads at scale.
+  const compactCycles = CYCLES.map((c) => ({
+    id: c.id, exam: c.exam, title: c.title, body: c.body, status: c.status,
+    vacancy: c.vacancy, qualification: c.qualification, qualification_code: c.qualification_code,
+    age_min: c.age_min, age_max: c.age_max, summary: c.summary, posts: c.posts,
+    dates: (c.dates || []).map((d) => ({ label: d.label, date: d.date, is_deadline: d.is_deadline })),
+  }));
   const dataScript = embedData
     ? `<script id="exampath-data" type="application/json">${JSON.stringify({
         bodies: BODIES,
-        cycles: CYCLES,
+        cycles: compactCycles,
         now: Date.now(),
       }).replace(/</g, "\\u003c")}</script>`
     : "";
@@ -277,6 +311,7 @@ ${rawLD}
     <a class="logo" href="/" aria-label="ExamPath home"><span class="glyph"> E</span><span><b>Exam</b><i>Path</i></span></a>
     <nav class="navlinks" aria-label="Primary">
       ${navItem("/", "Home", "/")}
+      ${navItem("/notifications/", "Notifications", "/notifications")}
       ${navItem("/bodies/", "Exams", "/bodies")}
       ${navItem("/calendar/", "Calendar", "/calendar")}
       ${navItem("/search/", "Search", "/search")}
@@ -369,8 +404,9 @@ export function renderHome() {
   </section>
 
   <div class="wrap pull">
-    <div class="blk">
-      <div class="sec-title"><h2 style="color:#fff">\u23F0 Closing soon</h2><a href="/calendar/" style="color:#dbe6fe">Full calendar &rarr;</a></div>
+    <!-- 1. Closing dates / urgent countdowns -->
+    <section class="blk" aria-labelledby="h-closing">
+      <div class="sec-title"><h2 id="h-closing">\u23F0 Closing soon</h2><a href="/calendar/">Full calendar &rarr;</a></div>
       <div class="dl-strip">
         ${soon.map(({ c, d }) => `
           <a class="dl-card" href="/exam/${c.id}/">
@@ -379,27 +415,27 @@ export function renderHome() {
             <div class="small muted">${esc(d.label)} &middot; ${fmt(d.date)}</div>
           </a>`).join("")}
       </div>
-    </div>
+    </section>
 
-    <div class="blk">
-      <div class="sec-title"><h2>Popular exams</h2><a href="/bodies/">Browse all &rarr;</a></div>
+    <!-- 2. Latest updates (focal), each tagged with its exam badge -->
+    <section class="blk" aria-labelledby="h-updates">
+      <div class="sec-title"><h2 id="h-updates">\u{1F195} Latest updates</h2><a href="/notifications/">All notifications &rarr;</a></div>
+      <div class="updates-grid">
+        ${latestUpdates(8).map(updateRow).join("")}
+      </div>
+    </section>
+
+    <!-- 3. Conducting bodies -->
+    <section class="blk" aria-labelledby="h-bodies">
+      <div class="sec-title"><h2 id="h-bodies">Conducting bodies</h2><a href="/bodies/">Browse all &rarr;</a></div>
+      <div class="body-grid">${DATA.bodies.map(bodyCard).join("")}</div>
+    </section>
+
+    <!-- 4. Popular exams -->
+    <section class="blk" aria-labelledby="h-popular">
+      <div class="sec-title"><h2 id="h-popular">Popular exams</h2><a href="/bodies/">Browse all &rarr;</a></div>
       <div class="exam-grid">${featured.map(examCard).join("")}</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:20px" class="blk home-2col">
-      <div>
-        <div class="sec-title"><h2>Browse by body</h2></div>
-        <div class="body-grid">${DATA.bodies.map(bodyCard).join("")}</div>
-      </div>
-      <div>
-        <div class="sec-title"><h2>Latest updates</h2></div>
-        <div class="card" style="padding:6px 16px">
-          <div class="feed">
-            ${latestUpdates(6).map((f) => feedItem(f.cycleId, f.title, f.text, f.kind, f.when)).join("")}
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
     ${footer()}
   </div>`;
 
@@ -729,6 +765,121 @@ export function renderCalendar() {
   });
 }
 
+/* ---------- category list pages (clean slugs, no query params) ---------- */
+function renderCategory({ slug, h1, title, description, filter, active = "/bodies", empty }) {
+  const list = CYCLES.filter(filter);
+  const body = `<section class="page"><div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <span>${esc(h1)}</span></nav>
+    <div class="sec-title"><h1 class="page-title">${h1}</h1><span class="small muted">${list.length} exam${list.length !== 1 ? "s" : ""}</span></div>
+    <div class="exam-grid">${list.length ? list.map(examCard).join("") : `<div class="card" style="padding:36px;text-align:center;grid-column:1/-1"><p class="muted">${esc(empty || "Nothing here right now — check back soon.")}</p></div>`}</div>
+    ${footer()}
+  </div></section>`;
+  return layout({
+    title, description, body, active, path: `/${slug}/`,
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: h1.replace(/^[^\w]+\s*/, ""), path: `/${slug}/` }],
+  });
+}
+export const renderNotifications = () => renderCategory({
+  slug: "notifications", h1: "\u{1F514} Latest notifications",
+  title: "Latest Government Exam Notifications & Open Applications | ExamPath",
+  description: "All Indian government exams with open or upcoming applications — SSC, UPSC, IBPS, RRB and state PSCs — with deadlines, vacancies and eligibility.",
+  filter: (c) => ["application_open", "closing_soon", "upcoming"].includes(c.status),
+  empty: "No open notifications right now.",
+});
+export const renderResults = () => renderCategory({
+  slug: "results", h1: "\u{1F3C6} Results & score cards",
+  title: "Government Exam Results & Score Cards | ExamPath",
+  description: "Declared and awaited results for Indian government exams — SSC, UPSC, IBPS, RRB and state PSCs.",
+  filter: (c) => ["result_out", "result_awaited"].includes(c.status),
+  empty: "No results declared yet.",
+});
+export const renderAdmitCards = () => renderCategory({
+  slug: "admit-cards", h1: "\u{1F3AB} Admit cards",
+  title: "Government Exam Admit Cards & Hall Tickets | ExamPath",
+  description: "Admit cards and hall tickets for upcoming Indian government exams — download links and exam dates.",
+  filter: (c) => c.status === "admit_card",
+  empty: "No admit cards out right now.",
+});
+
+/* ---------- static content pages ---------- */
+function staticPage({ slug, h1, title, description, article, extraLD = null }) {
+  const body = `<section class="page"><div class="wrap wrap-narrow">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <span>${esc(h1)}</span></nav>
+    <article class="prose"><h1 class="page-title">${esc(h1)}</h1>${article}</article>
+    ${footer()}
+  </div></section>`;
+  return layout({
+    title, description, body, active: "", path: `/${slug}/`,
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: h1, path: `/${slug}/` }],
+    jsonld: extraLD ? [extraLD] : [],
+  });
+}
+export const renderAbout = () => staticPage({
+  slug: "about", h1: "About ExamPath",
+  title: "About ExamPath — Free Government Exam Tracker",
+  description: "ExamPath is a free, student-first tracker for every Indian government exam: notifications, deadlines, vacancies, eligibility and results from official sources.",
+  article: `
+    <p>ExamPath brings <b>every Indian government exam</b> into one fast, clean place — notifications, deadlines, vacancies, eligibility and results. No ads, no clutter, no missed forms.</p>
+    <h2>How it works</h2>
+    <ol>
+      <li><b>We watch official sources.</b> An automated pipeline checks conducting-body websites for changes.</li>
+      <li><b>We verify.</b> Every exam passes a &gt;90% confidence gate before it is published.</li>
+      <li><b>We publish.</b> The data is stored durably and the site rebuilds automatically — updated daily.</li>
+    </ol>
+    <h2>What you get</h2>
+    <ul>
+      <li>Live countdowns to every deadline and a full calendar.</li>
+      <li>An instant eligibility checker on each exam.</li>
+      <li>An AI assistant that answers “which exam fits me?”.</li>
+      <li>Official source links on every page — always verify there.</li>
+    </ul>
+    <p><a class="btn pri" href="/notifications/">See open notifications</a></p>`,
+});
+export const renderContact = () => staticPage({
+  slug: "contact", h1: "Contact",
+  title: "Contact ExamPath",
+  description: "Get in touch with ExamPath — corrections, suggestions and feedback.",
+  article: `
+    <p>Spotted an error or want an exam added? We'd love to hear from you.</p>
+    <ul>
+      <li><b>Email:</b> <a href="mailto:hello@exampath.app">hello@exampath.app</a></li>
+      <li><b>Corrections:</b> tell us the exam and the official link, and we'll verify and fix it.</li>
+    </ul>
+    <p class="small muted">ExamPath is an independent information service and is not affiliated with any government body.</p>`,
+});
+export const renderDisclaimer = () => staticPage({
+  slug: "disclaimer", h1: "Disclaimer & privacy",
+  title: "Disclaimer & Privacy | ExamPath",
+  description: "ExamPath disclaimer and privacy note. Information is compiled from official sources; always verify on the official website.",
+  article: `
+    <h2>Disclaimer</h2>
+    <p>ExamPath is <b>not a government website</b> and is not affiliated with any conducting body. Information is compiled from publicly available official sources and provided for convenience. Dates and details can change — <b>always verify on the official website</b> linked on each exam page before applying.</p>
+    <h2>Privacy</h2>
+    <p>ExamPath is a static website. We do not run ads or trackers and do not collect personal information. Your “followed exams” are stored only in your own browser (localStorage) and never leave your device.</p>`,
+});
+export const renderFaq = () => {
+  const faqs = [
+    { q: "Is ExamPath free?", a: "Yes. ExamPath is completely free, with no ads and no sign-up required." },
+    { q: "How current is the data?", a: "An automated pipeline checks official sources and rebuilds the site daily. Every exam passes a >90% confidence gate before publishing." },
+    { q: "Is this an official government website?", a: "No. ExamPath is an independent tracker. Always verify details on the official website linked on each exam page." },
+    { q: "How do I check if I'm eligible?", a: "Open any exam page and use the built-in eligibility checker — enter your age and qualification for an instant answer." },
+    { q: "Which exams are covered?", a: "Central and state government exams including SSC, UPSC, IBPS, RRB and state PSCs, with more added over time." },
+    { q: "Can I get deadline reminders?", a: "Tap “Follow this exam” to save it in your browser; the site highlights upcoming deadlines for your followed exams." },
+  ];
+  const article = `<p>Common questions about ExamPath, eligibility and how the data works.</p>
+    <div class="faq">${faqs.map((f) => `<details class="faq-item"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div>`;
+  const ld = {
+    "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
+  return staticPage({
+    slug: "faq", h1: "Frequently asked questions",
+    title: "FAQ — ExamPath Government Exam Tracker",
+    description: "Answers about ExamPath: is it free, how current is the data, eligibility, reminders and which exams are covered.",
+    article, extraLD: ld,
+  });
+};
+
 /* ---------- color util ---------- */
 function shade(hex, pct) {
   const n = parseInt(hex.slice(1), 16);
@@ -739,7 +890,8 @@ function shade(hex, pct) {
 
 /* ---------- SEO files ---------- */
 export function sitemapXml() {
-  const urls = ["/", "/bodies/", "/calendar/", "/search/"];
+  const urls = ["/", "/notifications/", "/admit-cards/", "/results/", "/bodies/",
+    "/calendar/", "/search/", "/about/", "/faq/", "/contact/", "/disclaimer/"];
   DATA.bodies.forEach((b) => urls.push(`/body/${b.slug}/`));
   CYCLES.forEach((c) => urls.push(`/exam/${c.id}/`));
   const today = DATA.generated_at;
@@ -793,9 +945,16 @@ ${entries}
 export function allRoutes() {
   const routes = [
     { path: "index.html", html: renderHome() },
+    { path: "notifications/index.html", html: renderNotifications() },
+    { path: "admit-cards/index.html", html: renderAdmitCards() },
+    { path: "results/index.html", html: renderResults() },
     { path: "bodies/index.html", html: renderBodies() },
-    { path: "search/index.html", html: renderSearch() },
     { path: "calendar/index.html", html: renderCalendar() },
+    { path: "search/index.html", html: renderSearch() },
+    { path: "about/index.html", html: renderAbout() },
+    { path: "faq/index.html", html: renderFaq() },
+    { path: "contact/index.html", html: renderContact() },
+    { path: "disclaimer/index.html", html: renderDisclaimer() },
   ];
   DATA.bodies.forEach((b) => routes.push({ path: `body/${b.slug}/index.html`, html: renderBody(b.slug) }));
   CYCLES.forEach((c) => routes.push({ path: `exam/${c.id}/index.html`, html: renderExam(c.id) }));

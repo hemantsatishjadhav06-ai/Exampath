@@ -17,6 +17,27 @@ const OUT = join(ROOT, "out");
 const RAW_BASE = process.env.BASE_PATH || "";
 const BASE = RAW_BASE ? "/" + RAW_BASE.replace(/^\/+|\/+$/g, "") : "";
 
+// Optional minification (enabled in CI via MINIFY=1). Conservative: it removes
+// comments and indentation/newlines but never collapses meaningful inline
+// whitespace, so text and links keep their spacing. JS files are left intact
+// (hosts serve them gzipped/brotli anyway).
+const MINIFY = ["1", "true", "yes", "on"].includes((process.env.MINIFY || "").toLowerCase());
+function minifyCss(css) {
+  return css
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\s*([{}:;,>])\s*/g, "$1")
+    .replace(/;}/g, "}")
+    .replace(/\n\s*/g, "")
+    .trim();
+}
+function minifyHtml(html) {
+  return html
+    .replace(/<!--(?!\[)[\s\S]*?-->/g, "")   // strip comments (keep IE conditionals)
+    .replace(/\n\s*/g, " ")                    // drop indentation/newlines
+    .replace(/[ \t]{2,}/g, " ");               // collapse runs of spaces
+}
+const finalizeHtml = (html) => (MINIFY ? minifyHtml(withBase(html)) : withBase(html));
+
 // Rewrite root-absolute URLs in a rendered HTML document to sit under BASE,
 // and expose BASE to the client script for its runtime navigation. Leaves
 // protocol-absolute (https://) and protocol-relative (//host) URLs untouched.
@@ -79,10 +100,10 @@ rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
 const routes = allRoutes();
-for (const r of routes) write(r.path, withBase(r.html));
+for (const r of routes) write(r.path, finalizeHtml(r.html));
 
 // assets
-write("assets/styles.css", CSS);
+write("assets/styles.css", MINIFY ? minifyCss(CSS) : CSS);
 copyFileSync(join(ROOT, "public/client.js"), join(OUT, "assets/client.js"));
 
 // copy any other files in public/ (favicons etc.) except client.js already handled
@@ -145,7 +166,7 @@ write("og.svg", ogSvg());
 if (process.env.INDEXNOW_KEY) write(`${process.env.INDEXNOW_KEY}.txt`, process.env.INDEXNOW_KEY);
 
 // A simple 404 (static hosts serve this on unknown paths)
-write("404.html", withBase(routes[0].html.replace(/<main id="app">[\s\S]*<\/main>/,
+write("404.html", finalizeHtml(routes[0].html.replace(/<main id="app">[\s\S]*<\/main>/,
   '<main id="app"><section class="page"><div class="wrap"><div class="crumb"><a href="/">Home</a> › <span>Not found</span></div><div class="card" style="padding:48px;text-align:center"><div style="font-size:40px">\u{1F50D}</div><h2 style="margin:10px 0">Page not found</h2><p class="muted">That exam or page doesn’t exist. Try the <a href="/" style="color:var(--brand);font-weight:700">home page</a> or <a href="/search/" style="color:var(--brand);font-weight:700">search</a>.</p></div></div></section></main>')));
 
 // Ensure GitHub Pages serves the artifact as-is (no Jekyll processing).
