@@ -11,6 +11,25 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const OUT = join(ROOT, "out");
 
+// Optional base path for hosting under a sub-directory (e.g. GitHub Pages
+// project sites served at /<repo>/). Empty => served at the domain root
+// (local dev, Docker/Railway/Render static), so absolute links stay as-is.
+const RAW_BASE = process.env.BASE_PATH || "";
+const BASE = RAW_BASE ? "/" + RAW_BASE.replace(/^\/+|\/+$/g, "") : "";
+
+// Rewrite root-absolute URLs in a rendered HTML document to sit under BASE,
+// and expose BASE to the client script for its runtime navigation. Leaves
+// protocol-absolute (https://) and protocol-relative (//host) URLs untouched.
+function withBase(html) {
+  if (!BASE) return html;
+  html = html.replace(/\b(href|src|action)="\/(?!\/)/g, `$1="${BASE}/`);
+  html = html.replace(
+    /<\/head>/,
+    `<script>window.__BASE__=${JSON.stringify(BASE)};</script>\n</head>`
+  );
+  return html;
+}
+
 function write(rel, content) {
   const full = join(OUT, rel);
   mkdirSync(dirname(full), { recursive: true });
@@ -32,7 +51,7 @@ rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
 const routes = allRoutes();
-for (const r of routes) write(r.path, r.html);
+for (const r of routes) write(r.path, withBase(r.html));
 
 // assets
 write("assets/styles.css", CSS);
@@ -53,8 +72,11 @@ write("sitemap.xml", sitemapXml());
 write("robots.txt", robotsTxt());
 
 // A simple 404 (static hosts serve this on unknown paths)
-write("404.html", routes[0].html.replace(/<main id="app">[\s\S]*<\/main>/,
-  '<main id="app"><section class="page"><div class="wrap"><div class="crumb"><a href="/">Home</a> › <span>Not found</span></div><div class="card" style="padding:48px;text-align:center"><div style="font-size:40px">\u{1F50D}</div><h2 style="margin:10px 0">Page not found</h2><p class="muted">That exam or page doesn’t exist. Try the <a href="/" style="color:var(--brand);font-weight:700">home page</a> or <a href="/search/" style="color:var(--brand);font-weight:700">search</a>.</p></div></div></section></main>'));
+write("404.html", withBase(routes[0].html.replace(/<main id="app">[\s\S]*<\/main>/,
+  '<main id="app"><section class="page"><div class="wrap"><div class="crumb"><a href="/">Home</a> › <span>Not found</span></div><div class="card" style="padding:48px;text-align:center"><div style="font-size:40px">\u{1F50D}</div><h2 style="margin:10px 0">Page not found</h2><p class="muted">That exam or page doesn’t exist. Try the <a href="/" style="color:var(--brand);font-weight:700">home page</a> or <a href="/search/" style="color:var(--brand);font-weight:700">search</a>.</p></div></div></section></main>')));
+
+// Ensure GitHub Pages serves the artifact as-is (no Jekyll processing).
+write(".nojekyll", "");
 
 console.log(`✓ Exported ${routes.length} pages + assets + sitemap/robots to out/`);
 console.log("Route list:");

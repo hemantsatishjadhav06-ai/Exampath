@@ -19,11 +19,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Turns Pages on for the repo (first run) and reports the base path.
+      - id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
       - name: Build static site (zero-dependency)
         working-directory: web
+        # Project sites are served at /<repo>/, so build under that base path.
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: node scripts/export-static.mjs
       - uses: actions/upload-pages-artifact@v3
         with:

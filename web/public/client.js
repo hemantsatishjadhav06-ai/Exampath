@@ -2,6 +2,9 @@
    Live countdowns, eligibility checker, client-side search, follow (localStorage). */
 (function () {
   "use strict";
+  // Base path when hosted under a sub-directory (set by the exporter via
+  // window.__BASE__, e.g. "/exampath" on GitHub Pages). Empty at the root.
+  var BASE = (typeof window !== "undefined" && window.__BASE__) || "";
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var QRANK = { "10th": 1, "12th": 2, graduate: 3, pg: 4 };
   var STATUS_META = {
@@ -147,7 +150,7 @@
     var top = document.getElementById("topSearch");
     if (top) {
       top.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") location.href = "/search/?q=" + encodeURIComponent(top.value || "");
+        if (e.key === "Enter") location.href = BASE + "/search/?q=" + encodeURIComponent(top.value || "");
       });
     }
   }
@@ -194,7 +197,7 @@
       '<div style="margin-left:auto">' + pill(c.status) + "</div></div>" +
       '<div class="facts"><div class="f"><b>' + inr(c.vacancy) + "</b><span>Vacancies</span></div>" +
       '<div class="f"><b>' + c.age_min + "&ndash;" + c.age_max + "</b><span>Age</span></div>" + right + "</div>" +
-      '<div class="cta"><a class="btn pri sm" href="/exam/' + c.id + '/">View Dashboard</a>' +
+      '<div class="cta"><a class="btn pri sm" href="' + BASE + '/exam/' + c.id + '/">View Dashboard</a>' +
       '<button class="heart" data-follow="' + c.id + '" aria-label="Follow this exam" aria-pressed="false">' +
       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 5.5 6 5.5c2 0 3.2 1 4 2.2.8-1.2 2-2.2 4-2.2 3.5 0 5.5 3.5 3.5 7C19 16.65 12 21 12 21z"/></svg></button></div></div>';
   }
