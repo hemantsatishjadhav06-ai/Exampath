@@ -55,6 +55,10 @@ class Handler(BaseHTTPRequestHandler):
                 if c["id"] == cid:
                     return self._send(200, c)
             return self._send(404, {"error": "not found"})
+        if self.path == "/ai/status":
+            from ..llm.openrouter import OpenRouterClient
+            c = OpenRouterClient()
+            return self._send(200, {"llm_available": c.available, "model": c.model})
         self._send(404, {"error": "not found"})
 
     def do_POST(self):
@@ -76,6 +80,14 @@ class Handler(BaseHTTPRequestHandler):
                 from ..pipeline.run import run
                 threading.Thread(target=run, kwargs={"verbose": False}, daemon=True).start()
             return self._send(code, resp)
+
+        if self.path == "/ai/ask":
+            from ..ai.assistant import answer_question
+            return self._send(200, answer_question(payload.get("question", ""), load_data()))
+
+        if self.path == "/ai/digest":
+            from ..ai.assistant import personal_digest
+            return self._send(200, personal_digest(load_data(), payload))
 
         self._send(404, {"error": "not found"})
 

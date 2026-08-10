@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07",
+  "generated_at": "2026-08-10",
   "source": "exampath-pipeline",
   "bodies": [
     {
@@ -190,6 +190,179 @@
         "ssc-chsl-2026",
         "ssc-mts-2026",
         "ibps-po-2026"
+      ],
+      "fees": [
+        {
+          "category": "UR",
+          "amount": 100,
+          "notes": "UR/OBC/EWS male candidates. Women exempted."
+        },
+        {
+          "category": "SC",
+          "amount": 0,
+          "notes": "Exempted"
+        },
+        {
+          "category": "ST",
+          "amount": 0,
+          "notes": "Exempted"
+        },
+        {
+          "category": "PwD",
+          "amount": 0,
+          "notes": "Exempted"
+        },
+        {
+          "category": "ESM",
+          "amount": 0,
+          "notes": "Exempted"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Assistant Section Officer",
+          "pay_level": "Level 7",
+          "pay_min": 44900,
+          "pay_max": 142400,
+          "in_hand_approx": 68000
+        },
+        {
+          "post": "Income Tax Inspector",
+          "pay_level": "Level 7",
+          "pay_min": 44900,
+          "pay_max": 142400,
+          "in_hand_approx": 66000
+        },
+        {
+          "post": "Inspector (CBIC)",
+          "pay_level": "Level 7",
+          "pay_min": 44900,
+          "pay_max": 142400
+        },
+        {
+          "post": "Auditor",
+          "pay_level": "Level 5",
+          "pay_min": 29200,
+          "pay_max": 92300
+        }
+      ],
+      "exam_pattern": [
+        {
+          "stage": "Tier-1",
+          "mode": "CBT",
+          "total_marks": 200,
+          "duration_min": 60,
+          "negative_marking": "0.50 per wrong answer",
+          "sections": [
+            {
+              "name": "General Intelligence & Reasoning",
+              "questions": 25,
+              "marks": 50
+            },
+            {
+              "name": "General Awareness",
+              "questions": 25,
+              "marks": 50
+            },
+            {
+              "name": "Quantitative Aptitude",
+              "questions": 25,
+              "marks": 50
+            },
+            {
+              "name": "English Comprehension",
+              "questions": 25,
+              "marks": 50
+            }
+          ]
+        },
+        {
+          "stage": "Tier-2",
+          "mode": "CBT",
+          "negative_marking": "1 per wrong (objective)",
+          "note": "Papers I–III; Paper I compulsory for all posts"
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Tier-1",
+          "subjects": [
+            {
+              "subject": "General Intelligence & Reasoning",
+              "topics": [
+                "Analogies",
+                "Classification",
+                "Coding-Decoding",
+                "Series",
+                "Blood Relations",
+                "Syllogism",
+                "Non-verbal reasoning"
+              ]
+            },
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Current Affairs",
+                "History",
+                "Geography",
+                "Polity",
+                "Economics",
+                "General Science",
+                "Static GK"
+              ]
+            },
+            {
+              "subject": "Quantitative Aptitude",
+              "topics": [
+                "Number System",
+                "Percentage",
+                "Ratio & Proportion",
+                "Averages",
+                "Time & Work",
+                "Geometry",
+                "Trigonometry",
+                "Data Interpretation"
+              ]
+            },
+            {
+              "subject": "English Comprehension",
+              "topics": [
+                "Reading Comprehension",
+                "Grammar",
+                "Vocabulary",
+                "Synonyms & Antonyms",
+                "Idioms",
+                "Error Spotting"
+              ]
+            }
+          ]
+        }
+      ],
+      "how_to_apply": [
+        "Complete the one-time registration (OTR) on ssc.gov.in",
+        "Log in and open the CGL application form",
+        "Fill personal, educational and post-preference details",
+        "Upload photograph and signature as per specifications",
+        "Pay the application fee (if applicable)",
+        "Submit and download the confirmation for your records"
+      ],
+      "faqs": [
+        {
+          "q": "Is there negative marking?",
+          "a": "Yes — 0.50 marks are deducted for each wrong answer in Tier-1."
+        },
+        {
+          "q": "How many attempts are allowed?",
+          "a": "No limit on attempts as long as you meet the age criteria."
+        },
+        {
+          "q": "What is the age limit?",
+          "a": "18–32 years depending on post, with relaxations (OBC +3, SC/ST +5, PwD +10)."
+        },
+        {
+          "q": "Is the exam bilingual?",
+          "a": "Yes — questions (except the English paper) appear in English and Hindi."
+        }
       ]
     },
     {
@@ -541,6 +714,106 @@
       "related": [
         "ssc-cgl-2026",
         "mppsc-ss-2026"
+      ],
+      "fees": [
+        {
+          "category": "UR",
+          "amount": 100,
+          "notes": "Prelims fee. SC/ST/PwBD/female candidates exempted."
+        },
+        {
+          "category": "SC",
+          "amount": 0,
+          "notes": "Exempted"
+        },
+        {
+          "category": "ST",
+          "amount": 0,
+          "notes": "Exempted"
+        },
+        {
+          "category": "Female",
+          "amount": 0,
+          "notes": "Exempted"
+        }
+      ],
+      "salary": [
+        {
+          "post": "IAS / IPS (entry)",
+          "pay_level": "Level 10",
+          "pay_min": 56100,
+          "pay_max": 177500,
+          "in_hand_approx": 85000,
+          "perks": "Govt accommodation, transport & allowances"
+        }
+      ],
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "OMR",
+          "negative_marking": "1/3rd marks per wrong answer",
+          "papers": [
+            {
+              "name": "GS Paper I",
+              "questions": 100,
+              "marks": 200
+            },
+            {
+              "name": "CSAT Paper II (qualifying, 33%)",
+              "questions": 80,
+              "marks": 200
+            }
+          ]
+        },
+        {
+          "stage": "Mains",
+          "mode": "Descriptive (written)",
+          "total_marks": 1750,
+          "note": "9 papers: Essay + 4 GS + 2 Optional (counted) + 2 qualifying language papers"
+        },
+        {
+          "stage": "Interview",
+          "marks": 275,
+          "note": "Personality Test"
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Prelims GS Paper I",
+          "subjects": [
+            {
+              "subject": "General Studies",
+              "topics": [
+                "Current events of national & international importance",
+                "History of India & Indian National Movement",
+                "Indian & World Geography",
+                "Indian Polity & Governance",
+                "Economic & Social Development",
+                "Environmental Ecology & Biodiversity",
+                "General Science"
+              ]
+            }
+          ]
+        }
+      ],
+      "how_to_apply": [
+        "Register on upsconline.nic.in (Part I)",
+        "Complete Part II: pay fee, choose centre, upload photo & signature",
+        "Submit before the deadline and save your Registration ID"
+      ],
+      "faqs": [
+        {
+          "q": "How many attempts are allowed?",
+          "a": "General: 6 (up to age 32); OBC: 9 (up to 35); SC/ST: unlimited (up to 37)."
+        },
+        {
+          "q": "Is CSAT counted in the merit?",
+          "a": "No — CSAT (Paper II) is qualifying only; you need 33% to clear it."
+        },
+        {
+          "q": "What is the age limit?",
+          "a": "21–32 years for General, with category relaxations."
+        }
       ]
     },
     {

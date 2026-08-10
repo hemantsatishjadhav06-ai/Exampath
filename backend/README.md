@@ -37,3 +37,22 @@ pipeline in the background.
 Endpoints (`app/api/server.py`): `GET /health` · `GET /api/exams` ·
 `GET /api/exams/{id}` · `POST /pipeline/run` · `POST /webhook/n8n`
 (header `x-webhook-secret: $N8N_WEBHOOK_SECRET`).
+
+## AI features (OpenRouter)
+
+The standout backend features run on **OpenRouter** (one key for any model — set
+`OPENROUTER_API_KEY` and optionally `OPENROUTER_MODEL`). Everything degrades gracefully to
+deterministic logic when no key is set, so the API always works.
+
+- `GET  /ai/status` → `{llm_available, model}`
+- `POST /ai/ask`    `{ "question": "which graduate exams can I give at 21?" }`
+  → a concise, **retrieval-grounded** answer (only from our data) + the matching exam ids.
+- `POST /ai/digest` `{ "age": 21, "qualification": "graduate", "following": ["ssc-cgl-2026"] }`
+  → a personalised, urgency-sorted list of your upcoming deadlines + a 2-line nudge.
+- AI extraction: `LLMExtractor` (in `pipeline/extract.py`) uses OpenRouter for messy
+  PDFs/HTML, returning the same JSON shape as the rule-based extractor.
+
+```bash
+curl -s localhost:8000/ai/ask -H 'Content-Type: application/json' \
+     -d '{"question":"bank exams for graduates closing soon"}' | python3 -m json.tool
+```
