@@ -95,6 +95,54 @@
         "https://rpsc.rajasthan.gov.in/advertisements"
       ],
       "description": "Conducts RAS and allied exams for Rajasthan state administrative services."
+    },
+    {
+      "slug": "sbi",
+      "name": "State Bank of India",
+      "short": "SBI",
+      "level": "Banking",
+      "color": "#1e3a8a",
+      "official_url": "https://sbi.co.in/web/careers",
+      "notice_urls": [
+        "https://sbi.co.in/web/careers/current-openings"
+      ],
+      "description": "India's largest public-sector bank; recruits Probationary Officers and Clerks (Junior Associates)."
+    },
+    {
+      "slug": "rbi",
+      "name": "Reserve Bank of India",
+      "short": "RBI",
+      "level": "Banking",
+      "color": "#0f766e",
+      "official_url": "https://opportunities.rbi.org.in",
+      "notice_urls": [
+        "https://opportunities.rbi.org.in/scripts/vacancies.aspx"
+      ],
+      "description": "India's central bank; recruits Grade B Officers and Assistants."
+    },
+    {
+      "slug": "cbse",
+      "name": "Central Board of Secondary Education",
+      "short": "CBSE",
+      "level": "Central",
+      "color": "#b45309",
+      "official_url": "https://ctet.nic.in",
+      "notice_urls": [
+        "https://ctet.nic.in"
+      ],
+      "description": "Conducts CTET, the Central Teacher Eligibility Test for teaching posts."
+    },
+    {
+      "slug": "nta",
+      "name": "National Testing Agency",
+      "short": "NTA",
+      "level": "Central",
+      "color": "#7c3aed",
+      "official_url": "https://nta.ac.in",
+      "notice_urls": [
+        "https://ugcnet.nta.ac.in"
+      ],
+      "description": "Conducts national entrance/eligibility tests including UGC-NET."
     }
   ],
   "cycles": [
@@ -4149,6 +4197,1691 @@
           "cutoff_ur": null,
           "result_status": "upcoming",
           "result_url": "https://rpsc.rajasthan.gov.in/results"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 39000,
+      "summary": "Recruitment of Constables (General Duty) in CAPFs, SSF, Assam Rifles and NCB.",
+      "posts": "Constable (GD) in BSF, CISF, CRPF, ITBP, SSB, AR, SSF",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Computer Based Test",
+        "Physical Efficiency Test (PET/PST)",
+        "Medical Examination",
+        "Document Verification"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 100,
+          "notes": "Women/SC/ST/Ex-servicemen exempted"
+        },
+        {
+          "category": "SC/ST",
+          "amount": 0,
+          "notes": "Exempted"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Constable (GD)",
+          "pay_level": "Level 3",
+          "pay_min": 21700,
+          "pay_max": 69100,
+          "in_hand_approx": 29000
+        }
+      ],
+      "how_to_apply": [
+        "Register / one-time registration on ssc.gov.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "What is the minimum qualification?",
+          "a": "Class 10th (Matriculation) pass from a recognized board."
+        },
+        {
+          "q": "Is there negative marking?",
+          "a": "Yes, 0.25 marks are deducted for each wrong answer in the CBT."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2024,
+          "vacancy": 26146,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        },
+        {
+          "year": 2023,
+          "vacancy": 84000,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        }
+      ],
+      "id": "ssc-gd-2026",
+      "body": "ssc",
+      "exam": "SSC GD Constable",
+      "title": "SSC GD Constable 2026",
+      "qualification": "10th pass",
+      "qualification_code": "10th",
+      "age_min": 18,
+      "age_max": 23,
+      "exam_pattern": [
+        {
+          "stage": "Tier-1 (CBT)",
+          "mode": "Computer Based Test",
+          "total_marks": 160,
+          "duration_min": 60,
+          "negative_marking": "0.25 per wrong answer",
+          "sections": [
+            {
+              "name": "General Intelligence & Reasoning",
+              "questions": 20,
+              "marks": 40
+            },
+            {
+              "name": "General Knowledge & Awareness",
+              "questions": 20,
+              "marks": 40
+            },
+            {
+              "name": "Elementary Mathematics",
+              "questions": 20,
+              "marks": 40
+            },
+            {
+              "name": "English/Hindi",
+              "questions": 20,
+              "marks": 40
+            }
+          ],
+          "note": "80 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "General Intelligence & Reasoning",
+              "topics": [
+                "Analogies",
+                "Similarities & differences",
+                "Spatial visualization",
+                "Coding-decoding"
+              ]
+            },
+            {
+              "subject": "Elementary Mathematics",
+              "topics": [
+                "Number systems",
+                "Percentage",
+                "Ratio & proportion",
+                "Time & work",
+                "Mensuration"
+              ]
+            },
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Current affairs",
+                "History",
+                "Geography",
+                "Polity",
+                "General science"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://ssc.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://ssc.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://ssc.gov.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 2000,
+      "summary": "Recruitment of Stenographers Grade C and Grade D in central government ministries.",
+      "posts": "Stenographer Grade C, Stenographer Grade D",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Computer Based Test",
+        "Skill Test (Stenography)",
+        "Document Verification"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 100,
+          "notes": "Women/SC/ST exempted"
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on ssc.gov.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "What is the skill test?",
+          "a": "A stenography dictation test at 80 wpm (Grade D) or 100 wpm (Grade C)."
+        }
+      ],
+      "yearwise": [],
+      "id": "ssc-steno-2026",
+      "body": "ssc",
+      "exam": "SSC Stenographer",
+      "title": "SSC Stenographer Grade C & D 2026",
+      "qualification": "12th pass",
+      "qualification_code": "12th",
+      "age_min": 18,
+      "age_max": 27,
+      "exam_pattern": [
+        {
+          "stage": "CBT",
+          "mode": "Computer Based Test",
+          "total_marks": 200,
+          "duration_min": 120,
+          "negative_marking": "0.50 per wrong answer",
+          "sections": [
+            {
+              "name": "General Intelligence & Reasoning",
+              "questions": 50,
+              "marks": 50
+            },
+            {
+              "name": "General Awareness",
+              "questions": 50,
+              "marks": 50
+            },
+            {
+              "name": "English Language & Comprehension",
+              "questions": 100,
+              "marks": 100
+            }
+          ],
+          "note": "200 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Current affairs",
+                "History",
+                "Geography",
+                "Polity",
+                "Economy"
+              ]
+            },
+            {
+              "subject": "English Language",
+              "topics": [
+                "Grammar",
+                "Vocabulary",
+                "Comprehension",
+                "Sentence improvement"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://ssc.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://ssc.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://ssc.gov.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 32000,
+      "summary": "Recruitment to Level-1 posts in Indian Railways (track maintainer, pointsman, helper, etc.).",
+      "posts": "Track Maintainer Gr-IV, Pointsman, Helper, Assistant, Porter",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Computer Based Test",
+        "Physical Efficiency Test",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 500,
+          "notes": "₹400 refunded on appearing in CBT"
+        },
+        {
+          "category": "SC/ST/PwBD/Women",
+          "amount": 250,
+          "notes": "Refunded on appearing"
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on rrbcdg.gov.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "Is ITI mandatory?",
+          "a": "No — Class 10th pass OR ITI/equivalent is acceptable for most Level-1 posts."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2022,
+          "vacancy": 103769,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://www.rrbcdg.gov.in"
+        }
+      ],
+      "id": "rrb-group-d-2026",
+      "body": "rrb",
+      "exam": "RRB Group D",
+      "title": "RRB Group D (Level 1) 2026",
+      "qualification": "10th / ITI",
+      "qualification_code": "10th",
+      "age_min": 18,
+      "age_max": 33,
+      "exam_pattern": [
+        {
+          "stage": "CBT",
+          "mode": "Computer Based Test",
+          "total_marks": 100,
+          "duration_min": 90,
+          "negative_marking": "1/3 per wrong answer",
+          "sections": [
+            {
+              "name": "General Science",
+              "questions": 25,
+              "marks": 25
+            },
+            {
+              "name": "Mathematics",
+              "questions": 25,
+              "marks": 25
+            },
+            {
+              "name": "General Intelligence & Reasoning",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "General Awareness & Current Affairs",
+              "questions": 20,
+              "marks": 20
+            }
+          ],
+          "note": "100 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Mathematics",
+              "topics": [
+                "Number system",
+                "BODMAS",
+                "Percentage",
+                "Mensuration",
+                "Time & work"
+              ]
+            },
+            {
+              "subject": "General Science",
+              "topics": [
+                "Physics",
+                "Chemistry",
+                "Life sciences (up to 10th standard)"
+              ]
+            },
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Current affairs",
+                "Sports",
+                "Culture",
+                "Personalities"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://www.rrbcdg.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://www.rrbcdg.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://www.rrbcdg.gov.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 18000,
+      "summary": "Recruitment of Assistant Loco Pilots in Indian Railways.",
+      "posts": "Assistant Loco Pilot (ALP)",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "CBT Stage 1",
+        "CBT Stage 2",
+        "Computer Based Aptitude Test",
+        "Document Verification",
+        "Medical"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 500,
+          "notes": "₹400 refunded on appearing"
+        },
+        {
+          "category": "Reserved",
+          "amount": 250,
+          "notes": "Refunded on appearing"
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on rrbcdg.gov.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "What trades are eligible?",
+          "a": "ITI/Diploma in notified engineering trades such as Fitter, Electrician, Mechanic."
+        }
+      ],
+      "yearwise": [],
+      "id": "rrb-alp-2026",
+      "body": "rrb",
+      "exam": "RRB ALP",
+      "title": "RRB Assistant Loco Pilot 2026",
+      "qualification": "10th + ITI / Diploma",
+      "qualification_code": "10th",
+      "age_min": 18,
+      "age_max": 30,
+      "exam_pattern": [
+        {
+          "stage": "CBT Stage 1",
+          "mode": "Computer Based Test",
+          "total_marks": 75,
+          "duration_min": 60,
+          "negative_marking": "1/3 per wrong answer",
+          "sections": [
+            {
+              "name": "Mathematics",
+              "questions": 20,
+              "marks": 20
+            },
+            {
+              "name": "Reasoning",
+              "questions": 25,
+              "marks": 25
+            },
+            {
+              "name": "General Science",
+              "questions": 20,
+              "marks": 20
+            },
+            {
+              "name": "General Awareness",
+              "questions": 10,
+              "marks": 10
+            }
+          ],
+          "note": "75 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Technical (Stage 2)",
+              "topics": [
+                "Basic engineering & trade knowledge relevant to the notified trade"
+              ]
+            },
+            {
+              "subject": "Reasoning",
+              "topics": [
+                "Analogies",
+                "Series",
+                "Coding-decoding",
+                "Syllogism"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://www.rrbcdg.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://www.rrbcdg.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://www.rrbcdg.gov.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 6000,
+      "summary": "Common Recruitment Process for Clerical cadre in participating public-sector banks.",
+      "posts": "Clerk (Customer Service Associate)",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Preliminary Examination",
+        "Main Examination",
+        "Provisional Allotment"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 850,
+          "notes": ""
+        },
+        {
+          "category": "SC/ST/PwBD",
+          "amount": 175,
+          "notes": ""
+        }
+      ],
+      "salary": [
+        {
+          "post": "Clerk",
+          "pay_level": "—",
+          "pay_min": 19900,
+          "pay_max": 47920,
+          "in_hand_approx": 29000
+        }
+      ],
+      "how_to_apply": [
+        "Register / one-time registration on ibps.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "Is there an interview for IBPS Clerk?",
+          "a": "No — selection is based on Prelims + Mains only, no interview."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2024,
+          "vacancy": 6128,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://www.ibps.in"
+        }
+      ],
+      "id": "ibps-clerk-2026",
+      "body": "ibps",
+      "exam": "IBPS Clerk",
+      "title": "IBPS Clerk (CRP Clerical) 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "age_min": 20,
+      "age_max": 28,
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Online",
+          "total_marks": 100,
+          "duration_min": 60,
+          "negative_marking": "0.25 per wrong answer",
+          "sections": [
+            {
+              "name": "English Language",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Numerical Ability",
+              "questions": 35,
+              "marks": 35
+            },
+            {
+              "name": "Reasoning Ability",
+              "questions": 35,
+              "marks": 35
+            }
+          ],
+          "note": "100 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Numerical Ability",
+              "topics": [
+                "Simplification",
+                "Number series",
+                "Data interpretation",
+                "Arithmetic"
+              ]
+            },
+            {
+              "subject": "Reasoning",
+              "topics": [
+                "Puzzles",
+                "Seating arrangement",
+                "Syllogism",
+                "Inequalities"
+              ]
+            },
+            {
+              "subject": "English",
+              "topics": [
+                "Reading comprehension",
+                "Cloze test",
+                "Error spotting"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://www.ibps.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://www.ibps.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://www.ibps.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 9000,
+      "summary": "Common Recruitment Process for Regional Rural Banks — Officer Scale I/II/III and Office Assistant.",
+      "posts": "Officer Scale I/II/III, Office Assistant (Multipurpose)",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Preliminary Examination",
+        "Main Examination",
+        "Interview (for Officer scales)"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 850,
+          "notes": ""
+        },
+        {
+          "category": "SC/ST/PwBD",
+          "amount": 175,
+          "notes": ""
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on ibps.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "Is a local language requirement applicable?",
+          "a": "Yes — proficiency in the local language of the state is usually required."
+        }
+      ],
+      "yearwise": [],
+      "id": "ibps-rrb-2026",
+      "body": "ibps",
+      "exam": "IBPS RRB",
+      "title": "IBPS RRB (Officers & Office Assistant) 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "age_min": 18,
+      "age_max": 40,
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Online",
+          "total_marks": 80,
+          "duration_min": 45,
+          "negative_marking": "0.25 per wrong answer",
+          "sections": [
+            {
+              "name": "Reasoning",
+              "questions": 40,
+              "marks": 40
+            },
+            {
+              "name": "Numerical Ability",
+              "questions": 40,
+              "marks": 40
+            }
+          ],
+          "note": "80 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Reasoning",
+              "topics": [
+                "Puzzles",
+                "Coding-decoding",
+                "Blood relations",
+                "Direction sense"
+              ]
+            },
+            {
+              "subject": "Quantitative Aptitude",
+              "topics": [
+                "Data interpretation",
+                "Simplification",
+                "Quadratic equations"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://www.ibps.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://www.ibps.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://www.ibps.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 2000,
+      "summary": "Recruitment of Probationary Officers in State Bank of India.",
+      "posts": "Probationary Officer (PO)",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Preliminary Examination",
+        "Main Examination",
+        "Psychometric Test",
+        "Group Exercise & Interview"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 750,
+          "notes": ""
+        },
+        {
+          "category": "SC/ST/PwBD",
+          "amount": 0,
+          "notes": "Exempted"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Probationary Officer",
+          "pay_level": "JMGS-I",
+          "pay_min": 48480,
+          "pay_max": 85920,
+          "in_hand_approx": 85000
+        }
+      ],
+      "how_to_apply": [
+        "Register / one-time registration on sbi.co.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "How many attempts are allowed?",
+          "a": "General category candidates get 4 attempts (relaxations for reserved categories)."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2025,
+          "vacancy": 600,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://sbi.co.in/web/careers"
+        }
+      ],
+      "id": "sbi-po-2026",
+      "body": "sbi",
+      "exam": "SBI PO",
+      "title": "SBI Probationary Officer 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "age_min": 21,
+      "age_max": 30,
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Online",
+          "total_marks": 100,
+          "duration_min": 60,
+          "negative_marking": "0.25 per wrong answer",
+          "sections": [
+            {
+              "name": "English Language",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Quantitative Aptitude",
+              "questions": 35,
+              "marks": 35
+            },
+            {
+              "name": "Reasoning Ability",
+              "questions": 35,
+              "marks": 35
+            }
+          ],
+          "note": "100 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Quantitative Aptitude",
+              "topics": [
+                "Data interpretation",
+                "Arithmetic",
+                "Number series",
+                "Quadratic equations"
+              ]
+            },
+            {
+              "subject": "Reasoning & Computer Aptitude",
+              "topics": [
+                "Puzzles",
+                "Seating arrangement",
+                "Syllogism",
+                "Computer basics"
+              ]
+            },
+            {
+              "subject": "English Language",
+              "topics": [
+                "Reading comprehension",
+                "Cloze test",
+                "Para jumbles",
+                "Error detection"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://sbi.co.in/web/careers",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://sbi.co.in/web/careers",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://sbi.co.in/web/careers",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 8000,
+      "summary": "Recruitment of Junior Associates (Customer Support & Sales) in State Bank of India.",
+      "posts": "Junior Associate (Clerk)",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Preliminary Examination",
+        "Main Examination",
+        "Local Language Test"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 750,
+          "notes": ""
+        },
+        {
+          "category": "SC/ST/PwBD",
+          "amount": 0,
+          "notes": "Exempted"
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on sbi.co.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "Is there an interview?",
+          "a": "No — SBI Clerk selection is Prelims + Mains, followed by a local-language test."
+        }
+      ],
+      "yearwise": [],
+      "id": "sbi-clerk-2026",
+      "body": "sbi",
+      "exam": "SBI Clerk",
+      "title": "SBI Clerk (Junior Associate) 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "age_min": 20,
+      "age_max": 28,
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Online",
+          "total_marks": 100,
+          "duration_min": 60,
+          "negative_marking": "0.25 per wrong answer",
+          "sections": [
+            {
+              "name": "English Language",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Numerical Ability",
+              "questions": 35,
+              "marks": 35
+            },
+            {
+              "name": "Reasoning Ability",
+              "questions": 35,
+              "marks": 35
+            }
+          ],
+          "note": "100 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Numerical Ability",
+              "topics": [
+                "Simplification",
+                "Data interpretation",
+                "Arithmetic"
+              ]
+            },
+            {
+              "subject": "Reasoning",
+              "topics": [
+                "Puzzles",
+                "Seating arrangement",
+                "Inequalities"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://sbi.co.in/web/careers",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://sbi.co.in/web/careers",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://sbi.co.in/web/careers",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 90,
+      "summary": "Recruitment of Grade B Officers (General & specialist streams) in the Reserve Bank of India.",
+      "posts": "Manager (Grade B) — General, DEPR, DSIM",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Phase 1 (Objective)",
+        "Phase 2 (Objective + Descriptive)",
+        "Interview"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 850,
+          "notes": ""
+        },
+        {
+          "category": "SC/ST/PwBD",
+          "amount": 100,
+          "notes": "Intimation charges only"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Manager (Grade B)",
+          "pay_level": "—",
+          "pay_min": 55200,
+          "pay_max": 95910,
+          "in_hand_approx": 110000
+        }
+      ],
+      "how_to_apply": [
+        "Register / one-time registration on opportunities.rbi.org.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "What is the age limit?",
+          "a": "21–30 years for the General stream, with relaxations for reserved categories."
+        }
+      ],
+      "yearwise": [],
+      "id": "rbi-grade-b-2026",
+      "body": "rbi",
+      "exam": "RBI Grade B",
+      "title": "RBI Grade B Officer 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "age_min": 21,
+      "age_max": 30,
+      "exam_pattern": [
+        {
+          "stage": "Phase 1",
+          "mode": "Online",
+          "total_marks": 200,
+          "duration_min": 120,
+          "negative_marking": "0.25 per wrong answer",
+          "sections": [
+            {
+              "name": "General Awareness",
+              "questions": 80,
+              "marks": 80
+            },
+            {
+              "name": "Quantitative Aptitude",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "English Language",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Reasoning",
+              "questions": 60,
+              "marks": 60
+            }
+          ],
+          "note": "200 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Economy & banking",
+                "Current affairs",
+                "RBI & monetary policy"
+              ]
+            },
+            {
+              "subject": "Finance & Management (Phase 2)",
+              "topics": [
+                "Financial system",
+                "Basics of management",
+                "Financial markets"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://opportunities.rbi.org.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://opportunities.rbi.org.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://opportunities.rbi.org.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 1,
+      "summary": "Eligibility test for teacher posts (Classes I–VIII) in central government schools.",
+      "posts": "Primary (I–V) and Elementary (VI–VIII) teacher eligibility",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Paper I (Classes I–V)",
+        "Paper II (Classes VI–VIII)"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General (one paper)",
+          "amount": 1000,
+          "notes": ""
+        },
+        {
+          "category": "SC/ST/PwD (one paper)",
+          "amount": 500,
+          "notes": ""
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on ctet.nic.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "Is there an age limit for CTET?",
+          "a": "There is no upper age limit to appear for CTET."
+        },
+        {
+          "q": "How long is the CTET certificate valid?",
+          "a": "The CTET qualifying certificate is valid for a lifetime."
+        }
+      ],
+      "yearwise": [],
+      "id": "ctet-2026",
+      "body": "cbse",
+      "exam": "CTET",
+      "title": "CTET (Central Teacher Eligibility Test) 2026",
+      "qualification": "Graduate + B.Ed / D.El.Ed",
+      "qualification_code": "graduate",
+      "age_min": 18,
+      "age_max": 60,
+      "exam_pattern": [
+        {
+          "stage": "Paper I",
+          "mode": "OMR / CBT",
+          "total_marks": 150,
+          "duration_min": 150,
+          "negative_marking": "No negative marking",
+          "sections": [
+            {
+              "name": "Child Development & Pedagogy",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Language I",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Language II",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Mathematics",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Environmental Studies",
+              "questions": 30,
+              "marks": 30
+            }
+          ],
+          "note": "150 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Child Development & Pedagogy",
+              "topics": [
+                "Concept of development",
+                "Inclusive education",
+                "Learning & pedagogy"
+              ]
+            },
+            {
+              "subject": "Mathematics & EVS",
+              "topics": [
+                "Number system",
+                "Geometry",
+                "Environmental concepts",
+                "Pedagogical issues"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://ctet.nic.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://ctet.nic.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://ctet.nic.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 1,
+      "summary": "National Eligibility Test for Assistant Professor and Junior Research Fellowship.",
+      "posts": "Assistant Professor eligibility, Junior Research Fellowship (JRF)",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Paper I (Teaching & Research Aptitude)",
+        "Paper II (Subject)"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 1150,
+          "notes": ""
+        },
+        {
+          "category": "SC/ST/PwD/Third gender",
+          "amount": 325,
+          "notes": ""
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on ugcnet.nta.ac.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "What is the age limit for JRF?",
+          "a": "Upper age limit for JRF is 30 years (with relaxations); there is no age limit for Assistant Professor."
+        }
+      ],
+      "yearwise": [],
+      "id": "ugc-net-2026",
+      "body": "nta",
+      "exam": "UGC NET",
+      "title": "UGC-NET (Assistant Professor & JRF) 2026",
+      "qualification": "Post-graduate",
+      "qualification_code": "pg",
+      "age_min": 18,
+      "age_max": 60,
+      "exam_pattern": [
+        {
+          "stage": "Paper I + II",
+          "mode": "CBT",
+          "total_marks": 300,
+          "duration_min": 180,
+          "negative_marking": "No negative marking",
+          "sections": [
+            {
+              "name": "Paper I — Teaching & Research Aptitude",
+              "questions": 50,
+              "marks": 100
+            },
+            {
+              "name": "Paper II — Subject",
+              "questions": 100,
+              "marks": 200
+            }
+          ],
+          "note": "150 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Paper I",
+              "topics": [
+                "Teaching aptitude",
+                "Research aptitude",
+                "Reasoning",
+                "Data interpretation",
+                "ICT",
+                "People, development & environment"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://ugcnet.nta.ac.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://ugcnet.nta.ac.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://ugcnet.nta.ac.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 400,
+      "summary": "Admission to the National Defence Academy and Naval Academy (Army, Navy, Air Force wings).",
+      "posts": "Cadet — Army, Navy, Air Force, Naval Academy",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Written Examination",
+        "SSB Interview",
+        "Medical Examination"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 100,
+          "notes": "SC/ST and eligible candidates exempted"
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on upsc.gov.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "Who can apply for NDA?",
+          "a": "Unmarried candidates who have passed / are appearing in Class 12; Physics & Maths required for Navy/Air Force."
+        }
+      ],
+      "yearwise": [],
+      "id": "nda-2026",
+      "body": "upsc",
+      "exam": "NDA",
+      "title": "UPSC NDA & NA 2026",
+      "qualification": "12th pass",
+      "qualification_code": "12th",
+      "age_min": 17,
+      "age_max": 20,
+      "exam_pattern": [
+        {
+          "stage": "Written",
+          "mode": "Offline",
+          "total_marks": 900,
+          "duration_min": 300,
+          "negative_marking": "1/3 per wrong answer",
+          "sections": [
+            {
+              "name": "Mathematics",
+              "questions": 120,
+              "marks": 300
+            },
+            {
+              "name": "General Ability Test",
+              "questions": 150,
+              "marks": 600
+            }
+          ],
+          "note": "270 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "Mathematics",
+              "topics": [
+                "Algebra",
+                "Trigonometry",
+                "Calculus",
+                "Vector algebra",
+                "Statistics"
+              ]
+            },
+            {
+              "subject": "General Ability",
+              "topics": [
+                "English",
+                "Physics",
+                "Chemistry",
+                "General science",
+                "History",
+                "Geography",
+                "Current events"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://upsc.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://upsc.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://upsc.gov.in",
+          "kind": "Website"
+        }
+      ]
+    },
+    {
+      "status": "upcoming",
+      "vacancy": 450,
+      "summary": "Recruitment to the Indian Military, Naval, Air Force Academy and Officers Training Academy.",
+      "posts": "Officer — IMA, INA, AFA, OTA",
+      "stages": [],
+      "dates": [],
+      "selection": [
+        "Written Examination",
+        "SSB Interview",
+        "Medical Examination"
+      ],
+      "vacancy_history": [],
+      "cutoffs": [],
+      "updates": [],
+      "related": [],
+      "fees": [
+        {
+          "category": "General",
+          "amount": 200,
+          "notes": "SC/ST/Women exempted"
+        }
+      ],
+      "salary": [],
+      "how_to_apply": [
+        "Register / one-time registration on upsc.gov.in",
+        "Fill the online application form",
+        "Upload photo and signature as per specifications",
+        "Pay the application fee online",
+        "Submit and save the confirmation"
+      ],
+      "faqs": [
+        {
+          "q": "Is the OTA exam different?",
+          "a": "OTA has only English and General Knowledge papers (no Mathematics)."
+        }
+      ],
+      "yearwise": [],
+      "id": "cds-2026",
+      "body": "upsc",
+      "exam": "CDS",
+      "title": "UPSC CDS (Combined Defence Services) 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "age_min": 19,
+      "age_max": 25,
+      "exam_pattern": [
+        {
+          "stage": "Written",
+          "mode": "Offline",
+          "total_marks": 300,
+          "duration_min": 360,
+          "negative_marking": "1/3 per wrong answer",
+          "sections": [
+            {
+              "name": "English",
+              "questions": 120,
+              "marks": 100
+            },
+            {
+              "name": "General Knowledge",
+              "questions": 120,
+              "marks": 100
+            },
+            {
+              "name": "Elementary Mathematics",
+              "questions": 100,
+              "marks": 100
+            }
+          ],
+          "note": "300 questions in total."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Main",
+          "subjects": [
+            {
+              "subject": "General Knowledge",
+              "topics": [
+                "Current affairs",
+                "History",
+                "Polity",
+                "Geography",
+                "Economics",
+                "General science"
+              ]
+            },
+            {
+              "subject": "Elementary Mathematics",
+              "topics": [
+                "Arithmetic",
+                "Algebra",
+                "Trigonometry",
+                "Geometry",
+                "Mensuration",
+                "Statistics"
+              ]
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Notification",
+          "url": "https://upsc.gov.in",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://upsc.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Website",
+          "url": "https://upsc.gov.in",
+          "kind": "Website"
         }
       ]
     }

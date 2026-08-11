@@ -712,10 +712,10 @@ export function renderExam(id) {
   const c = byId(id);
   const b = BODIES[c.body];
   const dl = nextDeadline(c);
-  const dleft = daysLeft(dl.date);
-  const maxV = Math.max(...c.vacancy_history.map((v) => v.seats));
+  const dleft = dl ? daysLeft(dl.date) : null;
+  const maxV = (c.vacancy_history && c.vacancy_history.length) ? Math.max(...c.vacancy_history.map((v) => v.seats)) : 0;
 
-  const countHtml = dleft >= 0
+  const countHtml = dl && dleft !== null && dleft >= 0
     ? `<div class="deadline-label">\u23F0 ${esc(dl.label)} &middot; ${fmt(dl.date)}</div>
        <div class="countbox" data-count-to="${dl.date}">
          <div class="count-unit"><b class="cu-d">${dleft}</b><span>Days</span></div>
