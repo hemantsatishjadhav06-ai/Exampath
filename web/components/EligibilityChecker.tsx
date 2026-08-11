@@ -31,21 +31,21 @@ export default function EligibilityChecker({
     if (ageOk && qualOk) {
       setRes({
         ok: true,
-        msg: `✓ You're eligible for ${exam}! Age & qualification both match.`,
+        msg: `✓ You appear to match the basic age and qualification screen for ${exam}.`,
       });
     } else {
       const reasons: string[] = [];
-      if (!ageOk) reasons.push(`age must be ${ageMin}–${ageMax}`);
-      if (!qualOk) reasons.push(`needs ${qualification}`);
-      setRes({ ok: false, msg: `✕ Not eligible: ${reasons.join(" · ")}.` });
+      if (!ageOk) reasons.push(`the basic age range shown is ${ageMin}–${ageMax}`);
+      if (!qualOk) reasons.push(`the minimum qualification shown is ${qualification}`);
+      setRes({ ok: false, msg: `✕ Basic screen not matched: ${reasons.join(" · ")}.` });
     }
   }
 
   return (
     <div className="panel elig">
-      <h3>🎯 Am I eligible?</h3>
+      <h3>🎯 Basic eligibility check</h3>
       <p className="small muted" style={{ margin: "2px 0 0" }}>
-        Check instantly for {exam}.
+        A quick screening for {exam}, not a final eligibility decision.
       </p>
       <div className="inrow">
         <div>
@@ -53,6 +53,8 @@ export default function EligibilityChecker({
           <input
             type="number"
             id="eAge"
+            min="1"
+            max="100"
             placeholder="21"
             value={age}
             onChange={(e) => setAge(e.target.value)}
@@ -72,12 +74,15 @@ export default function EligibilityChecker({
           </select>
         </div>
       </div>
-      <button type="button" className="btn saf sm" onClick={check}>
-        Check eligibility
+      <button id="eligCheck" type="button" className="btn saf sm" onClick={check}>
+        Check basic eligibility
       </button>
-      {res && <div className={`res ${res.ok ? "ok" : "no"}`}>{res.msg}</div>}
+      {res && <div id="eligRes" className={`res ${res.ok ? "ok" : "no"}`} role="status">{res.msg}</div>}
       <div className="small muted" style={{ marginTop: 8 }}>
-        Needs: {qualification} &middot; Age {ageMin}&ndash;{ageMax} (relaxations apply)
+        Screening inputs: {qualification} · Age {ageMin}–{ageMax}. Age relaxations and post-specific rules may apply.
+      </div>
+      <div className="small muted" style={{ marginTop: 6 }}>
+        Always confirm the exact post, age cut-off date, category rules, education requirements and physical/medical standards in the official notification.
       </div>
     </div>
   );
