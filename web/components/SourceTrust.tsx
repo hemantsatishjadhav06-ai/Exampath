@@ -1,6 +1,7 @@
+import type { CSSProperties } from "react";
 import type { Cycle } from "@/lib/types";
 
-const box: React.CSSProperties = {
+const box: CSSProperties = {
   display: "flex",
   gap: 12,
   alignItems: "flex-start",
