@@ -86,6 +86,7 @@ export interface Cycle {
   age_max: number;
   summary: string;
   posts: string;
+  schedule_note?: string;
   stages: Stage[];
   dates: KeyDate[];
   selection: string[];
