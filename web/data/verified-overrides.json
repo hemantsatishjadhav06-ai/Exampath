@@ -5,6 +5,7 @@
     "vacancy_note": "Approx. 12,256 tentative vacancies in the 21 May 2026 notice; SSC says updated post-wise/category-wise vacancies will be published separately.",
     "age_min": 18,
     "age_max": 32,
+    "schedule_note": "SSC's 21 May 2026 notice gives Tier-I as August–September 2026 and Tier-II as December 2026. No exact exam day is stored until SSC publishes one.",
     "stages": [
       { "name": "Notification", "date": "2026-05-21", "done": true, "precision": "day" },
       { "name": "Applications", "date": "2026-05-21", "done": true, "precision": "day" },
