@@ -77,6 +77,15 @@ export function pill(status) {
   return `<span class="pill ${m.cls}"><span class="dot"></span>${m.label}</span>`;
 }
 
+/* Conducting-body emblem ("logo"): a clean monogram badge in the body's brand
+   colour — safe (no trademarked artwork) and consistent across the site. */
+export function emblem(b, size = 40) {
+  const c = (b && b.color) || "#0d9488";
+  const t = (b && b.short ? String(b.short) : "?").slice(0, 5);
+  const fs = t.length >= 5 ? 8.5 : t.length === 4 ? 10 : t.length === 3 ? 12 : 15;
+  return `<span class="emblem" style="--ec:${c};width:${size}px;height:${size}px;border-radius:${Math.round(size * 0.28)}px" role="img" aria-label="${esc((b && b.short) || "")} emblem"><span style="font-size:${fs}px">${esc(t)}</span></span>`;
+}
+
 export function examCard(c) {
   const b = BODIES[c.body];
   const dl = c.dates.find((d) => d.is_deadline);
@@ -87,7 +96,7 @@ export function examCard(c) {
       : `<div class="f"><b>&mdash;</b><span>Dates soon</span></div>`;
   return `<div class="xcard">
     <div class="row1">
-      <span class="badge" style="background:${b.color}1a;color:${b.color}">${b.short}</span>
+      ${emblem(b, 42)}
       <div style="min-width:0">
         <h3>${esc(c.exam)}</h3>
         <div class="meta">${esc(b.name.split(" ").slice(0, 3).join(" "))} &middot; ${esc(c.qualification)}</div>
@@ -120,7 +129,7 @@ function feedItem(cycleId, title, text, kind, when) {
 function bodyCard(b) {
   const n = CYCLES.filter((c) => c.body === b.slug).length;
   return `<a class="bcard" href="/body/${b.slug}/">
-    <div class="ic" style="background:${b.color}">${b.short}</div>
+    ${emblem(b, 52)}
     <b>${b.short}</b><span>${n} exam${n !== 1 ? "s" : ""} &middot; ${esc(b.level)}</span>
     ${b.description ? `<p class="bdesc">${esc(b.description)}</p>` : ""}
   </a>`;
@@ -1077,7 +1086,11 @@ export function sitemapXml() {
   const urls = ["/", "/notifications/", "/admit-cards/", "/results/", "/bodies/",
     "/calendar/", "/search/", "/about/", "/faq/", "/contact/", "/disclaimer/"];
   DATA.bodies.forEach((b) => urls.push(`/body/${b.slug}/`));
-  CYCLES.forEach((c) => urls.push(`/exam/${c.id}/`));
+  CYCLES.forEach((c) => {
+    urls.push(`/exam/${c.id}/`);
+    EXAM_SECTIONS.forEach(([seg]) => urls.push(`/exam/${c.id}/${seg}/`));
+    (c.yearwise || []).forEach((y) => urls.push(`/exam/${c.id}/${y.year}/`));
+  });
   const today = DATA.generated_at;
   const items = urls.map((u) =>
     `  <url><loc>${SITE_URL}${u}</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq></url>`).join("\n");
@@ -1126,6 +1139,175 @@ ${entries}
 `;
 }
 
+/* =====================================================================
+   Page-generation engine — per-exam section pages + per-year pages.
+   Each is a distinct, SEO-optimised page that reuses the dashboard panels
+   and cross-links the others (strong internal linking).
+   ===================================================================== */
+const EXAM_SECTIONS = [
+  ["syllabus", "Syllabus & Exam Pattern"],
+  ["eligibility", "Eligibility"],
+  ["cut-offs", "Cut-offs & Results"],
+  ["salary", "Salary & Fees"],
+  ["how-to-apply", "How to Apply"],
+  ["previous-papers", "Previous Papers"],
+  ["faq", "FAQs"],
+];
+
+function sectionNav(c, active) {
+  const item = (seg, label) =>
+    `<a href="/exam/${c.id}/${seg ? seg + "/" : ""}" class="subnav-a ${active === seg ? "on" : ""}">${label}</a>`;
+  return `<nav class="subnav" aria-label="Exam sections">
+    ${item("", "\u{1F3E0} Overview")}
+    ${EXAM_SECTIONS.map(([seg, label]) => item(seg, label)).join("")}
+  </nav>`;
+}
+
+function subPage(c, b, { seg, h1, title, description, content, jsonld = [] }) {
+  const body = `<section class="page"><div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/body/${b.slug}/">${esc(b.short)}</a> › <a href="/exam/${c.id}/">${esc(c.exam)}</a> › <span>${esc(h1)}</span></nav>
+    <div class="sub-hero">
+      ${emblem(b, 46)}
+      <div><div class="body-tag" style="color:var(--muted)">${esc(b.name)}</div>
+        <h1 class="page-title" style="font-size:24px">${esc(c.title)} — ${esc(h1)}</h1></div>
+      <a class="btn pri sm" style="margin-left:auto" href="${esc(officialLink(c, b, "apply"))}" target="_blank" rel="noopener">Apply ↗</a>
+    </div>
+    ${sectionNav(c, seg)}
+    ${content}
+    <div class="panel" style="text-align:center"><a class="btn ghost" href="/exam/${c.id}/">← Full ${esc(c.exam)} dashboard</a></div>
+    ${footer()}
+  </div></section>`;
+  return layout({
+    title, description, body, active: "/bodies", path: `/exam/${c.id}/${seg}/`,
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: b.short, path: `/body/${b.slug}/` },
+      { name: c.exam, path: `/exam/${c.id}/` }, { name: h1, path: `/exam/${c.id}/${seg}/` }],
+    jsonld,
+  });
+}
+
+function eligPanel(c, b) {
+  return `<div class="panel elig" data-age-min="${c.age_min}" data-age-max="${c.age_max}" data-qcode="${c.qualification_code}" data-exam="${esc(c.exam)}" data-qual="${esc(c.qualification)}">
+      <h3>\u{1F3AF} Am I eligible for ${esc(c.exam)}?</h3>
+      <div class="kv"><div><span>Qualification</span><b>${esc(c.qualification)}</b></div>
+        <div><span>Age limit</span><b>${c.age_min}–${c.age_max} years</b></div>
+        <div><span>Vacancies</span><b>${inr(c.vacancy)}</b></div></div>
+      <div class="inrow">
+        <div><label for="eAge">Your age</label><input type="number" id="eAge" placeholder="21"></div>
+        <div><label for="eQual">Qualification</label>
+          <select id="eQual"><option value="10th">10th pass</option><option value="12th">12th pass</option><option value="graduate">Graduate</option><option value="pg">Post-graduate</option></select></div>
+      </div>
+      <button class="btn saf sm" id="eligCheck">Check eligibility</button>
+      <div class="res" id="eligRes"></div>
+      <p class="small muted" style="margin-top:8px">Age relaxations apply for reserved categories — confirm on the official notification.</p>
+    </div>`;
+}
+
+function salaryFeesPanel(c, b) {
+  const has = (x) => Array.isArray(x) && x.length;
+  if (!has(c.salary) && !has(c.fees)) {
+    return `<div class="panel"><p class="muted">Salary and fee details will appear once published. ${""}</p>${officialNote(b, officialLink(c, b, "notification"))}</div>`;
+  }
+  return `${has(c.salary) ? `<div class="panel"><h3>💰 Salary by post</h3>
+      <div class="tbl-scroll"><table class="dtable"><tbody><tr><th>Post</th><th>Pay level</th><th>Pay scale</th><th>In-hand*</th></tr>
+      ${c.salary.map((s) => `<tr><td><b>${esc(s.post)}</b></td><td>${esc(s.pay_level || "—")}</td><td>${s.pay_min ? "₹" + inr(s.pay_min) + "–₹" + inr(s.pay_max) : "—"}</td><td>${s.in_hand_approx ? "≈ ₹" + inr(s.in_hand_approx) : "—"}</td></tr>`).join("")}
+      </tbody></table></div><p class="small muted" style="margin:8px 0 0">*Approximate; varies by city &amp; allowances.</p></div>` : ""}
+    ${has(c.fees) ? `<div class="panel"><h3>💳 Application fee</h3>
+      <div class="tbl-scroll"><table class="dtable"><tbody><tr><th>Category</th><th>Fee</th><th>Notes</th></tr>
+      ${c.fees.map((f) => `<tr><td><b>${esc(f.category)}</b></td><td>${f.amount ? "₹" + inr(f.amount) : "Free"}</td><td class="small muted">${esc(f.notes || "")}</td></tr>`).join("")}
+      </tbody></table></div></div>` : ""}
+    ${officialNote(b, officialLink(c, b, "notification"))}`;
+}
+
+function howToPanel(c, b) {
+  const has = (x) => Array.isArray(x) && x.length;
+  return `${has(c.how_to_apply) ? `<div class="panel"><h3>🚀 How to apply for ${esc(c.exam)}</h3>
+      <ol class="steps">${c.how_to_apply.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+      <a class="btn saf" style="margin-top:10px" href="${esc(officialLink(c, b, "apply"))}" target="_blank" rel="noopener">Apply on the official site ↗</a></div>`
+    : `<div class="panel"><h3>🚀 How to apply</h3><p class="muted">Apply online on the official portal when the window opens.</p>
+      <a class="btn saf" href="${esc(officialLink(c, b, "apply"))}" target="_blank" rel="noopener">Official apply portal ↗</a></div>`}
+    ${(c.links || []).length ? `<div class="panel"><h3>🔗 Official sources</h3>${c.links.map(srcRow).join("")}</div>` : ""}`;
+}
+
+function prevPapersPanel(c, b) {
+  const years = (c.yearwise || []).map((y) => y.year).sort((a, z) => z - a);
+  return `<div class="panel">
+      <h3>📄 Previous-year papers &amp; resources</h3>
+      <p class="muted" style="margin:0 0 10px">Official previous-year question papers and answer keys for ${esc(c.exam)} are published free on the conducting body's website. Use the official links below — we don't host copyrighted papers.</p>
+      ${(c.links || []).map(srcRow).join("")}
+      <a class="src" href="${esc(b.official_url)}" target="_blank" rel="noopener"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><div><b>${esc(b.short)} — official website</b><br><span>Question papers, keys &amp; results</span></div><span class="go">Open ↗</span></a>
+    </div>
+    ${years.length ? `<div class="panel"><h3>🗓 Year-wise pages</h3><div class="chips">${years.map((y) => `<a class="c" href="/exam/${c.id}/${y}/">${y} details</a>`).join("")}</div></div>` : ""}`;
+}
+
+function faqPanel(c, b) {
+  const faqs = Array.isArray(c.faqs) ? c.faqs.filter((f) => f && f.q && f.a) : [];
+  if (!faqs.length) return `<div class="panel"><p class="muted">FAQs will be added soon.</p>${officialNote(b, b.official_url)}</div>`;
+  const ld = { "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+  return { html: `<div class="panel"><h3>❓ ${esc(c.exam)} FAQs</h3><div class="faq">${faqs.map((f) => `<details class="faq-item"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div></div>${officialNote(b, b.official_url)}`, ld };
+}
+
+function examSectionRoutes(c) {
+  const b = BODIES[c.body];
+  const out = [];
+  const P = (seg, h1, title, description, content, jsonld = []) =>
+    out.push({ path: `exam/${c.id}/${seg}/index.html`, html: subPage(c, b, { seg, h1, title, description, content, jsonld }) });
+
+  P("syllabus", "Syllabus & Exam Pattern",
+    `${c.exam} Syllabus & Exam Pattern 2026 | ExamPath`,
+    `${c.title} syllabus and exam pattern — sections, marks, duration and negative marking, subject-wise topics.`,
+    patternPanel(c, b) || `<div class="panel"><p class="muted">Detailed syllabus & pattern will be published soon.</p>${officialNote(b, officialLink(c, b, "notification"))}</div>`);
+
+  P("eligibility", "Eligibility",
+    `${c.exam} Eligibility 2026 — Age, Qualification | ExamPath`,
+    `${c.title} eligibility: qualification ${c.qualification}, age ${c.age_min}–${c.age_max}. Check instantly with the built-in checker.`,
+    eligPanel(c, b), embedDataLD());
+
+  P("cut-offs", "Cut-offs & Results",
+    `${c.exam} Cut-off & Result 2026 (5-year) | ExamPath`,
+    `${c.title} year-wise cut-offs, vacancies and result status for the last 5 years, with official links.`,
+    cutoffsPanel(c, b));
+
+  P("salary", "Salary & Fees",
+    `${c.exam} Salary, Pay Scale & Application Fee | ExamPath`,
+    `${c.title} salary by post, pay level and in-hand estimate, plus category-wise application fees.`,
+    salaryFeesPanel(c, b));
+
+  P("how-to-apply", "How to Apply",
+    `How to Apply for ${c.exam} 2026 — Steps | ExamPath`,
+    `Step-by-step guide to apply for ${c.title} on the official portal, with fee details and the apply link.`,
+    howToPanel(c, b));
+
+  P("previous-papers", "Previous Papers",
+    `${c.exam} Previous-Year Papers (Official) | ExamPath`,
+    `Official previous-year question papers, answer keys and results for ${c.title} — direct links to the conducting body.`,
+    prevPapersPanel(c, b));
+
+  const fp = faqPanel(c, b);
+  P("faq", "FAQs", `${c.exam} FAQs — Common Questions | ExamPath`,
+    `Frequently asked questions about ${c.title}: eligibility, pattern, fees, dates and more.`,
+    fp.html || fp, fp.ld ? [fp.ld] : []);
+
+  // per-year pages
+  (c.yearwise || []).forEach((y) => {
+    const stLabel = y.result_status === "declared" ? "Result declared" : y.result_status === "awaited" ? "Result awaited" : "Upcoming";
+    const content = `<div class="panel"><h3>🗓 ${esc(c.exam)} ${y.year}</h3>
+        <div class="kv"><div><span>Vacancies</span><b>${y.vacancy != null ? inr(y.vacancy) : "—"}</b></div>
+        <div><span>UR cut-off</span><b>${y.cutoff_ur != null ? y.cutoff_ur : "—"}</b></div>
+        <div><span>Result</span><b>${stLabel}</b></div></div>
+        <a class="btn pri sm" style="margin-top:12px" href="${esc(y.result_url || b.official_url)}" target="_blank" rel="noopener">Check ${y.year} result on official site ↗</a>
+      </div>
+      <div class="panel"><h3>Other years</h3><div class="chips">${(c.yearwise || []).map((z) => `<a class="c" href="/exam/${c.id}/${z.year}/">${z.year}</a>`).join("")}</div></div>`;
+    out.push({ path: `exam/${c.id}/${y.year}/index.html`,
+      html: subPage(c, b, { seg: String(y.year), h1: `${y.year} — Vacancy, Cut-off & Result`,
+        title: `${c.exam} ${y.year} — Vacancy, Cut-off & Result | ExamPath`,
+        description: `${c.title} ${y.year}: vacancies, UR cut-off and result status with the official link.`,
+        content }) });
+  });
+  return out;
+}
+function embedDataLD() { return []; }
+
 export function allRoutes() {
   const routes = [
     { path: "index.html", html: renderHome() },
@@ -1141,6 +1323,9 @@ export function allRoutes() {
     { path: "disclaimer/index.html", html: renderDisclaimer() },
   ];
   DATA.bodies.forEach((b) => routes.push({ path: `body/${b.slug}/index.html`, html: renderBody(b.slug) }));
-  CYCLES.forEach((c) => routes.push({ path: `exam/${c.id}/index.html`, html: renderExam(c.id) }));
+  CYCLES.forEach((c) => {
+    routes.push({ path: `exam/${c.id}/index.html`, html: renderExam(c.id) });
+    for (const r of examSectionRoutes(c)) routes.push(r);
+  });
   return routes;
 }

@@ -475,3 +475,30 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   .hero{padding:34px 0 72px}
   .hero-center .hero-stats{gap:18px 26px}
 }
+
+/* =============== v5 — emblem (logo), sub-page nav & detail layouts =============== */
+.emblem{display:inline-flex;align-items:center;justify-content:center;flex:none;color:#fff;font-weight:800;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,var(--ec),color-mix(in srgb,var(--ec) 62%,#000));
+  box-shadow:0 2px 6px -1px color-mix(in srgb,var(--ec) 45%,transparent), inset 0 1px 0 rgba(255,255,255,.28)}
+.emblem::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 55%);pointer-events:none}
+.emblem>span{position:relative;letter-spacing:-.02em;line-height:1}
+.xcard .row1 .emblem{border-radius:12px}
+.bcard .emblem{margin:0 auto 9px}
+
+/* Sub-page hero + section nav */
+.sub-hero{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--sh-s);margin:6px 0 12px}
+.sub-hero .page-title{line-height:1.2}
+.subnav{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 14px;scrollbar-width:thin}
+.subnav::-webkit-scrollbar{height:6px}.subnav::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.subnav-a{flex:none;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink-2);background:var(--card);border:1px solid var(--line);white-space:nowrap}
+.subnav-a:hover{border-color:var(--brand-100);color:var(--brand)}
+.subnav-a.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* key-value strip used on detail pages */
+.kv{display:flex;flex-wrap:wrap;gap:10px 26px;margin:6px 0 4px}
+.kv>div{display:flex;flex-direction:column}
+.kv>div span{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.kv>div b{font-size:16px;color:var(--ink)}
+.steps{margin:6px 0 0;padding-left:20px}.steps li{margin:7px 0}
+.ofnote{display:flex;align-items:center;gap:8px;background:var(--brand-soft);border:1px solid var(--brand-100);color:var(--ink-2);font-size:13px;padding:10px 14px;border-radius:12px;margin-top:4px}
+.ofnote a{color:var(--brand);font-weight:700}
