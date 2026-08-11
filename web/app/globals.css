@@ -502,3 +502,39 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .steps{margin:6px 0 0;padding-left:20px}.steps li{margin:7px 0}
 .ofnote{display:flex;align-items:center;gap:8px;background:var(--brand-soft);border:1px solid var(--brand-100);color:var(--ink-2);font-size:13px;padding:10px 14px;border-radius:12px;margin-top:4px}
 .ofnote a{color:var(--brand);font-weight:700}
+
+/* =============== v6 — brief compliance: filters, tabs, stage buttons =============== */
+/* Eligibility filter panel (/search/) */
+.elig-panel{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--sh-s);margin-top:14px}
+.elig-panel .ef{display:flex;flex-direction:column;gap:5px;min-width:150px;flex:1}
+.elig-panel label{font-size:12px;font-weight:700;color:var(--ink-2)}
+.elig-panel select,.elig-panel input{height:42px;border:1px solid var(--line);border-radius:10px;padding:0 12px;font-size:14px;background:var(--bg);color:var(--ink)}
+.elig-panel select:focus,.elig-panel input:focus{outline:none;border-color:var(--brand-l);box-shadow:0 0 0 4px var(--brand-soft)}
+.elig-panel .btn{flex:none}
+@media(max-width:640px){.elig-panel .ef{min-width:calc(50% - 6px)}.elig-panel .btn{width:100%}}
+.active-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.achip{font-size:13px;font-weight:700;color:var(--brand);background:var(--brand-soft);border:1px solid var(--brand-100);border-radius:999px;padding:7px 13px}
+.achip:hover{background:var(--brand-100)}
+
+/* Latest-updates tabs (home) */
+.upd-tabs{display:flex;gap:8px;margin:0 0 12px;overflow-x:auto;padding-bottom:2px}
+.ut{flex:none;padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:700;color:var(--ink-2);background:var(--card);border:1px solid var(--line)}
+.ut:hover{border-color:var(--brand-100);color:var(--brand)}
+.ut.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* Stage action buttons (exam dashboard important-dates) */
+.st-act{margin-left:auto;flex:none}
+.st-btn{display:inline-flex;align-items:center;height:32px;padding:0 13px;border-radius:9px;font-size:12.5px;font-weight:800;color:#fff}
+.st-btn.st-apply{background:linear-gradient(135deg,#fb923c,var(--saffron))}
+.st-btn.st-apply:hover{background:var(--saffron-d)}
+.st-btn.st-dl{background:var(--brand)}
+.st-btn.st-dl:hover{background:var(--brand-d)}
+.st-chip{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:9px;font-size:12.5px;font-weight:800}
+.st-count{background:var(--red-soft);color:var(--red)}
+.st-wait{background:var(--line-2);color:var(--muted)}
+.st-done{background:var(--line-2);color:var(--faint)}
+
+/* State chips: coming-soon muted */
+.c-soon{opacity:.62}
+.muted-card{opacity:.72}
+.muted-card:hover{opacity:1}

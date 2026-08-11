@@ -160,6 +160,11 @@ function categoryBlocks({ withExams = false } = {}) {
     const m = CATEGORY_META[k];
     const bodies = byCat[k];
     const exams = CYCLES.filter((c) => bodies.some((b) => b.slug === c.body));
+    // State block: browse by STATE (all 28 + UTs), live states first (brief §4).
+    const stateStrip = k === "state" ? `
+      <div class="sec-title" style="margin-top:14px"><h4 class="small" style="font-weight:800">Browse by state</h4><a href="/states/">All states &rarr;</a></div>
+      <div class="chips">${STATES.slice().sort((a, z) => ((z.bodies || []).length) - ((a.bodies || []).length))
+        .map((s) => `<a class="c ${(s.bodies || []).length ? "" : "c-soon"}" href="/state/${s.slug}/">${esc(s.name)}${(s.bodies || []).length ? "" : " ·soon"}</a>`).join("")}</div>` : "";
     return `<section class="blk cat-block" aria-label="${esc(m.title)}">
       <div class="cat-head">
         <span class="cat-ic">${m.icon}</span>
@@ -167,6 +172,7 @@ function categoryBlocks({ withExams = false } = {}) {
         <p class="small muted">${m.blurb}</p></div>
       </div>
       <div class="body-grid">${bodies.map(bodyCard).join("")}</div>
+      ${stateStrip}
       ${withExams && exams.length ? `<div class="exam-grid" style="margin-top:12px">${exams.map(examCard).join("")}</div>` : ""}
     </section>`;
   }).join("");
@@ -364,9 +370,11 @@ ${rawLD}
     <nav class="navlinks" aria-label="Primary">
       ${navItem("/", "Home", "/")}
       ${navItem("/notifications/", "Notifications", "/notifications")}
-      ${navItem("/bodies/", "Exams", "/bodies")}
+      ${navItem("/admit-cards/", "Admit Card", "/admit-cards")}
+      ${navItem("/results/", "Result", "/results")}
       ${navItem("/calendar/", "Calendar", "/calendar")}
-      ${navItem("/search/", "Search", "/search")}
+      ${navItem("/bodies/", "All Exams", "/bodies")}
+      ${navItem("/search/", "Check Eligibility", "/search")}
     </nav>
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -484,9 +492,29 @@ export function renderHome() {
     <!-- 2. Latest updates (focal), each tagged with its exam badge -->
     <section class="blk" aria-labelledby="h-updates">
       <div class="sec-title"><h2 id="h-updates">\u{1F195} Latest updates</h2><a href="/notifications/">All notifications &rarr;</a></div>
-      <div class="updates-grid">
-        ${latestUpdates(8).map(updateRow).join("")}
-      </div>
+      ${(() => {
+        const all = latestUpdates(24);
+        const isAdmit = (u) => u.kind === "admit" || /admit card|hall ticket|exam city/i.test(u.text);
+        const isResult = (u) => u.kind === "result" || /result|answer key|score ?card|merit list/i.test(u.text);
+        const seg = {
+          all: all.slice(0, 8),
+          admit: all.filter(isAdmit).slice(0, 8),
+          result: all.filter(isResult).slice(0, 8),
+          notif: all.filter((u) => !isAdmit(u) && !isResult(u)).slice(0, 8),
+        };
+        const pane = (key, items, empty) => `<div class="updates-grid" data-upd-pane="${key}" ${key !== "all" ? "hidden" : ""}>
+          ${items.length ? items.map(updateRow).join("") : `<div class="card" style="padding:22px;text-align:center;grid-column:1/-1"><p class="muted">${empty}</p></div>`}</div>`;
+        return `<div class="upd-tabs" role="tablist" aria-label="Update type">
+            <button class="ut on" role="tab" aria-selected="true" data-upd="all">All</button>
+            <button class="ut" role="tab" aria-selected="false" data-upd="notif">\u{1F514} Notifications</button>
+            <button class="ut" role="tab" aria-selected="false" data-upd="admit">\u{1F3AB} Admit Card</button>
+            <button class="ut" role="tab" aria-selected="false" data-upd="result">\u{1F3C6} Result</button>
+          </div>
+          ${pane("all", seg.all, "No updates yet.")}
+          ${pane("notif", seg.notif, "No new notifications right now.")}
+          ${pane("admit", seg.admit, "No admit-card updates right now.")}
+          ${pane("result", seg.result, "No result updates right now.")}`;
+      })()}
     </section>
 
     <!-- 3. Conducting bodies — Central, then State, then Banking/Railways -->
@@ -708,6 +736,51 @@ function applyPanel(c, b) {
     ${officialNote(b, officialLink(c, b, "apply"))}`;
 }
 
+/* One stage row: label · date · the RIGHT action button, computed from the
+   stage type and today's date (brief §2) — data-driven, no per-exam code.
+   - apply-start  -> "Apply" link while the window is open, else state chip
+   - deadline     -> live "X days left" countdown chip (or "Closed")
+   - release item (admit card / answer key / result) -> "Download" once due,
+                    greyed "Expected <Mon>" before
+   - exam date    -> countdown, then "Exam held"                              */
+function stageRow(d, c, b) {
+  const dlft = daysLeft(d.date);
+  const label = d.label.toLowerCase();
+  const isApplyStart = /application start|apply online|registration start/.test(label);
+  const isRelease = /admit card|answer key|result|score ?card|merit list|hall ticket/.test(label);
+  const isExam = /exam|tier|phase|cbt|prelim|main/.test(label) && !d.is_deadline && !isRelease;
+  const url = d.url || (isRelease ? officialLink(c, b, "website") : officialLink(c, b, "apply"));
+
+  let action;
+  if (d.is_deadline) {
+    action = dlft < 0 ? `<span class="st-chip st-done">Closed</span>`
+      : `<span class="st-chip st-count" data-daysleft="${d.date}" data-deadline="1">${dlft === 0 ? "Today" : dlft + " days left"}</span>`;
+  } else if (isApplyStart) {
+    const lastDate = c.dates.find((x) => x.is_deadline);
+    const open = dlft <= 0 && (!lastDate || daysLeft(lastDate.date) >= 0);
+    action = open
+      ? `<a class="st-btn st-apply" href="${esc(url)}" target="_blank" rel="noopener">Apply ↗</a>`
+      : dlft > 0 ? `<span class="st-chip st-wait">Opens ${fmtShort(d.date)}</span>`
+      : `<span class="st-chip st-done">Closed</span>`;
+  } else if (isRelease) {
+    action = dlft <= 0
+      ? `<a class="st-btn st-dl" href="${esc(url)}" target="_blank" rel="noopener">Download ↗</a>`
+      : `<span class="st-chip st-wait">Expected ${fmtShort(d.date)}</span>`;
+  } else if (isExam) {
+    action = dlft < 0 ? `<span class="st-chip st-done">Exam held</span>`
+      : `<span class="st-chip st-count" data-daysleft="${d.date}" data-deadline="0">${dlft === 0 ? "Today" : dlft + " days left"}</span>`;
+  } else {
+    action = dlft < 0 ? `<span class="st-chip st-done">Done</span>`
+      : `<span class="st-chip st-count" data-daysleft="${d.date}" data-deadline="0">${dlft === 0 ? "Today" : dlft + " days"}</span>`;
+  }
+  const hot = d.is_deadline && dlft >= 0 && dlft <= 7;
+  return `<div class="kd">
+      <div class="date" style="${hot ? "background:var(--red-soft);color:var(--red)" : ""}"><b>${dayOf(d.date)}</b><span>${monthOf(d.date)}</span></div>
+      <div class="lab"><b>${esc(d.label)}</b><br><span>${fmt(d.date)}</span></div>
+      <div class="st-act">${action}</div>
+    </div>`;
+}
+
 export function renderExam(id) {
   const c = byId(id);
   const b = BODIES[c.body];
@@ -764,16 +837,7 @@ export function renderExam(id) {
 
         <div class="panel">
           <h3><span class="n">2</span> Important dates</h3>
-          ${c.dates.map((d) => {
-            const dlft = daysLeft(d.date);
-            const color = d.is_deadline && dlft >= 0 && dlft <= 7 ? "var(--red)" : dlft < 0 ? "var(--muted)" : "var(--brand)";
-            const rt = dlft < 0 ? "Done" : dlft === 0 ? "Today" : `${dlft} days`;
-            return `<div class="kd">
-              <div class="date"><b>${dayOf(d.date)}</b><span>${monthOf(d.date)}</span></div>
-              <div class="lab"><b>${esc(d.label)}</b><br><span>${fmt(d.date)}</span></div>
-              <div class="rt" data-daysleft="${d.date}" data-deadline="${d.is_deadline ? 1 : 0}" style="color:${color}">${rt}</div>
-            </div>`;
-          }).join("")}
+          ${c.dates.map((d) => stageRow(d, c, b)).join("")}
           <div style="margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)">
             <div class="small muted" style="margin-bottom:6px">Selection process</div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">${c.selection.map((x, i) => `<span class="tag">${i + 1}. ${esc(x)}</span>`).join("")}</div>
@@ -899,13 +963,46 @@ function jobPostingLD(c, b) {
 
 /* ---------- SEARCH ---------- */
 export function renderSearch() {
+  const cats = [["", "Any"], ["central", "Central"], ["state", "State"], ["banking", "Banking"], ["railways", "Railway"]];
   const body = `<section class="page"><div class="wrap">
-    <div class="crumb"><a href="/">Home</a> \u203A <span>Search</span></div>
+    <div class="crumb"><a href="/">Home</a> \u203A <span>Search / Check Eligibility</span></div>
+    <h1 class="page-title" style="margin-bottom:12px">Search exams &amp; check your eligibility</h1>
     <form class="searchbig" action="/search/" method="get" style="max-width:100%;box-shadow:var(--sh-s);border:1px solid var(--line)">
       <input id="pageSearch" name="q" placeholder="Search exams, eligibility, body\u2026" aria-label="Search exams">
       <button class="btn pri" type="submit">Search</button>
     </form>
-    <div class="filters" id="filterChips" style="margin-top:16px">
+
+    <!-- Eligibility filter panel (all optional; combines with the query; client-side) -->
+    <div class="elig-panel" id="eligPanel">
+      <div class="ef">
+        <label for="fEdu">\uD83C\uDF93 Your education</label>
+        <select id="fEdu">
+          <option value="">Any</option>
+          <option value="10th">10th pass</option>
+          <option value="12th">12th pass</option>
+          <option value="graduate">Graduate</option>
+          <option value="pg">Post-graduate</option>
+        </select>
+      </div>
+      <div class="ef">
+        <label for="fAge">\uD83C\uDF82 Your age</label>
+        <input type="number" id="fAge" min="14" max="60" placeholder="e.g. 21">
+      </div>
+      <div class="ef">
+        <label for="fBody">\uD83C\uDFDB Conducted by</label>
+        <select id="fBody">
+          ${cats.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}
+          <optgroup label="Specific body">
+            ${DATA.bodies.map((b) => `<option value="body:${b.slug}">${esc(b.short)}</option>`).join("")}
+          </optgroup>
+        </select>
+      </div>
+      <button class="btn saf" id="fApply" type="button">Show my exams</button>
+      <button class="btn ghost sm" id="fClear" type="button">Clear</button>
+    </div>
+    <div class="active-chips" id="activeChips"></div>
+
+    <div class="filters" id="filterChips" style="margin-top:8px">
       ${["graduate","12th","banking","closing soon","ssc","upsc"].map((f) => `<a class="fchip" href="/search/?q=${encodeURIComponent(f)}">${f}</a>`).join("")}
     </div>
     <div id="parseNote"></div>
@@ -914,7 +1011,7 @@ export function renderSearch() {
     ${footer()}
   </div></section>`;
   return layout({
-    title: "Search Government Exams \u2014 by eligibility, body & deadline | ExamPath",
+    title: "Search Government Exams & Check Eligibility \u2014 by education, age, body | ExamPath",
     description:
       "Search Indian government exams by free text or filters: qualification (graduate, 12th, 10th), age, conducting body (SSC, UPSC, IBPS) or closing soon.",
     body,
@@ -1086,6 +1183,8 @@ export function sitemapXml() {
   const urls = ["/", "/notifications/", "/admit-cards/", "/results/", "/bodies/",
     "/calendar/", "/search/", "/about/", "/faq/", "/contact/", "/disclaimer/"];
   DATA.bodies.forEach((b) => urls.push(`/body/${b.slug}/`));
+  urls.push("/states/");
+  STATES.forEach((s) => urls.push(`/state/${s.slug}/`));
   CYCLES.forEach((c) => {
     urls.push(`/exam/${c.id}/`);
     EXAM_SECTIONS.forEach(([seg]) => urls.push(`/exam/${c.id}/${seg}/`));
@@ -1137,6 +1236,94 @@ export function rssXml() {
 ${entries}
 </channel></rss>
 `;
+}
+
+/* =====================================================================
+   State landing pages — all 28 states + key UTs. States with tracked exams
+   link their bodies/exams; the rest are indexed "coming soon" pages with a
+   unique description (long-tail SEO: "<state> govt exams 2026").
+   ===================================================================== */
+export const STATES = [
+  { slug: "andhra-pradesh", name: "Andhra Pradesh", psc: "APPSC" },
+  { slug: "arunachal-pradesh", name: "Arunachal Pradesh", psc: "APPSC (AR)" },
+  { slug: "assam", name: "Assam", psc: "APSC" },
+  { slug: "bihar", name: "Bihar", psc: "BPSC", bodies: ["bpsc"] },
+  { slug: "chhattisgarh", name: "Chhattisgarh", psc: "CGPSC" },
+  { slug: "goa", name: "Goa", psc: "Goa PSC" },
+  { slug: "gujarat", name: "Gujarat", psc: "GPSC" },
+  { slug: "haryana", name: "Haryana", psc: "HPSC" },
+  { slug: "himachal-pradesh", name: "Himachal Pradesh", psc: "HPPSC" },
+  { slug: "jharkhand", name: "Jharkhand", psc: "JPSC" },
+  { slug: "karnataka", name: "Karnataka", psc: "KPSC" },
+  { slug: "kerala", name: "Kerala", psc: "Kerala PSC" },
+  { slug: "madhya-pradesh", name: "Madhya Pradesh", psc: "MPPSC", bodies: ["mppsc"] },
+  { slug: "maharashtra", name: "Maharashtra", psc: "MPSC" },
+  { slug: "manipur", name: "Manipur", psc: "MPSC (Manipur)" },
+  { slug: "meghalaya", name: "Meghalaya", psc: "MPSC (Meghalaya)" },
+  { slug: "mizoram", name: "Mizoram", psc: "MPSC (Mizoram)" },
+  { slug: "nagaland", name: "Nagaland", psc: "NPSC" },
+  { slug: "odisha", name: "Odisha", psc: "OPSC" },
+  { slug: "punjab", name: "Punjab", psc: "PPSC" },
+  { slug: "rajasthan", name: "Rajasthan", psc: "RPSC", bodies: ["rpsc"] },
+  { slug: "sikkim", name: "Sikkim", psc: "SPSC" },
+  { slug: "tamil-nadu", name: "Tamil Nadu", psc: "TNPSC" },
+  { slug: "telangana", name: "Telangana", psc: "TSPSC" },
+  { slug: "tripura", name: "Tripura", psc: "TPSC" },
+  { slug: "uttar-pradesh", name: "Uttar Pradesh", psc: "UPPSC", bodies: ["uppsc"] },
+  { slug: "uttarakhand", name: "Uttarakhand", psc: "UKPSC" },
+  { slug: "west-bengal", name: "West Bengal", psc: "WBPSC" },
+  { slug: "delhi", name: "Delhi (NCT)", psc: "DSSSB", ut: true },
+  { slug: "jammu-kashmir", name: "Jammu & Kashmir", psc: "JKPSC", ut: true },
+];
+
+export function renderState(st) {
+  const bodies = (st.bodies || []).map((s) => BODIES[s]).filter(Boolean);
+  const exams = CYCLES.filter((c) => (st.bodies || []).includes(c.body));
+  const live = exams.length > 0;
+  const body = `<section class="page"><div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/states/">States</a> › <span>${esc(st.name)}</span></nav>
+    <div class="sec-title"><h1 class="page-title">${esc(st.name)} Government Exams</h1>
+      ${live ? `<span class="tag">${exams.length} tracked exam${exams.length !== 1 ? "s" : ""}</span>` : `<span class="pill p-up"><span class="dot"></span>Coming soon</span>`}</div>
+    <p class="muted" style="max-width:70ch;margin:0 0 18px">${live
+      ? `Live ${st.name} state government exams conducted by ${bodies.map((b) => b.name).join(", ")} — notifications, deadlines, eligibility, cut-offs and results, verified from official sources.`
+      : `We're expanding coverage of ${st.name} government exams (${st.psc} and other state recruitment boards — police, teachers and subordinate services). Exam tracking for ${st.name} is coming soon; meanwhile, browse all-India exams below that ${st.name} candidates can apply for.`}</p>
+    ${live ? `<div class="body-grid blk">${bodies.map(bodyCard).join("")}</div>
+      <div class="exam-grid blk">${exams.map(examCard).join("")}</div>`
+      : `<div class="sec-title"><h2>All-India exams open to ${esc(st.name)} candidates</h2></div>
+      <div class="exam-grid blk">${CYCLES.filter((c) => ["ssc", "upsc", "ibps", "rrb", "sbi", "rbi"].includes(c.body)).slice(0, 6).map(examCard).join("")}</div>`}
+    <div class="panel"><h3>Browse other states</h3>
+      <div class="chips">${STATES.filter((s) => s.slug !== st.slug).map((s) => `<a class="c" href="/state/${s.slug}/">${esc(s.name)}</a>`).join("")}</div></div>
+    ${footer()}
+  </div></section>`;
+  return layout({
+    title: `${st.name} Government Exams 2026 — ${st.psc} Notifications & Dates | ExamPath`,
+    description: live
+      ? `${st.name} government exams: ${exams.map((c) => c.exam).slice(0, 4).join(", ")} — dates, vacancies, eligibility and results from official sources.`
+      : `${st.name} government exam notifications (${st.psc}, police, teachers) — coverage coming soon. Track all-India exams open to ${st.name} candidates.`,
+    body, active: "/bodies", path: `/state/${st.slug}/`,
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: "States", path: "/states/" }, { name: st.name, path: `/state/${st.slug}/` }],
+  });
+}
+
+export function renderStatesIndex() {
+  const card = (s) => {
+    const n = CYCLES.filter((c) => (s.bodies || []).includes(c.body)).length;
+    return `<a class="bcard ${n ? "" : "muted-card"}" href="/state/${s.slug}/">
+      <b>${esc(s.name)}</b><span>${n ? `${n} exam${n !== 1 ? "s" : ""} · ${esc(s.psc)}` : `${esc(s.psc)} · coming soon`}</span></a>`;
+  };
+  const body = `<section class="page"><div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <span>States</span></nav>
+    <div class="sec-title"><h1 class="page-title">Government exams by state</h1><span class="small muted">${STATES.length} states &amp; UTs</span></div>
+    <p class="muted" style="max-width:70ch;margin:0 0 18px">Pick your state to see its public service commission and other state recruitment exams. States without tracked exams yet are marked — coverage grows continuously.</p>
+    <div class="body-grid">${STATES.map(card).join("")}</div>
+    ${footer()}
+  </div></section>`;
+  return layout({
+    title: "Government Exams by State — All 28 States & UTs | ExamPath",
+    description: "Browse Indian government exams state by state: UP, Bihar, MP, Rajasthan and every other state PSC, police and teacher recruitment.",
+    body, active: "/bodies", path: "/states/",
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: "States", path: "/states/" }],
+  });
 }
 
 /* =====================================================================
@@ -1323,6 +1510,8 @@ export function allRoutes() {
     { path: "disclaimer/index.html", html: renderDisclaimer() },
   ];
   DATA.bodies.forEach((b) => routes.push({ path: `body/${b.slug}/index.html`, html: renderBody(b.slug) }));
+  routes.push({ path: "states/index.html", html: renderStatesIndex() });
+  STATES.forEach((s) => routes.push({ path: `state/${s.slug}/index.html`, html: renderState(s) }));
   CYCLES.forEach((c) => {
     routes.push({ path: `exam/${c.id}/index.html`, html: renderExam(c.id) });
     for (const r of examSectionRoutes(c)) routes.push(r);

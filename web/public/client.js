@@ -217,43 +217,149 @@
       return true;
     });
   }
+  function bodyCat(b) {
+    var l = String((b && b.level) || "").toLowerCase();
+    if (l.indexOf("central") === 0) return "central";
+    if (l.indexOf("bank") === 0) return "banking";
+    if (l.indexOf("rail") === 0) return "railways";
+    return "state";
+  }
   function initSearch() {
     var results = document.getElementById("results");
     var dataEl = document.getElementById("exampath-data");
     if (!results || !dataEl) return;
     var data;
     try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
-    var qraw = new URLSearchParams(location.search).get("q") || "";
+    var params = new URLSearchParams(location.search);
+    var qraw = params.get("q") || "";
     var input = document.getElementById("pageSearch");
     if (input) input.value = qraw;
 
-    var parsed = parseQuery(qraw, data.bodies);
-    var res = qraw ? filterCycles(parsed, data.cycles) : data.cycles;
+    // filter panel elements (optional — page may not have them)
+    var fEdu = document.getElementById("fEdu");
+    var fAge = document.getElementById("fAge");
+    var fBody = document.getElementById("fBody");
+    // seed panel from URL params (shareable/bookmarkable searches)
+    if (fEdu && params.get("education")) fEdu.value = params.get("education");
+    if (fAge && params.get("age")) fAge.value = params.get("age");
+    if (fBody && params.get("body")) fBody.value = params.get("body");
 
-    document.getElementById("resultCount").textContent =
-      res.length + " exam" + (res.length !== 1 ? "s" : "") + (qraw ? " found" : "");
+    function currentFilters() {
+      return {
+        edu: fEdu && fEdu.value ? fEdu.value : null,
+        age: fAge && fAge.value ? parseInt(fAge.value, 10) : null,
+        body: fBody && fBody.value ? fBody.value : null,
+      };
+    }
+    function applyAll() {
+      var f = currentFilters();
+      var parsed = parseQuery(qraw, data.bodies);
+      var res = qraw ? filterCycles(parsed, data.cycles) : data.cycles.slice();
+      // Education: exams whose minimum requirement is <= the user's level.
+      if (f.edu) res = res.filter(function (c) { return (QRANK[c.qualification_code] || 9) <= (QRANK[f.edu] || 0); });
+      // Age: user's age within the exam's [min,max] band.
+      if (f.age != null && !isNaN(f.age)) res = res.filter(function (c) { return f.age >= c.age_min && f.age <= c.age_max; });
+      // Conducted by: category or specific body.
+      if (f.body) {
+        if (f.body.indexOf("body:") === 0) {
+          var slug = f.body.slice(5);
+          res = res.filter(function (c) { return c.body === slug; });
+        } else {
+          res = res.filter(function (c) { return bodyCat(data.bodies[c.body]) === f.body; });
+        }
+      }
 
-    var note = document.getElementById("parseNote");
-    if (note) {
-      note.innerHTML = parsed.labels.length
-        ? '<div class="note-demo" style="margin-bottom:14px">\u{1F50E} Understood your search as: ' +
-          parsed.labels.map(function (l) { return "<b>" + esc(l) + "</b>"; }).join(" · ") + "</div>"
-        : "";
+      // Active-filter chips (removable)
+      var chipsBox = document.getElementById("activeChips");
+      if (chipsBox) {
+        var chips = [];
+        var eduLabel = { "10th": "10th pass", "12th": "12th pass", graduate: "Graduate", pg: "Post-graduate" };
+        if (f.edu) chips.push('<button class="achip" data-clear="edu">🎓 ' + esc(eduLabel[f.edu] || f.edu) + " ✕</button>");
+        if (f.age != null && !isNaN(f.age)) chips.push('<button class="achip" data-clear="age">🎂 Age ' + f.age + " ✕</button>");
+        if (f.body) {
+          var bl = f.body.indexOf("body:") === 0 ? ((data.bodies[f.body.slice(5)] || {}).short || f.body.slice(5)) : f.body;
+          chips.push('<button class="achip" data-clear="body">🏛 ' + esc(bl) + " ✕</button>");
+        }
+        chipsBox.innerHTML = chips.join("");
+      }
+
+      var anyFilter = f.edu || (f.age != null && !isNaN(f.age)) || f.body;
+      var count = document.getElementById("resultCount");
+      if (count) count.textContent = res.length + " exam" + (res.length !== 1 ? "s" : "") +
+        (anyFilter ? " match your profile" : qraw ? " found" : "");
+
+      var note = document.getElementById("parseNote");
+      if (note) {
+        var parsedNote = qraw ? parseQuery(qraw, data.bodies) : { labels: [] };
+        note.innerHTML = parsedNote.labels.length
+          ? '<div class="note-demo" style="margin-bottom:14px">\u{1F50E} Understood your search as: ' +
+            parsedNote.labels.map(function (l) { return "<b>" + esc(l) + "</b>"; }).join(" · ") + "</div>"
+          : "";
+      }
+
+      results.innerHTML = res.length
+        ? res.map(function (c) { return examCard(c, data.bodies); }).join("")
+        : '<div class="card" style="padding:40px;text-align:center;grid-column:1/-1"><div style="font-size:34px">\u{1F50D}</div><h3 style="margin:8px 0">No exact match</h3><p class="muted">Try clearing the age filter, or <a href="' + BASE + '/bodies/" style="color:var(--brand);font-weight:700">browse all exams</a>.</p></div>';
+
+      // reflect filters in the URL (shareable) without reloading
+      var u = new URLSearchParams();
+      if (qraw) u.set("q", qraw);
+      if (f.edu) u.set("education", f.edu);
+      if (f.age != null && !isNaN(f.age)) u.set("age", String(f.age));
+      if (f.body) u.set("body", f.body);
+      var qs = u.toString();
+      try { history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "")); } catch (e) {}
+
+      paintFollow();
     }
 
-    var chips = document.getElementById("filterChips");
-    if (chips) {
-      chips.querySelectorAll(".fchip").forEach(function (a) {
+    var applyBtn = document.getElementById("fApply");
+    if (applyBtn) applyBtn.addEventListener("click", applyAll);
+    var clearBtn = document.getElementById("fClear");
+    if (clearBtn) clearBtn.addEventListener("click", function () {
+      if (fEdu) fEdu.value = ""; if (fAge) fAge.value = ""; if (fBody) fBody.value = "";
+      applyAll();
+    });
+    [fEdu, fBody].forEach(function (el) { if (el) el.addEventListener("change", applyAll); });
+    if (fAge) fAge.addEventListener("input", function () { clearTimeout(fAge._t); fAge._t = setTimeout(applyAll, 350); });
+    var chipsBox = document.getElementById("activeChips");
+    if (chipsBox) chipsBox.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("[data-clear]") : null;
+      if (!b) return;
+      var k = b.getAttribute("data-clear");
+      if (k === "edu" && fEdu) fEdu.value = "";
+      if (k === "age" && fAge) fAge.value = "";
+      if (k === "body" && fBody) fBody.value = "";
+      applyAll();
+    });
+
+    var staticChips = document.getElementById("filterChips");
+    if (staticChips) {
+      staticChips.querySelectorAll(".fchip").forEach(function (a) {
         var f = a.textContent.trim();
         a.classList.toggle("on", qraw.toLowerCase().indexOf(f) !== -1);
       });
     }
+    applyAll();
+  }
 
-    results.innerHTML = res.length
-      ? res.map(function (c) { return examCard(c, data.bodies); }).join("")
-      : '<div class="card" style="padding:40px;text-align:center;grid-column:1/-1"><div style="font-size:34px">\u{1F50D}</div><h3 style="margin:8px 0">No matches</h3><p class="muted">Try “graduate”, “SSC”, or “age 21”.</p></div>';
-
-    paintFollow();
+  /* ---------- latest-updates tabs (home) ---------- */
+  function initUpdateTabs() {
+    var tabs = document.querySelectorAll("[data-upd]");
+    if (!tabs.length) return;
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var key = t.getAttribute("data-upd");
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.classList.toggle("on", on);
+          x.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        document.querySelectorAll("[data-upd-pane]").forEach(function (p) {
+          p.hidden = p.getAttribute("data-upd-pane") !== key;
+        });
+      });
+    });
   }
 
   /* ---------- shared data accessor ---------- */
@@ -577,6 +683,7 @@
     try { initFollow(); } catch (e) {}
     try { initTopSearch(); } catch (e) {}
     try { initSearch(); } catch (e) {}
+    try { initUpdateTabs(); } catch (e) {}
     try { initTheme(); } catch (e) {}
     try { initAI(); } catch (e) {}
     try { initTabs(); } catch (e) {}
