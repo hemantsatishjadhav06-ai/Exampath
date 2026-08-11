@@ -6,7 +6,11 @@
       "short": "SSC",
       "level": "Central",
       "color": "#1d4ed8",
-      "official_url": "https://ssc.gov.in"
+      "official_url": "https://ssc.gov.in",
+      "description": "Recruits for Group B & C posts across central government ministries and departments.",
+      "notice_urls": [
+        "https://ssc.gov.in/notice-board"
+      ]
     },
     {
       "slug": "upsc",
@@ -14,7 +18,11 @@
       "short": "UPSC",
       "level": "Central",
       "color": "#7c3aed",
-      "official_url": "https://upsc.gov.in"
+      "official_url": "https://upsc.gov.in",
+      "description": "Conducts the Civil Services Exam and other central recruitment for the Union government.",
+      "notice_urls": [
+        "https://upsc.gov.in/whats-new"
+      ]
     },
     {
       "slug": "ibps",
@@ -22,7 +30,11 @@
       "short": "IBPS",
       "level": "Banking",
       "color": "#0e9f6e",
-      "official_url": "https://ibps.in"
+      "official_url": "https://ibps.in",
+      "description": "Conducts common recruitment for probationary officers and clerks across public-sector banks.",
+      "notice_urls": [
+        "https://www.ibps.in/"
+      ]
     },
     {
       "slug": "rrb",
@@ -30,7 +42,11 @@
       "short": "RRB",
       "level": "Railways",
       "color": "#c2410c",
-      "official_url": "https://indianrailways.gov.in"
+      "official_url": "https://indianrailways.gov.in",
+      "description": "Recruits for technical and non-technical posts across the Indian Railways zones.",
+      "notice_urls": [
+        "https://www.rrbcdg.gov.in/"
+      ]
     },
     {
       "slug": "mppsc",
@@ -38,7 +54,47 @@
       "short": "MPPSC",
       "level": "State · MP",
       "color": "#be123c",
-      "official_url": "https://mppsc.mp.gov.in"
+      "official_url": "https://mppsc.mp.gov.in",
+      "description": "Conducts the Madhya Pradesh State Service Exam and allied state recruitment.",
+      "notice_urls": [
+        "https://mppsc.mp.gov.in"
+      ]
+    },
+    {
+      "slug": "uppsc",
+      "name": "Uttar Pradesh Public Service Commission",
+      "short": "UPPSC",
+      "level": "State",
+      "color": "#0f766e",
+      "official_url": "https://uppsc.up.nic.in",
+      "notice_urls": [
+        "https://uppsc.up.nic.in/CandidatePages/Notifications.aspx"
+      ],
+      "description": "Recruits for Uttar Pradesh state civil services (PCS) and allied Group A/B posts."
+    },
+    {
+      "slug": "bpsc",
+      "name": "Bihar Public Service Commission",
+      "short": "BPSC",
+      "level": "State",
+      "color": "#b45309",
+      "official_url": "https://bpsc.bihar.gov.in",
+      "notice_urls": [
+        "https://bpsc.bihar.gov.in/Notices"
+      ],
+      "description": "Conducts the Combined Competitive Exam (CCE) for Bihar state civil services."
+    },
+    {
+      "slug": "rpsc",
+      "name": "Rajasthan Public Service Commission",
+      "short": "RPSC",
+      "level": "State",
+      "color": "#be123c",
+      "official_url": "https://rpsc.rajasthan.gov.in",
+      "notice_urls": [
+        "https://rpsc.rajasthan.gov.in/advertisements"
+      ],
+      "description": "Conducts RAS and allied exams for Rajasthan state administrative services."
     }
   ],
   "cycles": [
@@ -480,6 +536,346 @@
       "related": [
         "ssc-cgl-2026",
         "ssc-mts-2026"
+      ],
+      "exam_pattern": [
+        {
+          "stage": "Tier-1",
+          "mode": "Online CBT",
+          "total_marks": 200,
+          "duration_min": 60,
+          "negative_marking": "0.50 marks deducted per wrong answer",
+          "sections": [
+            {
+              "name": "English Language",
+              "questions": 25,
+              "marks": 50
+            },
+            {
+              "name": "General Intelligence",
+              "questions": 25,
+              "marks": 50
+            },
+            {
+              "name": "Quantitative Aptitude (Basic Arithmetic Skill)",
+              "questions": 25,
+              "marks": 50
+            },
+            {
+              "name": "General Awareness",
+              "questions": 25,
+              "marks": 50
+            }
+          ],
+          "note": "Tier-1 is used to shortlist candidates for Tier-2; final merit is prepared on the basis of Tier-2 (Session-I) performance. Questions are set in English and Hindi except the English Language section. Normalisation applied across shifts."
+        },
+        {
+          "stage": "Tier-2",
+          "mode": "Online CBT + Skill/Typing Test",
+          "total_marks": 405,
+          "duration_min": 2,
+          "negative_marking": "1 mark deducted per wrong answer in Section-I, Section-II and Module-I of Section-III",
+          "sections": [
+            {
+              "name": "Section-I Module-I: Mathematical Abilities",
+              "questions": 30,
+              "marks": 90
+            },
+            {
+              "name": "Section-I Module-II: Reasoning and General Intelligence",
+              "questions": 30,
+              "marks": 90
+            },
+            {
+              "name": "Section-II Module-I: English Language and Comprehension",
+              "questions": 40,
+              "marks": 120
+            },
+            {
+              "name": "Section-II Module-II: General Awareness",
+              "questions": 20,
+              "marks": 60
+            },
+            {
+              "name": "Section-III Module-I: Computer Knowledge Test",
+              "questions": 15,
+              "marks": 45
+            },
+            {
+              "name": "Section-III Module-II: Skill Test (DEO) / Typing Test (LDC/JSA)",
+              "questions": 0,
+              "marks": 0
+            }
+          ],
+          "note": "Computer Knowledge module is qualifying. Skill Test for DEO: 8,000 key depressions per hour (15,000 for DEO in C&AG); Typing Test for LDC/JSA: 35 wpm English or 30 wpm Hindi. Skill/typing modules are qualifying in nature."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Tier-1",
+          "subjects": [
+            {
+              "subject": "English Language",
+              "topics": [
+                "Spot the Error",
+                "Fill in the Blanks",
+                "Synonyms and Antonyms",
+                "Spelling/Detecting Mis-spelt Words",
+                "Idioms and Phrases",
+                "One Word Substitution",
+                "Improvement of Sentences",
+                "Active/Passive Voice",
+                "Direct/Indirect Narration",
+                "Para Jumbles",
+                "Cloze Passage",
+                "Reading Comprehension"
+              ]
+            },
+            {
+              "subject": "General Intelligence",
+              "topics": [
+                "Semantic and Symbolic Analogy",
+                "Classification",
+                "Number and Figural Series",
+                "Coding-Decoding",
+                "Venn Diagrams",
+                "Word Building",
+                "Numerical Operations",
+                "Space Orientation",
+                "Punched Hole/Pattern Folding and Unfolding",
+                "Embedded Figures",
+                "Critical Thinking",
+                "Emotional and Social Intelligence"
+              ]
+            },
+            {
+              "subject": "Quantitative Aptitude",
+              "topics": [
+                "Number Systems",
+                "Fundamental Arithmetical Operations (Percentages, Ratio and Proportion, Averages, Interest, Profit and Loss, Discount, Partnership, Mixture and Alligation, Time and Distance, Time and Work)",
+                "Algebra (Basic identities, Linear Equations)",
+                "Geometry (Triangles, Circles, Chords, Tangents)",
+                "Mensuration (Triangle, Quadrilaterals, Circle, Prism, Cone, Cylinder, Sphere)",
+                "Trigonometry (Ratios, Standard Identities, Heights and Distances)",
+                "Statistical Charts (Tables, Histograms, Frequency Polygon, Bar Diagram, Pie Chart)"
+              ]
+            },
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Current Affairs of National and International Importance",
+                "History of India",
+                "Indian Polity and Constitution",
+                "Geography",
+                "Economic Scene",
+                "Scientific Research and General Science",
+                "Static GK (Awards, Books, Sports, Important Dates)",
+                "Environment and its Application to Society"
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Tier-2",
+          "subjects": [
+            {
+              "subject": "Mathematical Abilities",
+              "topics": [
+                "Computation of Whole Numbers, Decimals and Fractions",
+                "Percentage, Ratio and Proportion, Square Roots, Averages, Interest, Profit and Loss",
+                "Algebra and Elementary Surds",
+                "Geometry and Congruence/Similarity of Triangles",
+                "Mensuration",
+                "Trigonometry",
+                "Statistics and Probability (Frequency Distributions, Measures of Central Tendency and Dispersion)"
+              ]
+            },
+            {
+              "subject": "Reasoning and General Intelligence",
+              "topics": [
+                "Semantic and Figural Analogy",
+                "Symbolic Operations",
+                "Trends and Space Orientation",
+                "Number and Figural Series",
+                "Coding-Decoding",
+                "Problem Solving",
+                "Syllogism and Statement-Conclusion",
+                "Drawing Inferences",
+                "Figural Pattern Folding and Completion"
+              ]
+            },
+            {
+              "subject": "English Language and Comprehension",
+              "topics": [
+                "Vocabulary and Grammar",
+                "Sentence Structure",
+                "Synonyms/Antonyms and Correct Usage",
+                "Voice and Narration",
+                "Sentence Improvement",
+                "Cloze Test",
+                "Comprehension Passages"
+              ]
+            },
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Current Events",
+                "India and its Neighbouring Countries",
+                "History, Culture and Geography",
+                "Economic Scene",
+                "General Polity and Indian Constitution",
+                "Scientific Research"
+              ]
+            },
+            {
+              "subject": "Computer Knowledge",
+              "topics": [
+                "Computer Basics (CPU, Input/Output Devices, Memory Organisation)",
+                "Windows Operating System and Keyboard Shortcuts",
+                "MS Office (Word, Excel, PowerPoint basics)",
+                "Internet, E-mail and Networking Basics",
+                "Cyber Security (Viruses, Trojans, Firewalls, Prevention of Cyber Crimes)"
+              ]
+            },
+            {
+              "subject": "Skill Test / Typing Test",
+              "topics": [
+                "DEO: Data entry speed of 8,000 key depressions per hour on computer",
+                "DEO in C&AG: 15,000 key depressions per hour",
+                "LDC/JSA: Typing speed 35 words per minute in English or 30 words per minute in Hindi (10-minute test)"
+              ]
+            }
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General (UR)",
+          "amount": 100,
+          "notes": "Payable online via BHIM UPI, net banking, or debit/credit cards"
+        },
+        {
+          "category": "OBC",
+          "amount": 100,
+          "notes": "No fee exemption for male OBC candidates"
+        },
+        {
+          "category": "EWS",
+          "amount": 100,
+          "notes": "No fee exemption for male EWS candidates"
+        },
+        {
+          "category": "SC",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "ST",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "PwBD",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "Ex-Servicemen",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "Women (all categories)",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Lower Division Clerk (LDC) / Junior Secretariat Assistant (JSA)",
+          "pay_level": "Level-2",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Data Entry Operator (DEO) / DEO Grade 'A'",
+          "pay_level": "Level-4",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Data Entry Operator (DEO) in certain Ministries/Departments (higher grade)",
+          "pay_level": "Level-5",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        }
+      ],
+      "how_to_apply": [
+        "Visit the official SSC website https://ssc.gov.in and complete One-Time Registration (OTR) using your Aadhaar/valid ID, active mobile number and email; note the generated registration number and password.",
+        "Log in to your OTR account and click the 'Apply' link against the 'Combined Higher Secondary (10+2) Level Examination, 2026' notification.",
+        "Fill the online application form: verify personal details auto-fetched from OTR, select preferred exam centres, category, and whether you are applying for LDC/JSA and/or DEO posts.",
+        "Complete the live photograph capture through the application module as per SSC's photo guidelines and upload your scanned signature (10-20 KB, JPEG) in the prescribed format.",
+        "Pay the application fee of Rs 100 online (BHIM UPI, net banking, or debit/credit card) if applicable; women, SC, ST, PwBD and Ex-Servicemen candidates are exempt.",
+        "Preview the completed form carefully, submit it before the closing date, and download/print the final application form for your records.",
+        "Use the application correction window (with applicable correction charges) if any detail needs to be changed after submission, and later download your Tier-1 admit card from the regional SSC website."
+      ],
+      "faqs": [
+        {
+          "question": "What is the eligibility for SSC CHSL 2026?",
+          "answer": "Candidates must have passed Class 12 (10+2) or equivalent from a recognised board. For DEO in C&AG and some departments, 12th with Science stream and Mathematics is required. Age must be 18-27 years as on the cut-off date (born between 1999-01-02 and 2008-01-01, approximately, for the 2026 cycle), with age relaxation of 3 years for OBC, 5 years for SC/ST, and 10 years for PwBD as per rules."
+        },
+        {
+          "question": "Is there negative marking in SSC CHSL?",
+          "answer": "Yes. In Tier-1, 0.50 marks are deducted for every wrong answer. In Tier-2, 1 mark is deducted for each wrong answer in Section-I, Section-II and Module-I of Section-III (Computer Knowledge)."
+        },
+        {
+          "question": "Is the Tier-2 typing/skill test mandatory?",
+          "answer": "Yes, it is qualifying in nature but mandatory. DEO candidates must achieve a data entry speed of 8,000 key depressions per hour (15,000 for DEO in C&AG), while LDC/JSA candidates must type 35 words per minute in English or 30 words per minute in Hindi."
+        },
+        {
+          "question": "What is the salary for posts offered through SSC CHSL?",
+          "answer": "LDC/JSA is a Pay Level-2 post (Rs 19,900 - 63,200). DEO posts are generally at Pay Level-4 (Rs 25,500 - 81,100), including DEO Grade 'A' in the Office of C&AG, while DEO posts in a few Ministries/Departments are at Level-5 (Rs 29,200 - 92,300). In-hand salary typically ranges from about Rs 26,000 to Rs 41,000 per month depending on the post and city of posting."
+        },
+        {
+          "question": "How many times is the SSC CHSL exam conducted in a year?",
+          "answer": "SSC CHSL is conducted once every year. As per SSC's annual examination calendar, the CHSL 2026 notification was released around April-May 2026, with the Tier-1 exam scheduled for July-September 2026, followed by Tier-2 for shortlisted candidates."
+        },
+        {
+          "question": "Can final-year Class 12 students apply?",
+          "answer": "Candidates must possess the essential 10+2 qualification on or before the cut-off date specified in the notification. Students awaiting final results can apply only if they can produce proof of passing by the stipulated date."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2023,
+          "vacancy": 1600,
+          "cutoff_ur": 153.91,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        },
+        {
+          "year": 2024,
+          "vacancy": 3712,
+          "cutoff_ur": 157.36,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        },
+        {
+          "year": 2025,
+          "vacancy": 3522,
+          "cutoff_ur": 144.26,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        },
+        {
+          "year": 2026,
+          "vacancy": null,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://ssc.gov.in"
+        }
       ]
     },
     {
@@ -580,6 +976,273 @@
       "related": [
         "ssc-chsl-2026",
         "ssc-cgl-2026"
+      ],
+      "exam_pattern": [
+        {
+          "stage": "Computer Based Examination - Session I",
+          "mode": "Online (CBT)",
+          "total_marks": 120,
+          "duration_min": 45,
+          "negative_marking": "No negative marking in Session I",
+          "sections": [
+            {
+              "name": "",
+              "questions": 20,
+              "marks": 60
+            },
+            {
+              "name": "",
+              "questions": 20,
+              "marks": 60
+            }
+          ],
+          "note": "Session I is qualifying in nature; candidates must attempt it to have Session II evaluated. Both sessions are held on the same day in a single sitting. Duration is 60 minutes per session for candidates eligible for a scribe."
+        },
+        {
+          "stage": "Computer Based Examination - Session II",
+          "mode": "Online (CBT)",
+          "total_marks": 150,
+          "duration_min": 45,
+          "negative_marking": "1 mark deducted for each wrong answer in Session II",
+          "sections": [
+            {
+              "name": "",
+              "questions": 25,
+              "marks": 75
+            },
+            {
+              "name": "",
+              "questions": 25,
+              "marks": 75
+            }
+          ],
+          "note": "Merit is drawn on normalized Session II scores. Ranking for MTS and Havaldar posts is based on Session II performance. Duration is 60 minutes for candidates eligible for a scribe."
+        },
+        {
+          "stage": "Physical Efficiency Test (PET) / Physical Standard Test (PST) - Havaldar posts only",
+          "mode": "Offline (Physical)",
+          "total_marks": 0,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [
+            {
+              "name": "",
+              "questions": null,
+              "marks": null
+            },
+            {
+              "name": "",
+              "questions": null,
+              "marks": null
+            },
+            {
+              "name": "",
+              "questions": null,
+              "marks": null
+            }
+          ],
+          "note": "PET/PST is qualifying in nature and applicable only to candidates who opt for Havaldar (CBIC & CBN) posts."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Session I",
+          "subjects": [
+            {
+              "subject": "Numerical and Mathematical Ability",
+              "topics": [
+                "Number System and HCF/LCM",
+                "Fractions and Decimals",
+                "Percentage, Ratio and Proportion",
+                "Average and Simple Interest",
+                "Profit and Loss, Discount",
+                "Time and Work, Time and Distance",
+                "Mensuration (Area and Perimeter of basic figures)",
+                "Basic Geometry and Data Interpretation (tables, graphs)"
+              ]
+            },
+            {
+              "subject": "Reasoning Ability and Problem Solving",
+              "topics": [
+                "Alpha-numeric Series and Coding-Decoding",
+                "Analogy and Similarities/Differences",
+                "Directions and Distances",
+                "Blood Relations",
+                "Non-verbal Reasoning (mirror images, embedded figures, figure completion)",
+                "Calendar and Clock",
+                "Order and Ranking",
+                "Problem Solving and Decision Making"
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Session II",
+          "subjects": [
+            {
+              "subject": "General Awareness",
+              "topics": [
+                "Indian History, Freedom Struggle",
+                "Indian Polity and Constitution",
+                "Geography of India and the World",
+                "Indian Economy (basics)",
+                "General Science (everyday science)",
+                "Current Affairs of national and international importance",
+                "Sports, Books and Authors, Important Days",
+                "Art and Culture of India"
+              ]
+            },
+            {
+              "subject": "English Language and Comprehension",
+              "topics": [
+                "Vocabulary: Synonyms and Antonyms",
+                "One Word Substitution",
+                "Idioms and Phrases",
+                "Spelling Error Detection",
+                "Spotting the Error and Sentence Improvement",
+                "Fill in the Blanks",
+                "Active/Passive Voice and Direct/Indirect Speech (basic)",
+                "Reading Comprehension (simple paragraph based)"
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "PET/PST (Havaldar only)",
+          "subjects": [
+            {
+              "subject": "Physical Efficiency and Physical Standards",
+              "topics": [
+                "Walking test: 1600 m in 15 minutes (Male), 1 km in 20 minutes (Female)",
+                "Height measurement: 157.5 cm Male / 152 cm Female (with prescribed relaxations)",
+                "Chest measurement for male candidates: 76 cm unexpanded, minimum 5 cm expansion"
+              ]
+            }
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General (UR)",
+          "amount": 100,
+          "notes": ""
+        },
+        {
+          "category": "OBC",
+          "amount": 100,
+          "notes": ""
+        },
+        {
+          "category": "EWS",
+          "amount": 100,
+          "notes": ""
+        },
+        {
+          "category": "SC",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "ST",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "Women (all categories)",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "PwBD",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        },
+        {
+          "category": "Ex-Servicemen",
+          "amount": 0,
+          "notes": "Exempted from fee payment"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Multi Tasking Staff (MTS)",
+          "pay_level": "Level 1 (7th CPC Pay Matrix)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Havaldar (CBIC & CBN)",
+          "pay_level": "Level 1 (7th CPC Pay Matrix)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        }
+      ],
+      "how_to_apply": [
+        "Visit the official SSC website at https://ssc.gov.in and complete One Time Registration (OTR) using a valid mobile number, email ID and Aadhaar/photo ID details.",
+        "Log in with your OTR credentials, go to the 'Apply' section and select 'Multi Tasking (Non-Technical) Staff and Havaldar (CBIC & CBN) Examination, 2026'.",
+        "Fill the online application form: personal details, educational qualification (Matriculation/10th pass), post preference (MTS and/or Havaldar), and examination city choices.",
+        "Upload a recent passport-size photograph and signature as per the specified dimensions and file-size limits (or use the live photo capture facility where mandated by the Commission).",
+        "Pay the application fee of Rs 100 online via UPI, net banking, or debit/credit card; women, SC, ST, PwBD and Ex-Servicemen candidates are exempted from the fee.",
+        "Review the filled application carefully in the preview, submit it before the closing date, and download/print the final application form for future reference.",
+        "Use the application correction window (with prescribed correction charges) if any detail needs to be modified after submission."
+      ],
+      "faqs": [
+        {
+          "question": "Is there negative marking in SSC MTS 2026?",
+          "answer": "There is no negative marking in Session I of the CBT. In Session II (General Awareness and English Language and Comprehension), 1 mark is deducted for every wrong answer."
+        },
+        {
+          "question": "What is the eligibility for SSC MTS and Havaldar 2026?",
+          "answer": "Candidates must have passed Matriculation (Class 10) from a recognized board. The age limit is 18-25 years for MTS and most Havaldar posts, and 18-27 years for a few MTS/Havaldar posts, with standard relaxations for OBC (3 years), SC/ST (5 years), PwBD and Ex-Servicemen categories."
+        },
+        {
+          "question": "Do all candidates have to appear for the PET/PST?",
+          "answer": "No. The Physical Efficiency Test and Physical Standard Test are only for candidates who opt for the post of Havaldar in CBIC and CBN. Candidates applying only for MTS posts are selected on the basis of the Computer Based Examination alone."
+        },
+        {
+          "question": "What is the salary of an SSC MTS employee?",
+          "answer": "Both MTS and Havaldar posts carry Pay Level 1 of the 7th CPC pay matrix (Rs 18,000 - 56,900 basic pay). Including DA, HRA and TA at current rates, the initial gross salary works out to roughly Rs 30,000 - 36,000 per month depending on the city of posting, with in-hand pay of about Rs 27,000 - 32,500 after deductions."
+        },
+        {
+          "question": "How is the merit list prepared if Session I has no separate cutoff marks?",
+          "answer": "Session I is qualifying in nature. Final merit for MTS and Havaldar posts is prepared on the basis of normalized scores in Session II, provided the candidate has attempted Session I. Separate age-group-wise and state/UT-wise merit lists are drawn for MTS vacancies."
+        },
+        {
+          "question": "Can I apply for both MTS and Havaldar posts with one application?",
+          "answer": "Yes. A single online application covers both posts; candidates indicate their preference for Havaldar (CBIC & CBN) in the form and must then qualify the PET/PST and meet the physical standards for that post."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2023,
+          "vacancy": 1558,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        },
+        {
+          "year": 2024,
+          "vacancy": 9583,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        },
+        {
+          "year": 2025,
+          "vacancy": 7948,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://ssc.gov.in"
+        },
+        {
+          "year": 2026,
+          "vacancy": null,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://ssc.gov.in"
+        }
       ]
     },
     {
@@ -936,6 +1599,339 @@
       "related": [
         "ssc-cgl-2026",
         "upsc-cse-2026"
+      ],
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Online (CBT)",
+          "total_marks": 100,
+          "duration_min": null,
+          "negative_marking": "0.25 marks deducted per wrong answer",
+          "sections": [
+            {
+              "name": "English Language",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "Quantitative Aptitude",
+              "questions": 35,
+              "marks": 35
+            },
+            {
+              "name": "Reasoning Ability",
+              "questions": 35,
+              "marks": 35
+            }
+          ],
+          "note": "Sectional timing of 20 minutes per section. Prelims marks are qualifying only and not counted in the final merit list. Candidates shortlisted for Mains at roughly 10x vacancies per category."
+        },
+        {
+          "stage": "Mains (Objective)",
+          "mode": "Online (CBT)",
+          "total_marks": 200,
+          "duration_min": null,
+          "negative_marking": "0.25 of the marks assigned to the question deducted per wrong answer",
+          "sections": [
+            {
+              "name": "Reasoning & Computer Aptitude",
+              "questions": 45,
+              "marks": 60
+            },
+            {
+              "name": "General/Economy/Banking Awareness",
+              "questions": 40,
+              "marks": 40
+            },
+            {
+              "name": "English Language",
+              "questions": 35,
+              "marks": 40
+            },
+            {
+              "name": "Data Analysis & Interpretation",
+              "questions": 35,
+              "marks": 60
+            }
+          ],
+          "note": "Each section has a separate sectional time limit; there is no facility to switch between sections."
+        },
+        {
+          "stage": "Mains (Descriptive)",
+          "mode": "Online (typed on computer)",
+          "total_marks": 25,
+          "duration_min": null,
+          "negative_marking": "None",
+          "sections": [
+            {
+              "name": "English Language - Letter Writing",
+              "questions": 1,
+              "marks": 10
+            },
+            {
+              "name": "English Language - Essay",
+              "questions": 1,
+              "marks": 15
+            }
+          ],
+          "note": "Conducted immediately after the objective Mains paper. Evaluated only for candidates who qualify in the objective test."
+        },
+        {
+          "stage": "Interview",
+          "mode": "In-person (conducted by participating banks, coordinated by the Nodal Bank in each state/UT with assistance from IBPS)",
+          "total_marks": 100,
+          "duration_min": null,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Minimum qualifying marks: 40% for General/EWS (35% for SC/ST/OBC/PwBD). Final merit list prepared with Mains:Interview weightage of 80:20."
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Prelims",
+          "subject": "English Language",
+          "topics": [
+            "Reading Comprehension",
+            "Cloze Test",
+            "Para Jumbles",
+            "Error Spotting",
+            "Sentence Improvement",
+            "Fill in the Blanks",
+            "Vocabulary (Synonyms/Antonyms)",
+            "Phrase Replacement"
+          ]
+        },
+        {
+          "stage": "Prelims",
+          "subject": "Quantitative Aptitude",
+          "topics": [
+            "Simplification & Approximation",
+            "Number Series",
+            "Quadratic Equations",
+            "Data Interpretation",
+            "Percentage",
+            "Ratio & Proportion",
+            "Profit & Loss",
+            "Simple & Compound Interest",
+            "Time, Speed & Distance",
+            "Time & Work",
+            "Mensuration",
+            "Permutation, Combination & Probability"
+          ]
+        },
+        {
+          "stage": "Prelims",
+          "subject": "Reasoning Ability",
+          "topics": [
+            "Seating Arrangement (Linear & Circular)",
+            "Puzzles (Floor, Box, Scheduling)",
+            "Syllogism",
+            "Inequality",
+            "Blood Relations",
+            "Direction Sense",
+            "Coding-Decoding",
+            "Alphanumeric Series",
+            "Order & Ranking",
+            "Input-Output"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "Reasoning & Computer Aptitude",
+          "topics": [
+            "High-level Puzzles & Seating Arrangement",
+            "Logical Reasoning",
+            "Data Sufficiency",
+            "Statement & Assumption / Course of Action",
+            "Critical Reasoning",
+            "Input-Output",
+            "Coding-Decoding",
+            "Computer Fundamentals",
+            "Internet & Networking Basics",
+            "MS Office Basics",
+            "Computer Memory & Hardware"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "Data Analysis & Interpretation",
+          "topics": [
+            "Tabular, Bar, Line, Pie & Caselet DI",
+            "Missing DI",
+            "Radar & Mixed Graphs",
+            "Data Sufficiency",
+            "Quantity Comparison",
+            "Probability",
+            "Arithmetic Word Problems (Interest, Mixtures, Partnership)"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "General / Economy / Banking Awareness",
+          "topics": [
+            "Current Affairs (last 6 months)",
+            "Banking & Financial Awareness",
+            "RBI Functions & Monetary Policy",
+            "Budget & Economic Survey",
+            "Financial Institutions (SEBI, IRDAI, NABARD)",
+            "Static GK (Capitals, Currencies, HQ)",
+            "Government Schemes",
+            "Banking Abbreviations & Terminology"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "English Language",
+          "topics": [
+            "Reading Comprehension (Economy/Banking based)",
+            "Cloze Test",
+            "Sentence Rearrangement",
+            "Error Detection",
+            "Word Usage & Vocabulary",
+            "Sentence Connectors",
+            "Paragraph Completion"
+          ]
+        },
+        {
+          "stage": "Mains (Descriptive)",
+          "subject": "English Writing Skills",
+          "topics": [
+            "Formal Letter Writing",
+            "Informal Letter Writing",
+            "Essay Writing on Banking, Economy, Social & Technology Topics"
+          ]
+        },
+        {
+          "stage": "Interview",
+          "subject": "Personality & Banking Knowledge",
+          "topics": [
+            "Personal Background & Education",
+            "Banking Sector Awareness",
+            "Current Economic Affairs",
+            "Situational & Behavioural Questions",
+            "Reasons for Joining Banking"
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General / UR",
+          "amount": 850,
+          "notes": "Includes GST and intimation charges; non-refundable"
+        },
+        {
+          "category": "OBC",
+          "amount": 850,
+          "notes": "Includes GST and intimation charges; non-refundable"
+        },
+        {
+          "category": "EWS",
+          "amount": 850,
+          "notes": "Includes GST and intimation charges; non-refundable"
+        },
+        {
+          "category": "SC",
+          "amount": 175,
+          "notes": "Intimation charges only, includes GST"
+        },
+        {
+          "category": "ST",
+          "amount": 175,
+          "notes": "Intimation charges only, includes GST"
+        },
+        {
+          "category": "PwBD",
+          "amount": 175,
+          "notes": "Intimation charges only, includes GST"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Probationary Officer / Management Trainee (JMGS-I)",
+          "pay_level": null,
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Manager (MMGS-II, first promotion, typically after 2-3 years)",
+          "pay_level": null,
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Senior Manager (MMGS-III, subsequent promotion)",
+          "pay_level": null,
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        }
+      ],
+      "how_to_apply": [
+        "Visit the official IBPS website ibps.in and open the link 'CRP for Probationary Officers/Management Trainees (CRP PO/MT-XVI)' under the CRP PO section.",
+        "Click 'Click here for New Registration' and enter basic details (name, contact number, email ID) to generate a provisional registration number and password, which are sent via SMS and email.",
+        "Fill the online application form with personal details, category, educational qualifications, and preference order of participating banks.",
+        "Upload scanned photograph (20-50 KB), signature (10-20 KB), left thumb impression, and a handwritten declaration as per the prescribed specifications.",
+        "Preview the complete application, verify every detail carefully, and click 'Final Submit' (details cannot be edited after final submission).",
+        "Pay the application fee online (Rs 850 for General/OBC/EWS, Rs 175 for SC/ST/PwBD) using debit card, credit card, net banking, or UPI.",
+        "Take a printout of the system-generated e-receipt and the final application form for future reference; download the Prelims admit card when released on ibps.in."
+      ],
+      "faqs": [
+        {
+          "question": "Is there negative marking in IBPS PO 2026?",
+          "answer": "Yes. In both Prelims and Mains objective tests, 0.25 (one-fourth) of the marks assigned to a question is deducted for every wrong answer. There is no penalty for unattempted questions or for the descriptive paper."
+        },
+        {
+          "question": "Do Prelims marks count in the final IBPS PO merit list?",
+          "answer": "No. The Preliminary exam is qualifying in nature. The final merit list is prepared from Mains (objective + descriptive, out of 225, normalised to 100 with 80% weight) and the Interview (100 marks, 20% weight)."
+        },
+        {
+          "question": "What is the eligibility for IBPS PO 2026?",
+          "answer": "A graduate degree in any discipline from a recognised university, and age between 20 and 30 years as on the cutoff date in the notification, with upper-age relaxation of 3 years for OBC (NCL), 5 years for SC/ST, and 10 years for PwBD candidates."
+        },
+        {
+          "question": "How many attempts are allowed in IBPS PO?",
+          "answer": "IBPS does not impose any limit on the number of attempts. Candidates can appear as many times as they wish while they satisfy the age and educational eligibility criteria."
+        },
+        {
+          "question": "Is there sectional timing in the IBPS PO Prelims?",
+          "answer": "Yes. Each of the three Prelims sections (English Language, Quantitative Aptitude, Reasoning Ability) has a fixed 20-minute slot, and candidates cannot switch between sections. Mains sections also have individual sectional time limits."
+        },
+        {
+          "question": "What salary does an IBPS PO get after joining?",
+          "answer": "A newly recruited PO joins at Junior Management Grade Scale-I with a starting basic pay of Rs 48,480 (scale 48480-85920 under the 12th Bipartite Settlement). With DA, HRA/lease, special and learning allowances, gross monthly pay is roughly Rs 74,000-82,000, varying by posting location."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2023,
+          "vacancy": 3049,
+          "cutoff_ur": 54.25,
+          "result_status": "declared",
+          "result_url": "https://www.ibps.in/"
+        },
+        {
+          "year": 2024,
+          "vacancy": 4455,
+          "cutoff_ur": 48.5,
+          "result_status": "declared",
+          "result_url": "https://www.ibps.in/"
+        },
+        {
+          "year": 2025,
+          "vacancy": 5208,
+          "cutoff_ur": 49.21,
+          "result_status": "declared",
+          "result_url": "https://www.ibps.in/"
+        },
+        {
+          "year": 2026,
+          "vacancy": 7565,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://www.ibps.in/"
+        }
       ]
     },
     {
@@ -1041,6 +2037,377 @@
       "related": [
         "ssc-cgl-2026",
         "ssc-mts-2026"
+      ],
+      "exam_pattern": [
+        {
+          "stage": "CBT-1 (First Stage Computer Based Test)",
+          "mode": "Online (CBT)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "1/3 mark deducted per wrong answer",
+          "sections": [
+            {
+              "name": "General Awareness",
+              "questions": 40,
+              "marks": 40
+            },
+            {
+              "name": "Mathematics",
+              "questions": 30,
+              "marks": 30
+            },
+            {
+              "name": "General Intelligence and Reasoning",
+              "questions": 30,
+              "marks": 30
+            }
+          ],
+          "note": null
+        },
+        {
+          "stage": "CBT-2 (Second Stage Computer Based Test)",
+          "mode": "Online (CBT)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "1/3 mark deducted per wrong answer",
+          "sections": [
+            {
+              "name": "General Awareness",
+              "questions": 50,
+              "marks": 50
+            },
+            {
+              "name": "Mathematics",
+              "questions": 35,
+              "marks": 35
+            },
+            {
+              "name": "General Intelligence and Reasoning",
+              "questions": 35,
+              "marks": 35
+            }
+          ],
+          "note": null
+        },
+        {
+          "stage": "CBAT (Computer Based Aptitude Test)",
+          "mode": "Online (CBT)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "No negative marking",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Typing Skill Test (TST)",
+          "mode": "Computer-based typing test",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Document Verification and Medical Examination",
+          "mode": "Offline at designated RRB/railway hospital",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "CBT-1",
+          "subject": "Mathematics",
+          "topics": [
+            "Number System",
+            "Decimals and Fractions",
+            "LCM and HCF",
+            "Ratio and Proportion",
+            "Percentages",
+            "Mensuration",
+            "Time and Work",
+            "Time and Distance",
+            "Simple and Compound Interest",
+            "Profit and Loss",
+            "Elementary Algebra",
+            "Geometry and Trigonometry",
+            "Elementary Statistics"
+          ]
+        },
+        {
+          "stage": "CBT-1",
+          "subject": "General Intelligence and Reasoning",
+          "topics": [
+            "Analogies",
+            "Completion of Number and Alphabetical Series",
+            "Coding-Decoding",
+            "Mathematical Operations",
+            "Similarities and Differences",
+            "Relationships",
+            "Analytical Reasoning",
+            "Syllogism",
+            "Jumbling",
+            "Venn Diagrams",
+            "Puzzles",
+            "Data Sufficiency",
+            "Statement-Conclusion",
+            "Decision Making",
+            "Maps and Interpretation of Graphs"
+          ]
+        },
+        {
+          "stage": "CBT-1",
+          "subject": "General Awareness",
+          "topics": [
+            "Current Events of National and International Importance",
+            "Games and Sports",
+            "Art and Culture of India",
+            "Indian Literature",
+            "Monuments and Places of India",
+            "General Science and Life Science (up to 10th CBSE)",
+            "History of India and Freedom Struggle",
+            "Physical, Social and Economic Geography of India and World",
+            "Indian Polity and Governance",
+            "General Scientific and Technological Developments including Space and Nuclear Programme of India",
+            "UN and Other Important World Organisations",
+            "Environmental Issues",
+            "Basics of Computers and Computer Applications",
+            "Common Abbreviations",
+            "Transport Systems in India",
+            "Indian Economy",
+            "Famous Personalities of India and World",
+            "Flagship Government Programmes",
+            "Flora and Fauna of India",
+            "Important Government and Public Sector Organisations of India"
+          ]
+        },
+        {
+          "stage": "CBT-2",
+          "subject": "Mathematics",
+          "topics": [
+            "Same broad syllabus as CBT-1 with higher difficulty",
+            "Number System",
+            "Ratio and Proportion",
+            "Percentages",
+            "Mensuration",
+            "Time and Work",
+            "Time and Distance",
+            "Simple and Compound Interest",
+            "Profit and Loss",
+            "Elementary Algebra",
+            "Geometry and Trigonometry",
+            "Elementary Statistics"
+          ]
+        },
+        {
+          "stage": "CBT-2",
+          "subject": "General Intelligence and Reasoning",
+          "topics": [
+            "Analogies",
+            "Series Completion",
+            "Coding-Decoding",
+            "Mathematical Operations",
+            "Syllogism",
+            "Jumbling",
+            "Venn Diagrams",
+            "Puzzles",
+            "Data Sufficiency",
+            "Statement-Conclusion and Statement-Courses of Action",
+            "Decision Making",
+            "Interpretation of Graphs"
+          ]
+        },
+        {
+          "stage": "CBT-2",
+          "subject": "General Awareness",
+          "topics": [
+            "Current Affairs",
+            "Indian History and National Movement",
+            "Geography of India and World",
+            "Indian Polity and Constitution",
+            "Indian Economy",
+            "General Science",
+            "Science and Technology",
+            "Indian Railways: Organisation and Transport Systems",
+            "Computers and Computer Applications",
+            "Environment and Ecology",
+            "Sports, Art and Culture"
+          ]
+        },
+        {
+          "stage": "CBAT",
+          "subject": "Aptitude Test Batteries (for Station Master / Traffic Assistant)",
+          "topics": [
+            "Intelligence Test",
+            "Selective Attention Test",
+            "Spatial Scanning Test",
+            "Information Ordering Test",
+            "Personality Test / Following Directions"
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General (UR)",
+          "amount": 500,
+          "notes": "Rs. 400 refunded (after deduction of bank charges) on appearing in CBT-1"
+        },
+        {
+          "category": "OBC (NCL)",
+          "amount": 500,
+          "notes": "Rs. 400 refunded on appearing in CBT-1; Rs. 250 slab applies only if also Female/Minority/EBC"
+        },
+        {
+          "category": "EWS",
+          "amount": 500,
+          "notes": "Rs. 400 refunded on appearing in CBT-1 unless covered by a concession category"
+        },
+        {
+          "category": "SC",
+          "amount": 250,
+          "notes": "Full Rs. 250 refunded (after bank charges) on appearing in CBT-1"
+        },
+        {
+          "category": "ST",
+          "amount": 250,
+          "notes": "Full Rs. 250 refunded (after bank charges) on appearing in CBT-1"
+        },
+        {
+          "category": "Female (all categories)",
+          "amount": 250,
+          "notes": "Full Rs. 250 refunded on appearing in CBT-1"
+        },
+        {
+          "category": "PwBD",
+          "amount": 250,
+          "notes": "Full Rs. 250 refunded on appearing in CBT-1; eligible PwBD candidates get compensatory time of 20 minutes per hour of exam (i.e. 30 minutes extra in a 90-minute CBT)"
+        },
+        {
+          "category": "Ex-Servicemen",
+          "amount": 250,
+          "notes": "Full Rs. 250 refunded on appearing in CBT-1"
+        },
+        {
+          "category": "Transgender / Minorities / EBC",
+          "amount": 250,
+          "notes": "Full Rs. 250 refunded on appearing in CBT-1"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Station Master",
+          "pay_level": "Level 6 (7th CPC)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Goods Train Manager (Goods Guard)",
+          "pay_level": "Level 5 (7th CPC)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Junior Accounts Assistant cum Typist / Senior Clerk cum Typist",
+          "pay_level": "Level 5 (7th CPC)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Traffic Assistant",
+          "pay_level": "Level 4 (7th CPC)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Commercial cum Ticket Clerk",
+          "pay_level": "Level 3 (7th CPC)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Junior Clerk cum Typist / Accounts Clerk cum Typist / Trains Clerk",
+          "pay_level": "Level 2 (7th CPC)",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        }
+      ],
+      "how_to_apply": [
+        "Visit the unified RRB application portal at https://www.rrbapply.gov.in and click on 'Create an Account' (one-time registration with name, date of birth, Aadhaar/ID details, mobile number and email; verify via OTP).",
+        "Log in with the registered credentials and select the RRB NTPC CEN (Graduate-level or Undergraduate-level, as per your qualification). You can apply to only ONE RRB per CEN.",
+        "Fill the online application form: personal details, category (UR/OBC-NCL/SC/ST/EWS), educational qualifications, post preferences and exam language choice.",
+        "Upload the required documents: recent colour photograph (JPEG, as per size specs), signature, and category/PwBD certificates where applicable.",
+        "Pay the application fee online (UPI/debit card/credit card/net banking) - Rs. 500 for General/OBC/EWS or Rs. 250 for SC/ST/Female/PwBD/Ex-SM/Transgender/Minorities/EBC; recent CENs accept online payment modes only.",
+        "Review the filled form carefully, submit the application before the closing date, and download/print the confirmation page for your records.",
+        "Use the modification window (with applicable modification fee) if any correction is needed, and later download the exam city intimation and e-call letter from the same portal."
+      ],
+      "faqs": [
+        {
+          "question": "What is the eligibility for RRB NTPC 2026?",
+          "answer": "For graduate-level posts (Station Master, Goods Train Manager, Senior Clerk cum Typist, Junior Accounts Assistant cum Typist, Chief Commercial cum Ticket Supervisor, etc.) you need a university degree and age of 18-33 years; for undergraduate-level posts (Junior Clerk cum Typist, Accounts Clerk cum Typist, Trains Clerk, Commercial cum Ticket Clerk) a 10+2 pass and age of 18-30 years, as per the latest CENs (06/2025 and 07/2025). The 2024 CENs carried a one-time 3-year age extension (18-36 and 18-33) which no longer applies. Standard age relaxations apply for OBC-NCL (+3 years), SC/ST (+5 years), PwBD and Ex-Servicemen."
+        },
+        {
+          "question": "Is there negative marking in RRB NTPC?",
+          "answer": "Yes. Both CBT-1 and CBT-2 carry a penalty of 1/3 mark for every wrong answer. There is no negative marking in the Computer Based Aptitude Test (CBAT) held for Station Master and Traffic Assistant posts."
+        },
+        {
+          "question": "Is the application fee refunded?",
+          "answer": "Yes, on actually appearing in CBT-1. General/OBC/EWS candidates who pay Rs. 500 get Rs. 400 refunded, while SC/ST/Female/PwBD/Ex-Servicemen/Transgender/Minorities/EBC candidates who pay Rs. 250 get the full Rs. 250 refunded, in both cases after deduction of applicable bank charges."
+        },
+        {
+          "question": "Are marks normalized across shifts?",
+          "answer": "Yes. Since CBT-1 and CBT-2 are conducted in multiple shifts with different question papers, RRBs use percentile-based normalization of marks, and shortlisting/cutoffs are computed on normalized scores."
+        },
+        {
+          "question": "Can I apply to more than one RRB?",
+          "answer": "No. A candidate can apply to only one RRB in a given CEN, and only one application per candidate is allowed. Submitting multiple applications leads to rejection and possible debarment."
+        },
+        {
+          "question": "How many candidates are shortlisted for CBT-2?",
+          "answer": "Candidates equal to about 15 times the number of vacancies (community-wise) for each pay level are shortlisted from CBT-1 for CBT-2, based on merit in normalized CBT-1 marks, as per recent CENs (RRBs reserve the right to increase or decrease this ratio). CBT-1 is only a screening test; final merit is based on CBT-2 (plus CBAT/typing test where applicable)."
+        },
+        {
+          "question": "What is the typing speed requirement for typist posts?",
+          "answer": "For posts like Senior Clerk cum Typist, Junior Accounts Assistant cum Typist and Junior Clerk cum Typist, candidates must type 30 words per minute in English or 25 words per minute in Hindi on a computer without editing tools/spell-check. The typing test is qualifying in nature."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2019,
+          "vacancy": 35208,
+          "cutoff_ur": 77.39,
+          "result_status": "declared",
+          "result_url": "https://www.rrbcdg.gov.in/"
+        },
+        {
+          "year": 2024,
+          "vacancy": 11558,
+          "cutoff_ur": 74.58,
+          "result_status": "declared",
+          "result_url": "https://www.rrbcdg.gov.in/"
+        },
+        {
+          "year": 2025,
+          "vacancy": 8868,
+          "cutoff_ur": null,
+          "result_status": "awaited",
+          "result_url": "https://www.rrbapply.gov.in/"
+        },
+        {
+          "year": 2026,
+          "vacancy": null,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://www.rrbapply.gov.in/"
+        }
       ]
     },
     {
@@ -1155,7 +2522,1634 @@
       ],
       "related": [
         "upsc-cse-2026",
-        "ssc-cgl-2026"
+        "ssc-cgl-2026",
+        "uppsc-pcs-2026"
+      ],
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Offline (OMR)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Merit-ranking paper for shortlisting to Mains"
+        },
+        {
+          "stage": "Prelims",
+          "mode": "Offline (OMR)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Qualifying paper; minimum 40% required, marks not counted for merit"
+        },
+        {
+          "stage": "Mains",
+          "mode": "Descriptive (written)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Descriptive (written)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Descriptive (written)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Descriptive (written)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Descriptive (written)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Descriptive (written)",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": "Total Mains: 1400 marks"
+        },
+        {
+          "stage": "Interview",
+          "mode": "In-person board interview",
+          "total_marks": null,
+          "duration_min": null,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": "Final merit = Mains (1400) + Interview (175) = 1575 marks"
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Prelims",
+          "subject": "General Studies (Paper I)",
+          "topics": [
+            "History, culture and literature of Madhya Pradesh",
+            "History of India and Indian National Movement",
+            "Geography of India and Madhya Pradesh",
+            "Indian Polity and Constitution",
+            "Indian and MP Economy",
+            "General Science and Environment",
+            "Current events of state, national and international importance",
+            "Information & Communication Technology",
+            "Constitutional and statutory bodies of MP"
+          ]
+        },
+        {
+          "stage": "Prelims",
+          "subject": "General Aptitude Test (Paper II)",
+          "topics": [
+            "Comprehension",
+            "Interpersonal skills including communication skills",
+            "Logical reasoning and analytical ability",
+            "Decision making and problem solving",
+            "General mental ability",
+            "Basic numeracy (Class X level)",
+            "Hindi language comprehension (Class X level)"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "General Studies I (History & Geography)",
+          "topics": [
+            "Ancient, medieval and modern Indian history",
+            "History and culture of Madhya Pradesh",
+            "World and Indian physical geography",
+            "Geography of Madhya Pradesh",
+            "Water and disaster management"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "General Studies II (Polity, Economy & Sociology)",
+          "topics": [
+            "Indian Constitution and political system",
+            "Governance, public administration and social legislation",
+            "Indian and MP economy",
+            "Human resource development and social sector",
+            "International organisations"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "General Studies III (Science & Technology)",
+          "topics": [
+            "Science and technology developments",
+            "Reasoning and data interpretation",
+            "Environment, ecology and biodiversity",
+            "Energy and emerging technologies"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "General Studies IV (Ethics & Human Values)",
+          "topics": [
+            "Ethics and human values",
+            "Attitude and aptitude for civil services",
+            "Emotional intelligence",
+            "Contribution of thinkers and reformers",
+            "Case studies"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "subject": "General Hindi and Essay",
+          "topics": [
+            "Hindi grammar and comprehension",
+            "Translation and precis writing",
+            "Administrative terminology",
+            "Essay writing on contemporary themes"
+          ]
+        },
+        {
+          "stage": "Interview",
+          "subject": "Personality Test",
+          "topics": [
+            "Current affairs",
+            "Madhya Pradesh general knowledge",
+            "Optional background and service preference discussion",
+            "Situational judgement and personality assessment"
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General / Unreserved (MP) and candidates of other states",
+          "amount": 500,
+          "notes": "Plus MP Online portal charge of approx Rs 40"
+        },
+        {
+          "category": "SC / ST / OBC / EWS (Madhya Pradesh domicile)",
+          "amount": 250,
+          "notes": "Plus MP Online portal charge of approx Rs 40"
+        },
+        {
+          "category": "PwD (Madhya Pradesh domicile)",
+          "amount": 250,
+          "notes": "Concessional fee applicable to MP domicile candidates only"
+        },
+        {
+          "category": "Correction / Error rectification per instance",
+          "amount": 50,
+          "notes": "Portal charge for editing an already submitted application"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Deputy Collector (Deputy District Magistrate)",
+          "pay_level": null,
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 75000
+        },
+        {
+          "post": "Deputy Superintendent of Police (DSP)",
+          "pay_level": null,
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 75000
+        },
+        {
+          "post": "Commercial Tax Officer / District Registrar",
+          "pay_level": null,
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 70000
+        },
+        {
+          "post": "Naib Tahsildar / Cooperative Inspector (Class III posts)",
+          "pay_level": null,
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 45000
+        }
+      ],
+      "how_to_apply": [
+        "Visit the MPPSC official website mppsc.mp.gov.in (or the MP Online portal mponline.gov.in) and open the State Service Examination 2026 application link under the 'Online Application' / Citizen Services section.",
+        "Register as a new user with your name, date of birth, mobile number and email ID to generate your applicant profile and login credentials.",
+        "Log in and fill the online application form with personal details, MP domicile/category details (SC/ST/OBC/EWS/PwD if applicable), educational qualifications and service/post preferences.",
+        "Upload scanned copies of your recent passport-size photograph, signature and handwritten declaration in the prescribed size and format (JPG, within the specified KB limits).",
+        "Pay the application fee online (Rs 500 for unreserved/other-state candidates, Rs 250 for reserved categories of MP, plus the MP Online portal charge) via net banking, debit/credit card or UPI.",
+        "Review the complete form in the preview screen, submit it, and download/print the final submitted application and fee receipt for future reference.",
+        "If needed, use the error-correction window announced by MPPSC to rectify mistakes in the submitted form on payment of the prescribed correction charge per instance."
+      ],
+      "faqs": [
+        {
+          "question": "Is there negative marking in MPPSC State Service Prelims 2026?",
+          "answer": "No. MPPSC does not apply negative marking in the State Service Preliminary Examination. Both Paper I (General Studies) and Paper II (General Aptitude Test) carry 200 marks each with no penalty for wrong answers. Paper II is qualifying in nature with a minimum of 40% marks required."
+        },
+        {
+          "question": "How many attempts are allowed in the MPPSC State Service Exam?",
+          "answer": "MPPSC does not prescribe a fixed number of attempts. Candidates can appear as many times as they wish within the eligible age limit, which is generally 21 to 40 years for MP domicile candidates (with relaxations for reserved categories and government servants as per state rules) and 21 to 28 years for other-state candidates for uniformed posts like DSP."
+        },
+        {
+          "question": "Which posts are filled through the MPPSC State Service Examination?",
+          "answer": "The State Service Examination recruits for State Civil Services posts such as Deputy Collector, Deputy Superintendent of Police (DSP), Commercial Tax Officer, District Registrar, Cooperative Inspector, Naib Tahsildar and various other Class II and Class III posts of the Madhya Pradesh government."
+        },
+        {
+          "question": "What is the medium of the MPPSC Mains examination?",
+          "answer": "Candidates may write the Mains papers in Hindi or English, except the General Hindi paper and the Hindi Essay paper, which must be answered in Hindi. Question papers are set bilingually in Hindi and English."
+        },
+        {
+          "question": "Do Prelims marks count in the final merit list?",
+          "answer": "No. The Preliminary examination is only a screening stage. Final merit is prepared out of 1575 marks, comprising the six Mains papers (1400 marks) and the Interview/Personality Test (175 marks)."
+        },
+        {
+          "question": "Can candidates from outside Madhya Pradesh apply for MPPSC SSE 2026?",
+          "answer": "Yes, candidates from other states can apply, but they are treated as unreserved category regardless of their home-state category, pay the full application fee of Rs 500, and are not eligible for MP-specific age and fee relaxations."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2023,
+          "vacancy": 227,
+          "cutoff_ur": 156,
+          "result_status": "declared",
+          "result_url": "https://mppsc.mp.gov.in"
+        },
+        {
+          "year": 2024,
+          "vacancy": 110,
+          "cutoff_ur": 160,
+          "result_status": "declared",
+          "result_url": "https://mppsc.mp.gov.in"
+        },
+        {
+          "year": 2025,
+          "vacancy": 158,
+          "cutoff_ur": 150,
+          "result_status": "awaited",
+          "result_url": "https://mppsc.mp.gov.in"
+        },
+        {
+          "year": 2026,
+          "vacancy": 155,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://mppsc.mp.gov.in"
+        }
+      ]
+    },
+    {
+      "id": "uppsc-pcs-2026",
+      "body": "uppsc",
+      "exam": "UPPSC PCS 2026",
+      "title": "UPPSC Combined State / Upper Subordinate Services (PCS) Examination 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "upcoming",
+      "vacancy": 500,
+      "age_min": 21,
+      "age_max": 40,
+      "summary": "Uttar Pradesh state civil services (PCS) recruitment for SDM, Dy SP and allied Group A/B posts.",
+      "posts": "SDM, Dy SP, BDO, and allied state services",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-06-25",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-06-25",
+          "done": true
+        },
+        {
+          "name": "Prelims",
+          "date": "2026-12-06",
+          "done": false
+        },
+        {
+          "name": "Mains",
+          "date": "2027-05-23",
+          "done": false
+        },
+        {
+          "name": "Interview",
+          "date": "2027-09-15",
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": "2027-10-30",
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Notification",
+          "date": "2026-06-25",
+          "is_deadline": false
+        },
+        {
+          "label": "Application Start",
+          "date": "2026-06-25",
+          "is_deadline": false
+        },
+        {
+          "label": "Last Date to Apply",
+          "date": "2026-08-03",
+          "is_deadline": true
+        },
+        {
+          "label": "Last Date to Pay Fee",
+          "date": "2026-08-03",
+          "is_deadline": true
+        },
+        {
+          "label": "Prelims Admit Card",
+          "date": "2026-11-27",
+          "is_deadline": false
+        },
+        {
+          "label": "Prelims Exam",
+          "date": "2026-12-06",
+          "is_deadline": false
+        },
+        {
+          "label": "Prelims Result",
+          "date": "2027-01-15",
+          "is_deadline": false
+        },
+        {
+          "label": "Mains Exam",
+          "date": "2027-05-23",
+          "is_deadline": false
+        },
+        {
+          "label": "Interview / Personality Test",
+          "date": "2027-09-15",
+          "is_deadline": false
+        },
+        {
+          "label": "Final Result",
+          "date": "2027-10-30",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Preliminary Examination",
+        "Main Examination",
+        "Interview / Personality Test"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2023,
+          "seats": 253
+        },
+        {
+          "year": 2024,
+          "seats": 947
+        },
+        {
+          "year": 2025,
+          "seats": 920
+        },
+        {
+          "year": 2026,
+          "seats": 500
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 125
+        },
+        {
+          "category": "EWS",
+          "marks": 129
+        },
+        {
+          "category": "OBC",
+          "marks": 128
+        },
+        {
+          "category": "SC",
+          "marks": 112
+        },
+        {
+          "category": "ST",
+          "marks": 109
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Website",
+          "url": "https://uppsc.up.nic.in/",
+          "kind": "Website"
+        },
+        {
+          "label": "Official Notification",
+          "url": "https://uppsc.up.nic.in/CandidatePages/Notifications.aspx",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://otr.pariksha.nic.in/",
+          "kind": "Apply"
+        }
+      ],
+      "updates": [
+        {
+          "text": "PCS 2026 last date to apply extended to 3 August 2026; application correction/modification window open till 10 August 2026",
+          "kind": "info",
+          "when": "2026-08-03"
+        },
+        {
+          "text": "UPPSC releases PCS 2026 notification for around 500 vacancies; online applications open via OTR, Prelims scheduled for 6 December 2026",
+          "kind": "info",
+          "when": "2026-06-25"
+        }
+      ],
+      "related": [],
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 2,
+          "negative_marking": "1/3rd of the marks assigned to the question deducted for each wrong answer",
+          "sections": [],
+          "note": "Counted for merit; sole basis of the Prelims cutoff"
+        },
+        {
+          "stage": "Prelims",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 2,
+          "negative_marking": "1/3rd of the marks assigned to the question deducted for each wrong answer",
+          "sections": [],
+          "note": "Qualifying only - minimum 33% required; marks not counted for merit"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Tests comprehension, grammar and official Hindi drafting"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Three essays, one from each of three sections (literature/culture, socio-political sphere, science-economy)"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "History, Indian society, geography"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Polity, constitution, governance, international relations"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Economy, science & technology, environment, security"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Ethics, integrity and aptitude, including case studies"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "History, culture, polity and administration specific to Uttar Pradesh"
+        },
+        {
+          "stage": "Mains",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Economy, agriculture, industry and current developments specific to Uttar Pradesh; Mains total 1500 marks"
+        },
+        {
+          "stage": "Interview",
+          "mode": null,
+          "total_marks": null,
+          "duration_min": 30,
+          "negative_marking": "None",
+          "sections": [],
+          "note": "Final merit prepared out of 1600 (Mains 1500 + Interview 100)"
+        }
+      ],
+      "syllabus": [
+        {
+          "paper": "Prelims GS Paper I",
+          "topics": [
+            "Current events of national and international importance",
+            "History of India and Indian National Movement",
+            "Indian and World Geography - physical, social, economic",
+            "Indian Polity and Governance - Constitution, political system, Panchayati Raj, public policy, rights issues",
+            "Economic and Social Development - sustainable development, poverty, inclusion, demographics",
+            "General issues on Environmental Ecology, Biodiversity and Climate Change",
+            "General Science",
+            "Specific knowledge of Uttar Pradesh - history, culture, agriculture, economy and administration"
+          ]
+        },
+        {
+          "paper": "Prelims GS Paper II (CSAT)",
+          "topics": [
+            "Comprehension",
+            "Interpersonal skills including communication skills",
+            "Logical reasoning and analytical ability",
+            "Decision making and problem solving",
+            "General mental ability",
+            "Elementary Mathematics up to Class X level - arithmetic, algebra, geometry, statistics",
+            "General English up to Class X level",
+            "General Hindi up to Class X level"
+          ]
+        },
+        {
+          "paper": "Mains - General Hindi",
+          "topics": [
+            "Comprehension of a given passage",
+            "Precis writing",
+            "Official and semi-official letter writing, tippan and reports",
+            "Word knowledge and usage - vilom, paryayvachi, tatsam-tadbhav",
+            "Grammar - sandhi, samas, muhavare and idioms"
+          ]
+        },
+        {
+          "paper": "Mains - Essay",
+          "topics": [
+            "Section A: Literature and culture, social sphere, political sphere",
+            "Section B: Science, environment and technology; economic sphere; agriculture, industry and trade",
+            "Section C: National and international events, natural calamities, national development programmes and projects"
+          ]
+        },
+        {
+          "paper": "Mains - GS I",
+          "topics": [
+            "Indian culture - art forms, literature and architecture",
+            "Modern Indian history, freedom struggle and post-independence consolidation",
+            "History of the world including industrial revolution and world wars",
+            "Indian society, role of women, population, poverty and urbanisation",
+            "Geography of the world and India - physical geography, distribution of resources, geophysical phenomena"
+          ]
+        },
+        {
+          "paper": "Mains - GS II",
+          "topics": [
+            "Indian Constitution - historical underpinnings, evolution, features, amendments, basic structure",
+            "Functions and responsibilities of the Union and States, federalism, devolution",
+            "Separation of powers, dispute redressal mechanisms, comparison with other constitutions",
+            "Parliament and State Legislatures, Executive, Judiciary, constitutional and statutory bodies",
+            "Government policies, welfare schemes, governance, transparency, e-governance, civil services",
+            "India and its neighbourhood, bilateral and global groupings, international institutions"
+          ]
+        },
+        {
+          "paper": "Mains - GS III",
+          "topics": [
+            "Indian economy - planning, mobilisation of resources, growth, development, employment, budgeting",
+            "Agriculture - cropping patterns, irrigation, MSP, PDS, food processing, land reforms",
+            "Liberalisation, industrial policy, infrastructure and investment models",
+            "Science and technology - developments, achievements of Indians, IT, space, robotics, biotechnology",
+            "Environment - conservation, pollution, EIA, disaster management",
+            "Internal and external security - extremism, cyber security, money laundering, border management, security forces"
+          ]
+        },
+        {
+          "paper": "Mains - GS IV",
+          "topics": [
+            "Ethics and human interface - essence, determinants and consequences of ethics in human action",
+            "Attitude - content, structure and function; moral and political attitudes",
+            "Aptitude and foundational values for civil service - integrity, impartiality, empathy, tolerance",
+            "Emotional intelligence and its application in administration",
+            "Contributions of moral thinkers and philosophers of India and the world",
+            "Probity in governance - Citizen Charters, RTI, codes of conduct, work culture; case studies"
+          ]
+        },
+        {
+          "paper": "Mains - GS V (UP Special)",
+          "topics": [
+            "History of Uttar Pradesh and its role in the freedom struggle",
+            "Polity, governance and administrative structure of UP, Public Service Commission, Lokayukta",
+            "Land reforms, law and order and civil defence in UP",
+            "Culture of UP - fairs, festivals, folk dances, music, handicrafts and tourism",
+            "Social customs, education and current affairs of Uttar Pradesh"
+          ]
+        },
+        {
+          "paper": "Mains - GS VI (UP Special)",
+          "topics": [
+            "Economy of Uttar Pradesh - state budget, planning, GSDP composition",
+            "Agriculture, horticulture, animal husbandry and agro-based industries of UP",
+            "Industrial development, MSMEs, energy and infrastructure of UP, expressway and defence corridor projects",
+            "Public finance, fiscal policy, tax revenues and government welfare schemes of UP",
+            "Science, environment, natural resources and human resource development in UP"
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General / Unreserved",
+          "amount": 125,
+          "notes": ""
+        },
+        {
+          "category": "OBC",
+          "amount": 125,
+          "notes": ""
+        },
+        {
+          "category": "EWS",
+          "amount": 125,
+          "notes": ""
+        },
+        {
+          "category": "SC (UP domicile)",
+          "amount": 65,
+          "notes": ""
+        },
+        {
+          "category": "ST (UP domicile)",
+          "amount": 65,
+          "notes": ""
+        },
+        {
+          "category": "PwBD (UP domicile)",
+          "amount": 25,
+          "notes": ""
+        },
+        {
+          "category": "Ex-Serviceman (UP domicile)",
+          "amount": 65,
+          "notes": ""
+        }
+      ],
+      "salary": [
+        {
+          "post": "Deputy Collector / SDM",
+          "pay_level": "Level 10",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Deputy Superintendent of Police (Dy SP)",
+          "pay_level": "Level 10",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Block Development Officer (BDO)",
+          "pay_level": "Level 7",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Assistant Regional Transport Officer / Treasury Officer",
+          "pay_level": "Level 8",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        }
+      ],
+      "how_to_apply": [
+        "Complete One Time Registration (OTR) on the portal otr.pariksha.nic.in and note your permanent OTR number (mandatory before applying to any UPPSC exam).",
+        "Visit uppsc.up.nic.in, open 'All Notifications/Advertisements' and click Apply against the Combined State/Upper Subordinate Services (PCS) Examination 2026 advertisement.",
+        "Log in using your OTR number; your personal details are auto-filled from the OTR profile - verify name, date of birth, category, domicile and gender carefully.",
+        "Fill the online application: educational qualifications, preferential claims (ex-serviceman, skilled player, govt employee) and communication details.",
+        "Upload scanned photograph and signature in the prescribed format and size, and declare the photo ID used, as specified in the notification.",
+        "Pay the category-wise examination fee online (net banking, debit/credit card or UPI) before the last date 2026-08-03 (extended from the original last date).",
+        "Submit the form and download/print the final submitted application PDF for future reference; corrections, if needed, can be made only during the correction window (till 2026-08-10)."
+      ],
+      "faqs": [
+        {
+          "q": "How many attempts are allowed in UPPSC PCS?",
+          "a": "UPPSC does not limit the number of attempts. You can appear as many times as you like between the ages of 21 and 40 (upper age relaxable by 5 years for SC/ST/OBC candidates domiciled in Uttar Pradesh)."
+        },
+        {
+          "q": "Is the CSAT (GS Paper II) counted for the Prelims merit list?",
+          "a": "No. GS Paper II (CSAT) is only qualifying - you need at least 33% in it. The Prelims cutoff and shortlisting for Mains are decided solely on GS Paper I marks."
+        },
+        {
+          "q": "Is there negative marking in UPPSC PCS Prelims?",
+          "a": "Yes. One-third (1/3) of the marks assigned to a question is deducted for every wrong answer in both Prelims papers. There is no negative marking in the descriptive Mains papers."
+        },
+        {
+          "q": "Can candidates from outside Uttar Pradesh apply?",
+          "a": "Yes, candidates from any state can apply. However, the benefit of reservation (SC/ST/OBC/EWS quotas, and horizontal reservation for women and PwBD) and the category fee concessions is limited to candidates domiciled in Uttar Pradesh; all others are treated as unreserved."
+        },
+        {
+          "q": "Does UPPSC PCS still have optional subjects in Mains?",
+          "a": "No. Since the 2022 reform, optional subjects have been removed from the Mains. The Mains now has 8 compulsory papers - General Hindi (150), Essay (150) and six General Studies papers of 200 marks each, of which GS-V and GS-VI are Uttar Pradesh specific - totalling 1500 marks, plus a 100-mark interview."
+        },
+        {
+          "q": "What posts are offered through UPPSC PCS 2026?",
+          "a": "Top posts include Deputy Collector (SDM) and Deputy Superintendent of Police (both Pay Level 10, Rs 56,100 - 1,77,500), along with Block Development Officer, Assistant Regional Transport Officer, District Commandant Home Guards, Treasury Officer and other Group A and B posts of the UP government. Around 500 vacancies have been advertised for the 2026 cycle, and UPPSC has historically increased the count during the recruitment (2024: 220 to 947; 2025: 200 to 920)."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2023,
+          "vacancy": 253,
+          "cutoff_ur": 125,
+          "result_status": "declared",
+          "result_url": "https://uppsc.up.nic.in/"
+        },
+        {
+          "year": 2024,
+          "vacancy": 947,
+          "cutoff_ur": null,
+          "result_status": "declared",
+          "result_url": "https://uppsc.up.nic.in/"
+        },
+        {
+          "year": 2025,
+          "vacancy": 920,
+          "cutoff_ur": null,
+          "result_status": "awaited",
+          "result_url": "https://uppsc.up.nic.in/"
+        },
+        {
+          "year": 2026,
+          "vacancy": 500,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://uppsc.up.nic.in/"
+        }
+      ]
+    },
+    {
+      "id": "bpsc-cce-2026",
+      "body": "bpsc",
+      "exam": "BPSC CCE 2026",
+      "title": "BPSC 72nd Combined Competitive Examination (CCE) 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "upcoming",
+      "vacancy": 1250,
+      "age_min": 20,
+      "age_max": 37,
+      "summary": "Bihar Combined Competitive Exam for SDM, DSP and other Group A/B state posts.",
+      "posts": "SDM, DSP, and allied Bihar state services",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-06-02",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-06-10",
+          "done": true
+        },
+        {
+          "name": "Prelims",
+          "date": "2026-09-13",
+          "done": false
+        },
+        {
+          "name": "Mains",
+          "date": "2027-01-10",
+          "done": false
+        },
+        {
+          "name": "Interview",
+          "date": "2027-06-20",
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": "2027-07-30",
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Notification",
+          "date": "2026-06-02",
+          "is_deadline": false
+        },
+        {
+          "label": "Application Start",
+          "date": "2026-06-10",
+          "is_deadline": false
+        },
+        {
+          "label": "Last Date to Apply",
+          "date": "2026-07-08",
+          "is_deadline": true
+        },
+        {
+          "label": "Prelims Exam",
+          "date": "2026-09-13",
+          "is_deadline": false
+        },
+        {
+          "label": "Prelims Result",
+          "date": "2026-11-20",
+          "is_deadline": false
+        },
+        {
+          "label": "Mains Exam",
+          "date": "2027-01-10",
+          "is_deadline": false
+        },
+        {
+          "label": "Interview / Personality Test",
+          "date": "2027-06-20",
+          "is_deadline": false
+        },
+        {
+          "label": "Final Result",
+          "date": "2027-07-30",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Preliminary Examination",
+        "Main Examination",
+        "Interview"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2023,
+          "seats": 475
+        },
+        {
+          "year": 2024,
+          "seats": 2035
+        },
+        {
+          "year": 2025,
+          "seats": 1298
+        },
+        {
+          "year": 2026,
+          "seats": 1250
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 99.5
+        },
+        {
+          "category": "EWS",
+          "marks": 96.25
+        },
+        {
+          "category": "BC",
+          "marks": 97.75
+        },
+        {
+          "category": "EBC",
+          "marks": 95.5
+        },
+        {
+          "category": "SC",
+          "marks": 90.25
+        },
+        {
+          "category": "ST",
+          "marks": 89.5
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Website",
+          "url": "https://bpsc.bihar.gov.in",
+          "kind": "Website"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://onlinebpsc.bihar.gov.in",
+          "kind": "Apply"
+        },
+        {
+          "label": "Official Notification",
+          "url": "https://bpsc.bihar.gov.in/Notices",
+          "kind": "Notification"
+        }
+      ],
+      "updates": [
+        {
+          "text": "BPSC has announced that admit cards for the 72nd CCE Prelims will be released in the first week of September 2026 on onlinebpsc.bihar.gov.in; the Prelims is scheduled for 2026-09-13 in a single shift across districts of Bihar.",
+          "kind": "info",
+          "when": "2026-08-05"
+        },
+        {
+          "text": "Online applications for the 72nd BPSC CCE closed on 2026-07-08 with approximately 4.8 lakh registrations against about 1,250 advertised posts, including SDM (Bihar Administrative Service) and DSP (Bihar Police Service) vacancies.",
+          "kind": "info",
+          "when": "2026-07-10"
+        }
+      ],
+      "related": [],
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Offline (OMR-based)",
+          "total_marks": null,
+          "duration_min": 2,
+          "negative_marking": "No negative marking",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (MCQ/OMR-based)",
+          "total_marks": null,
+          "duration_min": 2,
+          "negative_marking": "No negative marking",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Interview",
+          "mode": "In person at BPSC office, Patna",
+          "total_marks": null,
+          "duration_min": 30,
+          "negative_marking": "Not applicable",
+          "sections": [],
+          "note": null
+        }
+      ],
+      "syllabus": [
+        {
+          "section": "Prelims - General Studies",
+          "topics": [
+            "General Science",
+            "Events of national and international importance (current affairs)",
+            "History of Bihar and Indian History",
+            "Geography of Bihar and India",
+            "Indian Polity and Economy; changes in the economy of Bihar post-independence",
+            "Indian National Movement and the role of Bihar in it",
+            "General mental ability and elementary Mathematics (matriculation level)"
+          ]
+        },
+        {
+          "section": "Mains - General Hindi (Qualifying)",
+          "topics": [
+            "Essay (Nibandh) - 30 marks",
+            "Grammar (Vyakaran) - 30 marks",
+            "Syntax (Vakya Vinyas) - 25 marks",
+            "Summarization (Sankshepan) - 15 marks",
+            "Standard of Bihar School Examination Board Matriculation level"
+          ]
+        },
+        {
+          "section": "Mains - General Studies Paper I",
+          "topics": [
+            "Modern history of India and Indian culture (mid-19th century onwards, including Bihar)",
+            "Santhal uprising, 1857 in Bihar, Birsa movement, Champaran Satyagraha, Quit India Movement 1942",
+            "Mauryan and Pala art; Patna Qalam painting",
+            "Role of Gandhi, Rabindranath Tagore and Nehru",
+            "Current events of national and international importance",
+            "Statistical analysis, graphs and diagrams - drawing conclusions from statistical, graphical or diagrammatical data"
+          ]
+        },
+        {
+          "section": "Mains - General Studies Paper II",
+          "topics": [
+            "Indian Polity including the political system of Bihar",
+            "Indian economy and geography of India, with specific reference to the economy and geography of Bihar",
+            "Planning in the Indian and Bihar economy",
+            "Role and impact of science and technology in the development of India, with specific reference to Bihar"
+          ]
+        },
+        {
+          "section": "Mains - Essay",
+          "topics": [
+            "Three essays covering socio-political, economic, philosophical and current-affairs themes",
+            "Emphasis on coherent structure, analytical depth and expression"
+          ]
+        },
+        {
+          "section": "Mains - Optional Subject (Qualifying, MCQ)",
+          "topics": [
+            "One subject chosen from the BPSC list of about 34 optionals, e.g. History, Geography, Political Science & International Relations, Sociology, Public Administration, Economics, Labour & Social Welfare, Hindi/English/Urdu/Maithili literature, Physics, Chemistry, Mathematics, Zoology, Botany, Agriculture, Civil/Mechanical/Electrical Engineering, Law, Commerce & Accountancy, Psychology, Philosophy, Anthropology, Animal Husbandry & Veterinary Science, Statistics"
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General / OBC / EWS / other states",
+          "amount": 600,
+          "notes": ""
+        },
+        {
+          "category": "SC / ST (Bihar domicile)",
+          "amount": 150,
+          "notes": ""
+        },
+        {
+          "category": "Female (Bihar domicile, all categories)",
+          "amount": 150,
+          "notes": ""
+        },
+        {
+          "category": "PwD (40% or more disability)",
+          "amount": 150,
+          "notes": ""
+        },
+        {
+          "category": "Biometric verification charge (only candidates not providing Aadhaar)",
+          "amount": 200,
+          "notes": ""
+        }
+      ],
+      "salary": [
+        {
+          "post": "Sub Divisional Magistrate / Deputy Collector (Bihar Administrative Service)",
+          "pay_level": "Level 9",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 65000
+        },
+        {
+          "post": "Deputy Superintendent of Police (Bihar Police Service)",
+          "pay_level": "Level 9",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 65000
+        },
+        {
+          "post": "Commercial Tax Officer / State Tax Assistant Commissioner",
+          "pay_level": "Level 9",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 62000
+        },
+        {
+          "post": "Revenue Officer / Block Panchayat Raj Officer / Supply Inspector",
+          "pay_level": "Level 7",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 55000
+        },
+        {
+          "post": "Rural Development Officer / Labour Enforcement Officer",
+          "pay_level": "Level 7",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": 55000
+        }
+      ],
+      "how_to_apply": [
+        "Visit the official BPSC online application portal at https://onlinebpsc.bihar.gov.in during the application window (2026-06-10 to 2026-07-08).",
+        "Complete one-time registration with your name, date of birth, valid email ID and mobile number; note the registration ID and password sent to you.",
+        "Log in and pay the category-wise examination fee (Rs 600 general; Rs 150 for Bihar SC/ST, Bihar female and PwD candidates) online via debit card, credit card, net banking or UPI; fee payment must be completed before the form is enabled.",
+        "Fill the detailed application form: personal details, category and domicile, educational qualification (graduation), post preferences, and choice of optional subject and exam district.",
+        "Upload scanned photograph, signature and required certificates (caste, domicile, EWS, disability, Aadhaar as applicable) in the prescribed size and format.",
+        "Preview the form carefully, submit it before the last date, and download/print the final submitted application and fee receipt for future reference; admit cards are downloaded later from the same portal."
+      ],
+      "faqs": [
+        {
+          "question": "Is there negative marking in the BPSC CCE Prelims?",
+          "answer": "No. BPSC had proposed 1/4 negative marking for the 68th CCE but withdrew it, and the Prelims (150 questions, 150 marks) currently has no negative marking. The qualifying Optional MCQ paper in Mains also has no negative marking."
+        },
+        {
+          "question": "What is the eligibility for BPSC CCE 2026?",
+          "answer": "A bachelor's degree in any discipline from a recognized university. Minimum age is 20/21/22 years depending on the post (22 for DSP), and maximum age is 37 years for unreserved male candidates, 40 for female/BC/EBC and 42 for SC/ST, reckoned as on 1 August 2026."
+        },
+        {
+          "question": "How is the final merit list prepared?",
+          "answer": "Final merit is based on 1020 marks: Mains written papers counted for merit (GS Paper I 300 + GS Paper II 300 + Essay 300 = 900) plus the Interview of 120 marks. Prelims, General Hindi and the Optional paper are qualifying only."
+        },
+        {
+          "question": "How many attempts are allowed in BPSC CCE?",
+          "answer": "BPSC does not impose a fixed attempt limit; candidates can appear as many times as they remain within the age limit for their category."
+        },
+        {
+          "question": "Can candidates from outside Bihar apply?",
+          "answer": "Yes, candidates from any state can apply, but they are treated as unreserved (general) category regardless of their caste category, and reservation plus fee concessions apply only to Bihar domicile candidates."
+        },
+        {
+          "question": "In which language is the exam conducted?",
+          "answer": "Question papers are bilingual (Hindi and English). Mains answers can be written in Hindi, English or Urdu, while the General Hindi paper must be attempted in Hindi and is qualifying with 30% minimum marks."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2023,
+          "vacancy": 475,
+          "cutoff_ur": 96.75,
+          "result_status": "declared",
+          "result_url": "https://bpsc.bihar.gov.in/Result"
+        },
+        {
+          "year": 2024,
+          "vacancy": 2035,
+          "cutoff_ur": 108,
+          "result_status": "declared",
+          "result_url": "https://bpsc.bihar.gov.in/Result"
+        },
+        {
+          "year": 2025,
+          "vacancy": 1298,
+          "cutoff_ur": 99.5,
+          "result_status": "awaited",
+          "result_url": "https://bpsc.bihar.gov.in/Result"
+        },
+        {
+          "year": 2026,
+          "vacancy": 1250,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://bpsc.bihar.gov.in/Result"
+        }
+      ]
+    },
+    {
+      "id": "rpsc-ras-2026",
+      "body": "rpsc",
+      "exam": "RPSC RAS 2026",
+      "title": "RPSC Rajasthan State and Subordinate Services Combined Competitive Examination (RAS/RTS) 2026",
+      "qualification": "Graduate",
+      "qualification_code": "graduate",
+      "status": "upcoming",
+      "vacancy": 607,
+      "age_min": 21,
+      "age_max": 40,
+      "summary": "Rajasthan Administrative & allied services (RAS) recruitment for state civil-service posts.",
+      "posts": "RAS, RPS and allied Rajasthan state services",
+      "stages": [
+        {
+          "name": "Notification",
+          "date": "2026-05-27",
+          "done": true
+        },
+        {
+          "name": "Apply Online",
+          "date": "2026-06-04",
+          "done": true
+        },
+        {
+          "name": "Prelims",
+          "date": "2026-12-06",
+          "done": false
+        },
+        {
+          "name": "Mains",
+          "date": "2027-05-01",
+          "done": false
+        },
+        {
+          "name": "Interview",
+          "date": null,
+          "done": false
+        },
+        {
+          "name": "Result",
+          "date": "2027-09-30",
+          "done": false
+        }
+      ],
+      "dates": [
+        {
+          "label": "Notification",
+          "date": "2026-05-27",
+          "is_deadline": false
+        },
+        {
+          "label": "Application Start",
+          "date": "2026-06-04",
+          "is_deadline": false
+        },
+        {
+          "label": "Last Date to Apply",
+          "date": "2026-07-03",
+          "is_deadline": true
+        },
+        {
+          "label": "Prelims Admit Card",
+          "date": "2026-11-28",
+          "is_deadline": false
+        },
+        {
+          "label": "Prelims Exam",
+          "date": "2026-12-06",
+          "is_deadline": false
+        },
+        {
+          "label": "Prelims Result",
+          "date": "2027-01-22",
+          "is_deadline": false
+        },
+        {
+          "label": "Mains Exam",
+          "date": "2027-05-01",
+          "is_deadline": false
+        },
+        {
+          "label": "Final Result",
+          "date": "2027-09-30",
+          "is_deadline": false
+        }
+      ],
+      "selection": [
+        "Preliminary Examination",
+        "Main Examination",
+        "Interview / Personality Test",
+        "Document Verification and Medical Examination"
+      ],
+      "vacancy_history": [
+        {
+          "year": 2023,
+          "seats": 972
+        },
+        {
+          "year": 2024,
+          "seats": 733
+        },
+        {
+          "year": 2026,
+          "seats": 607
+        }
+      ],
+      "cutoffs": [
+        {
+          "category": "UR",
+          "marks": 71.59
+        },
+        {
+          "category": "EWS",
+          "marks": 71.59
+        },
+        {
+          "category": "OBC",
+          "marks": 71.59
+        },
+        {
+          "category": "MBC",
+          "marks": 71.59
+        },
+        {
+          "category": "SC",
+          "marks": 63.98
+        },
+        {
+          "category": "ST",
+          "marks": 67.56
+        }
+      ],
+      "links": [
+        {
+          "label": "Official Website",
+          "url": "https://rpsc.rajasthan.gov.in",
+          "kind": "Website"
+        },
+        {
+          "label": "Official Notification",
+          "url": "https://rpsc.rajasthan.gov.in/advertisements",
+          "kind": "Notification"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://sso.rajasthan.gov.in",
+          "kind": "Apply"
+        }
+      ],
+      "updates": [
+        {
+          "text": "Online applications for RAS 2026 closed on 2026-07-03 on the SSO portal. The Prelims is scheduled for 2026-12-06; admit cards are typically released on the RPSC portal about a week before the exam.",
+          "kind": "info",
+          "when": "2026-07-03"
+        },
+        {
+          "text": "RPSC releases the RAS/RTS Combined Competitive Exam 2026 notification for 607 posts (192 State Services, 415 Subordinate Services); online applications open 2026-06-04 on the SSO portal with 2026-07-03 as the last date. One Time Registration (OTR) on the Rajasthan SSO portal is mandatory before applying.",
+          "kind": "info",
+          "when": "2026-05-27"
+        }
+      ],
+      "related": [],
+      "exam_pattern": [
+        {
+          "stage": "Prelims",
+          "mode": "Offline (OMR-based)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "1/3 mark deducted per wrong answer; a fifth 'not attempted' option must be bubbled for skipped questions — leaving more than 10% of questions with no option marked can lead to disqualification under RPSC's fifth-option rule",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Mains",
+          "mode": "Offline (descriptive)",
+          "total_marks": null,
+          "duration_min": 3,
+          "negative_marking": "None",
+          "sections": [],
+          "note": null
+        },
+        {
+          "stage": "Interview",
+          "mode": "In person at RPSC, Ajmer",
+          "total_marks": null,
+          "duration_min": 25,
+          "negative_marking": "None",
+          "sections": [],
+          "note": null
+        }
+      ],
+      "syllabus": [
+        {
+          "stage": "Prelims",
+          "paper": "General Knowledge and General Science",
+          "topics": [
+            "History, Art, Culture, Literature, Tradition and Heritage of Rajasthan",
+            "Indian History (Ancient, Medieval, Modern) and Indian National Movement",
+            "Geography of World, India and Rajasthan",
+            "Indian Constitution, Political System and Governance",
+            "Political and Administrative System of Rajasthan",
+            "Economic Concepts and Indian Economy; Economy of Rajasthan",
+            "Science and Technology",
+            "Reasoning and Mental Ability; Basic Numeracy",
+            "Current Affairs of Rajasthan, National and International importance"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "paper": "Paper I – General Studies-I",
+          "topics": [
+            "History: Indian history and culture with emphasis on Rajasthan",
+            "Economics: Indian and Rajasthan economy, planning, growth and development",
+            "Sociology, Management, Accounting and Auditing (basics)"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "paper": "Paper II – General Studies-II",
+          "topics": [
+            "Administrative Ethics",
+            "General Science and Technology (Physics, Chemistry, Biology, ICT, Biotechnology, Space, Defence)",
+            "Earth Science (Geography and Geology) — World, India and Rajasthan"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "paper": "Paper III – General Studies-III",
+          "topics": [
+            "Indian Political System, World Politics and Current Affairs",
+            "Concepts, Issues and Dynamics of Public Administration and Management",
+            "Sports and Yoga, Behaviour and Law (basic knowledge of Rajasthan-relevant laws)"
+          ]
+        },
+        {
+          "stage": "Mains",
+          "paper": "Paper IV – General Hindi and General English",
+          "topics": [
+            "General Hindi (120 marks): grammar, vocabulary, comprehension, translation, official/semi-official letter drafting, essay",
+            "General English (80 marks): grammar and usage, comprehension, translation, precis writing, composition and letter writing"
+          ]
+        },
+        {
+          "stage": "Interview",
+          "paper": "Personality Test",
+          "topics": [
+            "Assessment of character, personality, aptitude for administrative roles",
+            "Knowledge of Rajasthani culture and current affairs",
+            "Situational judgement and communication skills"
+          ]
+        }
+      ],
+      "fees": [
+        {
+          "category": "General / Unreserved and Creamy Layer OBC/MBC (via One Time Registration)",
+          "amount": 600,
+          "notes": ""
+        },
+        {
+          "category": "OBC-NCL / MBC-NCL / EWS of Rajasthan",
+          "amount": 400,
+          "notes": ""
+        },
+        {
+          "category": "SC / ST of Rajasthan and PwBD candidates",
+          "amount": 400,
+          "notes": ""
+        },
+        {
+          "category": "Candidates of any category with annual family income below Rs 2.5 lakh",
+          "amount": 400,
+          "notes": ""
+        },
+        {
+          "category": "note",
+          "amount": 0,
+          "notes": "Fee is a one-time OTR (One Time Registration) charge on the Rajasthan SSO portal; once paid, no separate fee is charged for individual RPSC applications"
+        }
+      ],
+      "salary": [
+        {
+          "post": "Rajasthan Administrative Service (RAS)",
+          "pay_level": "Rajasthan Pay Matrix Level L-14",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Rajasthan Police Service (RPS)",
+          "pay_level": "Rajasthan Pay Matrix Level L-14",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Other State Services (Accounts, Cooperative, Industries, Employment etc.)",
+          "pay_level": "Rajasthan Pay Matrix Level L-14",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        },
+        {
+          "post": "Subordinate Services (Tehsildar, Naib Tehsildar, Cooperative Inspector etc.)",
+          "pay_level": "Rajasthan Pay Matrix Level L-11 to L-12",
+          "pay_min": null,
+          "pay_max": null,
+          "in_hand_approx": null
+        }
+      ],
+      "how_to_apply": [
+        "Register or log in on the Rajasthan Single Sign-On portal at https://sso.rajasthan.gov.in using Jan Aadhaar/Google credentials.",
+        "Complete the mandatory One Time Registration (OTR) with personal details, category, educational qualifications and documents, and pay the one-time OTR fee (Rs 600 General/Creamy Layer; Rs 400 for OBC-NCL/EWS/SC/ST/PwBD and low-income candidates).",
+        "Open the 'Recruitment Portal' service on SSO (https://recruitment.rajasthan.gov.in) and select 'Raj. State and Sub. Services Comb. Comp. Exam 2026' from the ongoing recruitments list.",
+        "Fill the RAS 2026 application form: verify OTR-prefilled details, choose Prelims exam district preference, and confirm eligibility declarations.",
+        "Upload photograph and signature in the specified format if not already stored in the OTR profile (live photo capture as per RPSC guidelines).",
+        "Submit the application before the deadline (2026-07-03, 23:59 IST) and download/print the filled application for records.",
+        "Use the paid correction window notified by RPSC (typically about 10 days after the application deadline) via the recruitment portal if any detail needs modification.",
+        "Download the Prelims admit card from https://rpsc.rajasthan.gov.in/admitcards or the SSO portal about a week before the exam date."
+      ],
+      "faqs": [
+        {
+          "question": "What is the eligibility for RPSC RAS 2026?",
+          "answer": "A Bachelor's degree in any discipline from a UGC-recognised university, and age between 21 and 40 years as on 1 January 2027. Final-year graduation students can appear in Prelims but must furnish proof of graduation before the Mains. Age relaxation applies for reserved categories of Rajasthan as per state rules."
+        },
+        {
+          "question": "Is there negative marking in the RAS Prelims?",
+          "answer": "Yes. One-third (1/3) of a mark is deducted for every wrong answer in the 150-question, 200-mark Prelims paper. RPSC also uses a fifth option for 'not attempted'; leaving more than 10% of questions without marking any of the five options can lead to disqualification, so fill the fifth bubble for questions you skip."
+        },
+        {
+          "question": "Do Prelims marks count in the final merit list?",
+          "answer": "No. The Prelims is only a screening test. The final merit is prepared out of 900 marks — 800 from the four Mains papers (200 each) plus 100 from the interview."
+        },
+        {
+          "question": "How many attempts are allowed in RPSC RAS?",
+          "answer": "There is no limit on the number of attempts. Candidates can appear as many times as they wish while they remain within the 21-40 age band (with applicable category relaxations)."
+        },
+        {
+          "question": "What is the application fee for RAS 2026?",
+          "answer": "Under Rajasthan's One Time Registration system, General and Creamy-Layer OBC/MBC candidates pay Rs 600, while OBC-NCL/MBC-NCL, EWS, SC, ST, PwBD and candidates with annual family income below Rs 2.5 lakh pay Rs 400. This OTR fee is paid once and covers all future RPSC applications."
+        },
+        {
+          "question": "What is the salary of an RAS officer?",
+          "answer": "RAS and other State Services posts start at Rajasthan Pay Matrix Level L-14 with a basic pay of Rs 56,100 (Grade Pay 5400 equivalent), which works out to roughly Rs 72,000-85,000 in hand per month with allowances. Subordinate Services posts such as Tehsildar start at lower pay levels (Grade Pay 4200-4800 equivalent)."
+        },
+        {
+          "question": "In which language is the RAS exam conducted?",
+          "answer": "Question papers for Prelims and the General Studies Mains papers are bilingual (Hindi and English). Paper IV of Mains specifically tests General Hindi (120 marks) and General English (80 marks)."
+        }
+      ],
+      "yearwise": [
+        {
+          "year": 2023,
+          "vacancy": 972,
+          "cutoff_ur": 100.69,
+          "result_status": "declared",
+          "result_url": "https://rpsc.rajasthan.gov.in/results"
+        },
+        {
+          "year": 2024,
+          "vacancy": 733,
+          "cutoff_ur": 71.59,
+          "result_status": "declared",
+          "result_url": "https://rpsc.rajasthan.gov.in/results"
+        },
+        {
+          "year": 2026,
+          "vacancy": 607,
+          "cutoff_ur": null,
+          "result_status": "upcoming",
+          "result_url": "https://rpsc.rajasthan.gov.in/results"
+        }
       ]
     }
   ]

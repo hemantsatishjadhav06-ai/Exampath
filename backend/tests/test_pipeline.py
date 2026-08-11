@@ -63,7 +63,7 @@ class TestPipelineEndToEnd(unittest.TestCase):
         self.assertTrue(out.exists())
         data = json.loads(out.read_text(encoding="utf-8"))
         self.assertGreaterEqual(len(data["cycles"]), 5)
-        self.assertEqual(len(data["bodies"]), 5)
+        self.assertGreaterEqual(len(data["bodies"]), 5)
         self.assertIn("ssc-cgl-2026", {c["id"] for c in data["cycles"]})
         ssc = next(c for c in data["cycles"] if c["id"] == "ssc-cgl-2026")
         self.assertEqual(ssc["vacancy"], 17727)  # reconciled from the scraped notice
