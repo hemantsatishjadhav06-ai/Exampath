@@ -9,7 +9,20 @@ export type Status =
   | "admit_card"
   | "result_awaited"
   | "result_out"
-  | "completed";
+  | "completed"
+  | "exam_scheduled";
+
+export type VerificationStatus = "verified" | "partially_verified" | "unverified";
+
+export interface SourceEvidence {
+  status: VerificationStatus;
+  source_name: string;
+  source_url: string;
+  source_type: "notification" | "corrigendum" | "calendar" | "result" | "official_page";
+  published_at?: string;
+  checked_at: string;
+  notes?: string;
+}
 
 export interface Body {
   slug: string;
@@ -22,14 +35,16 @@ export interface Body {
 
 export interface Stage {
   name: string;
-  date: string | null; // ISO (YYYY-MM-DD) or null
+  date: string | null;
   done: boolean;
+  precision?: "day" | "month" | "tentative";
 }
 
 export interface KeyDate {
   label: string;
-  date: string; // ISO
+  date: string;
   is_deadline: boolean;
+  precision?: "day" | "month" | "tentative";
 }
 
 export interface VacancyPoint {
@@ -46,23 +61,27 @@ export interface LinkItem {
   label: string;
   url: string;
   kind: string;
+  verified?: boolean;
 }
 
 export interface Update {
   text: string;
   kind: string;
   when: string;
+  published_at?: string;
+  source_url?: string;
 }
 
 export interface Cycle {
   id: string;
-  body: string; // body slug
+  body: string;
   exam: string;
   title: string;
   qualification: string;
   qualification_code: QualCode;
   status: Status;
   vacancy: number;
+  vacancy_note?: string;
   age_min: number;
   age_max: number;
   summary: string;
@@ -75,6 +94,7 @@ export interface Cycle {
   links: LinkItem[];
   updates: Update[];
   related: string[];
+  verification?: SourceEvidence;
 }
 
 export interface ExamData {
@@ -112,4 +132,5 @@ export const STATUS_META: Record<Status, { cls: string; label: string }> = {
   result_awaited: { cls: "p-admit", label: "Result Awaited" },
   result_out: { cls: "p-result", label: "Result Out" },
   completed: { cls: "p-done", label: "Completed" },
+  exam_scheduled: { cls: "p-admit", label: "Exam Scheduled" },
 };
