@@ -14,6 +14,11 @@ const ROOT = join(__dirname, "..");
 // deploy workflow overrides this via the SITE_URL env (configure-pages base_url).
 export const SITE_URL = (process.env.SITE_URL || "https://hemantsatishjadhav06-ai.github.io/Exampath").replace(/\/+$/, "");
 export const abs = (path = "/") => SITE_URL + (path.startsWith("/") ? path : "/" + path);
+
+// Live AI backend (OpenRouter-powered /ai/ask). Public URL, configurable per
+// deploy; the "Ask AI" widget posts to it and falls back to local answers if
+// it is unreachable.
+export const AI_API = (process.env.AI_API || "https://exampath-api-cq29.onrender.com/ai/ask").trim();
 export const DATA = JSON.parse(readFileSync(join(ROOT, "data/exams.json"), "utf8"));
 export const CSS = readFileSync(join(ROOT, "app/globals.css"), "utf8");
 
@@ -406,6 +411,7 @@ ${aiWidget()}
 
 <div id="toast" role="status" style="position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:var(--sh-l);z-index:80;opacity:0;transition:.25s;pointer-events:none;max-width:90vw;text-align:center"></div>
 ${dataScript}
+<script>window.__AI_API__=${JSON.stringify(AI_API)};</script>
 <script src="/assets/client.js" defer></script>
 </body>
 </html>`;
