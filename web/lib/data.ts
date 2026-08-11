@@ -1,4 +1,5 @@
 import raw from "@/data/exams.json";
+import overrides from "@/data/verified-overrides.json";
 import type {
   Body,
   Cycle,
@@ -10,7 +11,19 @@ import type {
 } from "./types";
 import { QUAL_RANK } from "./types";
 
-const data = raw as unknown as ExamData;
+const baseData = raw as unknown as ExamData;
+const verifiedOverrides = overrides as Record<string, Partial<Cycle>>;
+
+// Keep the generated dataset as the baseline, but apply explicitly reviewed
+// source-backed corrections before anything reaches the UI. This prevents a
+// stale scraper output from silently overriding a verified fact.
+const data: ExamData = {
+  ...baseData,
+  cycles: baseData.cycles.map((cycle) => ({
+    ...cycle,
+    ...(verifiedOverrides[cycle.id] ?? {}),
+  })),
+};
 
 /* ---------- accessors ---------- */
 export function getBodies(): Body[] {
@@ -40,12 +53,10 @@ export const MONTHS = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
 
-// Days from *now* until an ISO date. Negative = passed.
 export function daysLeft(iso: string): number {
   return Math.ceil((new Date(iso).getTime() - Date.now()) / 86400000);
 }
 
-// Deterministic, timezone-independent formatting (parses the ISO parts directly)
 export function parseISO(iso: string): { y: number; m: number; d: number } {
   const [y, m, d] = iso.split("-").map(Number);
   return { y, m: m - 1, d };
@@ -65,8 +76,6 @@ export function monthOf(iso: string): string {
   return MONTHS[parseISO(iso).m];
 }
 
-// Indian-grouped integer formatting (e.g. 17,727 / 1,00,000) — deterministic,
-// so server and client render identically (no toLocaleString locale drift).
 export function inr(n: number): string {
   const s = String(Math.round(n));
   if (s.length <= 3) return s;
@@ -75,7 +84,6 @@ export function inr(n: number): string {
   return rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + last3;
 }
 
-// Lighten/darken a #rrggbb hex by an integer amount (for body gradients).
 export function shade(hex: string, pct: number): string {
   const n = parseInt(hex.slice(1), 16);
   let r = (n >> 16) + pct;
@@ -96,7 +104,6 @@ export const FEED_ICON: Record<string, [string, string]> = {
 };
 
 /* ---------- deadlines ---------- */
-// The nearest still-open deadline for a cycle (falls back to any deadline, then first date).
 export function nextDeadline(cycle: Cycle): KeyDate | undefined {
   const openDeadlines = cycle.dates
     .filter((d) => d.is_deadline && daysLeft(d.date) >= 0)
@@ -104,7 +111,6 @@ export function nextDeadline(cycle: Cycle): KeyDate | undefined {
   return openDeadlines[0] || cycle.dates.find((d) => d.is_deadline) || cycle.dates[0];
 }
 
-// All still-open deadlines across every cycle, soonest first.
 export function upcomingDeadlines(): DeadlineHit[] {
   const hits: DeadlineHit[] = [];
   for (const cycle of data.cycles) {
@@ -119,7 +125,6 @@ export function upcomingDeadlines(): DeadlineHit[] {
   );
 }
 
-// Every upcoming key date (deadline or not) across cycles, soonest first — for the calendar.
 export function calendarDates(): DeadlineHit[] {
   const hits: DeadlineHit[] = [];
   for (const cycle of data.cycles) {
@@ -136,7 +141,7 @@ export function totalVacancies(): number {
   return data.cycles.reduce((s, c) => s + c.vacancy, 0);
 }
 
-/* ---------- updates feed (newest first) ---------- */
+/* ---------- updates feed ---------- */
 export interface FeedItem {
   cycleId: string;
   title: string;
@@ -145,7 +150,6 @@ export interface FeedItem {
   when: string;
 }
 
-// Rough recency rank from a "2h ago" / "12d ago" style string.
 function whenRank(when: string): number {
   const m = when.match(/(\d+)\s*([hdmw])/i);
   if (!m) return 9999;
@@ -186,7 +190,6 @@ export function searchCycles({ q, age, qual, body, closingSoon }: SearchArgs): C
   });
 }
 
-// Natural-language parser: "SSC graduate age 21 closing soon" -> structured filters.
 export function parseQuery(qraw: string): SearchArgs & { labels: string[] } {
   const q = (qraw || "").toLowerCase().trim();
   const ageMatch = q.match(/age\s*(\d{2})|(\d{2})\s*(?:yrs?|years?)|\b(1[89]|2[0-9]|3[0-5])\b/);
