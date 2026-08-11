@@ -426,41 +426,28 @@ export function renderHome() {
     .map(byId).filter(Boolean);
   const totalVac = CYCLES.reduce((s, c) => s + c.vacancy, 0);
 
-  const artCards = soon.slice(0, 3).map(({ c, d }, i) => {
-    const b = BODIES[c.body];
-    return `<div class="ha-card ha-${i}">
-      <span class="ha-badge" style="background:${b.color}">${b.short}</span>
-      <div class="ha-body"><b>${esc(c.exam)}</b><span>${daysLeft(d.date)} days left \u00b7 ${esc(d.label)}</span></div>
-    </div>`;
-  }).join("");
-
   const body = `
   <section class="hero">
-    <div class="wrap hero-inner">
-      <div class="hero-copy">
-        <span class="eyebrow">\u{1F1EE}\u{1F1F3} ${CYCLES.length} live exams &middot; ${Object.keys(BODIES).length} bodies &middot; updated daily</span>
-        <h1>Every government exam. <span class="u">Every date.</span> One place.</h1>
-        <p class="sub">Notifications, deadlines, vacancies, eligibility and results &mdash; compiled from official sources and always current. Never miss a form again.</p>
-        <form class="searchbig" action="/search/" method="get">
-          <input id="heroSearch" name="q" placeholder="Try \u201cSSC graduate\u201d, \u201cage 21\u201d, or \u201cbank exams\u201d\u2026" aria-label="Search exams">
-          <button class="btn saf" type="submit">Search</button>
-        </form>
-        <div class="chips">
-          <a class="c" href="/search/?q=graduate">\u{1F393} Graduate exams</a>
-          <a class="c" href="/search/?q=12th">\u{1F4D7} 12th pass</a>
-          <a class="c" href="/search/?q=banking">\u{1F3E6} Banking</a>
-          <a class="c" href="/search/?q=closing%20soon">\u23F0 Closing soon</a>
-        </div>
-        <div class="hero-stats">
-          <div class="s"><b>${inr(totalVac)}+</b><span>Total vacancies tracked</span></div>
-          <div class="s"><b>${soon.length}</b><span>Deadlines this month</span></div>
-          <div class="s"><b>100%</b><span>Official-source verified</span></div>
-        </div>
+    <div class="wrap hero-center">
+      <span class="eyebrow">\u{1F1EE}\u{1F1F3} ${CYCLES.length} live exams &middot; ${Object.keys(BODIES).length} bodies &middot; updated daily</span>
+      <h1>Every government exam. <span class="u">Every date.</span> One place.</h1>
+      <p class="sub">Notifications, deadlines, vacancies, eligibility, cut-offs and results &mdash; compiled from official sources, in one clean, free place built for students.</p>
+      <form class="searchbig" action="/search/" method="get">
+        <input id="heroSearch" name="q" placeholder="Search an exam, e.g. \u201cSSC CGL\u201d, \u201cgraduate\u201d, or \u201cbank exams\u201d\u2026" aria-label="Search exams">
+        <button class="btn pri" type="submit">Search</button>
+      </form>
+      <div class="chips">
+        <a class="c" href="/search/?q=graduate">\u{1F393} Graduate exams</a>
+        <a class="c" href="/search/?q=12th">\u{1F4D7} 12th pass</a>
+        <a class="c" href="/search/?q=banking">\u{1F3E6} Banking</a>
+        <a class="c" href="/notifications/">\u{1F514} Open notifications</a>
+        <a class="c" href="/search/?q=closing%20soon">\u23F0 Closing soon</a>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="ha-glow"></div>
-        ${artCards}
-        <div class="ha-tip"><span>\u{1F916}</span> Ask AI which exam fits you</div>
+      <div class="hero-stats">
+        <div class="s"><b>${inr(totalVac)}+</b><span>Vacancies tracked</span></div>
+        <div class="s"><b>${CYCLES.length}</b><span>Live exams</span></div>
+        <div class="s"><b>${Object.keys(BODIES).length}</b><span>Conducting bodies</span></div>
+        <div class="s"><b>5 yr</b><span>Year-wise records</span></div>
       </div>
     </div>
   </section>

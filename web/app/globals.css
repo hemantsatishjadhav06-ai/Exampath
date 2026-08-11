@@ -1,11 +1,11 @@
 /* ExamPath — global styles, ported from the product prototype.
    Color tokens: brand blue #1d4ed8, saffron accent #f97316. */
 :root{
-  /* Premium indigo brand + warm saffron accent (light, clean, competitive) */
-  --brand:#4f46e5; --brand-d:#4338ca; --brand-l:#6366f1; --brand-soft:#eef2ff; --brand-100:#e0e7ff;
-  --saffron:#f97316; --saffron-d:#ea580c; --saffron-soft:#fff4ec;
-  --ink:#111827; --ink-2:#374151; --muted:#6b7280; --faint:#9ca3af;
-  --line:#e8eaf0; --line-2:#f1f2f7; --bg:#f7f8fc; --card:#ffffff;
+  /* Professional teal brand + warm amber accent — calm, high-contrast, student-first */
+  --brand:#0d9488; --brand-d:#0f766e; --brand-l:#14b8a6; --brand-soft:#f0fdfa; --brand-100:#ccfbf1;
+  --saffron:#f59e0b; --saffron-d:#d97706; --saffron-soft:#fffbeb;
+  --ink:#0f172a; --ink-2:#334155; --muted:#64748b; --faint:#94a3b8;
+  --line:#e2e8f0; --line-2:#f1f5f9; --bg:#f7fafc; --card:#ffffff;
   --green:#0e9f6e; --green-soft:#e7f8f0; --red:#e02424; --red-soft:#fdeaea;
   --amber:#c27803; --amber-soft:#fdf6e3; --violet:#7c3aed; --violet-soft:#f3ecfe;
   --r:16px; --r-sm:11px; --r-lg:22px;
@@ -66,8 +66,8 @@ header.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);bac
 
 /* ---------------- Home hero ---------------- */
 .hero{position:relative;background:
-   radial-gradient(900px 380px at 85% -20%, rgba(99,102,241,.16), transparent 62%),
-   radial-gradient(720px 360px at -5% 0%, rgba(249,115,22,.09), transparent 58%),
+   radial-gradient(760px 360px at 50% -30%, rgba(13,148,136,.14), transparent 64%),
+   radial-gradient(620px 320px at 12% 4%, rgba(245,158,11,.07), transparent 60%),
    linear-gradient(180deg,#ffffff, var(--bg));
    color:var(--ink);padding:44px 0 96px;overflow:hidden;border-bottom:1px solid var(--line)}
 .hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:var(--brand-soft);border:1px solid var(--brand-100);padding:6px 12px;border-radius:999px}
@@ -459,3 +459,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 :root[data-theme="dark"] .pat-card{background:var(--bg)}
 :root[data-theme="dark"] .dash-tabs .dt{background:var(--card)}
 :root[data-theme="dark"] .lg-tabs button.on{background:var(--bg)}
+
+/* =============== v4 — clean centered hero (no floating cards) =============== */
+.hero{padding:52px 0 92px}
+.hero-center{max-width:760px;margin:0 auto;text-align:center}
+.hero-center .eyebrow{margin-bottom:6px}
+.hero-center h1{margin:16px auto 12px;max-width:640px;font-size:44px}
+@media(max-width:640px){.hero-center h1{font-size:32px}}
+.hero-center .sub{margin:0 auto 26px;max-width:60ch}
+.hero-center .searchbig{margin:0 auto;max-width:600px}
+.hero-center .chips{justify-content:center}
+.hero-center .hero-stats{justify-content:center;gap:34px;margin-top:30px}
+.hero-center .hero-stats .s{text-align:center}
+@media(max-width:640px){
+  .hero{padding:34px 0 72px}
+  .hero-center .hero-stats{gap:18px 26px}
+}
