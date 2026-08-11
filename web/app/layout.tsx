@@ -4,25 +4,24 @@ import Header from "@/components/Header";
 import TabBar from "@/components/TabBar";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://exampath.example"),
-  title: "ExamPath — Every government exam. Every date. One place.",
-  description:
-    "Track every Indian government exam (SSC, UPSC, IBPS, RRB, state PSCs) — notifications, deadlines, vacancies, eligibility and results, compiled from official sources.",
+  title: {
+    default: "ExamPath — Indian Government Exams, Dates & Official Sources",
+    template: "%s | ExamPath",
+  },
+  description: "Discover Indian government exams, deadlines, vacancies, eligibility and results. ExamPath links important information to official sources and clearly marks what has been verified.",
   applicationName: "ExamPath",
+  keywords: ["government exams", "Sarkari exams", "SSC", "UPSC", "IBPS", "RRB", "exam dates", "government job exams"],
   icons: { icon: "/favicon.svg" },
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   openGraph: {
-    title: "ExamPath — Every government exam. Every date. One place.",
-    description:
-      "Notifications, deadlines, vacancies, eligibility and results for Indian government exams — always current.",
+    title: "ExamPath — Indian Government Exams, Dates & Official Sources",
+    description: "Find exam dates, vacancies and eligibility, then verify against the official notification.",
     type: "website",
+    siteName: "ExamPath",
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
