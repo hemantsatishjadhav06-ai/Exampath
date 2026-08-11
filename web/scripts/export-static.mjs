@@ -41,14 +41,19 @@ const finalizeHtml = (html) => (MINIFY ? minifyHtml(withBase(html)) : withBase(h
 // Rewrite root-absolute URLs in a rendered HTML document to sit under BASE,
 // and expose BASE to the client script for its runtime navigation. Leaves
 // protocol-absolute (https://) and protocol-relative (//host) URLs untouched.
+// Optional backend API origin (auth + AI endpoints). Baked into every page as
+// window.__API_BASE__/__AI_API__; empty => the site runs fully static (demo
+// login, dataset-powered AI) with zero server dependency.
+const API_BASE = (process.env.API_BASE || "").replace(/\/+$/, "");
+
 function withBase(html) {
+  const globals = [
+    BASE && `window.__BASE__=${JSON.stringify(BASE)};`,
+    API_BASE && `window.__API_BASE__=${JSON.stringify(API_BASE)};window.__AI_API__=${JSON.stringify(API_BASE + "/ai/ask")};`,
+  ].filter(Boolean).join("");
+  if (globals) html = html.replace(/<\/head>/, `<script>${globals}</script>\n</head>`);
   if (!BASE) return html;
-  html = html.replace(/\b(href|src|action)="\/(?!\/)/g, `$1="${BASE}/`);
-  html = html.replace(
-    /<\/head>/,
-    `<script>window.__BASE__=${JSON.stringify(BASE)};</script>\n</head>`
-  );
-  return html;
+  return html.replace(/\b(href|src|action)="\/(?!\/)/g, `$1="${BASE}/`);
 }
 
 // Branded 1200×630 social share card (self-contained SVG).

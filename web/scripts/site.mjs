@@ -116,8 +116,46 @@ function bodyCard(b) {
   const n = CYCLES.filter((c) => c.body === b.slug).length;
   return `<a class="bcard" href="/body/${b.slug}/">
     <div class="ic" style="background:${b.color}">${b.short}</div>
-    <b>${b.short}</b><span>${n} exam${n > 1 ? "s" : ""} &middot; ${esc(b.level)}</span>
+    <b>${b.short}</b><span>${n} exam${n !== 1 ? "s" : ""} &middot; ${esc(b.level)}</span>
+    ${b.description ? `<p class="bdesc">${esc(b.description)}</p>` : ""}
   </a>`;
+}
+
+/* Category of a conducting body (curated `category`, else inferred from level). */
+export function bodyCategory(b) {
+  if (b.category) return b.category;
+  const l = String(b.level || "").toLowerCase();
+  if (l.startsWith("central")) return "central";
+  if (l.startsWith("bank")) return "banking";
+  if (l.startsWith("rail")) return "railways";
+  return "state";
+}
+const CATEGORY_META = {
+  central: { icon: "🏛️", title: "Central Government exams", blurb: "All-India recruitment by central bodies — UPSC, SSC and more." },
+  state: { icon: "🗺️", title: "State Government exams", blurb: "State public service commissions — PCS, state services and subordinate posts." },
+  banking: { icon: "🏦", title: "Banking exams", blurb: "Public-sector bank recruitment — PO, Clerk and specialist officers." },
+  railways: { icon: "🚆", title: "Railway exams", blurb: "Indian Railways recruitment boards — NTPC, Group D and technical posts." },
+};
+
+/* Central / State / Banking / Railways blocks with described conducting bodies. */
+function categoryBlocks({ withExams = false } = {}) {
+  const order = ["central", "state", "banking", "railways"];
+  const byCat = {};
+  DATA.bodies.forEach((b) => { (byCat[bodyCategory(b)] ||= []).push(b); });
+  return order.filter((k) => byCat[k]?.length).map((k) => {
+    const m = CATEGORY_META[k];
+    const bodies = byCat[k];
+    const exams = CYCLES.filter((c) => bodies.some((b) => b.slug === c.body));
+    return `<section class="blk cat-block" aria-label="${esc(m.title)}">
+      <div class="cat-head">
+        <span class="cat-ic">${m.icon}</span>
+        <div><h3>${m.title} <span class="tag" style="margin-left:6px">${exams.length} exam${exams.length !== 1 ? "s" : ""}</span></h3>
+        <p class="small muted">${m.blurb}</p></div>
+      </div>
+      <div class="body-grid">${bodies.map(bodyCard).join("")}</div>
+      ${withExams && exams.length ? `<div class="exam-grid" style="margin-top:12px">${exams.map(examCard).join("")}</div>` : ""}
+    </section>`;
+  }).join("");
 }
 
 /* A latest-update row with the conducting-body badge (focal update text). */
@@ -219,9 +257,9 @@ function breadcrumbLD(items) {
 /* ---------- AI assistant widget (client-powered, works on static hosting) ---------- */
 function aiWidget() {
   const prompts = [
+    "🎯 Find my exam (consult)",
     "Which exams close this week?",
     "Graduate exams I can apply for",
-    "Am I eligible at age 21?",
     "Banking exams",
   ];
   return `<button id="aiFab" class="ai-fab" aria-label="Ask ExamPath AI" title="Ask ExamPath AI">
@@ -324,10 +362,10 @@ ${rawLD}
       <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
       <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
     </button>
-    <a class="btn-login" href="/search/">
+    <button class="btn-login" id="loginBtn" aria-haspopup="dialog">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-      Login
-    </a>
+      <span id="loginLabel">Login</span>
+    </button>
   </div>
 </header>
 
@@ -341,6 +379,30 @@ ${rawLD}
 </nav>
 
 ${aiWidget()}
+
+<div id="loginOverlay" class="lg-overlay" hidden>
+  <div class="lg-modal" role="dialog" aria-modal="true" aria-labelledby="lgTitle">
+    <button class="ai-x lg-x" id="lgClose" aria-label="Close">&times;</button>
+    <div class="lg-head">
+      <span class="glyph"> E</span>
+      <h3 id="lgTitle">Welcome to ExamPath</h3>
+      <p class="small muted">Save your exams &amp; get a personalised dashboard.</p>
+    </div>
+    <div class="lg-tabs"><button class="on" data-lg="login">Login</button><button data-lg="register">Create account</button></div>
+    <form id="lgForm" class="lg-form">
+      <div class="lg-field lg-name" hidden><label for="lgName">Name</label><input id="lgName" autocomplete="name" placeholder="Your name"></div>
+      <div class="lg-field"><label for="lgEmail">Email</label><input id="lgEmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+      <div class="lg-field"><label for="lgPass">Password</label><input id="lgPass" type="password" autocomplete="current-password" required minlength="8" placeholder="••••••••"></div>
+      <div class="lg-err" id="lgErr" role="alert" hidden></div>
+      <button class="btn pri" id="lgSubmit" type="submit" style="width:100%">Login</button>
+      <p class="small muted" style="text-align:center;margin:10px 0 0">Free forever · your data stays yours</p>
+    </form>
+    <div class="lg-in" id="lgSignedIn" hidden>
+      <p style="margin:0 0 12px">Signed in as <b id="lgWho"></b></p>
+      <button class="btn ghost" id="lgLogout" style="width:100%">Log out</button>
+    </div>
+  </div>
+</div>
 
 <div id="toast" role="status" style="position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:var(--sh-l);z-index:80;opacity:0;transition:.25s;pointer-events:none;max-width:90vw;text-align:center"></div>
 ${dataScript}
@@ -425,10 +487,10 @@ export function renderHome() {
       </div>
     </section>
 
-    <!-- 3. Conducting bodies -->
+    <!-- 3. Conducting bodies — Central, then State, then Banking/Railways -->
     <section class="blk" aria-labelledby="h-bodies">
       <div class="sec-title"><h2 id="h-bodies">Conducting bodies</h2><a href="/bodies/">Browse all &rarr;</a></div>
-      <div class="body-grid">${DATA.bodies.map(bodyCard).join("")}</div>
+      ${categoryBlocks()}
     </section>
 
     <!-- 4. Popular exams -->
@@ -453,10 +515,8 @@ export function renderHome() {
 export function renderBodies() {
   const body = `<section class="page"><div class="wrap">
     <div class="crumb"><a href="/">Home</a> \u203A <span>All exams</span></div>
-    <div class="sec-title"><h2>Browse by conducting body</h2></div>
-    <div class="body-grid blk">${DATA.bodies.map(bodyCard).join("")}</div>
-    <div class="sec-title"><h2>All tracked exams</h2></div>
-    <div class="exam-grid">${CYCLES.map(examCard).join("")}</div>
+    <div class="sec-title"><h1 class="page-title">Browse exams by category &amp; conducting body</h1></div>
+    ${categoryBlocks({ withExams: true })}
     ${footer()}
   </div></section>`;
   return layout({
@@ -489,7 +549,8 @@ export function renderBody(slug) {
     <div class="dash-hero" style="background:linear-gradient(135deg,${b.color},${shade(b.color, -24)})">
       <div class="body-tag">${esc(b.level)} &middot; Conducting Body</div>
       <h1>${esc(b.name)}</h1>
-      <p style="color:#e6eefc;margin:6px 0 0;max-width:560px">Tracking ${list.length} exam${list.length > 1 ? "s" : ""} &middot; ${inr(totalVac)} vacancies. Current openings, calendar and the latest official updates.</p>
+      ${b.description ? `<p style="color:#e6eefc;margin:8px 0 0;max-width:640px">${esc(b.description)}</p>` : ""}
+      <p style="color:#e6eefc;margin:6px 0 0;max-width:560px;opacity:.85">Tracking ${list.length} exam${list.length > 1 ? "s" : ""} &middot; ${inr(totalVac)} vacancies. Current openings, calendar and the latest official updates.</p>
     </div>
     <div class="dash-grid">
       <div>
@@ -533,7 +594,118 @@ export function renderBody(slug) {
   });
 }
 
-/* ---------- EXAM DASHBOARD ---------- */
+/* ---------- EXAM DASHBOARD (tabbed) ---------- */
+function officialLink(c, b, kind) {
+  const l = (c.links || []).find((x) => String(x.kind).toLowerCase() === kind) || (c.links || [])[0];
+  return l ? l.url : (b.official_url || "#");
+}
+function srcRow(l) {
+  return `<a class="src" href="${esc(l.url)}" target="_blank" rel="noopener">
+    <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+    <div><b>${esc(l.label)}</b><br><span>${esc(l.kind)} &middot; official</span></div><span class="go">Open \u2197</span></a>`;
+}
+function officialNote(b, url) {
+  return `<div class="ofnote"><span>\uD83D\uDD17</span> Always verify on the official website:
+    <a href="${esc(url)}" target="_blank" rel="noopener">${esc(String(url).replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a></div>`;
+}
+
+/* Pattern & Syllabus tab */
+function patternPanel(c, b) {
+  const pat = c.exam_pattern || [];
+  const syl = c.syllabus || [];
+  if (!pat.length && !syl.length) return "";
+  const patHtml = pat.map((p) => `
+    <div class="pat-card">
+      <div class="pat-head">
+        <h4>${esc(p.stage)}</h4>
+        <div class="pat-meta">
+          ${p.mode ? `<span class="tag">\uD83D\uDDA5 ${esc(p.mode)}</span>` : ""}
+          ${p.duration_min ? `<span class="tag">\u23F1 ${p.duration_min} min</span>` : ""}
+          ${p.total_marks ? `<span class="tag">\uD83C\uDFAF ${p.total_marks} marks</span>` : ""}
+          ${p.negative_marking ? `<span class="tag t-red">\u2212 ${esc(p.negative_marking)}</span>` : ""}
+        </div>
+      </div>
+      ${p.sections && p.sections.length ? `
+      <div class="tbl-scroll"><table class="dtable">
+        <tbody><tr><th>Section</th><th>Questions</th><th>Marks</th></tr>
+        ${p.sections.map((s) => `<tr><td><b>${esc(s.name)}</b></td><td>${s.questions ?? "\u2014"}</td><td>${s.marks ?? "\u2014"}</td></tr>`).join("")}
+        <tr class="tot"><td><b>Total</b></td><td><b>${p.sections.reduce((x, s) => x + (s.questions || 0), 0)}</b></td><td><b>${p.sections.reduce((x, s) => x + (s.marks || 0), 0)}</b></td></tr>
+        </tbody></table></div>` : ""}
+      ${p.note ? `<p class="small muted" style="margin:8px 0 0">${esc(p.note)}</p>` : ""}
+    </div>`).join("");
+  const sylHtml = syl.map((sg) => `
+    <div class="syl-stage">
+      <h4>${esc(sg.stage)} syllabus</h4>
+      ${(sg.subjects || []).map((s) => `
+        <details class="faq-item syl-subject"><summary>${esc(s.subject)} <span class="tag" style="margin-left:6px">${(s.topics || []).length} topics</span></summary>
+          <div class="topic-chips">${(s.topics || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+        </details>`).join("")}
+    </div>`).join("");
+  return `
+    ${pat.length ? `<div class="panel"><h3>\uD83D\uDCDD Exam pattern <span class="small muted" style="font-weight:600;margin-left:auto">how the exam is timed &amp; marked</span></h3>${patHtml}</div>` : ""}
+    ${syl.length ? `<div class="panel"><h3>\uD83D\uDCDA Syllabus</h3>${sylHtml}</div>` : ""}
+    ${officialNote(b, officialLink(c, b, "notification"))}`;
+}
+
+/* Cut-offs & Results tab (year-wise, no confusion) */
+function cutoffsPanel(c, b) {
+  const years = c.yearwise && c.yearwise.length ? c.yearwise
+    : (c.vacancy_history || []).map((v) => ({
+        year: v.year, vacancy: v.seats,
+        cutoff_ur: v.year === Math.max(...c.vacancy_history.map((x) => x.year)) ? (c.cutoffs?.[0]?.marks ?? null) : null,
+        result_status: v.year < 2026 ? "declared" : "upcoming",
+        result_url: b.official_url,
+      }));
+  const stPill = (s) => s === "declared"
+    ? '<span class="pill p-result"><span class="dot"></span>Declared</span>'
+    : s === "awaited" ? '<span class="pill p-admit"><span class="dot"></span>Awaited</span>'
+    : '<span class="pill p-up"><span class="dot"></span>Upcoming</span>';
+  return `
+    <div class="panel">
+      <h3>\uD83D\uDCCA Year-wise summary <span class="small muted" style="font-weight:600;margin-left:auto">vacancies \u00B7 cut-off \u00B7 result</span></h3>
+      <div class="tbl-scroll"><table class="dtable yearwise">
+        <tbody><tr><th>Year</th><th>Vacancies</th><th>UR cut-off</th><th>Result</th><th>Official</th></tr>
+        ${years.slice().sort((a, z) => z.year - a.year).map((y) => `<tr>
+          <td><b>${y.year}</b></td>
+          <td>${y.vacancy != null ? inr(y.vacancy) : "\u2014"}</td>
+          <td>${y.cutoff_ur != null ? y.cutoff_ur : "\u2014"}</td>
+          <td>${stPill(y.result_status)}</td>
+          <td><a class="oflink" href="${esc(y.result_url || b.official_url)}" target="_blank" rel="noopener">Check \u2197</a></td>
+        </tr>`).join("")}
+        </tbody></table></div>
+      <p class="small muted" style="margin:10px 0 0">Every row links to the official site \u2014 results are only final there.</p>
+    </div>
+    ${c.cutoffs && c.cutoffs.length ? `
+    <div class="panel">
+      <h3>\u2702\uFE0F Latest category cut-offs</h3>
+      <div class="tbl-scroll"><table class="dtable"><tbody><tr><th>Category</th><th>Cut-off</th><th></th></tr>
+        ${c.cutoffs.map((o) => `<tr><td><b>${esc(o.category)}</b></td><td>${o.marks}</td><td style="width:55%"><div style="height:8px;border-radius:6px;background:var(--brand-soft)"><div style="height:8px;border-radius:6px;width:${Math.min(100, (o.marks / Math.max(...c.cutoffs.map((x) => x.marks))) * 100)}%;background:var(--brand)"></div></div></td></tr>`).join("")}
+      </tbody></table></div>
+    </div>` : ""}
+    ${officialNote(b, officialLink(c, b, "website"))}`;
+}
+
+/* How to Apply tab */
+function applyPanel(c, b) {
+  const has = (x) => Array.isArray(x) && x.length;
+  if (!has(c.how_to_apply) && !has(c.fees) && !has(c.salary) && !has(c.faqs)) return "";
+  return `
+    ${has(c.how_to_apply) ? `<div class="panel"><h3>\uD83D\uDE80 How to apply</h3>
+      <ol class="steps">${c.how_to_apply.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+      <a class="btn saf" style="margin-top:10px" href="${esc(officialLink(c, b, "apply"))}" target="_blank" rel="noopener">Apply on the official site \u2197</a></div>` : ""}
+    ${has(c.fees) ? `<div class="panel"><h3>\uD83D\uDCB3 Application fee</h3>
+      <div class="tbl-scroll"><table class="dtable"><tbody><tr><th>Category</th><th>Fee</th><th>Notes</th></tr>
+      ${c.fees.map((f) => `<tr><td><b>${esc(f.category)}</b></td><td>${f.amount ? "\u20B9" + inr(f.amount) : "Free"}</td><td class="small muted">${esc(f.notes || "")}</td></tr>`).join("")}
+      </tbody></table></div></div>` : ""}
+    ${has(c.salary) ? `<div class="panel"><h3>\uD83D\uDCB0 Salary by post</h3>
+      <div class="tbl-scroll"><table class="dtable"><tbody><tr><th>Post</th><th>Pay level</th><th>Pay scale</th><th>In-hand*</th></tr>
+      ${c.salary.map((s) => `<tr><td><b>${esc(s.post)}</b></td><td>${esc(s.pay_level || "\u2014")}</td><td>\u20B9${inr(s.pay_min)}\u2013\u20B9${inr(s.pay_max)}</td><td>${s.in_hand_approx ? "\u2248 \u20B9" + inr(s.in_hand_approx) : "\u2014"}</td></tr>`).join("")}
+      </tbody></table></div><p class="small muted" style="margin:8px 0 0">*Approximate, varies by city &amp; allowances.</p></div>` : ""}
+    ${has(c.faqs) ? `<div class="panel"><h3>\u2753 FAQs</h3>
+      <div class="faq">${c.faqs.map((f) => `<details class="faq-item"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div></div>` : ""}
+    ${officialNote(b, officialLink(c, b, "apply"))}`;
+}
+
 export function renderExam(id) {
   const c = byId(id);
   const b = BODIES[c.body];
@@ -560,11 +732,22 @@ export function renderExam(id) {
           <h1>${esc(c.title)}</h1>
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">${pill(c.status)}<span class="tag" style="background:rgba(255,255,255,.12);color:#dbe6fe;border-color:rgba(255,255,255,.2)">${esc(c.qualification)}</span><span class="tag" style="background:rgba(255,255,255,.12);color:#dbe6fe;border-color:rgba(255,255,255,.2)">${inr(c.vacancy)} posts</span></div>
         </div>
-        <button class="btn saf" data-follow="${c.id}" data-follow-btn aria-pressed="false">\u2606 Follow this exam</button>
+        <div style="display:flex;gap:9px;flex-wrap:wrap">
+          <a class="btn ghost" style="background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:#fff" href="${esc(officialLink(c, b, "apply"))}" target="_blank" rel="noopener">Apply \u2197</a>
+          <button class="btn saf" data-follow="${c.id}" data-follow-btn aria-pressed="false">\u2606 Follow this exam</button>
+        </div>
       </div>
       ${countHtml}
     </div>
 
+    <nav class="dash-tabs" role="tablist" aria-label="Exam sections">
+      <button class="dt on" role="tab" aria-selected="true" data-tab="overview">\ud83c\udfe0 Overview</button>
+      ${patternPanel(c, b) ? `<button class="dt" role="tab" aria-selected="false" data-tab="pattern">\ud83d\udcdd Pattern &amp; Syllabus</button>` : ""}
+      <button class="dt" role="tab" aria-selected="false" data-tab="cutoffs">\ud83d\udcca Cut-offs &amp; Results</button>
+      ${applyPanel(c, b) ? `<button class="dt" role="tab" aria-selected="false" data-tab="apply">\ud83d\ude80 How to Apply</button>` : ""}
+    </nav>
+
+    <div class="tabpanel" data-panel="overview" role="tabpanel">
     <div class="dash-grid">
       <div>
         <div class="panel">
@@ -602,11 +785,14 @@ export function renderExam(id) {
           </div>
         </div>
 
-        <div class="panel">
-          <h3><span class="n">4</span> Previous cut-offs <span class="small muted" style="font-weight:600;margin-left:auto">out of 100</span></h3>
-          <table class="dtable"><tbody><tr><th>Category</th><th>Cut-off</th><th></th></tr>
-            ${c.cutoffs.map((o) => `<tr><td><b>${esc(o.category)}</b></td><td>${o.marks}</td><td style="width:55%"><div style="height:8px;border-radius:6px;background:var(--brand-soft)"><div style="height:8px;border-radius:6px;width:${Math.min(100, o.marks)}%;background:var(--brand)"></div></div></td></tr>`).join("")}
-          </tbody></table>
+        <div class="panel linkcard">
+          <h3>📊 Cut-offs, 📝 pattern &amp; 🚀 apply</h3>
+          <p class="small muted" style="margin:4px 0 10px">Deep-dive tabs above: exam pattern with timing &amp; marking, full syllabus, year-wise cut-offs and results, fees and how to apply.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn ghost sm" data-goto-tab="cutoffs">Year-wise cut-offs →</button>
+            ${patternPanel(c, b) ? `<button class="btn ghost sm" data-goto-tab="pattern">Exam pattern →</button>` : ""}
+            ${applyPanel(c, b) ? `<button class="btn ghost sm" data-goto-tab="apply">How to apply →</button>` : ""}
+          </div>
         </div>
       </div>
 
@@ -655,6 +841,11 @@ export function renderExam(id) {
         </div>
       </div>
     </div>
+    </div>
+
+    ${patternPanel(c, b) ? `<div class="tabpanel" data-panel="pattern" role="tabpanel" hidden>${patternPanel(c, b)}</div>` : ""}
+    <div class="tabpanel" data-panel="cutoffs" role="tabpanel" hidden>${cutoffsPanel(c, b)}</div>
+    ${applyPanel(c, b) ? `<div class="tabpanel" data-panel="apply" role="tabpanel" hidden>${applyPanel(c, b)}</div>` : ""}
     ${footer()}
   </div></section>`;
 

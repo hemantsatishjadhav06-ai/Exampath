@@ -41,19 +41,28 @@ def load_curated() -> dict:
     return json.loads((BACKEND / "seed" / "curated.json").read_text(encoding="utf-8"))
 
 
-def notice_url(cycle: dict, bodies_by_slug: dict) -> str | None:
-    """Best official URL to check for this cycle: a Notification/Apply/Website
-    link if present, otherwise the conducting body's official site."""
+def notice_urls(cycle: dict, bodies_by_slug: dict) -> list[str]:
+    """All official URLs worth checking for this cycle, most specific first:
+    the cycle's Notification/Apply/Website links, then the conducting body's
+    curated `notice_urls` (dedicated notification pages), then its home page."""
     order = {"notification": 0, "apply": 1, "website": 2}
-    links = sorted(
-        cycle.get("links", []),
-        key=lambda l: order.get(str(l.get("kind", "")).lower(), 9),
-    )
-    for l in links:
+    urls: list[str] = []
+    for l in sorted(cycle.get("links", []),
+                    key=lambda l: order.get(str(l.get("kind", "")).lower(), 9)):
         if str(l.get("url", "")).startswith("http"):
-            return l["url"]
-    body = bodies_by_slug.get(cycle.get("body"))
-    return (body or {}).get("official_url")
+            urls.append(l["url"])
+    body = bodies_by_slug.get(cycle.get("body")) or {}
+    urls.extend(u for u in body.get("notice_urls", []) if str(u).startswith("http"))
+    if body.get("official_url"):
+        urls.append(body["official_url"])
+    seen: set[str] = set()
+    return [u for u in urls if not (u in seen or seen.add(u))]
+
+
+def notice_url(cycle: dict, bodies_by_slug: dict) -> str | None:
+    """Best single official URL for this cycle (first of notice_urls)."""
+    urls = notice_urls(cycle, bodies_by_slug)
+    return urls[0] if urls else None
 
 
 def _merge_dates(existing: list[dict], found: list[dict]) -> list[dict]:
@@ -69,17 +78,27 @@ def reconcile_live(cycles: dict, bodies_by_slug: dict, log: list[str],
     scraper = scraper or HttpScraper()
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     for cid, c in cycles.items():
-        url = notice_url(c, bodies_by_slug)
-        if not url:
+        urls = notice_urls(c, bodies_by_slug)[:3]   # try up to 3 sources per cycle
+        if not urls:
             continue
-        try:
-            res = scraper.fetch(url)
-        except Exception as e:  # network/DNS/timeout — keep curated, note it
-            log.append(f"[live   ] {cid:16s} fetch FAILED ({type(e).__name__}) — kept curated")
+        best, best_url, tried = None, None, 0
+        for url in urls:
+            try:
+                res = scraper.fetch(url)
+            except Exception:
+                continue
+            tried += 1
+            ext = extract_generic(res.html, hint=cid)
+            if best is None or ext["confidence"] > best[1]["confidence"]:
+                best, best_url = (res, ext), url
+            if ext["confidence"] >= RECONCILE_MIN_CONFIDENCE:
+                break                                # good enough — stop early
+        if best is None:
+            log.append(f"[live   ] {cid:16s} all {len(urls)} sources FAILED — kept curated")
             continue
+        res, ext = best
         c["source_hash"] = res.content_hash
         c["last_checked"] = now
-        ext = extract_generic(res.html, hint=cid)
         applied = []
         if ext["confidence"] >= RECONCILE_MIN_CONFIDENCE:
             if ext.get("vacancy"):
@@ -90,7 +109,7 @@ def reconcile_live(cycles: dict, bodies_by_slug: dict, log: list[str],
                 applied.append(f"{len(ext['dates'])}d")
         log.append(
             f"[live   ] {cid:16s} http={res.status} conf={ext['confidence']} "
-            f"changed={res.changed} applied={','.join(applied) or 'none'}"
+            f"src={tried}/{len(urls)} applied={','.join(applied) or 'none'}"
         )
 
 

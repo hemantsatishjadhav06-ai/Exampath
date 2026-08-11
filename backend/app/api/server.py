@@ -35,14 +35,33 @@ def process_webhook(payload: dict, provided_secret: str, secret: str | None = No
 
 
 class Handler(BaseHTTPRequestHandler):
+    def _cors_headers(self):
+        origin = self.headers.get("Origin")
+        self.send_header("Access-Control-Allow-Origin", origin or "*")
+        if origin:
+            self.send_header("Vary", "Origin")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+
     def _send(self, code: int, obj: dict):
         body = json.dumps(obj, ensure_ascii=False).encode("utf-8")
         self.send_response(code)
         self.send_header("Content-Type", "application/json")
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self._cors_headers()
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def _bearer_token(self) -> str:
+        scheme, _, token = self.headers.get("Authorization", "").partition(" ")
+        return token.strip() if scheme.lower() == "bearer" else ""
+
+    def do_OPTIONS(self):  # CORS preflight
+        self.send_response(204)
+        self._cors_headers()
+        self.send_header("Access-Control-Max-Age", "86400")
+        self.send_header("Content-Length", "0")
+        self.end_headers()
 
     def do_GET(self):
         if self.path == "/health":
@@ -59,6 +78,12 @@ class Handler(BaseHTTPRequestHandler):
             from ..llm.openrouter import OpenRouterClient
             c = OpenRouterClient()
             return self._send(200, {"llm_available": c.available, "model": c.model})
+        if self.path == "/auth/me":
+            from ..auth import get_user
+            user = get_user(self._bearer_token())
+            if user is None:
+                return self._send(401, {"ok": False, "error": "invalid or expired token"})
+            return self._send(200, {"ok": True, "user": user})
         self._send(404, {"error": "not found"})
 
     def do_POST(self):
@@ -89,6 +114,21 @@ class Handler(BaseHTTPRequestHandler):
             from ..ai.assistant import personal_digest
             return self._send(200, personal_digest(load_data(), payload))
 
+        if self.path == "/auth/register":
+            from ..auth import register
+            res = register(payload.get("email", ""), payload.get("password", ""),
+                           payload.get("name", ""))
+            return self._send(201 if res["ok"] else 400, res)
+
+        if self.path == "/auth/login":
+            from ..auth import login
+            res = login(payload.get("email", ""), payload.get("password", ""))
+            return self._send(200 if res["ok"] else 401, res)
+
+        if self.path == "/auth/logout":
+            from ..auth import logout
+            return self._send(200, {"ok": logout(self._bearer_token())})
+
         self._send(404, {"error": "not found"})
 
     def log_message(self, *args):  # silence default logging
@@ -106,4 +146,5 @@ def serve(port: int = 8000):
 
 if __name__ == "__main__":
     import sys
-    serve(int(sys.argv[1]) if len(sys.argv) > 1 else 8000)
+    # Port precedence: CLI arg > $PORT (Render/most hosts) > 8000
+    serve(int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", "8000")))

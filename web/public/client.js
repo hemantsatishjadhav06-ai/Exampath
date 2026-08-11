@@ -363,6 +363,12 @@
       if (!q) return;
       aiRender(log, "me", esc(q));
       input.value = "";
+      if (/find my exam|consult/i.test(q)) {           // start guided consultation
+        consult = { step: "age" };
+        consultAsk(log);
+        return;
+      }
+      if (consult) { consultHandle(q, log); return; }  // continue consultation
       var api = window.__AI_API__;
       if (api) {
         var typing = aiRender(log, "bot typing", "…");
@@ -376,9 +382,183 @@
     }
     form.addEventListener("submit", function (e) { e.preventDefault(); ask(input.value); });
     log.addEventListener("click", function (e) {
+      var cc = e.target.closest ? e.target.closest("[data-consult]") : null;
+      if (cc && consult) { aiRender(log, "me", esc(cc.getAttribute("data-consult"))); consultHandle(cc.getAttribute("data-consult"), log); return; }
       var chip = e.target.closest ? e.target.closest(".ai-chip") : null;
-      if (chip) ask(chip.getAttribute("data-q"));
+      if (chip && chip.getAttribute("data-q")) ask(chip.getAttribute("data-q"));
     });
+  }
+
+  /* ---------- exam dashboard tabs (deep-linkable via #hash) ---------- */
+  function initTabs() {
+    var tabs = document.querySelectorAll(".dash-tabs .dt");
+    if (!tabs.length) return;
+    function show(name, push) {
+      var target = document.querySelector('.tabpanel[data-panel="' + name + '"]');
+      if (!target) name = "overview";
+      tabs.forEach(function (t) {
+        var on = t.getAttribute("data-tab") === name;
+        t.classList.toggle("on", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      document.querySelectorAll(".tabpanel").forEach(function (p) {
+        p.hidden = p.getAttribute("data-panel") !== name;
+      });
+      if (push) {
+        try { history.replaceState(null, "", name === "overview" ? location.pathname : "#" + name); } catch (e) {}
+      }
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () { show(t.getAttribute("data-tab"), true); });
+    });
+    document.addEventListener("click", function (e) {
+      var go = e.target.closest ? e.target.closest("[data-goto-tab]") : null;
+      if (go) { show(go.getAttribute("data-goto-tab"), true); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    });
+    var h = (location.hash || "").replace("#", "");
+    if (h) show(h, false);
+  }
+
+  /* ---------- AI consultation (guided eligible-exam finder) ---------- */
+  var consult = null; // {step, age, qual, pref}
+  function consultAsk(log) {
+    if (consult.step === "age") {
+      aiRender(log, "bot", "Let's find your exam! 🎯 First — how old are you? (just type a number)");
+    } else if (consult.step === "qual") {
+      aiRender(log, "bot", 'And your highest qualification?' +
+        '<div class="ai-quick">' +
+        ["10th pass", "12th pass", "Graduate", "Post-graduate"].map(function (q) {
+          return '<button class="ai-chip" data-consult="' + q + '">' + q + "</button>";
+        }).join("") + "</div>");
+    } else if (consult.step === "pref") {
+      aiRender(log, "bot", "Any preference?" +
+        '<div class="ai-quick">' +
+        ["All exams", "Central govt", "State govt", "Banking", "Railways"].map(function (q) {
+          return '<button class="ai-chip" data-consult="' + q + '">' + q + "</button>";
+        }).join("") + "</div>");
+    }
+  }
+  function consultFinish(log) {
+    var data = getData();
+    if (!data) { aiRender(log, "bot", "Data is still loading — try again in a second."); consult = null; return; }
+    var qmap = { "10th pass": "10th", "12th pass": "12th", "Graduate": "graduate", "Post-graduate": "pg" };
+    var QR = { "10th": 1, "12th": 2, graduate: 3, pg: 4 };
+    var prefMap = { "central govt": "central", "state govt": "state", "banking": "banking", "railways": "railways" };
+    var pref = prefMap[(consult.pref || "").toLowerCase()] || null;
+    function catOf(b) {
+      if (b.category) return b.category;
+      var l = String(b.level || "").toLowerCase();
+      return l.indexOf("central") === 0 ? "central" : l.indexOf("bank") === 0 ? "banking" : l.indexOf("rail") === 0 ? "railways" : "state";
+    }
+    var qcode = qmap[consult.qual] || "graduate";
+    var res = data.cycles.filter(function (c) {
+      if (!(consult.age >= c.age_min && consult.age <= c.age_max)) return false;
+      if (QR[qcode] < QR[c.qualification_code]) return false;
+      if (pref && catOf(data.bodies[c.body] || {}) !== pref) return false;
+      return true;
+    }).sort(function (a, b2) {
+      var da = firstDeadline(a), db = firstDeadline(b2);
+      return (da ? daysLeft(da.date) : 9999) - (db ? daysLeft(db.date) : 9999);
+    });
+    var vac = res.reduce(function (s, c) { return s + (c.vacancy || 0); }, 0);
+    var lead = res.length
+      ? "✅ Great news! At age " + consult.age + " with " + consult.qual.toLowerCase() + (pref ? " (" + consult.pref + ")" : "") +
+        ", you're eligible for <b>" + res.length + " exam" + (res.length !== 1 ? "s" : "") + "</b> — " + inr(vac) + " total vacancies. Closest deadline first:"
+      : "Hmm, nothing matches that exactly. Try a broader preference — or check individual exam pages for age relaxations (OBC +3, SC/ST +5).";
+    var cards = res.length
+      ? '<div class="ai-cards">' + res.slice(0, 6).map(function (c) { return miniCard(c, data.bodies); }).join("") + "</div>" : "";
+    aiRender(log, "bot", lead + cards +
+      '<div class="ai-quick"><button class="ai-chip" data-q="🎯 Find my exam (consult)">🔄 Start over</button></div>');
+    consult = null;
+  }
+  function consultHandle(input, log) {
+    if (consult.step === "age") {
+      var n = parseInt(input, 10);
+      if (!n || n < 14 || n > 60) { aiRender(log, "bot", "Please give me an age between 14 and 60 🙂"); return; }
+      consult.age = n; consult.step = "qual"; consultAsk(log);
+    } else if (consult.step === "qual") {
+      consult.qual = input; consult.step = "pref"; consultAsk(log);
+    } else if (consult.step === "pref") {
+      consult.pref = input; consultFinish(log);
+    }
+  }
+
+  /* ---------- auth (real API when configured, demo mode otherwise) ---------- */
+  var API = window.__API_BASE__ || "";
+  var AKEY = "exampath:auth";
+  function authState() {
+    try { return JSON.parse(localStorage.getItem(AKEY) || "null"); } catch (e) { return null; }
+  }
+  function setAuth(s) {
+    try { s ? localStorage.setItem(AKEY, JSON.stringify(s)) : localStorage.removeItem(AKEY); } catch (e) {}
+    paintAuth();
+  }
+  function paintAuth() {
+    var st = authState();
+    var label = document.getElementById("loginLabel");
+    if (label) label.textContent = st ? (st.user && (st.user.name || st.user.email) ? String(st.user.name || st.user.email).split("@")[0].slice(0, 12) : "Account") : "Login";
+  }
+  function initAuth() {
+    var btn = document.getElementById("loginBtn");
+    var overlay = document.getElementById("loginOverlay");
+    if (!btn || !overlay) return;
+    var form = document.getElementById("lgForm");
+    var err = document.getElementById("lgErr");
+    var signedIn = document.getElementById("lgSignedIn");
+    var mode = "login";
+    function open() {
+      overlay.hidden = false;
+      var st = authState();
+      form.hidden = !!st; signedIn.hidden = !st;
+      if (st) document.getElementById("lgWho").textContent = (st.user && (st.user.name || st.user.email)) || "you";
+    }
+    function close() { overlay.hidden = true; err.hidden = true; }
+    btn.addEventListener("click", open);
+    document.getElementById("lgClose").addEventListener("click", close);
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    overlay.querySelectorAll(".lg-tabs button").forEach(function (t) {
+      t.addEventListener("click", function () {
+        mode = t.getAttribute("data-lg");
+        overlay.querySelectorAll(".lg-tabs button").forEach(function (x) { x.classList.toggle("on", x === t); });
+        overlay.querySelector(".lg-name").hidden = mode !== "register";
+        document.getElementById("lgSubmit").textContent = mode === "login" ? "Login" : "Create account";
+        err.hidden = true;
+      });
+    });
+    function fail(msg) { err.textContent = msg; err.hidden = false; }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      err.hidden = true;
+      var email = document.getElementById("lgEmail").value.trim();
+      var pass = document.getElementById("lgPass").value;
+      var name = document.getElementById("lgName").value.trim();
+      if (pass.length < 8) return fail("Password must be at least 8 characters.");
+      if (API) {
+        var path = mode === "login" ? "/auth/login" : "/auth/register";
+        fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email, password: pass, name: name }) })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (x) {
+            if (!x.ok || x.j.error) return fail(x.j.error || "Something went wrong — try again.");
+            if (mode === "register") { toast("✓ Account created — logging you in"); }
+            setAuth({ token: x.j.token, user: x.j.user });
+            close(); toast("✓ Welcome, " + ((x.j.user && (x.j.user.name || x.j.user.email)) || "friend") + "!");
+          })
+          .catch(function () { fail("Could not reach the server. Try again."); });
+      } else {
+        // demo mode: local-only profile (no server configured)
+        setAuth({ token: "demo", user: { email: email, name: name || email.split("@")[0] } });
+        close(); toast("✓ Signed in (demo mode — saved on this device)");
+      }
+    });
+    document.getElementById("lgLogout").addEventListener("click", function () {
+      var st = authState();
+      if (API && st && st.token && st.token !== "demo") {
+        fetch(API + "/auth/logout", { method: "POST", headers: { Authorization: "Bearer " + st.token } }).catch(function () {});
+      }
+      setAuth(null); close(); toast("Logged out");
+    });
+    paintAuth();
   }
 
   /* ---------- service worker (offline / installable) ---------- */
@@ -399,6 +579,8 @@
     try { initSearch(); } catch (e) {}
     try { initTheme(); } catch (e) {}
     try { initAI(); } catch (e) {}
+    try { initTabs(); } catch (e) {}
+    try { initAuth(); } catch (e) {}
     try { registerSW(); } catch (e) {}
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

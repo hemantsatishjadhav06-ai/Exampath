@@ -7,4 +7,5 @@ COPY backend/ backend/
 COPY data/ data/
 WORKDIR /app/backend
 EXPOSE 8000
-CMD ["python", "-m", "app.api.server", "8000"]
+# No port arg — the server reads $PORT (set by Render/most hosts), default 8000.
+CMD ["python", "-m", "app.api.server"]
