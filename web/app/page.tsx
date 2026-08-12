@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { getBodies, getCycles, getCycle, daysLeft, fmt, inr, latestUpdates } from "@/lib/data";
+import { MOCK_UPDATES } from "@/lib/mock-updates";
 import ExamCard from "@/components/ExamCard";
 import BodyCard from "@/components/BodyCard";
-import Feed from "@/components/Feed";
+import LatestUpdatesSection from "@/components/LatestUpdatesSection";
 import Footer from "@/components/Footer";
-import Countdown from "@/components/Countdown";
-import HeroSearch from "@/components/HeroSearch";
 
 const FEATURED = ["ssc-cgl-2026", "upsc-cse-2026", "ibps-po-2026", "ssc-chsl-2026", "rrb-ntpc-2026", "mppsc-ss-2026"];
 
@@ -27,7 +26,6 @@ export default function HomePage() {
           <span className="eyebrow">🇮🇳 {cycles.length} tracked exams · {bodies.length} bodies · source-linked data</span>
           <h1>Every government exam. <span className="u">Every date.</span> One place.</h1>
           <p className="sub">Find notifications, deadlines, vacancies, eligibility and results. ExamPath links each important claim to an official source where source evidence is available.</p>
-          <HeroSearch />
           <div className="chips">
             <Link className="c" href="/search/?q=graduate">🎓 Graduate exams</Link>
             <Link className="c" href="/search/?q=12th">📗 12th pass</Link>
@@ -44,19 +42,67 @@ export default function HomePage() {
       </section>
 
       <div className="wrap pull">
-        {soon.length > 0 && <div className="blk"><div className="sec-title"><h2 style={{ color: "#fff" }}>⏰ Closing soon</h2><Link href="/calendar/" style={{ color: "#dbe6fe" }}>Full calendar →</Link></div><div className="dl-strip">{soon.map(({ c, d }) => <Link className="dl-card" href={`/exam/${c.id}/`} key={c.id}><div className="cd"><Countdown iso={d.date} initialDays={daysLeft(d.date)} /></div><h4>{c.title}</h4><div className="small muted">{d.label} · {fmt(d.date)}</div></Link>)}</div></div>}
+        {soon.length > 0 && (
+          <div className="blk">
+            <div className="sec-title">
+              <h2 style={{ color: "#fff" }}>⏰ Closing soon</h2>
+              <Link href="/calendar/" style={{ color: "#dbe6fe" }}>Full calendar →</Link>
+            </div>
+            <div className="dl-strip">
+              {soon.map((item) => (
+                <Link key={item.c.id} href={`/exam/${item.c.id}/`} className="dl-card">
+                  <div className="cd">
+                    {daysLeft(item.d.date)}
+                    <small>days</small>
+                  </div>
+                  <h4>{item.c.exam}</h4>
+                  <p style={{ margin: 0, fontSize: "13px", color: "var(--muted)" }}>{fmt(item.d.date)}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
-        <div className="blk"><div className="sec-title"><h2>Popular exams</h2><Link href="/bodies/">Browse all →</Link></div><div className="exam-grid">{featured.map((c) => c && <ExamCard key={c.id} cycle={c} />)}</div></div>
+        <div className="blk">
+          <div className="sec-title">
+            <h2>Popular exams</h2>
+            <Link href="/bodies/">Browse all →</Link>
+          </div>
+          <div className="exam-grid">
+            {featured.map((c) => c && <ExamCard key={c.id} cycle={c} />)}
+          </div>
+        </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 20 }} className="blk home-2col">
-          <div><div className="sec-title"><h2>Browse by body</h2></div><div className="body-grid">{bodies.map((b) => <BodyCard key={b.slug} body={b} />)}</div></div>
-          <div><div className="sec-title"><h2>Latest updates</h2></div><div className="card" style={{ padding: "6px 16px" }}><Feed items={updates} /></div></div>
+          <div>
+            <div className="sec-title">
+              <h2>Browse by body</h2>
+            </div>
+            <div className="body-grid">
+              {bodies.map((b) => (
+                <BodyCard key={b.slug} body={b} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Latest Updates Section with 3 columns */}
+        <div className="blk">
+          <div className="sec-title">
+            <h2>Latest updates</h2>
+          </div>
+          <LatestUpdatesSection updates={MOCK_UPDATES} />
         </div>
 
         <div className="panel" style={{ marginTop: 16 }}>
           <h2 style={{ fontSize: 20 }}>How to use ExamPath safely</h2>
-          <p className="small muted" style={{ marginBottom: 8 }}>Use ExamPath to discover and compare exams, then open the linked official notification before you apply. ExamPath is an independent information platform, not a government website.</p>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}><span className="tag">1. Discover</span><span className="tag">2. Check dates</span><span className="tag">3. Open official source</span><span className="tag">4. Verify eligibility</span><span className="tag">5. Apply on the official portal</span></div>
+          <p className="small muted" style={{ marginBottom: 8 }}>Use ExamPath to discover and compare exams, then open the linked official notification before you apply. ExamPath is an independent reference tool built by students for students.</p>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <span className="tag">1. Discover</span>
+            <span className="tag">2. Check dates</span>
+            <span className="tag">3. Open official source</span>
+            <span className="tag">4. Verify eligibility</span>
+          </div>
         </div>
         <Footer />
       </div>
