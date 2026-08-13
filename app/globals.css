@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+body { @apply bg-slate-50 text-slate-900 antialiased; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .card { @apply rounded-xl2 border border-slate-200 bg-white shadow-card; }
+  .btn { @apply inline-flex h-11 items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold transition; }
+  .btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700; }
+  .btn-accent { @apply btn bg-accent-500 text-white hover:bg-accent-600; }
+  .btn-ghost { @apply btn border border-slate-200 bg-white text-slate-800 hover:border-brand-300 hover:text-brand-700; }
+  .pill { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wide; }
+  .section-title { @apply flex items-center justify-between gap-3 mb-4; }
+  .h2 { @apply text-xl font-extrabold tracking-tight; }
+}
