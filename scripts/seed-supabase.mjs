@@ -14,7 +14,7 @@ const PLAN = [
   ["states", "slug", null], ["categories", "slug", null], ["bodies", "slug", null],
   ["exams", "slug", null], ["exam_cycles", "id", null],
   ["stages", null, "id"], ["key_dates", null, "id"], ["cutoffs", null, "id"],
-  ["cycle_links", null, "id"], ["updates", null, "id"], ["vacancy_history", null, "id"],
+  ["cycle_links", null, "id"], ["updates", null, "id"], ["vacancy_history", null, "id"], ["papers", null, "id"],
 ];
 for (const [table, conflict, strip] of PLAN) {
   let rows = seed[table] ?? [];

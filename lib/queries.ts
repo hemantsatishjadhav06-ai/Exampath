@@ -130,3 +130,18 @@ export async function getVacancyHistory(examSlug: string): Promise<VacancyYear[]
   const { data } = await supabase.from("vacancy_history").select("*").eq("exam_slug", examSlug).order("year");
   return (data as VacancyYear[]) ?? [];
 }
+
+/** Papers: official syllabus / answer keys (past question papers) / results. */
+export async function getPapers(filter?: { exam?: string; year?: number; kind?: string }) {
+  if (seedActive() || !supabase) return seed.papers(filter);
+  let q = supabase.from("papers").select("*").order("year", { ascending: false });
+  if (filter?.exam) q = q.eq("exam_slug", filter.exam);
+  if (filter?.year) q = q.eq("year", filter.year);
+  if (filter?.kind) q = q.eq("kind", filter.kind);
+  const { data } = await q;
+  return (data as import("@/lib/types").Paper[]) ?? [];
+}
+
+/** Practice sets ship with the app (AI-generated, clearly labeled). */
+export async function getPracticeSets() { return seed.practiceSets(); }
+export async function getPracticeSet(id: number) { return seed.practiceSet(id); }

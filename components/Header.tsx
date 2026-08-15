@@ -10,6 +10,8 @@ export default function Header({ locale }: { locale: Locale }) {
     [localePath(locale, "/search"), s.search],
     [localePath(locale, "/calendar"), s.calendar],
     [localePath(locale, "/bodies"), s.bodies],
+    [localePath(locale, "/papers"), locale === "hi" ? "पेपर" : "Papers"],
+    [localePath(locale, "/practice"), locale === "hi" ? "प्रैक्टिस" : "Practice"],
   ] as const;
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/85 backdrop-blur">

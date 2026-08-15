@@ -41,3 +41,10 @@ export interface Update {
   published_at: string;
 }
 export interface VacancyYear { id: number; exam_slug: string; year: number; seats: number }
+export interface Paper {
+  id: number; exam_slug: string | null; body_slug: string | null;
+  title: string; url: string; year: number | null;
+  kind: "syllabus" | "answer_key" | "result" | "notice";
+}
+export interface PracticeQuestion { q: string; options: string[]; answer: number; why: string }
+export interface PracticeSet { id: number; title: string; exam_slug: string; subject: string; questions: PracticeQuestion[] }

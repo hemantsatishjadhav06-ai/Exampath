@@ -6,7 +6,7 @@ import { AboutBlurbLong } from "@/components/AboutBlurb";
 export default function Footer({ locale }: { locale: Locale }) {
   const s = t(locale);
   const cols: [string, [string, string][]][] = [
-    ["Explore", [[localePath(locale, "/search"), s.search], [localePath(locale, "/calendar"), s.calendar], [localePath(locale, "/bodies"), s.bodies]]],
+    ["Explore", [[localePath(locale, "/search"), s.search], [localePath(locale, "/calendar"), s.calendar], [localePath(locale, "/bodies"), s.bodies], [localePath(locale, "/papers"), "Papers"], [localePath(locale, "/practice"), "Practice"]]],
     ["Categories", [
       [localePath(locale, "/category/qualification/graduate"), "Graduate"],
       [localePath(locale, "/category/qualification/12th"), "12th pass"],

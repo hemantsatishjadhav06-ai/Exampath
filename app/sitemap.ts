@@ -14,7 +14,7 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
     { url: `${baseUrl}/hi${p === "/" ? "" : p}`, lastModified: now },
   ];
   if (id === "static") {
-    return ["/", "/search", "/calendar", "/bodies", "/about", "/contact", "/privacy-policy", "/disclaimer", "/terms",
+    return ["/", "/search", "/calendar", "/bodies", "/papers", "/practice", "/about", "/contact", "/privacy-policy", "/disclaimer", "/terms",
       "/category/qualification/10th", "/category/qualification/12th", "/category/qualification/graduate", "/category/qualification/pg",
     ].flatMap(both);
   }

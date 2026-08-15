@@ -2,14 +2,15 @@
 // is provisioned. Activated by DATA_MODE=seed or when Supabase env is absent.
 // scripts/seed-supabase.mjs loads this exact data into Supabase — no drift.
 import raw from "@/db/seed.json";
+import practiceRaw from "@/db/practice.json";
 import type {
-  Body, CategoryRow, Cutoff, Cycle, CycleLink, Exam, KeyDate, Stage, StateRow, Update, VacancyYear,
+  Body, CategoryRow, Cutoff, Cycle, CycleLink, Exam, KeyDate, Paper, PracticeSet, Stage, StateRow, Update, VacancyYear,
 } from "@/lib/types";
 
 const db = raw as unknown as {
   states: StateRow[]; categories: CategoryRow[]; bodies: Body[]; exams: Exam[];
   exam_cycles: Cycle[]; stages: Stage[]; key_dates: KeyDate[]; cutoffs: Cutoff[];
-  cycle_links: CycleLink[]; updates: Update[]; vacancy_history: VacancyYear[];
+  cycle_links: CycleLink[]; updates: Update[]; vacancy_history: VacancyYear[]; papers?: Paper[];
 };
 
 const today = () => new Date().toISOString().slice(0, 10);
@@ -76,6 +77,16 @@ export const seed = {
   },
   vacancyHistory: (examSlug: string): VacancyYear[] =>
     db.vacancy_history.filter((v) => v.exam_slug === examSlug).sort((a, z) => a.year - z.year),
+  papers: (filter?: { exam?: string; year?: number; kind?: string }): Paper[] => {
+    let rows = db.papers ?? [];
+    if (filter?.exam) rows = rows.filter((p) => p.exam_slug === filter.exam);
+    if (filter?.year) rows = rows.filter((p) => p.year === filter.year);
+    if (filter?.kind) rows = rows.filter((p) => p.kind === filter.kind);
+    return rows;
+  },
+  practiceSets: (): PracticeSet[] => (practiceRaw as { sets: PracticeSet[] }).sets,
+  practiceSet: (id: number): PracticeSet | null =>
+    (practiceRaw as { sets: PracticeSet[] }).sets.find((s) => s.id === id) ?? null,
 };
 
 export const seedActive = (): boolean =>

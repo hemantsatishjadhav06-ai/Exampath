@@ -1,0 +1,82 @@
+{
+ "sets": [
+  {"id": 1, "title": "SSC CGL — Quantitative Aptitude Practice Set", "exam_slug": "ssc-cgl", "subject": "Quantitative Aptitude",
+   "questions": [
+    {"q": "A student scored 80% marks and got 320 marks. What were the maximum marks?", "options": ["400", "450", "500", "350"], "answer": 0, "why": "80% of x = 320 → x = 320 ÷ 0.8 = 400."},
+    {"q": "The average of 5 consecutive odd numbers is 25. What is the largest of them?", "options": ["27", "29", "31", "25"], "answer": 1, "why": "Middle number = 25, so they are 21,23,25,27,29 → largest 29."},
+    {"q": "If the ratio of two numbers is 3:5 and their sum is 96, the larger number is:", "options": ["36", "48", "60", "72"], "answer": 2, "why": "Parts = 8; one part = 12; larger = 5×12 = 60."},
+    {"q": "A shopkeeper sells an item at 20% profit. If cost price is ₹450, the selling price is:", "options": ["₹530", "₹540", "₹550", "₹520"], "answer": 1, "why": "450 × 1.20 = ₹540."},
+    {"q": "Simple interest on ₹6,000 at 8% p.a. for 3 years is:", "options": ["₹1,440", "₹1,340", "₹1,540", "₹1,240"], "answer": 0, "why": "SI = 6000×8×3/100 = ₹1,440."},
+    {"q": "A train 240 m long crosses a pole in 12 seconds. Its speed is:", "options": ["60 km/h", "72 km/h", "80 km/h", "90 km/h"], "answer": 1, "why": "240/12 = 20 m/s = 72 km/h."},
+    {"q": "If 12 workers finish a job in 18 days, 9 workers will finish it in:", "options": ["20 days", "22 days", "24 days", "27 days"], "answer": 2, "why": "Work = 12×18 = 216 worker-days; 216/9 = 24."},
+    {"q": "The value of (0.6 × 0.6 + 0.4 × 0.4 + 2 × 0.6 × 0.4) is:", "options": ["1", "0.52", "1.2", "0.96"], "answer": 0, "why": "(0.6+0.4)² = 1² = 1."},
+    {"q": "A number increased by 25% gives 80. The number is:", "options": ["60", "64", "66", "70"], "answer": 1, "why": "x × 1.25 = 80 → x = 64."},
+    {"q": "The LCM of 12, 18 and 24 is:", "options": ["48", "36", "72", "96"], "answer": 2, "why": "LCM(12,18,24) = 72."}
+   ]},
+  {"id": 2, "title": "SSC CGL — General Awareness Practice Set", "exam_slug": "ssc-cgl", "subject": "General Awareness",
+   "questions": [
+    {"q": "Who is known as the 'Father of the Indian Constitution'?", "options": ["Mahatma Gandhi", "Dr. B. R. Ambedkar", "Jawaharlal Nehru", "Sardar Patel"], "answer": 1, "why": "Dr. B. R. Ambedkar chaired the Drafting Committee."},
+    {"q": "The Tropic of Cancer does NOT pass through which state?", "options": ["Gujarat", "Rajasthan", "Odisha", "Tripura"], "answer": 2, "why": "It passes through 8 states; Odisha is not one of them."},
+    {"q": "Which Article of the Constitution deals with the Right to Equality?", "options": ["Article 14", "Article 19", "Article 21", "Article 25"], "answer": 0, "why": "Article 14 guarantees equality before law."},
+    {"q": "The currency of Japan is:", "options": ["Won", "Yuan", "Yen", "Ringgit"], "answer": 2, "why": "Japan uses the Yen (JPY)."},
+    {"q": "Which gas is most abundant in Earth's atmosphere?", "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"], "answer": 1, "why": "Nitrogen is ~78% of the atmosphere."},
+    {"q": "The Reserve Bank of India was established in:", "options": ["1930", "1935", "1947", "1950"], "answer": 1, "why": "RBI was established on 1 April 1935."},
+    {"q": "'Panchatantra' was written by:", "options": ["Kalidasa", "Vishnu Sharma", "Chanakya", "Tulsidas"], "answer": 1, "why": "The fables are attributed to Vishnu Sharma."},
+    {"q": "Which is the longest river in India?", "options": ["Godavari", "Yamuna", "Ganga", "Brahmaputra"], "answer": 2, "why": "The Ganga is the longest river within India."},
+    {"q": "The first Indian to win a Nobel Prize was:", "options": ["C. V. Raman", "Rabindranath Tagore", "Mother Teresa", "Har Gobind Khorana"], "answer": 1, "why": "Tagore won the Literature Nobel in 1913."},
+    {"q": "Fundamental Duties were added to the Constitution by which Amendment?", "options": ["42nd", "44th", "52nd", "61st"], "answer": 0, "why": "The 42nd Amendment (1976) added them."}
+   ]},
+  {"id": 3, "title": "SSC CHSL — English Language Practice Set", "exam_slug": "ssc-chsl", "subject": "English Language",
+   "questions": [
+    {"q": "Choose the synonym of 'ABUNDANT':", "options": ["Scarce", "Plentiful", "Rare", "Meagre"], "answer": 1, "why": "Abundant = existing in large quantities."},
+    {"q": "Choose the antonym of 'HOSTILE':", "options": ["Aggressive", "Friendly", "Bitter", "Cold"], "answer": 1, "why": "Hostile means unfriendly; opposite is friendly."},
+    {"q": "Spot the error: 'He do not like coffee.'", "options": ["He", "do", "not like", "coffee"], "answer": 1, "why": "Third person singular needs 'does'."},
+    {"q": "One word for 'a person who speaks many languages':", "options": ["Linguist", "Polyglot", "Orator", "Translator"], "answer": 1, "why": "A polyglot knows several languages."},
+    {"q": "Idiom 'to let the cat out of the bag' means:", "options": ["To start a fight", "To reveal a secret", "To make a mess", "To escape"], "answer": 1, "why": "It means revealing a secret accidentally."},
+    {"q": "Choose the correctly spelt word:", "options": ["Occassion", "Ocassion", "Occasion", "Occasionn"], "answer": 2, "why": "'Occasion' — double c, single s."},
+    {"q": "Fill in: 'She has been working here ___ 2019.'", "options": ["for", "since", "from", "by"], "answer": 1, "why": "'Since' with a point in time."},
+    {"q": "Passive of 'They built a bridge':", "options": ["A bridge is built by them", "A bridge was built by them", "A bridge has built by them", "A bridge built by them"], "answer": 1, "why": "Past simple passive: was + past participle."},
+    {"q": "Choose the synonym of 'CANDID':", "options": ["Secretive", "Frank", "Rude", "Shy"], "answer": 1, "why": "Candid = truthful and straightforward."},
+    {"q": "Indirect speech: He said, 'I am tired.'", "options": ["He said he is tired", "He said that he was tired", "He says he was tired", "He said that he is tired"], "answer": 1, "why": "Present simple shifts to past in reported speech."}
+   ]},
+  {"id": 4, "title": "SSC MTS — Reasoning Ability Practice Set", "exam_slug": "ssc-mts", "subject": "Reasoning",
+   "questions": [
+    {"q": "Find the next term: 2, 6, 12, 20, 30, ?", "options": ["40", "42", "44", "36"], "answer": 1, "why": "Differences 4,6,8,10 → next +12 = 42."},
+    {"q": "If CAT is coded as DBU, then DOG is coded as:", "options": ["EPH", "EPI", "FPH", "DPH"], "answer": 0, "why": "Each letter +1: D→E, O→P, G→H."},
+    {"q": "Odd one out: Apple, Mango, Potato, Banana", "options": ["Apple", "Mango", "Potato", "Banana"], "answer": 2, "why": "Potato is a vegetable; the rest are fruits."},
+    {"q": "A is B's brother, B is C's mother. How is A related to C?", "options": ["Uncle", "Father", "Brother", "Grandfather"], "answer": 0, "why": "Mother's brother = maternal uncle."},
+    {"q": "Mirror image of 'b' looks like:", "options": ["d", "p", "q", "b"], "answer": 0, "why": "Lateral inversion turns b into d."},
+    {"q": "If 5 × 3 = 28 and 6 × 4 = 40, then 7 × 5 = ?", "options": ["54", "56", "48", "60"], "answer": 0, "why": "Pattern: (a+b)(a−b)+2ab? Check: (5²+3)=28, (6²+4)=40 → 7²+5=54."},
+    {"q": "Arrange in dictionary order: 1.Nation 2.Native 3.Narrate 4.Nature", "options": ["3,1,2,4", "1,3,2,4", "3,1,4,2", "1,2,3,4"], "answer": 0, "why": "Narrate, Nation, Native, Nature."},
+    {"q": "How many triangles are in a square with both diagonals drawn?", "options": ["4", "6", "8", "10"], "answer": 2, "why": "4 small + 4 larger = 8."},
+    {"q": "Ram walks 3 km north, then 4 km east. Distance from start:", "options": ["5 km", "7 km", "6 km", "4 km"], "answer": 0, "why": "√(3²+4²) = 5 (Pythagoras)."},
+    {"q": "Complete the series: AZ, BY, CX, ?", "options": ["DW", "DV", "EW", "DX"], "answer": 0, "why": "Left +1 (A,B,C,D), right −1 (Z,Y,X,W)."}
+   ]},
+  {"id": 5, "title": "RRB NTPC — General Science Practice Set", "exam_slug": "rrb-ntpc", "subject": "General Science",
+   "questions": [
+    {"q": "The SI unit of force is:", "options": ["Joule", "Newton", "Pascal", "Watt"], "answer": 1, "why": "Force is measured in newtons (N)."},
+    {"q": "The chemical formula of common salt is:", "options": ["KCl", "NaCl", "CaCl₂", "NaOH"], "answer": 1, "why": "Common salt is sodium chloride."},
+    {"q": "Which vitamin is produced in the skin by sunlight?", "options": ["Vitamin A", "Vitamin B12", "Vitamin C", "Vitamin D"], "answer": 3, "why": "UV light synthesises Vitamin D."},
+    {"q": "The powerhouse of the cell is:", "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi body"], "answer": 2, "why": "Mitochondria produce ATP."},
+    {"q": "Sound cannot travel through:", "options": ["Water", "Steel", "Air", "Vacuum"], "answer": 3, "why": "Sound needs a medium."},
+    {"q": "The pH of pure water is:", "options": ["5", "7", "9", "11"], "answer": 1, "why": "Neutral pH = 7."},
+    {"q": "Which gas do plants absorb for photosynthesis?", "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], "answer": 2, "why": "CO₂ + water + light → glucose + O₂."},
+    {"q": "The device used to measure atmospheric pressure is:", "options": ["Thermometer", "Barometer", "Hygrometer", "Anemometer"], "answer": 1, "why": "A barometer measures air pressure."},
+    {"q": "Blood is pumped from the heart's left ventricle into the:", "options": ["Pulmonary artery", "Aorta", "Vena cava", "Pulmonary vein"], "answer": 1, "why": "The aorta carries oxygenated blood to the body."},
+    {"q": "The speed of light in vacuum is approximately:", "options": ["3 × 10⁶ m/s", "3 × 10⁸ m/s", "3 × 10⁵ m/s", "3 × 10⁷ m/s"], "answer": 1, "why": "c ≈ 3 × 10⁸ m/s."}
+   ]},
+  {"id": 6, "title": "SSC GD Constable — General Knowledge Practice Set", "exam_slug": "ssc-gd", "subject": "General Knowledge",
+   "questions": [
+    {"q": "The National Anthem of India was written by:", "options": ["Bankim Chandra Chatterjee", "Rabindranath Tagore", "Sarojini Naidu", "Subhash Chandra Bose"], "answer": 1, "why": "'Jana Gana Mana' — Rabindranath Tagore."},
+    {"q": "How many members can the President nominate to the Rajya Sabha?", "options": ["2", "10", "12", "14"], "answer": 2, "why": "Article 80: 12 nominated members."},
+    {"q": "The highest mountain peak in India is:", "options": ["Nanda Devi", "Kangchenjunga", "K2", "Mount Everest"], "answer": 1, "why": "Kangchenjunga is the highest peak within India."},
+    {"q": "The Dandi March was associated with:", "options": ["Khilafat Movement", "Salt Satyagraha", "Quit India", "Non-Cooperation"], "answer": 1, "why": "Gandhi's 1930 Salt Satyagraha."},
+    {"q": "The BSF is a:", "options": ["State police force", "Central Armed Police Force", "Army regiment", "Intelligence agency"], "answer": 1, "why": "Border Security Force is a CAPF."},
+    {"q": "The capital of Arunachal Pradesh is:", "options": ["Imphal", "Itanagar", "Aizawl", "Kohima"], "answer": 1, "why": "Itanagar."},
+    {"q": "'Chauri Chaura' incident took place in:", "options": ["1919", "1922", "1930", "1942"], "answer": 1, "why": "February 1922, leading Gandhi to halt Non-Cooperation."},
+    {"q": "The Olympic Games are held every:", "options": ["2 years", "3 years", "4 years", "5 years"], "answer": 2, "why": "Every four years."},
+    {"q": "Which of these is a classical dance of Kerala?", "options": ["Kathak", "Kathakali", "Kuchipudi", "Odissi"], "answer": 1, "why": "Kathakali originates from Kerala."},
+    {"q": "The Indian Constitution came into force on:", "options": ["15 Aug 1947", "26 Jan 1950", "26 Nov 1949", "2 Oct 1950"], "answer": 1, "why": "26 January 1950 — Republic Day."}
+   ]}
+ ]
+}

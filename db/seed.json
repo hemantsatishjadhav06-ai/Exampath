@@ -30,49 +30,49 @@
    "slug": "ssc",
    "name": "SSC",
    "name_hi": null,
-   "icon": "🏛",
+   "icon": "\ud83c\udfdb",
    "sort_order": 0
   },
   {
    "slug": "upsc",
    "name": "UPSC",
    "name_hi": null,
-   "icon": "🎖",
+   "icon": "\ud83c\udf96",
    "sort_order": 1
   },
   {
    "slug": "banking",
    "name": "Banking",
    "name_hi": null,
-   "icon": "🏦",
+   "icon": "\ud83c\udfe6",
    "sort_order": 2
   },
   {
    "slug": "railway",
    "name": "Railway",
    "name_hi": null,
-   "icon": "🚆",
+   "icon": "\ud83d\ude86",
    "sort_order": 3
   },
   {
    "slug": "defense",
    "name": "Defense",
    "name_hi": null,
-   "icon": "🪖",
+   "icon": "\ud83e\ude96",
    "sort_order": 4
   },
   {
    "slug": "teaching",
    "name": "Teaching",
    "name_hi": null,
-   "icon": "📚",
+   "icon": "\ud83d\udcda",
    "sort_order": 5
   },
   {
    "slug": "state-psc",
    "name": "State PSC",
    "name_hi": null,
-   "icon": "🗺",
+   "icon": "\ud83d\uddfa",
    "sort_order": 6
   }
  ],
@@ -266,7 +266,7 @@
    "name": "SSC CGL",
    "name_hi": null,
    "qualification_code": "graduate",
-   "description": "Combined Graduate Level — Group B & C posts across central government ministries and departments.",
+   "description": "Combined Graduate Level \u2014 Group B & C posts across central government ministries and departments.",
    "description_hi": null,
    "official_url": "https://ssc.gov.in",
    "syllabus": [
@@ -386,7 +386,7 @@
    "faqs": [
     {
      "q": "Is there negative marking?",
-     "a": "Yes — 0.50 marks are deducted for each wrong answer in Tier-1."
+     "a": "Yes \u2014 0.50 marks are deducted for each wrong answer in Tier-1."
     },
     {
      "q": "How many attempts are allowed?",
@@ -394,11 +394,11 @@
     },
     {
      "q": "What is the age limit?",
-     "a": "18–32 years depending on post, with relaxations (OBC +3, SC/ST +5, PwD +10)."
+     "a": "18\u201332 years depending on post, with relaxations (OBC +3, SC/ST +5, PwD +10)."
     },
     {
      "q": "Is the exam bilingual?",
-     "a": "Yes — questions (except the English paper) appear in English and Hindi."
+     "a": "Yes \u2014 questions (except the English paper) appear in English and Hindi."
     }
    ]
   },
@@ -409,7 +409,7 @@
    "name": "SSC CHSL",
    "name_hi": null,
    "qualification_code": "12th",
-   "description": "Combined Higher Secondary Level — LDC, DEO and postal assistant posts for 12th-pass candidates.",
+   "description": "Combined Higher Secondary Level \u2014 LDC, DEO and postal assistant posts for 12th-pass candidates.",
    "description_hi": null,
    "official_url": null,
    "syllabus": [
@@ -666,7 +666,7 @@
    "name": "SSC MTS",
    "name_hi": null,
    "qualification_code": "10th",
-   "description": "Multi-Tasking Staff & Havaldar — 10th-pass entry into central government service.",
+   "description": "Multi-Tasking Staff & Havaldar \u2014 10th-pass entry into central government service.",
    "description_hi": null,
    "official_url": "https://ssc.gov.in",
    "syllabus": [
@@ -850,7 +850,7 @@
    "name": "UPSC CSE",
    "name_hi": null,
    "qualification_code": "graduate",
-   "description": "The Civil Services Examination — recruitment to IAS, IPS, IFS and allied central services.",
+   "description": "The Civil Services Examination \u2014 recruitment to IAS, IPS, IFS and allied central services.",
    "description_hi": null,
    "official_url": null,
    "syllabus": [
@@ -919,11 +919,11 @@
     },
     {
      "q": "Is CSAT counted in the merit?",
-     "a": "No — CSAT (Paper II) is qualifying only; you need 33% to clear it."
+     "a": "No \u2014 CSAT (Paper II) is qualifying only; you need 33% to clear it."
     },
     {
      "q": "What is the age limit?",
-     "a": "21–32 years for General, with category relaxations."
+     "a": "21\u201332 years for General, with category relaxations."
     }
    ]
   },
@@ -1064,7 +1064,7 @@
    "name": "RRB NTPC",
    "name_hi": null,
    "qualification_code": "graduate",
-   "description": "Non-Technical Popular Categories — station master, clerk, guard and more across Indian Railways.",
+   "description": "Non-Technical Popular Categories \u2014 station master, clerk, guard and more across Indian Railways.",
    "description_hi": null,
    "official_url": "https://indianrailways.gov.in",
    "syllabus": [],
@@ -1201,7 +1201,7 @@
    "name": "MPPSC SS",
    "name_hi": null,
    "qualification_code": "graduate",
-   "description": "Madhya Pradesh State Service — Deputy Collector, DSP and other state administrative posts.",
+   "description": "Madhya Pradesh State Service \u2014 Deputy Collector, DSP and other state administrative posts.",
    "description_hi": null,
    "official_url": null,
    "syllabus": [],
@@ -1569,7 +1569,7 @@
      "stage_name": "Prelims",
      "duration_minutes": 3,
      "total_marks": null,
-     "negative_marking_note": "1/3 mark deducted per wrong answer; a fifth 'not attempted' option must be bubbled for skipped questions — leaving more than 10% of questions with no option marked can lead to disqualification under RPSC's fifth-option rule",
+     "negative_marking_note": "1/3 mark deducted per wrong answer; a fifth 'not attempted' option must be bubbled for skipped questions \u2014 leaving more than 10% of questions with no option marked can lead to disqualification under RPSC's fifth-option rule",
      "sections": []
     },
     {
@@ -1882,7 +1882,7 @@
     {
      "category": "General",
      "amount": 500,
-     "notes": "₹400 refunded on appearing in CBT"
+     "notes": "\u20b9400 refunded on appearing in CBT"
     },
     {
      "category": "SC/ST/PwBD/Women",
@@ -1893,7 +1893,7 @@
    "faqs": [
     {
      "q": "Is ITI mandatory?",
-     "a": "No — Class 10th pass OR ITI/equivalent is acceptable for most Level-1 posts."
+     "a": "No \u2014 Class 10th pass OR ITI/equivalent is acceptable for most Level-1 posts."
     }
    ]
   },
@@ -1958,7 +1958,7 @@
     {
      "category": "General",
      "amount": 500,
-     "notes": "₹400 refunded on appearing"
+     "notes": "\u20b9400 refunded on appearing"
     },
     {
      "category": "Reserved",
@@ -2051,7 +2051,7 @@
    "faqs": [
     {
      "q": "Is there an interview for IBPS Clerk?",
-     "a": "No — selection is based on Prelims + Mains only, no interview."
+     "a": "No \u2014 selection is based on Prelims + Mains only, no interview."
     }
    ]
   },
@@ -2062,7 +2062,7 @@
    "name": "IBPS RRB",
    "name_hi": null,
    "qualification_code": "graduate",
-   "description": "Common Recruitment Process for Regional Rural Banks — Officer Scale I/II/III and Office Assistant.",
+   "description": "Common Recruitment Process for Regional Rural Banks \u2014 Officer Scale I/II/III and Office Assistant.",
    "description_hi": null,
    "official_url": "https://www.ibps.in",
    "syllabus": [
@@ -2119,7 +2119,7 @@
    "faqs": [
     {
      "q": "Is a local language requirement applicable?",
-     "a": "Yes — proficiency in the local language of the state is usually required."
+     "a": "Yes \u2014 proficiency in the local language of the state is usually required."
     }
    ]
   },
@@ -2274,7 +2274,7 @@
    "faqs": [
     {
      "q": "Is there an interview?",
-     "a": "No — SBI Clerk selection is Prelims + Mains, followed by a local-language test."
+     "a": "No \u2014 SBI Clerk selection is Prelims + Mains, followed by a local-language test."
     }
    ]
   },
@@ -2351,7 +2351,7 @@
    "faqs": [
     {
      "q": "What is the age limit?",
-     "a": "21–30 years for the General stream, with relaxations for reserved categories."
+     "a": "21\u201330 years for the General stream, with relaxations for reserved categories."
     }
    ]
   },
@@ -2362,7 +2362,7 @@
    "name": "CTET",
    "name_hi": null,
    "qualification_code": "graduate",
-   "description": "Eligibility test for teacher posts (Classes I–VIII) in central government schools.",
+   "description": "Eligibility test for teacher posts (Classes I\u2013VIII) in central government schools.",
    "description_hi": null,
    "official_url": "https://ctet.nic.in",
    "syllabus": [
@@ -2473,12 +2473,12 @@
      "negative_marking_note": "No negative marking",
      "sections": [
       {
-       "name": "Paper I — Teaching & Research Aptitude",
+       "name": "Paper I \u2014 Teaching & Research Aptitude",
        "questions": 50,
        "marks": 100
       },
       {
-       "name": "Paper II — Subject",
+       "name": "Paper II \u2014 Subject",
        "questions": 100,
        "marks": 200
       }
@@ -2659,7 +2659,7 @@
    "age_min": 18,
    "age_max": 32,
    "age_relaxation_note": null,
-   "summary": "Combined Graduate Level — Group B & C posts across central government ministries and departments.",
+   "summary": "Combined Graduate Level \u2014 Group B & C posts across central government ministries and departments.",
    "summary_hi": null,
    "posts": "Assistant Section Officer, Income Tax Inspector, Inspector (CBIC), Auditor",
    "posts_hi": null,
@@ -2683,7 +2683,7 @@
    "age_min": 18,
    "age_max": 27,
    "age_relaxation_note": null,
-   "summary": "Combined Higher Secondary Level — LDC, DEO and postal assistant posts for 12th-pass candidates.",
+   "summary": "Combined Higher Secondary Level \u2014 LDC, DEO and postal assistant posts for 12th-pass candidates.",
    "summary_hi": null,
    "posts": "LDC/JSA, DEO, Postal Assistant",
    "posts_hi": null,
@@ -2707,7 +2707,7 @@
    "age_min": 18,
    "age_max": 25,
    "age_relaxation_note": null,
-   "summary": "Multi-Tasking Staff & Havaldar — 10th-pass entry into central government service.",
+   "summary": "Multi-Tasking Staff & Havaldar \u2014 10th-pass entry into central government service.",
    "summary_hi": null,
    "posts": "MTS, Havaldar (CBIC & CBN)",
    "posts_hi": null,
@@ -2731,7 +2731,7 @@
    "age_min": 21,
    "age_max": 32,
    "age_relaxation_note": null,
-   "summary": "The Civil Services Examination — recruitment to IAS, IPS, IFS and allied central services.",
+   "summary": "The Civil Services Examination \u2014 recruitment to IAS, IPS, IFS and allied central services.",
    "summary_hi": null,
    "posts": "IAS, IPS, IFS, IRS and allied services",
    "posts_hi": null,
@@ -2779,7 +2779,7 @@
    "age_min": 18,
    "age_max": 33,
    "age_relaxation_note": null,
-   "summary": "Non-Technical Popular Categories — station master, clerk, guard and more across Indian Railways.",
+   "summary": "Non-Technical Popular Categories \u2014 station master, clerk, guard and more across Indian Railways.",
    "summary_hi": null,
    "posts": "Station Master, Goods Guard, Senior Clerk, Commercial Apprentice",
    "posts_hi": null,
@@ -2803,7 +2803,7 @@
    "age_min": 21,
    "age_max": 40,
    "age_relaxation_note": null,
-   "summary": "Madhya Pradesh State Service — Deputy Collector, DSP and other state administrative posts.",
+   "summary": "Madhya Pradesh State Service \u2014 Deputy Collector, DSP and other state administrative posts.",
    "summary_hi": null,
    "posts": "Deputy Collector, DSP, Naib Tehsildar",
    "posts_hi": null,
@@ -3019,7 +3019,7 @@
    "age_min": 18,
    "age_max": 40,
    "age_relaxation_note": null,
-   "summary": "Common Recruitment Process for Regional Rural Banks — Officer Scale I/II/III and Office Assistant.",
+   "summary": "Common Recruitment Process for Regional Rural Banks \u2014 Officer Scale I/II/III and Office Assistant.",
    "summary_hi": null,
    "posts": "Officer Scale I/II/III, Office Assistant (Multipurpose)",
    "posts_hi": null,
@@ -3093,7 +3093,7 @@
    "age_relaxation_note": null,
    "summary": "Recruitment of Grade B Officers (General & specialist streams) in the Reserve Bank of India.",
    "summary_hi": null,
-   "posts": "Manager (Grade B) — General, DEPR, DSIM",
+   "posts": "Manager (Grade B) \u2014 General, DEPR, DSIM",
    "posts_hi": null,
    "schedule_note": null,
    "application_start": null,
@@ -3115,9 +3115,9 @@
    "age_min": 18,
    "age_max": 60,
    "age_relaxation_note": null,
-   "summary": "Eligibility test for teacher posts (Classes I–VIII) in central government schools.",
+   "summary": "Eligibility test for teacher posts (Classes I\u2013VIII) in central government schools.",
    "summary_hi": null,
-   "posts": "Primary (I–V) and Elementary (VI–VIII) teacher eligibility",
+   "posts": "Primary (I\u2013V) and Elementary (VI\u2013VIII) teacher eligibility",
    "posts_hi": null,
    "schedule_note": null,
    "application_start": null,
@@ -3165,7 +3165,7 @@
    "age_relaxation_note": null,
    "summary": "Admission to the National Defence Academy and Naval Academy (Army, Navy, Air Force wings).",
    "summary_hi": null,
-   "posts": "Cadet — Army, Navy, Air Force, Naval Academy",
+   "posts": "Cadet \u2014 Army, Navy, Air Force, Naval Academy",
    "posts_hi": null,
    "schedule_note": null,
    "application_start": null,
@@ -3189,7 +3189,7 @@
    "age_relaxation_note": null,
    "summary": "Recruitment to the Indian Military, Naval, Air Force Academy and Officers Training Academy.",
    "summary_hi": null,
-   "posts": "Officer — IMA, INA, AFA, OTA",
+   "posts": "Officer \u2014 IMA, INA, AFA, OTA",
    "posts_hi": null,
    "schedule_note": null,
    "application_start": null,
@@ -5093,7 +5093,7 @@
   {
    "id": 3,
    "cycle_id": "ssc-chsl-2026",
-   "text": "SSC CHSL 2026 notification released — 3,712 vacancies",
+   "text": "SSC CHSL 2026 notification released \u2014 3,712 vacancies",
    "text_hi": null,
    "kind": "notification",
    "tab_link": "overview",
@@ -5119,7 +5119,7 @@
   {
    "id": 5,
    "cycle_id": "upsc-cse-2026",
-   "text": "Prelims admit card released — download now",
+   "text": "Prelims admit card released \u2014 download now",
    "text_hi": null,
    "kind": "admit_card",
    "tab_link": "admit_card",
@@ -5132,7 +5132,7 @@
   {
    "id": 6,
    "cycle_id": "ibps-po-2026",
-   "text": "IBPS PO 2026 registration is now open — 4,455 posts",
+   "text": "IBPS PO 2026 registration is now open \u2014 4,455 posts",
    "text_hi": null,
    "kind": "notification",
    "tab_link": "overview",
@@ -5158,7 +5158,7 @@
   {
    "id": 8,
    "cycle_id": "mppsc-ss-2026",
-   "text": "MPPSC State Service 2026 applications open — 158 posts",
+   "text": "MPPSC State Service 2026 applications open \u2014 158 posts",
    "text_hi": null,
    "kind": "notification",
    "tab_link": "overview",
@@ -5493,6 +5493,2132 @@
    "exam_slug": "rpsc-ras",
    "year": 2026,
    "seats": 607
+  }
+ ],
+ "papers": [
+  {
+   "id": 1,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "JE Syllabus 2023 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Syllabus/Syllabus-JE Eamination-169635-.pdf",
+   "year": 2023,
+   "kind": "syllabus"
+  },
+  {
+   "id": 2,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical and Electrical) Examination, 2025 (Paper-II): Uploading of Tentative Answer Keys along with Question Paper(s) cum Response Sheet(s) Answer Key 2025 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/tentative_answer_key_16042026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 3,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical and Electrical) Examination, 2025 (Paper-I): Uploading of Final Answer Keys along with Question Paper(s) cum Response Sheet(s), and Marks \u2013 regarding Answer Key 2025",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_23032026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 4,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "CAPFs and DP Syllabus 2023 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Syllabus/Syllabus- CAPFS and DP-169635-.pdf",
+   "year": 2023,
+   "kind": "syllabus"
+  },
+  {
+   "id": 5,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Executive) Male and Female in Delhi Police Examination, 2025: Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE along with the Marks. Answer Key 2025 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Write_up_Final_Answer_Keys_CBE_Executive_2025..pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 6,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Driver) Male in Delhi Police Examination, 2025 \u2013 Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE, along with the Marks Answer Key 2025 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_26052026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 7,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Sub Inspector in Delhi Police and Central Armed Police Forces Examination, 2025 (Paper-I): Uploading of Final Answer Keys along with Question Paper(s) cum Response Sheet(s), and Marks Answer Key 2025 ",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_21042026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 8,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Stenographers Syllabus 2023 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Syllabus/Syllabus - Stenographers-169635-.pdf",
+   "year": 2023,
+   "kind": "syllabus"
+  },
+  {
+   "id": 9,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination, 2025 : Uploading of Tentative Answer Keys along with Candidates\u2019 Response Sheet(s) Answer Key 2025 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Writeup_english_16072026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 10,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "CGL Syllabus 2015 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Syllabus/CGL-syllabus-169635-.pdf",
+   "year": null,
+   "kind": "syllabus"
+  },
+  {
+   "id": 11,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Uploading of Final Answer Key(s) along with Candidates\u2019 Response Sheet(s) and Marks of candidates of Combined Graduate Level Examination, 2025 (Tier-II) -reg Answer Key 2025 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Final_writeup_17062026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 12,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (Ministerial) in Delhi Police Examination, 2025: Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE along with the Marks Answer Key 2025 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Write_up_Final_Answer_Keys_CBE_min_2025..pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 13,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (AWO/TPO) in Delhi Police Examination, 2025: Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE along with the Marks Answer Key 2025 \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_16062026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 14,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs) and SSF, and Rifleman (GD) in Assam Rifles Examination, 2026: Uploading of Tentative Answer Keys along with Question Paper(s) cum Response Sheet(s",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/tentative_answerkey_15062026.pdf",
+   "year": 2026,
+   "kind": "answer_key"
+  },
+  {
+   "id": 15,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC and CBN) Examination, 2025 : List of candidates qualified in CBE for appearing in PET/PST (List-I) 3 Aug 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_mts_03082026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 16,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC and CBN) Examination, 2025 : List of candidates whose result were not processed due to malpractices (List-II) 3 Aug 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_mts_03082026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 17,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC and CBN) Examination, 2025 : List of debarred candidates (List-III) 3 Aug 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/List3_03082026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 18,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical and Electrical) Examination, 2025- List of candidates provisionally shortlisted for document verification and subsequent appointment 3 Aug 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_03082026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 19,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Stenographer Grade 'C' and 'D' Examination, 2025: List of candidates in Roll No order provisionally shortlisted for First Round of Tentative Allocation (FRTA) (Revised) 31 Jul 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_31072026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 20,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination, 2025 : Uploading of Tentative Answer Keys along with Candidates\u2019 Response Sheet(s) 16 Jul 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Writeup_english_16072026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 21,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical and Electrical) Examination, 2025- List of candidates provisionally shortlisted for First Round of Tentative Allocation (FRTA) 9 Jul 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_je_09072026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 22,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Executive) Male and Female in Delhi Police Examination, 2025: Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE along with the Marks. 7 Jul 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Write_up_Final_Answer_Keys_CBE_Executive_2025..pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 23,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (Ministerial) in Delhi Police Examination, 2025 \u2013 Additional Male (Open) Candidates qualified for PE and MT/ DV/ Trade Test (Skill Test) (List-IA) 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dphcm_25062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 24,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (Ministerial) in Delhi Police Examination, 2025\u2013 Additional Female (Open) Candidates qualified for PE and MT/ DV/ Trade Test (Skill Test) (List-IIIA) 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dphcm_25062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 25,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable {Assistant Wireless Operator (AWO)/Tele-Printer Operator (TPO)} in Delhi Police Examination, 2025 \u2013 Additional Female Candidates qualified for PE and MT/ DV/ Trade Test in Open Category (List-IA) 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dphct_25062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 26,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable {Assistant Wireless Operator (AWO)/Tele-Printer Operator (TPO)} in Delhi Police Examination, 2025\u2013 Additional Male candidates qualified for PE and MT/ DV/ Trade Test in Open Category (List-IIA) 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST2A.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 27,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable {Assistant Wireless Operator (AWO)/Tele-Printer Operator (TPO)} in Delhi Police Examination, 2025\u2013 Additional ESM Candidates qualified for PE and MT/ DV/ Trade Test (List-IIIA) 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dphct_25062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 28,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable {Assistant Wireless Operator (AWO)/Tele-Printer Operator (TPO)} in Delhi Police Examination, 2025\u2013 Additional Female Departmental Candidates qualified for PE and MT/ DV/ Trade Test (List-IVA) 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dphct_25062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 29,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable {Assistant Wireless Operator (AWO)/Tele-Printer Operator (TPO)} in Delhi Police Examination, 2025\u2013 Additional Male Departmental Candidates qualified for PE and MT/ DV/ Trade Test (List-VA) 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST5A.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 30,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Driver) Male in Delhi Police Examination, 2025 \u2013 Shortlisting of one (01) additional candidate to appear in Physical Endurance and Measurement Test (PE and MT)/ Document Verification (DV)/ Trade Test 25 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dpcd_25062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 31,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (Ministerial) in Delhi Police Examination, 2025: Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE along with the Marks 22 Jun 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Write_up_Final_Answer_Keys_CBE_min_2025..pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 32,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Executive) Male and Female in Delhi Police Examination, 2025 \u2013 Male Candidates qualified for PE and MT/ DV (List-I) 19 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST_I_ROL_MALE_19062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 33,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Executive) Male and Female in Delhi Police Examination, 2025 \u2013 Female Candidates qualified for PE and MT/ DV (List-II) 19 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dpce_19062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 34,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Executive) Male and Female in Delhi Police Examination, 2025\u2013 Candidates whose results were not processed due to having indulged in malpractice (List-III) 19 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_dpce_19062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 35,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Stenographer Grade 'C' and 'D' Examination, 2025: List of candidates in Roll No order provisionally shortlisted for First Round of Tentative Allocation (FRTA) 18 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 36,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Uploading of Final Answer Key(s) along with Candidates\u2019 Response Sheet(s) and Marks of candidates of Combined Graduate Level Examination, 2025 (Tier-II) -reg 17 Jun 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/Final_writeup_17062026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 37,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (AWO/TPO) in Delhi Police Examination, 2025: Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE along with the Marks 16 Jun 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_16062026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 38,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs) and SSF, and Rifleman (GD) in Assam Rifles Examination, 2026: Uploading of Tentative Answer Keys along with Question Paper(s) cum Response Sheet(s). 15 Jun 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/tentative_answerkey_15062026.pdf",
+   "year": 2026,
+   "kind": "answer_key"
+  },
+  {
+   "id": 39,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (Ministerial) in Delhi Police Examination, 2025 \u2013 Male (Open) Candidates qualified for PE and MT/ DV/ Trade Test (Skill Test) (List-I) 5 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_05062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 40,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Head Constable (Ministerial) in Delhi Police Examination, 2025\u2013 Male (ESM) Candidates qualified for PE and MT/ DV/ Trade (Skill Test) (List-II) 5 Jun 2026 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_05062026.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 41,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Driver) Male in Delhi Police Examination, 2025 \u2013 Uploading of Final Answer Keys along with Question Papers cum Response Sheets of CBE, along with the Marks 26 May 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_26052026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 42,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Sub Inspector in Delhi Police and Central Armed Police Forces Examination, 2025 (Paper-I): Uploading of Final Answer Keys along with Question Paper(s) cum Response Sheet(s), and Marks 21 Apr 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_21042026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 43,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical and Electrical) Examination, 2025 (Paper-II): Uploading of Tentative Answer Keys along with Question Paper(s) cum Response Sheet(s) 16 Apr 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/tentative_answer_key_16042026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 44,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical and Electrical) Examination, 2025 (Paper-I): Uploading of Final Answer Keys along with Question Paper(s) cum Response Sheet(s), and Marks \u2013 regarding 23 Mar 2026 Answer Key Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/AnswerKeys/writeup_23032026.pdf",
+   "year": 2025,
+   "kind": "answer_key"
+  },
+  {
+   "id": 45,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- NTRO) 30 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_3006202.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 46,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- MEA) 30 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_3006202.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 47,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- AFHQ) 30 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL_AFHQ_3006202.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 48,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- CSSS) 30 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_3006202.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 49,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- FSI) 30 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup1_30062025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 50,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- CAT) 30 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup1_30062025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 51,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Result of Senior Secretariat Assistant/Upper Division Clerk Limited Departmental Competitive Examination, 2023-2024 for the year 2023: Declaration of Final Result for the year 2023 for CTB cadre 30 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_30062025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 52,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Result of Junior Secretariat Assistant/Lower Division Clerk Limited Departmental Competitive Examination, 2019-2020 for the year 2019: Declaration of Final Result for the year 2019 for AFHQ cadre 27 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_27062025.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 53,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/ Lower Division Clerk Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- LBSNAA) 26 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/JSA_WRITEUP_2024.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 54,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/ Lower Division Clerk Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- RBSSS) 26 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/JSA_WRITEUP_2024.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 55,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/ Lower Division Clerk Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2024 {Cadre- CAT) 26 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/JSA_WRITEUP_2024.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 56,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2023 {Cadre- RBSSS) 24 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-RBSS.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 57,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2023 {Cadre- AFHQ) 24 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_24062025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 58,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination,2023-2024: List of Candidates recommended for appointment for the year 2023 {Cadre- CSSS) 24 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_24062025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 59,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs) and SSF, Rifleman (GD) in Assam Rifles, and Sepoy in Narcotics Control Bureau Examination, 2025 - LIST OF FEMALE CANDIDATES QUALIFIED FOR PET/PST (List-I) 17 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/CTGD2025LISTI.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 60,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs) and SSF, Rifleman (GD) in Assam Rifles, and Sepoy in Narcotics Control Bureau Examination, 2025 - LIST OF MALE CANDIDATES QUALIFIED FOR PET/PST (List-II) 17 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_17062025_2.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 61,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs) and SSF, Rifleman (GD) in Assam Rifles, and Sepoy in Narcotics Control Bureau Examination, 2025 - WITHHELD CANDIDATES (MALE &amp; FEMALE) (List-III) 17 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_17062025_1.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 62,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs) and SSF, Rifleman (GD) in Assam Rifles, and Sepoy in Narcotics Control Bureau Examination, 2025 - LIST OF DEBARRED CANDIDATES (LIST-IV) 17 Jun 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_17062025.pdf",
+   "year": 2025,
+   "kind": "result"
+  },
+  {
+   "id": 63,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Status of below cut-off 1002 withheld candidates of Combined Graduate Level Examination (CGLE), 2024. 26 Apr 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_26042025.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 64,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2022: List of qualified candidates for MEA CPO 24 Apr 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_24042025_1.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 65,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2022: List of qualified candidates for MEA Cadre Cell 24 Apr 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_24042025.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 66,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Declaration of revised result of PET/ PST of 37 candidates, Sub-Inspector in Delhi Police and CAPFs Examination, 2024 : List of candidates 22 Apr 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_22042025.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 67,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Result of Senior Secretariat Assistant/Upper Division Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 and 2022: Declaration of Final Result for the year 2022 for ECI cadre 9 Apr 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_09042025.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 68,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination, 2024: Declaration of Final Result of 219 candidates whose result was earlier kept Withheld. 29 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result write-up withheld 219.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 69,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Result of Skill Test of Grade 'C' Stenographers Limited Departmental Competitive Examination, 2023 and 2024 27 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/approved write up_27325.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 70,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Result of Skill Test of Grade 'C' Stenographers Limited Departmental Competitive Examination, 2023 and 2024 27 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/approved write up_27325.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 71,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Declaration of Result of Annual Departmental Typewriting Skill Test \u2013 2023: List of the candidates deemed to have made genuine attempt (List-II) 13 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, ADST-2023-TYPING-TEST_13325.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 72,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Declaration of Result of Annual Departmental Typewriting Skill Test \u2013 2023: List of the qualified candidates (List-I) 13 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/TTQ_ADST_13335.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 73,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination, 2024 (Final Result) - List of Candidates rejected/debarred/cancelled in CGLE 2024 due to various reasons-(List-IV). 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-4_rej_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 74,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination, 2024 (Final Result) - List of Candidates withheld in CGLE 2024 due to various reasons-(List-III). 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-3_withheld_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 75,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination, 2024 (Final Result) - List of Candidates in Roll Number Order provisionally shortlisted for all posts other than JSO and SI Grade-II -(List-II). 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/CGLE -24 Final Result Writeup_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 76,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination, 2024 (Final Result) - List of Candidates in Roll Number Order provisionally shortlisted for the post of Junior Statistical Officer (JSO) and Statistical Investigator (SI) Grade-II- (List-I). 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/CGLE -24 Final Result Writeup_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 77,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC & CBN) Examination, 2024: MTS Department allocation list (List-v) 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Final Result- MTS-2024_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 78,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC & CBN) Examination, 2024: List of candidates cancelled/debarred/rejected (List-IV) 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Final Result- MTS-2024_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 79,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC & CBN) Examination, 2024: List of candidates whose result are kept withheld (List-III) 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Final Result- MTS-2024_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 80,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC & CBN) Examination, 2024: List of candidates in Roll number order provisionally shortlisted for Document Verification and subsequent appointment for the post of Havaldar (List-II) 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Final Result- MTS-2024_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 81,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC & CBN) Examination, 2024: List of candidates in Roll number order provisionally shortlisted for Document Verification and subsequent appointment for the post of MTS (List-I) 12 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-MTS-LIST1_12325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 82,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Declaration of Result of Annual Departmental Stenography Skill Test \u2013 2023 : List of the qualified candidates 11 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up ADST-23, Stenography_STENO11325.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 83,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2023 & 2024: List of qualified candidates for the year 2023 [CAT] 10 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/resultwriteupjsa2023_10325.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 84,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2023 & 2024: List of qualified candidates for the year 2023 [RBSCS]. 10 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-RBSS_jsa10325.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 85,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Declaration of revised result of PET/ PST of 144 candidates, Sub-Inspector in Delhi Police and CAPFs Examination, 2024 : List of candidates. 5 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Appd Write up_sicpo_5325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 86,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Stenographers Grade 'C' & 'D' Examination, 2024 - List of the Candidates qualified in Computer Based Examination for appearing in Skill Test in Stenography for the Post of Stenographer Grade 'C'. 5 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Result of CBE Steno C  D , 2024_5325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 87,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Stenographers Grade 'C' & 'D' Examination, 2024 - List of the Candidates qualified in Computer Based Examination for appearing in Skill Test in Stenography for the Post of Stenographer Grade 'D' 5 Mar 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Result of CBE Steno C  D , 2024_5325.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 88,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2023 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2023 & 2024 : List of qualified candidates {CAT Cadre} 27 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Appd Write Up SSA 23_26022025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 89,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2023 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2023 & 2024 : List of qualified candidates {M/o Tourism} 27 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Appd Write Up SSA 23_26022025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 90,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2023 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2023 & 2024 : List of qualified candidates {AFHQ Cadre} 27 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Appd Write Up SSA 23_26022025.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 91,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2018: List of qualified candidates [AFHQ] 25 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/resultwriteupafhq2018_25022025.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 92,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Combined Higher Secondary (10+2) Level Examination, 2024 (Final Result) - List of Candidates in Roll Number Order provisionally shortlisted for Document Verification and Subsequent Appointment 18 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/CHSLE_2024_Final_Result_WriteUp_180225.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 93,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Combined Hindi Translators Examination, 2024 (Paper-I) \u2013 Declaration of result of Paper-I for appearing in Paper-II (Descriptive Paper). 14 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL_CHT_140225.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 94,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical & Electrical) Examination, 2024 \u2013 List Of Shortlisted Candidates in Roll No Order Provisionally Shortlisted for Document Verification and further selection process. 3 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL_JE_03022025.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 95,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2024\u2013 List of withheld candidates (List-3) 3 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeupcpopetpst2024_03022025.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 96,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2024\u2013 List of male candidates qualified in PET/ PST for appearing in Paper-II (List-2) 3 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeupcpopetpst2024_03022025.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 97,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2024\u2013 List of female candidates qualified in PET/ PST for appearing in Paper-II (List-1) 3 Feb 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-1_sicpo2024_03022025.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 98,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Multi Tasking (Non-Technical) Staff, and Havaldar (CBIC & CBN) Examination, 2024 \u2013 List of candidates qualified in CBE for appearing in PET/ PST (for the post of Havaldar) 21 Jan 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeuphavaldar2024_21.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 99,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Declaration of Additional Result of Tier-I of Combined Graduate Level Examination, 2024 - Shortlisting additional candidates for appearing in Tier-II \u2013 regarding. 17 Jan 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_Additional result_17012025.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 100,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2017: List of qualified candidates [AFHQ] 13 Jan 2025 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/AFHQ LDCE result 2017_130124.pdf",
+   "year": 2017,
+   "kind": "result"
+  },
+  {
+   "id": 101,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2022{ Cadre - ECI} 31 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up Final result of Gr. C Stenographer LDCE, 2022_311224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 102,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2022{ Cadre - RBSSS} 31 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up Final result of Gr. C Stenographer LDCE, 2022_311224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 103,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2022{ Cadre - CSSS} 31 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up Final result of Gr. C Stenographer LDCE, 2022_311224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 104,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2022{ Cadre - AFHQ} 31 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up Final result of Gr. C Stenographer LDCE, 2022_311224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 105,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "List of qualified candidates for the year 2022 of Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 {CAT Cadre} 31 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/SSA 2022 Final Result_311224.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 106,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "List of qualified candidates for the year 2022 of Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 {AFHQ Cadre} 31 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-AFHQ_311224.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 107,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2022 [CAT] 26 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final result of JSA 2022_26124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 108,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2022 [FMTT] 26 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final result of JSA 2022_26124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 109,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2022 [FSI] 26 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-FSI_261224.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 110,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2022 [LBSNAA] 26 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final result of JSA 2022_26124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 111,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2022 [RBSCS] 26 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final result of JSA 2022_26124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 112,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024 \u2013 List of debarred candidates (List-IV) 13 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Result _Write up_CTGD 2024_13122024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 113,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024(Final Result) \u2013 List of candidates whose result is withheld (List-III) 13 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Result _Write up_CTGD 2024_13122024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 114,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024 (Final Result) \u2013 List of Male Candidates in Roll Number Order recommended for appointment (List-II) 13 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Result _Write up_CTGD 2024_13122024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 115,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024 (Final Result)\u2013 List of Female Candidates in Roll Number Order recommended for appointment (List-I) 13 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Result _Write up_CTGD 2024_13122024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 116,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination (Tier-I), 2024- Candidates provisionally shortlisted in Tier-I for appearing in Tier-II Examination for all other posts (List-3). 5 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-up CGLE 2024 Tier I_51224.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 117,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination (Tier-I), 2024\u2013 Candidates provisionally short-listed in Tier-I for appearing in Tier-II Examination for the post of Statistical Investigator Grade.II (List-2). 5 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-up CGLE 2024 Tier I_51224.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 118,
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "Combined Graduate Level Examination (Tier-I), 2024\u2013 Candidates provisionally short-listed in Tier-I for appearing in Tier-II Examination for the post of Junior Statistical Officer (List-1). 5 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-up CGLE 2024 Tier I_51224.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 119,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2021 { Cadre - RBSSS} 4 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-RBSS_41224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 120,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2021 { Cadre - ECI} 4 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Final Result of Grade &#x27;C&#x27; Stenographer LDCE, 2020, 2021 &amp; 2022 for the year 2021_41224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 121,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2021 {Cadre - CSSS} 4 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up, Final Result of Grade &#x27;C&#x27; Stenographer LDCE, 2020, 2021 &amp; 2022 for the year 2021_41224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 122,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2021{ Cadre - AFHQ} 4 Dec 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-AFHQ_41224.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 123,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2021 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {RBSCS Cadre} 21 Nov 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/appd write up ssa 21 final result_211124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 124,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2021 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {ECI Cadre} 21 Nov 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/appd write up ssa 21 final result_211124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 125,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2021 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {CPO, M/o External Affairs Cadre} 21 Nov 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/appd write up ssa 21 final result_211124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 126,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2021 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {AFHQ Cadre} 21 Nov 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/appd write up ssa 21 final result_211124.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 127,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2021 [CAT] 30 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final result write up 2021_30102024.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 128,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2021 [MEA (CPO)] 30 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final result write up 2021_30102024.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 129,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2021 [MEA (Cadre Cell)] 30 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-M-CD_30102024.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 130,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 & 2022: List of qualified candidates for the year 2021 [RBSCS] 30 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final result write up 2021_30102024.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 131,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2020 { Cadre - ECI} 22 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-up Gr. C Steno LDCE, 2020221024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 132,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2020 { Cadre - RBSSS} 22 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-up Gr. C Steno LDCE, 2020221024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 133,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2020 { Cadre - AFHQ} 22 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-up Gr. C Steno LDCE, 2020221024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 134,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2020 { Cadre - IFS(B)} 22 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-up Gr. C Steno LDCE, 2020221024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 135,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of candidates recommended for appointment for the year 2020 {Cadre - CSSS} 22 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-CSSS.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 136,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Phase X/2022/Selection Post Examination (Higher Secondary (10+2) level)- Declaration of Additional Result-11 of Computer Based Examinations for next stage of scrutiny 17 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write_up_HS_17.10.2024171024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 137,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination, 2018 & 2019 : List of candidates recommended for appointment for the year 2019 { Cadre - RBSSS} 8 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Result Write-up Grade &#x27;C&#x27; Stenographer LDCE for the year 201981024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 138,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination, 2018 & 2019 : List of candidates recommended for appointment for the year 2019 { Cadre - AFHQ} 8 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Result Write-up Grade &#x27;C&#x27; Stenographer LDCE for the year 201981024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 139,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade 'C' Stenographers Limited Departmental Competitive Examination, 2018 & 2019 : List of candidates recommended for appointment for the year 2019 {Cadre - CSSS} 8 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Result Write-up Grade &#x27;C&#x27; Stenographer LDCE for the year 201981024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 140,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2024 : List of candidates (List -2) 8 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/approved result write up- JSA 2023-202481024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 141,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2023 : List of candidates (List -1) 8 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/approved result write up- JSA 2023-202481024.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 142,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2020 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {RBSCS Cadre} 4 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/noticessa2041024pdf.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 143,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2020 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {ECI Cadre} 4 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/noticessa2041024pdf.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 144,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2020 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {CAT Cadre} 4 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-CAT41024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 145,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Final Result for the year 2020 of Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020, 2021 & 2022 : List of qualified candidates {AFHQ Cadre} 4 Oct 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-AFHQ41024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 146,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2023 & 2024:Declaration of result of Descriptive Examination [Paper- II] for evaluation of Service Records/ APARs. 19 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-2319924.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 147,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2023 & 2024:Declaration of result of Descriptive Examination [Paper- II] for evaluation of Service Records/ APARs. 19 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/SSA 23-24 Final Write Up19924.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 148,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2018 & 2019: List of candidates recommended for appointment for the year 2018 {Cadre - ECI} 9 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final write up steno 2018 LDCE_09092024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 149,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2018 & 2019: List of candidates recommended for appointment for the year 2018 {Cadre - RBSSS} 9 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-RBSS.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 150,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2018 & 2019: List of candidates recommended for appointment for the year 2018 {Cadre - AFHQ} 9 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final write up steno 2018 LDCE_09092024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 151,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2018 & 2019: List of candidates recommended for appointment for the year 2018 {Cadre - IFS(B)} 9 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final write up steno 2018 LDCE_09092024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 152,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade C Stenographers Limited Departmental Competitive Examination, 2018 & 2019: List of candidates recommended for appointment for the year 2018 {Cadre - CSSS} 9 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/final write up steno 2018 LDCE_09092024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 153,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Combined Higher Secondary (10+2) Level Examination (Tier-I), 2024 - List-2 of candidates qualified for appearing in Tier-II & Typing Test for the post of DEO 6 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-2.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 154,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Combined Higher Secondary (10+2) Level Examination (Tier-I), 2024 - List-1 of candidates qualified for appearing in Tier-II & Typing Test for the post of LDC/JSA 6 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/CHSLE 2024_Tier-I_Result_Write-UP.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 155,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Combined Higher Secondary (10+2) Level Examination, 2020 - List of Withheld Candidates Now Qualified in Final Result (List-I) 6 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result Write-Up dated 06.09.2024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 156,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2019 & 2020: List of qualified candidates for the year 2020 [MEA (Cadre Cell)] 5 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-MEA5924.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 157,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2019 & 2020: List of qualified candidates for the year 2020 [RBSCS Cadre] 5 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/JSA final result 20205924.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 158,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2024\u2013 List of male departmental candidates of Delhi Police for appearing in PET/ PST (List-3) 2 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-32924.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 159,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2024\u2013 List of male candidates qualified in Paper-I for appearing in PET/ PST (List-2) 2 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Appd SI CPO 2024 Pre Write Up2924.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 160,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2024\u2013 List of female candidates qualified in Paper-I for appearing in PET/ PST (List-1) 2 Sept 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-12924.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 161,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase-XII/2024/Selection Posts Examination (Graduation & above Level posts) \u2013 Declaration of Result of Computer Based Examination for shortlisting candidates for the next stage of scrutiny 30 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Result-Writeup for Graduation and Above Level30824.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 162,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Phase-XII/2024/Selection Posts Examination (Higher Secondary (10+2) Level posts) \u2013 Declaration of Result of Computer Based Examination for shortlisting candidates for the next stage of scrutiny\\ 30 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-HS30824.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 163,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase-XII/2024/Selection Posts Examination (Matriculation Level posts) \u2013 Declaration of Result of Computer Based Examination for shortlisting candidates for next stage of scrutiny 30 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-MAT30824.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 164,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2018 & 2019: List of qualified candidates for the year 2019 30 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Appd SSA 2019 Resutl Write up_30824.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 165,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical & Electrical) Examination, 2024 (Paper-I) \u2013 Uploading Final Answer Keys along with Question Paper(s) cum Response Sheet(s) and Marks. 22 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write_up_Final_Answer_Keys_Paper_1_JE_2024_22824.pdf",
+   "year": 2024,
+   "kind": "answer_key"
+  },
+  {
+   "id": 166,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical & Electrical) Examination, 2024 (Paper-I) \u2013 List of candidates shortlisted in Paper-I for appearing in Paper-II (Electrical/Mechanical) [List-II] 20 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/JE_2024_P1_20.08.2024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 167,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Engineer (Civil, Mechanical & Electrical) Examination, 2024 (Paper-I) \u2013 List of candidates shortlisted in Paper-I for appearing in Paper-II (Civil) [List-I] 20 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/JE_2024_P1_20.08.2024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 168,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/LowerDivisional Clerk Grade Limited Departmental Competitive Examination, 2019 & 2020: List of qualified candidates for the year 2019 [MEA Cadre] 19 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-MEA19.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 169,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/LowerDivisional Clerk Grade Limited Departmental Competitive Examination, 2019 & 2020: List of qualified candidates for the year 2019 [CAT Cadre] 19 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Appd JSA Write Up Final Result 2019_19824.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 170,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination, 2019 & 2020: List of qualified candidates for the year 2019 [Railways Cadre] 19 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Appd JSA Write Up Final Result 2019_19824.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 171,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2018 & 2019: List of qualified candidates for the year 2018[CAT Cadre] 16 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-CAT.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 172,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2018 & 2019: List of qualified candidates for the year 2018 [AFHQ Cadre] 16 Aug 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Appd SSA 18 Final Result Write Up.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 173,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024 \u2013 List of Debarred Candidates (List-IV) 10 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-IV.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 174,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024 \u2013 List of Withheld Candidates (List-III) 10 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/CT(GD) 2024 _CBE _Result Write Up_10.07.2024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 175,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024 \u2013 List of Male candidates provisionally shortlisted for appearing in PET/PST (List-II) 10 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/CT(GD) 2024 _CBE _Result Write Up_10.07.2024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 176,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Constable (GD) in Central Armed Police Forces (CAPFs), SSF, and Rifleman (GD) in Assam Rifles Examination, 2024 \u2013 List of Female candidates provisionally shortlisted for appearing in PET/PST (List-I) 10 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-I.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 177,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022: List of candidates qualified in Skill Test 5 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-22.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 178,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022: List of candidates qualified in Skill Test 5 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Write-Up Skill Test, 2020, 2021 &amp; 2022.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 179,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2020, 2021 & 2022: List of candidates qualified in Skill Test 5 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-20.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 180,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2018 & 2019: List of candidates qualified in Skill Test 5 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-19.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 181,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2018 & 2019: List of candidates qualified in Skill Test 5 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-18.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 182,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination , 2022 : List of qualified candidates 4 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Write Up 2020-22.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 183,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination , 2021 : List of qualified candidates 4 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ssc 21.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 184,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination , 2020 : List of qualified candidates 4 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Write Up 2020-22.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 185,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination , 2019 : List of qualified candidates 4 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ssa ROLL-19.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 186,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination , 2018 : List of qualified candidates 4 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ssa ROLL-18.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 187,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2022 : List of candidates (List -2) 2 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/draft write up (4).pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 188,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2021 : List of candidates (List -1) 2 Jul 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/draft write up (4).pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 189,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2023 : List of candidates (List -1) 29 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/result write up- JSA LDC 2023-2024 (2).pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 190,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2024 : List of candidates (List -2) 29 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/result write up- JSA LDC 2023-2024 (2).pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 191,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase-IX/2021/Selection Posts Examination (Matriculation level)- Declaration of Additional Result-10 of Computer Based Examinations for next stage of scrutiny 21 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Matriculation_writeup_21_06_2024.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 192,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Phase-IX/2021/Selection Posts Examination (Higher Secondary (10+2) level)- Declaration of Additional Result-10 of Computer Based Examinations for next stage of scrutiny 21 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/HS_writeup_21_06_2024.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 193,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase-IX/2021/Selection Posts Examination (Graduation & above level)- Declaration of Additional Result-10 of Computer Based Examinations for next stage of scrutiny 21 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/GraduateandAbove_Level_Writeup_21_06_2024.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 194,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Phase X/2022/Selection Post Examination (Higher Secondary (10+2) level)- Declaration of Additional Result-10 of Computer Based Examinations for next stage of scrutiny 19 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/HS_writeup_19_06_2024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 195,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase X/2022/Selection Post Examination (Graduation & above level)- Declaration of Additional Result-10 of Computer Based Examinations for next stage of scrutiny 19 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-GRD_rhq2023.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 196,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2023 : List of candidates shortlisted for skill test 14 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up_Gr._C_Steno_LDCE_2023-2024_14062024.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 197,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2024 : List of candidates shortlisted for skill test 14 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-up_Gr._C_Steno_LDCE_2023-2024_14062024.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 198,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2024: List of qualified candidates 14 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/SSA_2020_2021_2022_Final_WriteUp.pdf",
+   "year": 2024,
+   "kind": "result"
+  },
+  {
+   "id": 199,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2023: List of qualified candidates 14 Jun 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/SSA_2020_2021_2022_Final_WriteUp.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 200,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Result of Paper-I of Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2020 : List of qualified candidates 31 May 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/jsa ldc 2019 2020.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 201,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Result of Paper-I of Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2019 : List of qualified candidates 31 May 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/jsa ldc 2019 2020.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 202,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2022 : List of candidates (List -2) 23 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-22.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 203,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2021 : List of candidates (List -1) 23 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_JSA_LDC_LDCE_2021-2022.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 204,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase X/2022/Selection Post Examination (Matriculation level)- Declaration of Additional Result-9 of Computer Based Examinations for next stage of scrutiny 22 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Matriculation_writeup_22_04_2024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 205,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Phase X/2022/Selection Post Examination (Higher Secondary (10+2) level)- Declaration of Additional Result-9 of Computer Based Examinations for next stage of scrutiny 22 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-12.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 206,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase X/2022/Selection Post Examination (Graduation & above level)- Declaration of Additional Result-9 of Computer Based Examinations for next stage of scrutiny 22 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Graduate_Writeup_22_04_2024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 207,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2023: List of Withheld candidates (List- 2) 5 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-2.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 208,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Sub-Inspector in Delhi Police and CAPFs Examination, 2023: List of candidates recommended for appointment (List- 1) 5 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Final Write Up 2023.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 209,
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "Recruitment to the Post of MTS (Lady Medical Attendant) [Post Code CR11023] advertised under Phase-XI/2023/Selection Posts \u2013 Revised Result of Computer Based Examination - reg. 1 Apr 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-REV.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 210,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Selection Posts/Ladakh/2022 (Higher Secondary (10+2) level) \u2013 Declaration of Additional Result-3 of Computer Based Examinations for next stage of scrutiny 27 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_27032024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 211,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Phase IX/2021 Selection Posts Examination (Graduate & Above level) - Declaration of Additional Result-09 of Computer Based Examination for next stage of scrutiny 22 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROLL-GRD_1.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 212,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of (CTGD) in (CAPFs), SSF, Rifleman (GD) in Assam Rifles and Sepoy in Narcotics Control Bureau Examination, 2022 (Final Result) \u2013 List of Male Candidates for the State of Manipur in Roll Number Order recommended for appointment (List-II). 21 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_21032024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 213,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of (CTGD) in (CAPFs), SSF, Rifleman (GD) in Assam Rifles and Sepoy in Narcotics Control Bureau Examination, 2022 (Final Result) \u2013 List of Female Candidates for the State of Manipur in Roll Number Order recommended for appointment (List-I) 21 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_21032024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 214,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of CTGD in (CAPFs), SSF, Rifleman (GD) in Assam Rifles and Sepoy in Narcotics Control Bureau Examination, 2022 (Final Result) \u2013 List of Male Candidates for the State of Manipur in Roll Number Order recommended for appointment (List-II) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_15032024_4.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 215,
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "Recruitment of CTGD in(CAPFs), SSF, Rifleman (GD) in Assam Rifles and Sepoy in Narcotics Control Bureau Examination, 2022 (Final Result) \u2013 List of Female Candidates for the State of Manipur in Roll Number Order recommended for appointment (List-I) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_15032024_4.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 216,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2020 : List of candidates (List -2) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup150324.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 217,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Secretariat Assistant/Lower Divisional Clerk Grade Limited Departmental Competitive Examination , 2019 : List of candidates (List -1) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-1_150324.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 218,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2022 : List of candidates (List -3) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_15032024_1.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 219,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2021 : List of candidates (List -2) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_15032024_1.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 220,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2020 : List of candidates (List -1) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_15032024_1.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 221,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2019 : List of candidates (List -2) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_15032024.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 222,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/Upper Divisional Clerk Grade Limited Departmental Competitive Examination, 2018 : List of candidates (List -1) 15 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_15032024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 223,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Selection Posts/Ladakh/2022 (Matriculation level) \u2013 Declaration of Additional Result-2 of Computer Based Examinations for next stage of scrutiny 13 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_13032024.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 224,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2019: List of candidates shortlisted for skill test. (List -2) 12 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/appd write up_12032024_1.pdf",
+   "year": 2019,
+   "kind": "result"
+  },
+  {
+   "id": 225,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2018 : List of candidates shortlisted for skill test. (List -1) 12 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/appd write up_12032024.pdf",
+   "year": 2018,
+   "kind": "result"
+  },
+  {
+   "id": 226,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2022: List of candidates shortlisted for skill test. (List -3) 12 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_12032024_2.pdf",
+   "year": 2022,
+   "kind": "result"
+  },
+  {
+   "id": 227,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2021: List of candidates shortlisted for skill test. (List -2) 12 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/writeup_12032024_1.pdf",
+   "year": 2021,
+   "kind": "result"
+  },
+  {
+   "id": 228,
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "Grade \u2018C\u2019 Stenographers Limited Departmental Competitive Examination, 2020 : List of candidates shortlisted for skill test. (List -1) 12 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/LIST-1_12032024.pdf",
+   "year": 2020,
+   "kind": "result"
+  },
+  {
+   "id": 229,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2017: List of candidates recommended for appointment {Cadre - Central Administrative Tribunal} 1 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/FINAL RESULT Write up SSA UDC GRADE LDCE 2017.pdf",
+   "year": 2017,
+   "kind": "result"
+  },
+  {
+   "id": 230,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2017: List of candidates recommended for appointment {Cadre - Election Commission of India} 1 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/FINAL RESULT Write up SSA UDC GRADE LDCE 2017.pdf",
+   "year": 2017,
+   "kind": "result"
+  },
+  {
+   "id": 231,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2017: List of candidates recommended for appointment {Cadre - AFHQ Clerical Service} 1 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-AFHQ.pdf",
+   "year": 2017,
+   "kind": "result"
+  },
+  {
+   "id": 232,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2017: List of candidates recommended for appointment {Cadre - Railway Board Secretariat Clerical Service} 1 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-RLY.pdf",
+   "year": 2017,
+   "kind": "result"
+  },
+  {
+   "id": 233,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Senior Secretariat Assistant/ Upper Division Clerk Grade Limited Departmental Competitive Examination, 2017: List of candidates recommended for appointment {Cadre - Central Secretariat Clerical Service} 1 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/ROL-CSCS.pdf",
+   "year": 2017,
+   "kind": "result"
+  },
+  {
+   "id": 234,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Junior Hindi Translator, Junior Translator & Senior Hindi Translator Examination, 2023 (Final Result) - List of Candidates in Roll Number Order provisionally shortlisted for Document Verification and Subsequent Appointment. 1 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write up of Final Result JHT Exam of 2023.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 235,
+   "exam_slug": null,
+   "body_slug": "ssc",
+   "title": "Constable (Executive) Male and Female in Delhi Police Examination, 2023 (Final Result) - Uploading of Detailed marks 1 Mar 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write up_Detailed Marks_CEDP_2023.pdf",
+   "year": 2023,
+   "kind": "result"
+  },
+  {
+   "id": 236,
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "Combined Higher Secondary (10+2) Level Examination, 2023 (Final Result) - List of Candidates in Roll Number Order provisionally shortlisted for Document Verification and Subsequent Appointment 28 Feb 2024 Result Open official PDF \u2197",
+   "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Write-Up_Final_Result_CHSLE_2023_1_28022024.pdf",
+   "year": 2023,
+   "kind": "result"
   }
  ]
 }

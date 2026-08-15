@@ -584,3 +584,27 @@ values ('ssc-cgl-2026','ssc-cgl','ssc','SSC CGL 2026','application_open', 17727,
         'Combined Graduate Level — Group B and C posts across central government ministries.',
         '2026-06-28','2026-08-19','https://ssc.gov.in')
   on conflict (id) do nothing;
+
+-- ============================================================================
+-- 17. PAPERS — official syllabus documents, answer keys (which contain the
+--     actual past question papers) and result notices, year-tagged (2017+).
+--     Links point to the conducting body's official site — we never host PDFs.
+-- ============================================================================
+create table if not exists public.papers (
+    id          bigint generated always as identity primary key,
+    exam_slug   text references public.exams(slug) on delete set null,
+    body_slug   text references public.bodies(slug) on update cascade,
+    title       text not null,
+    url         text not null,
+    year        integer,
+    kind        text not null check (kind in ('syllabus','answer_key','result','notice')),
+    created_at  timestamptz not null default now()
+);
+create index if not exists papers_exam_idx on public.papers(exam_slug);
+create index if not exists papers_year_idx on public.papers(year);
+alter table public.papers enable row level security;
+do $$ begin
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='papers' and policyname='public read') then
+    create policy "public read" on public.papers for select using (true);
+  end if;
+end $$;
