@@ -1,0 +1,5498 @@
+{
+ "states": [
+  {
+   "slug": "madhya-pradesh",
+   "name": "Madhya Pradesh",
+   "name_hi": null,
+   "sort_order": 0
+  },
+  {
+   "slug": "uttar-pradesh",
+   "name": "Uttar Pradesh",
+   "name_hi": null,
+   "sort_order": 1
+  },
+  {
+   "slug": "bihar",
+   "name": "Bihar",
+   "name_hi": null,
+   "sort_order": 2
+  },
+  {
+   "slug": "rajasthan",
+   "name": "Rajasthan",
+   "name_hi": null,
+   "sort_order": 3
+  }
+ ],
+ "categories": [
+  {
+   "slug": "ssc",
+   "name": "SSC",
+   "name_hi": null,
+   "icon": "🏛",
+   "sort_order": 0
+  },
+  {
+   "slug": "upsc",
+   "name": "UPSC",
+   "name_hi": null,
+   "icon": "🎖",
+   "sort_order": 1
+  },
+  {
+   "slug": "banking",
+   "name": "Banking",
+   "name_hi": null,
+   "icon": "🏦",
+   "sort_order": 2
+  },
+  {
+   "slug": "railway",
+   "name": "Railway",
+   "name_hi": null,
+   "icon": "🚆",
+   "sort_order": 3
+  },
+  {
+   "slug": "defense",
+   "name": "Defense",
+   "name_hi": null,
+   "icon": "🪖",
+   "sort_order": 4
+  },
+  {
+   "slug": "teaching",
+   "name": "Teaching",
+   "name_hi": null,
+   "icon": "📚",
+   "sort_order": 5
+  },
+  {
+   "slug": "state-psc",
+   "name": "State PSC",
+   "name_hi": null,
+   "icon": "🗺",
+   "sort_order": 6
+  }
+ ],
+ "bodies": [
+  {
+   "slug": "ssc",
+   "name": "Staff Selection Commission",
+   "name_hi": null,
+   "short_name": "SSC",
+   "level": "central",
+   "state_slug": null,
+   "color": "#1d4ed8",
+   "logo_url": null,
+   "official_url": "https://ssc.gov.in",
+   "description": "Recruits for Group B & C posts across central government ministries and departments.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 1
+  },
+  {
+   "slug": "upsc",
+   "name": "Union Public Service Commission",
+   "name_hi": null,
+   "short_name": "UPSC",
+   "level": "central",
+   "state_slug": null,
+   "color": "#7c3aed",
+   "logo_url": null,
+   "official_url": "https://upsc.gov.in",
+   "description": "Conducts the Civil Services Exam and other central recruitment for the Union government.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 2
+  },
+  {
+   "slug": "ibps",
+   "name": "Institute of Banking Personnel Selection",
+   "name_hi": null,
+   "short_name": "IBPS",
+   "level": "central",
+   "state_slug": null,
+   "color": "#0e9f6e",
+   "logo_url": null,
+   "official_url": "https://ibps.in",
+   "description": "Conducts common recruitment for probationary officers and clerks across public-sector banks.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 3
+  },
+  {
+   "slug": "rrb",
+   "name": "Railway Recruitment Board",
+   "name_hi": null,
+   "short_name": "RRB",
+   "level": "central",
+   "state_slug": null,
+   "color": "#c2410c",
+   "logo_url": null,
+   "official_url": "https://indianrailways.gov.in",
+   "description": "Recruits for technical and non-technical posts across the Indian Railways zones.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 4
+  },
+  {
+   "slug": "mppsc",
+   "name": "Madhya Pradesh Public Service Commission",
+   "name_hi": null,
+   "short_name": "MPPSC",
+   "level": "state",
+   "state_slug": "madhya-pradesh",
+   "color": "#be123c",
+   "logo_url": null,
+   "official_url": "https://mppsc.mp.gov.in",
+   "description": "Conducts the Madhya Pradesh State Service Exam and allied state recruitment.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 5
+  },
+  {
+   "slug": "uppsc",
+   "name": "Uttar Pradesh Public Service Commission",
+   "name_hi": null,
+   "short_name": "UPPSC",
+   "level": "state",
+   "state_slug": "uttar-pradesh",
+   "color": "#0f766e",
+   "logo_url": null,
+   "official_url": "https://uppsc.up.nic.in",
+   "description": "Recruits for Uttar Pradesh state civil services (PCS) and allied Group A/B posts.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 6
+  },
+  {
+   "slug": "bpsc",
+   "name": "Bihar Public Service Commission",
+   "name_hi": null,
+   "short_name": "BPSC",
+   "level": "state",
+   "state_slug": "bihar",
+   "color": "#b45309",
+   "logo_url": null,
+   "official_url": "https://bpsc.bihar.gov.in",
+   "description": "Conducts the Combined Competitive Exam (CCE) for Bihar state civil services.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 7
+  },
+  {
+   "slug": "rpsc",
+   "name": "Rajasthan Public Service Commission",
+   "name_hi": null,
+   "short_name": "RPSC",
+   "level": "state",
+   "state_slug": "rajasthan",
+   "color": "#be123c",
+   "logo_url": null,
+   "official_url": "https://rpsc.rajasthan.gov.in",
+   "description": "Conducts RAS and allied exams for Rajasthan state administrative services.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 8
+  },
+  {
+   "slug": "sbi",
+   "name": "State Bank of India",
+   "name_hi": null,
+   "short_name": "SBI",
+   "level": "central",
+   "state_slug": null,
+   "color": "#1e3a8a",
+   "logo_url": null,
+   "official_url": "https://sbi.co.in/web/careers",
+   "description": "India's largest public-sector bank; recruits Probationary Officers and Clerks (Junior Associates).",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 9
+  },
+  {
+   "slug": "rbi",
+   "name": "Reserve Bank of India",
+   "name_hi": null,
+   "short_name": "RBI",
+   "level": "central",
+   "state_slug": null,
+   "color": "#0f766e",
+   "logo_url": null,
+   "official_url": "https://opportunities.rbi.org.in",
+   "description": "India's central bank; recruits Grade B Officers and Assistants.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 10
+  },
+  {
+   "slug": "cbse",
+   "name": "Central Board of Secondary Education",
+   "name_hi": null,
+   "short_name": "CBSE",
+   "level": "central",
+   "state_slug": null,
+   "color": "#b45309",
+   "logo_url": null,
+   "official_url": "https://ctet.nic.in",
+   "description": "Conducts CTET, the Central Teacher Eligibility Test for teaching posts.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 11
+  },
+  {
+   "slug": "nta",
+   "name": "National Testing Agency",
+   "name_hi": null,
+   "short_name": "NTA",
+   "level": "central",
+   "state_slug": null,
+   "color": "#7c3aed",
+   "logo_url": null,
+   "official_url": "https://nta.ac.in",
+   "description": "Conducts national entrance/eligibility tests including UGC-NET.",
+   "description_hi": null,
+   "views_alltime": 0,
+   "popularity_rank": 12
+  }
+ ],
+ "exams": [
+  {
+   "slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "category_slug": "ssc",
+   "name": "SSC CGL",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Combined Graduate Level — Group B & C posts across central government ministries and departments.",
+   "description_hi": null,
+   "official_url": "https://ssc.gov.in",
+   "syllabus": [
+    {
+     "subject": "General Intelligence & Reasoning",
+     "topics": [
+      "Analogies",
+      "Classification",
+      "Coding-Decoding",
+      "Series",
+      "Blood Relations",
+      "Syllogism",
+      "Non-verbal reasoning"
+     ]
+    },
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Current Affairs",
+      "History",
+      "Geography",
+      "Polity",
+      "Economics",
+      "General Science",
+      "Static GK"
+     ]
+    },
+    {
+     "subject": "Quantitative Aptitude",
+     "topics": [
+      "Number System",
+      "Percentage",
+      "Ratio & Proportion",
+      "Averages",
+      "Time & Work",
+      "Geometry",
+      "Trigonometry",
+      "Data Interpretation"
+     ]
+    },
+    {
+     "subject": "English Comprehension",
+     "topics": [
+      "Reading Comprehension",
+      "Grammar",
+      "Vocabulary",
+      "Synonyms & Antonyms",
+      "Idioms",
+      "Error Spotting"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Tier-1",
+     "duration_minutes": 60,
+     "total_marks": 200,
+     "negative_marking_note": "0.50 per wrong answer",
+     "sections": [
+      {
+       "name": "General Intelligence & Reasoning",
+       "questions": 25,
+       "marks": 50
+      },
+      {
+       "name": "General Awareness",
+       "questions": 25,
+       "marks": 50
+      },
+      {
+       "name": "Quantitative Aptitude",
+       "questions": 25,
+       "marks": 50
+      },
+      {
+       "name": "English Comprehension",
+       "questions": 25,
+       "marks": 50
+      }
+     ]
+    },
+    {
+     "stage_name": "Tier-2",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "1 per wrong (objective)",
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "UR",
+     "amount": 100,
+     "notes": "UR/OBC/EWS male candidates. Women exempted."
+    },
+    {
+     "category": "SC",
+     "amount": 0,
+     "notes": "Exempted"
+    },
+    {
+     "category": "ST",
+     "amount": 0,
+     "notes": "Exempted"
+    },
+    {
+     "category": "PwD",
+     "amount": 0,
+     "notes": "Exempted"
+    },
+    {
+     "category": "ESM",
+     "amount": 0,
+     "notes": "Exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Is there negative marking?",
+     "a": "Yes — 0.50 marks are deducted for each wrong answer in Tier-1."
+    },
+    {
+     "q": "How many attempts are allowed?",
+     "a": "No limit on attempts as long as you meet the age criteria."
+    },
+    {
+     "q": "What is the age limit?",
+     "a": "18–32 years depending on post, with relaxations (OBC +3, SC/ST +5, PwD +10)."
+    },
+    {
+     "q": "Is the exam bilingual?",
+     "a": "Yes — questions (except the English paper) appear in English and Hindi."
+    }
+   ]
+  },
+  {
+   "slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "category_slug": "ssc",
+   "name": "SSC CHSL",
+   "name_hi": null,
+   "qualification_code": "12th",
+   "description": "Combined Higher Secondary Level — LDC, DEO and postal assistant posts for 12th-pass candidates.",
+   "description_hi": null,
+   "official_url": null,
+   "syllabus": [
+    {
+     "subject": "English Language",
+     "topics": [
+      "Spot the Error",
+      "Fill in the Blanks",
+      "Synonyms and Antonyms",
+      "Spelling/Detecting Mis-spelt Words",
+      "Idioms and Phrases",
+      "One Word Substitution",
+      "Improvement of Sentences",
+      "Active/Passive Voice",
+      "Direct/Indirect Narration",
+      "Para Jumbles",
+      "Cloze Passage",
+      "Reading Comprehension"
+     ]
+    },
+    {
+     "subject": "General Intelligence",
+     "topics": [
+      "Semantic and Symbolic Analogy",
+      "Classification",
+      "Number and Figural Series",
+      "Coding-Decoding",
+      "Venn Diagrams",
+      "Word Building",
+      "Numerical Operations",
+      "Space Orientation",
+      "Punched Hole/Pattern Folding and Unfolding",
+      "Embedded Figures",
+      "Critical Thinking",
+      "Emotional and Social Intelligence"
+     ]
+    },
+    {
+     "subject": "Quantitative Aptitude",
+     "topics": [
+      "Number Systems",
+      "Fundamental Arithmetical Operations (Percentages, Ratio and Proportion, Averages, Interest, Profit and Loss, Discount, Partnership, Mixture and Alligation, Time and Distance, Time and Work)",
+      "Algebra (Basic identities, Linear Equations)",
+      "Geometry (Triangles, Circles, Chords, Tangents)",
+      "Mensuration (Triangle, Quadrilaterals, Circle, Prism, Cone, Cylinder, Sphere)",
+      "Trigonometry (Ratios, Standard Identities, Heights and Distances)",
+      "Statistical Charts (Tables, Histograms, Frequency Polygon, Bar Diagram, Pie Chart)"
+     ]
+    },
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Current Affairs of National and International Importance",
+      "History of India",
+      "Indian Polity and Constitution",
+      "Geography",
+      "Economic Scene",
+      "Scientific Research and General Science",
+      "Static GK (Awards, Books, Sports, Important Dates)",
+      "Environment and its Application to Society"
+     ]
+    },
+    {
+     "subject": "Mathematical Abilities",
+     "topics": [
+      "Computation of Whole Numbers, Decimals and Fractions",
+      "Percentage, Ratio and Proportion, Square Roots, Averages, Interest, Profit and Loss",
+      "Algebra and Elementary Surds",
+      "Geometry and Congruence/Similarity of Triangles",
+      "Mensuration",
+      "Trigonometry",
+      "Statistics and Probability (Frequency Distributions, Measures of Central Tendency and Dispersion)"
+     ]
+    },
+    {
+     "subject": "Reasoning and General Intelligence",
+     "topics": [
+      "Semantic and Figural Analogy",
+      "Symbolic Operations",
+      "Trends and Space Orientation",
+      "Number and Figural Series",
+      "Coding-Decoding",
+      "Problem Solving",
+      "Syllogism and Statement-Conclusion",
+      "Drawing Inferences",
+      "Figural Pattern Folding and Completion"
+     ]
+    },
+    {
+     "subject": "English Language and Comprehension",
+     "topics": [
+      "Vocabulary and Grammar",
+      "Sentence Structure",
+      "Synonyms/Antonyms and Correct Usage",
+      "Voice and Narration",
+      "Sentence Improvement",
+      "Cloze Test",
+      "Comprehension Passages"
+     ]
+    },
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Current Events",
+      "India and its Neighbouring Countries",
+      "History, Culture and Geography",
+      "Economic Scene",
+      "General Polity and Indian Constitution",
+      "Scientific Research"
+     ]
+    },
+    {
+     "subject": "Computer Knowledge",
+     "topics": [
+      "Computer Basics (CPU, Input/Output Devices, Memory Organisation)",
+      "Windows Operating System and Keyboard Shortcuts",
+      "MS Office (Word, Excel, PowerPoint basics)",
+      "Internet, E-mail and Networking Basics",
+      "Cyber Security (Viruses, Trojans, Firewalls, Prevention of Cyber Crimes)"
+     ]
+    },
+    {
+     "subject": "Skill Test / Typing Test",
+     "topics": [
+      "DEO: Data entry speed of 8,000 key depressions per hour on computer",
+      "DEO in C&AG: 15,000 key depressions per hour",
+      "LDC/JSA: Typing speed 35 words per minute in English or 30 words per minute in Hindi (10-minute test)"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Tier-1",
+     "duration_minutes": 60,
+     "total_marks": 200,
+     "negative_marking_note": "0.50 marks deducted per wrong answer",
+     "sections": [
+      {
+       "name": "English Language",
+       "questions": 25,
+       "marks": 50
+      },
+      {
+       "name": "General Intelligence",
+       "questions": 25,
+       "marks": 50
+      },
+      {
+       "name": "Quantitative Aptitude (Basic Arithmetic Skill)",
+       "questions": 25,
+       "marks": 50
+      },
+      {
+       "name": "General Awareness",
+       "questions": 25,
+       "marks": 50
+      }
+     ]
+    },
+    {
+     "stage_name": "Tier-2",
+     "duration_minutes": 2,
+     "total_marks": 405,
+     "negative_marking_note": "1 mark deducted per wrong answer in Section-I, Section-II and Module-I of Section-III",
+     "sections": [
+      {
+       "name": "Section-I Module-I: Mathematical Abilities",
+       "questions": 30,
+       "marks": 90
+      },
+      {
+       "name": "Section-I Module-II: Reasoning and General Intelligence",
+       "questions": 30,
+       "marks": 90
+      },
+      {
+       "name": "Section-II Module-I: English Language and Comprehension",
+       "questions": 40,
+       "marks": 120
+      },
+      {
+       "name": "Section-II Module-II: General Awareness",
+       "questions": 20,
+       "marks": 60
+      },
+      {
+       "name": "Section-III Module-I: Computer Knowledge Test",
+       "questions": 15,
+       "marks": 45
+      },
+      {
+       "name": "Section-III Module-II: Skill Test (DEO) / Typing Test (LDC/JSA)",
+       "questions": 0,
+       "marks": 0
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General (UR)",
+     "amount": 100,
+     "notes": "Payable online via BHIM UPI, net banking, or debit/credit cards"
+    },
+    {
+     "category": "OBC",
+     "amount": 100,
+     "notes": "No fee exemption for male OBC candidates"
+    },
+    {
+     "category": "EWS",
+     "amount": 100,
+     "notes": "No fee exemption for male EWS candidates"
+    },
+    {
+     "category": "SC",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "ST",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "PwBD",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "Ex-Servicemen",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "Women (all categories)",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    }
+   ],
+   "faqs": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "slug": "ssc-mts",
+   "body_slug": "ssc",
+   "category_slug": "ssc",
+   "name": "SSC MTS",
+   "name_hi": null,
+   "qualification_code": "10th",
+   "description": "Multi-Tasking Staff & Havaldar — 10th-pass entry into central government service.",
+   "description_hi": null,
+   "official_url": "https://ssc.gov.in",
+   "syllabus": [
+    {
+     "subject": "Numerical and Mathematical Ability",
+     "topics": [
+      "Number System and HCF/LCM",
+      "Fractions and Decimals",
+      "Percentage, Ratio and Proportion",
+      "Average and Simple Interest",
+      "Profit and Loss, Discount",
+      "Time and Work, Time and Distance",
+      "Mensuration (Area and Perimeter of basic figures)",
+      "Basic Geometry and Data Interpretation (tables, graphs)"
+     ]
+    },
+    {
+     "subject": "Reasoning Ability and Problem Solving",
+     "topics": [
+      "Alpha-numeric Series and Coding-Decoding",
+      "Analogy and Similarities/Differences",
+      "Directions and Distances",
+      "Blood Relations",
+      "Non-verbal Reasoning (mirror images, embedded figures, figure completion)",
+      "Calendar and Clock",
+      "Order and Ranking",
+      "Problem Solving and Decision Making"
+     ]
+    },
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Indian History, Freedom Struggle",
+      "Indian Polity and Constitution",
+      "Geography of India and the World",
+      "Indian Economy (basics)",
+      "General Science (everyday science)",
+      "Current Affairs of national and international importance",
+      "Sports, Books and Authors, Important Days",
+      "Art and Culture of India"
+     ]
+    },
+    {
+     "subject": "English Language and Comprehension",
+     "topics": [
+      "Vocabulary: Synonyms and Antonyms",
+      "One Word Substitution",
+      "Idioms and Phrases",
+      "Spelling Error Detection",
+      "Spotting the Error and Sentence Improvement",
+      "Fill in the Blanks",
+      "Active/Passive Voice and Direct/Indirect Speech (basic)",
+      "Reading Comprehension (simple paragraph based)"
+     ]
+    },
+    {
+     "subject": "Physical Efficiency and Physical Standards",
+     "topics": [
+      "Walking test: 1600 m in 15 minutes (Male), 1 km in 20 minutes (Female)",
+      "Height measurement: 157.5 cm Male / 152 cm Female (with prescribed relaxations)",
+      "Chest measurement for male candidates: 76 cm unexpanded, minimum 5 cm expansion"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Computer Based Examination - Session I",
+     "duration_minutes": 45,
+     "total_marks": 120,
+     "negative_marking_note": "No negative marking in Session I",
+     "sections": [
+      {
+       "name": "",
+       "questions": 20,
+       "marks": 60
+      },
+      {
+       "name": "",
+       "questions": 20,
+       "marks": 60
+      }
+     ]
+    },
+    {
+     "stage_name": "Computer Based Examination - Session II",
+     "duration_minutes": 45,
+     "total_marks": 150,
+     "negative_marking_note": "1 mark deducted for each wrong answer in Session II",
+     "sections": [
+      {
+       "name": "",
+       "questions": 25,
+       "marks": 75
+      },
+      {
+       "name": "",
+       "questions": 25,
+       "marks": 75
+      }
+     ]
+    },
+    {
+     "stage_name": "Physical Efficiency Test (PET) / Physical Standard Test (PST) - Havaldar posts only",
+     "duration_minutes": null,
+     "total_marks": 0,
+     "negative_marking_note": "Not applicable",
+     "sections": [
+      {
+       "name": "",
+       "questions": null,
+       "marks": null
+      },
+      {
+       "name": "",
+       "questions": null,
+       "marks": null
+      },
+      {
+       "name": "",
+       "questions": null,
+       "marks": null
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General (UR)",
+     "amount": 100,
+     "notes": ""
+    },
+    {
+     "category": "OBC",
+     "amount": 100,
+     "notes": ""
+    },
+    {
+     "category": "EWS",
+     "amount": 100,
+     "notes": ""
+    },
+    {
+     "category": "SC",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "ST",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "Women (all categories)",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "PwBD",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    },
+    {
+     "category": "Ex-Servicemen",
+     "amount": 0,
+     "notes": "Exempted from fee payment"
+    }
+   ],
+   "faqs": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "slug": "upsc-cse",
+   "body_slug": "upsc",
+   "category_slug": "upsc",
+   "name": "UPSC CSE",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "The Civil Services Examination — recruitment to IAS, IPS, IFS and allied central services.",
+   "description_hi": null,
+   "official_url": null,
+   "syllabus": [
+    {
+     "subject": "General Studies",
+     "topics": [
+      "Current events of national & international importance",
+      "History of India & Indian National Movement",
+      "Indian & World Geography",
+      "Indian Polity & Governance",
+      "Economic & Social Development",
+      "Environmental Ecology & Biodiversity",
+      "General Science"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "1/3rd marks per wrong answer",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": null,
+     "total_marks": 1750,
+     "negative_marking_note": null,
+     "sections": []
+    },
+    {
+     "stage_name": "Interview",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": null,
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "UR",
+     "amount": 100,
+     "notes": "Prelims fee. SC/ST/PwBD/female candidates exempted."
+    },
+    {
+     "category": "SC",
+     "amount": 0,
+     "notes": "Exempted"
+    },
+    {
+     "category": "ST",
+     "amount": 0,
+     "notes": "Exempted"
+    },
+    {
+     "category": "Female",
+     "amount": 0,
+     "notes": "Exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "How many attempts are allowed?",
+     "a": "General: 6 (up to age 32); OBC: 9 (up to 35); SC/ST: unlimited (up to 37)."
+    },
+    {
+     "q": "Is CSAT counted in the merit?",
+     "a": "No — CSAT (Paper II) is qualifying only; you need 33% to clear it."
+    },
+    {
+     "q": "What is the age limit?",
+     "a": "21–32 years for General, with category relaxations."
+    }
+   ]
+  },
+  {
+   "slug": "ibps-po",
+   "body_slug": "ibps",
+   "category_slug": "banking",
+   "name": "IBPS PO",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Probationary Officer / Management Trainee recruitment across public-sector banks.",
+   "description_hi": null,
+   "official_url": null,
+   "syllabus": [],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": null,
+     "total_marks": 100,
+     "negative_marking_note": "0.25 marks deducted per wrong answer",
+     "sections": [
+      {
+       "name": "English Language",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Quantitative Aptitude",
+       "questions": 35,
+       "marks": 35
+      },
+      {
+       "name": "Reasoning Ability",
+       "questions": 35,
+       "marks": 35
+      }
+     ]
+    },
+    {
+     "stage_name": "Mains (Objective)",
+     "duration_minutes": null,
+     "total_marks": 200,
+     "negative_marking_note": "0.25 of the marks assigned to the question deducted per wrong answer",
+     "sections": [
+      {
+       "name": "Reasoning & Computer Aptitude",
+       "questions": 45,
+       "marks": 60
+      },
+      {
+       "name": "General/Economy/Banking Awareness",
+       "questions": 40,
+       "marks": 40
+      },
+      {
+       "name": "English Language",
+       "questions": 35,
+       "marks": 40
+      },
+      {
+       "name": "Data Analysis & Interpretation",
+       "questions": 35,
+       "marks": 60
+      }
+     ]
+    },
+    {
+     "stage_name": "Mains (Descriptive)",
+     "duration_minutes": null,
+     "total_marks": 25,
+     "negative_marking_note": "None",
+     "sections": [
+      {
+       "name": "English Language - Letter Writing",
+       "questions": 1,
+       "marks": 10
+      },
+      {
+       "name": "English Language - Essay",
+       "questions": 1,
+       "marks": 15
+      }
+     ]
+    },
+    {
+     "stage_name": "Interview",
+     "duration_minutes": null,
+     "total_marks": 100,
+     "negative_marking_note": "None",
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "General / UR",
+     "amount": 850,
+     "notes": "Includes GST and intimation charges; non-refundable"
+    },
+    {
+     "category": "OBC",
+     "amount": 850,
+     "notes": "Includes GST and intimation charges; non-refundable"
+    },
+    {
+     "category": "EWS",
+     "amount": 850,
+     "notes": "Includes GST and intimation charges; non-refundable"
+    },
+    {
+     "category": "SC",
+     "amount": 175,
+     "notes": "Intimation charges only, includes GST"
+    },
+    {
+     "category": "ST",
+     "amount": 175,
+     "notes": "Intimation charges only, includes GST"
+    },
+    {
+     "category": "PwBD",
+     "amount": 175,
+     "notes": "Intimation charges only, includes GST"
+    }
+   ],
+   "faqs": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "slug": "rrb-ntpc",
+   "body_slug": "rrb",
+   "category_slug": "railway",
+   "name": "RRB NTPC",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Non-Technical Popular Categories — station master, clerk, guard and more across Indian Railways.",
+   "description_hi": null,
+   "official_url": "https://indianrailways.gov.in",
+   "syllabus": [],
+   "pattern": [
+    {
+     "stage_name": "CBT-1 (First Stage Computer Based Test)",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "1/3 mark deducted per wrong answer",
+     "sections": [
+      {
+       "name": "General Awareness",
+       "questions": 40,
+       "marks": 40
+      },
+      {
+       "name": "Mathematics",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "General Intelligence and Reasoning",
+       "questions": 30,
+       "marks": 30
+      }
+     ]
+    },
+    {
+     "stage_name": "CBT-2 (Second Stage Computer Based Test)",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "1/3 mark deducted per wrong answer",
+     "sections": [
+      {
+       "name": "General Awareness",
+       "questions": 50,
+       "marks": 50
+      },
+      {
+       "name": "Mathematics",
+       "questions": 35,
+       "marks": 35
+      },
+      {
+       "name": "General Intelligence and Reasoning",
+       "questions": 35,
+       "marks": 35
+      }
+     ]
+    },
+    {
+     "stage_name": "CBAT (Computer Based Aptitude Test)",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "No negative marking",
+     "sections": []
+    },
+    {
+     "stage_name": "Typing Skill Test (TST)",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Document Verification and Medical Examination",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "General (UR)",
+     "amount": 500,
+     "notes": "Rs. 400 refunded (after deduction of bank charges) on appearing in CBT-1"
+    },
+    {
+     "category": "OBC (NCL)",
+     "amount": 500,
+     "notes": "Rs. 400 refunded on appearing in CBT-1; Rs. 250 slab applies only if also Female/Minority/EBC"
+    },
+    {
+     "category": "EWS",
+     "amount": 500,
+     "notes": "Rs. 400 refunded on appearing in CBT-1 unless covered by a concession category"
+    },
+    {
+     "category": "SC",
+     "amount": 250,
+     "notes": "Full Rs. 250 refunded (after bank charges) on appearing in CBT-1"
+    },
+    {
+     "category": "ST",
+     "amount": 250,
+     "notes": "Full Rs. 250 refunded (after bank charges) on appearing in CBT-1"
+    },
+    {
+     "category": "Female (all categories)",
+     "amount": 250,
+     "notes": "Full Rs. 250 refunded on appearing in CBT-1"
+    },
+    {
+     "category": "PwBD",
+     "amount": 250,
+     "notes": "Full Rs. 250 refunded on appearing in CBT-1; eligible PwBD candidates get compensatory time of 20 minutes per hour of exam (i.e. 30 minutes extra in a 90-minute CBT)"
+    },
+    {
+     "category": "Ex-Servicemen",
+     "amount": 250,
+     "notes": "Full Rs. 250 refunded on appearing in CBT-1"
+    },
+    {
+     "category": "Transgender / Minorities / EBC",
+     "amount": 250,
+     "notes": "Full Rs. 250 refunded on appearing in CBT-1"
+    }
+   ],
+   "faqs": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "slug": "mppsc-ss",
+   "body_slug": "mppsc",
+   "category_slug": "state-psc",
+   "name": "MPPSC SS",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Madhya Pradesh State Service — Deputy Collector, DSP and other state administrative posts.",
+   "description_hi": null,
+   "official_url": null,
+   "syllabus": [],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Interview",
+     "duration_minutes": null,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "General / Unreserved (MP) and candidates of other states",
+     "amount": 500,
+     "notes": "Plus MP Online portal charge of approx Rs 40"
+    },
+    {
+     "category": "SC / ST / OBC / EWS (Madhya Pradesh domicile)",
+     "amount": 250,
+     "notes": "Plus MP Online portal charge of approx Rs 40"
+    },
+    {
+     "category": "PwD (Madhya Pradesh domicile)",
+     "amount": 250,
+     "notes": "Concessional fee applicable to MP domicile candidates only"
+    },
+    {
+     "category": "Correction / Error rectification per instance",
+     "amount": 50,
+     "notes": "Portal charge for editing an already submitted application"
+    }
+   ],
+   "faqs": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "slug": "uppsc-pcs",
+   "body_slug": "uppsc",
+   "category_slug": "state-psc",
+   "name": "UPPSC PCS 2026",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Uttar Pradesh state civil services (PCS) recruitment for SDM, Dy SP and allied Group A/B posts.",
+   "description_hi": null,
+   "official_url": "https://uppsc.up.nic.in/",
+   "syllabus": [],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 2,
+     "total_marks": null,
+     "negative_marking_note": "1/3rd of the marks assigned to the question deducted for each wrong answer",
+     "sections": []
+    },
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 2,
+     "total_marks": null,
+     "negative_marking_note": "1/3rd of the marks assigned to the question deducted for each wrong answer",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Interview",
+     "duration_minutes": 30,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "General / Unreserved",
+     "amount": 125,
+     "notes": ""
+    },
+    {
+     "category": "OBC",
+     "amount": 125,
+     "notes": ""
+    },
+    {
+     "category": "EWS",
+     "amount": 125,
+     "notes": ""
+    },
+    {
+     "category": "SC (UP domicile)",
+     "amount": 65,
+     "notes": ""
+    },
+    {
+     "category": "ST (UP domicile)",
+     "amount": 65,
+     "notes": ""
+    },
+    {
+     "category": "PwBD (UP domicile)",
+     "amount": 25,
+     "notes": ""
+    },
+    {
+     "category": "Ex-Serviceman (UP domicile)",
+     "amount": 65,
+     "notes": ""
+    }
+   ],
+   "faqs": [
+    {
+     "q": "How many attempts are allowed in UPPSC PCS?",
+     "a": "UPPSC does not limit the number of attempts. You can appear as many times as you like between the ages of 21 and 40 (upper age relaxable by 5 years for SC/ST/OBC candidates domiciled in Uttar Pradesh)."
+    },
+    {
+     "q": "Is the CSAT (GS Paper II) counted for the Prelims merit list?",
+     "a": "No. GS Paper II (CSAT) is only qualifying - you need at least 33% in it. The Prelims cutoff and shortlisting for Mains are decided solely on GS Paper I marks."
+    },
+    {
+     "q": "Is there negative marking in UPPSC PCS Prelims?",
+     "a": "Yes. One-third (1/3) of the marks assigned to a question is deducted for every wrong answer in both Prelims papers. There is no negative marking in the descriptive Mains papers."
+    },
+    {
+     "q": "Can candidates from outside Uttar Pradesh apply?",
+     "a": "Yes, candidates from any state can apply. However, the benefit of reservation (SC/ST/OBC/EWS quotas, and horizontal reservation for women and PwBD) and the category fee concessions is limited to candidates domiciled in Uttar Pradesh; all others are treated as unreserved."
+    },
+    {
+     "q": "Does UPPSC PCS still have optional subjects in Mains?",
+     "a": "No. Since the 2022 reform, optional subjects have been removed from the Mains. The Mains now has 8 compulsory papers - General Hindi (150), Essay (150) and six General Studies papers of 200 marks each, of which GS-V and GS-VI are Uttar Pradesh specific - totalling 1500 marks, plus a 100-mark interview."
+    },
+    {
+     "q": "What posts are offered through UPPSC PCS 2026?",
+     "a": "Top posts include Deputy Collector (SDM) and Deputy Superintendent of Police (both Pay Level 10, Rs 56,100 - 1,77,500), along with Block Development Officer, Assistant Regional Transport Officer, District Commandant Home Guards, Treasury Officer and other Group A and B posts of the UP government. Around 500 vacancies have been advertised for the 2026 cycle, and UPPSC has historically increased the count during the recruitment (2024: 220 to 947; 2025: 200 to 920)."
+    }
+   ]
+  },
+  {
+   "slug": "bpsc-cce",
+   "body_slug": "bpsc",
+   "category_slug": "state-psc",
+   "name": "BPSC CCE 2026",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Bihar Combined Competitive Exam for SDM, DSP and other Group A/B state posts.",
+   "description_hi": null,
+   "official_url": "https://bpsc.bihar.gov.in",
+   "syllabus": [],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 2,
+     "total_marks": null,
+     "negative_marking_note": "No negative marking",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 2,
+     "total_marks": null,
+     "negative_marking_note": "No negative marking",
+     "sections": []
+    },
+    {
+     "stage_name": "Interview",
+     "duration_minutes": 30,
+     "total_marks": null,
+     "negative_marking_note": "Not applicable",
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "General / OBC / EWS / other states",
+     "amount": 600,
+     "notes": ""
+    },
+    {
+     "category": "SC / ST (Bihar domicile)",
+     "amount": 150,
+     "notes": ""
+    },
+    {
+     "category": "Female (Bihar domicile, all categories)",
+     "amount": 150,
+     "notes": ""
+    },
+    {
+     "category": "PwD (40% or more disability)",
+     "amount": 150,
+     "notes": ""
+    },
+    {
+     "category": "Biometric verification charge (only candidates not providing Aadhaar)",
+     "amount": 200,
+     "notes": ""
+    }
+   ],
+   "faqs": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "slug": "rpsc-ras",
+   "body_slug": "rpsc",
+   "category_slug": "state-psc",
+   "name": "RPSC RAS 2026",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Rajasthan Administrative & allied services (RAS) recruitment for state civil-service posts.",
+   "description_hi": null,
+   "official_url": "https://rpsc.rajasthan.gov.in",
+   "syllabus": [],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "1/3 mark deducted per wrong answer; a fifth 'not attempted' option must be bubbled for skipped questions — leaving more than 10% of questions with no option marked can lead to disqualification under RPSC's fifth-option rule",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Mains",
+     "duration_minutes": 3,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    },
+    {
+     "stage_name": "Interview",
+     "duration_minutes": 25,
+     "total_marks": null,
+     "negative_marking_note": "None",
+     "sections": []
+    }
+   ],
+   "fees": [
+    {
+     "category": "General / Unreserved and Creamy Layer OBC/MBC (via One Time Registration)",
+     "amount": 600,
+     "notes": ""
+    },
+    {
+     "category": "OBC-NCL / MBC-NCL / EWS of Rajasthan",
+     "amount": 400,
+     "notes": ""
+    },
+    {
+     "category": "SC / ST of Rajasthan and PwBD candidates",
+     "amount": 400,
+     "notes": ""
+    },
+    {
+     "category": "Candidates of any category with annual family income below Rs 2.5 lakh",
+     "amount": 400,
+     "notes": ""
+    },
+    {
+     "category": "note",
+     "amount": 0,
+     "notes": "Fee is a one-time OTR (One Time Registration) charge on the Rajasthan SSO portal; once paid, no separate fee is charged for individual RPSC applications"
+    }
+   ],
+   "faqs": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "slug": "ssc-gd",
+   "body_slug": "ssc",
+   "category_slug": "ssc",
+   "name": "SSC GD Constable",
+   "name_hi": null,
+   "qualification_code": "10th",
+   "description": "Recruitment of Constables (General Duty) in CAPFs, SSF, Assam Rifles and NCB.",
+   "description_hi": null,
+   "official_url": "https://ssc.gov.in",
+   "syllabus": [
+    {
+     "subject": "General Intelligence & Reasoning",
+     "topics": [
+      "Analogies",
+      "Similarities & differences",
+      "Spatial visualization",
+      "Coding-decoding"
+     ]
+    },
+    {
+     "subject": "Elementary Mathematics",
+     "topics": [
+      "Number systems",
+      "Percentage",
+      "Ratio & proportion",
+      "Time & work",
+      "Mensuration"
+     ]
+    },
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Current affairs",
+      "History",
+      "Geography",
+      "Polity",
+      "General science"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Tier-1 (CBT)",
+     "duration_minutes": 60,
+     "total_marks": 160,
+     "negative_marking_note": "0.25 per wrong answer",
+     "sections": [
+      {
+       "name": "General Intelligence & Reasoning",
+       "questions": 20,
+       "marks": 40
+      },
+      {
+       "name": "General Knowledge & Awareness",
+       "questions": 20,
+       "marks": 40
+      },
+      {
+       "name": "Elementary Mathematics",
+       "questions": 20,
+       "marks": 40
+      },
+      {
+       "name": "English/Hindi",
+       "questions": 20,
+       "marks": 40
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 100,
+     "notes": "Women/SC/ST/Ex-servicemen exempted"
+    },
+    {
+     "category": "SC/ST",
+     "amount": 0,
+     "notes": "Exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "What is the minimum qualification?",
+     "a": "Class 10th (Matriculation) pass from a recognized board."
+    },
+    {
+     "q": "Is there negative marking?",
+     "a": "Yes, 0.25 marks are deducted for each wrong answer in the CBT."
+    }
+   ]
+  },
+  {
+   "slug": "ssc-steno",
+   "body_slug": "ssc",
+   "category_slug": "ssc",
+   "name": "SSC Stenographer",
+   "name_hi": null,
+   "qualification_code": "12th",
+   "description": "Recruitment of Stenographers Grade C and Grade D in central government ministries.",
+   "description_hi": null,
+   "official_url": "https://ssc.gov.in",
+   "syllabus": [
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Current affairs",
+      "History",
+      "Geography",
+      "Polity",
+      "Economy"
+     ]
+    },
+    {
+     "subject": "English Language",
+     "topics": [
+      "Grammar",
+      "Vocabulary",
+      "Comprehension",
+      "Sentence improvement"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "CBT",
+     "duration_minutes": 120,
+     "total_marks": 200,
+     "negative_marking_note": "0.50 per wrong answer",
+     "sections": [
+      {
+       "name": "General Intelligence & Reasoning",
+       "questions": 50,
+       "marks": 50
+      },
+      {
+       "name": "General Awareness",
+       "questions": 50,
+       "marks": 50
+      },
+      {
+       "name": "English Language & Comprehension",
+       "questions": 100,
+       "marks": 100
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 100,
+     "notes": "Women/SC/ST exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "What is the skill test?",
+     "a": "A stenography dictation test at 80 wpm (Grade D) or 100 wpm (Grade C)."
+    }
+   ]
+  },
+  {
+   "slug": "rrb-group-d",
+   "body_slug": "rrb",
+   "category_slug": "railway",
+   "name": "RRB Group D",
+   "name_hi": null,
+   "qualification_code": "10th",
+   "description": "Recruitment to Level-1 posts in Indian Railways (track maintainer, pointsman, helper, etc.).",
+   "description_hi": null,
+   "official_url": "https://www.rrbcdg.gov.in",
+   "syllabus": [
+    {
+     "subject": "Mathematics",
+     "topics": [
+      "Number system",
+      "BODMAS",
+      "Percentage",
+      "Mensuration",
+      "Time & work"
+     ]
+    },
+    {
+     "subject": "General Science",
+     "topics": [
+      "Physics",
+      "Chemistry",
+      "Life sciences (up to 10th standard)"
+     ]
+    },
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Current affairs",
+      "Sports",
+      "Culture",
+      "Personalities"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "CBT",
+     "duration_minutes": 90,
+     "total_marks": 100,
+     "negative_marking_note": "1/3 per wrong answer",
+     "sections": [
+      {
+       "name": "General Science",
+       "questions": 25,
+       "marks": 25
+      },
+      {
+       "name": "Mathematics",
+       "questions": 25,
+       "marks": 25
+      },
+      {
+       "name": "General Intelligence & Reasoning",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "General Awareness & Current Affairs",
+       "questions": 20,
+       "marks": 20
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 500,
+     "notes": "₹400 refunded on appearing in CBT"
+    },
+    {
+     "category": "SC/ST/PwBD/Women",
+     "amount": 250,
+     "notes": "Refunded on appearing"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Is ITI mandatory?",
+     "a": "No — Class 10th pass OR ITI/equivalent is acceptable for most Level-1 posts."
+    }
+   ]
+  },
+  {
+   "slug": "rrb-alp",
+   "body_slug": "rrb",
+   "category_slug": "railway",
+   "name": "RRB ALP",
+   "name_hi": null,
+   "qualification_code": "10th",
+   "description": "Recruitment of Assistant Loco Pilots in Indian Railways.",
+   "description_hi": null,
+   "official_url": "https://www.rrbcdg.gov.in",
+   "syllabus": [
+    {
+     "subject": "Technical (Stage 2)",
+     "topics": [
+      "Basic engineering & trade knowledge relevant to the notified trade"
+     ]
+    },
+    {
+     "subject": "Reasoning",
+     "topics": [
+      "Analogies",
+      "Series",
+      "Coding-decoding",
+      "Syllogism"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "CBT Stage 1",
+     "duration_minutes": 60,
+     "total_marks": 75,
+     "negative_marking_note": "1/3 per wrong answer",
+     "sections": [
+      {
+       "name": "Mathematics",
+       "questions": 20,
+       "marks": 20
+      },
+      {
+       "name": "Reasoning",
+       "questions": 25,
+       "marks": 25
+      },
+      {
+       "name": "General Science",
+       "questions": 20,
+       "marks": 20
+      },
+      {
+       "name": "General Awareness",
+       "questions": 10,
+       "marks": 10
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 500,
+     "notes": "₹400 refunded on appearing"
+    },
+    {
+     "category": "Reserved",
+     "amount": 250,
+     "notes": "Refunded on appearing"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "What trades are eligible?",
+     "a": "ITI/Diploma in notified engineering trades such as Fitter, Electrician, Mechanic."
+    }
+   ]
+  },
+  {
+   "slug": "ibps-clerk",
+   "body_slug": "ibps",
+   "category_slug": "banking",
+   "name": "IBPS Clerk",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Common Recruitment Process for Clerical cadre in participating public-sector banks.",
+   "description_hi": null,
+   "official_url": "https://www.ibps.in",
+   "syllabus": [
+    {
+     "subject": "Numerical Ability",
+     "topics": [
+      "Simplification",
+      "Number series",
+      "Data interpretation",
+      "Arithmetic"
+     ]
+    },
+    {
+     "subject": "Reasoning",
+     "topics": [
+      "Puzzles",
+      "Seating arrangement",
+      "Syllogism",
+      "Inequalities"
+     ]
+    },
+    {
+     "subject": "English",
+     "topics": [
+      "Reading comprehension",
+      "Cloze test",
+      "Error spotting"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 60,
+     "total_marks": 100,
+     "negative_marking_note": "0.25 per wrong answer",
+     "sections": [
+      {
+       "name": "English Language",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Numerical Ability",
+       "questions": 35,
+       "marks": 35
+      },
+      {
+       "name": "Reasoning Ability",
+       "questions": 35,
+       "marks": 35
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 850,
+     "notes": ""
+    },
+    {
+     "category": "SC/ST/PwBD",
+     "amount": 175,
+     "notes": ""
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Is there an interview for IBPS Clerk?",
+     "a": "No — selection is based on Prelims + Mains only, no interview."
+    }
+   ]
+  },
+  {
+   "slug": "ibps-rrb",
+   "body_slug": "ibps",
+   "category_slug": "banking",
+   "name": "IBPS RRB",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Common Recruitment Process for Regional Rural Banks — Officer Scale I/II/III and Office Assistant.",
+   "description_hi": null,
+   "official_url": "https://www.ibps.in",
+   "syllabus": [
+    {
+     "subject": "Reasoning",
+     "topics": [
+      "Puzzles",
+      "Coding-decoding",
+      "Blood relations",
+      "Direction sense"
+     ]
+    },
+    {
+     "subject": "Quantitative Aptitude",
+     "topics": [
+      "Data interpretation",
+      "Simplification",
+      "Quadratic equations"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 45,
+     "total_marks": 80,
+     "negative_marking_note": "0.25 per wrong answer",
+     "sections": [
+      {
+       "name": "Reasoning",
+       "questions": 40,
+       "marks": 40
+      },
+      {
+       "name": "Numerical Ability",
+       "questions": 40,
+       "marks": 40
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 850,
+     "notes": ""
+    },
+    {
+     "category": "SC/ST/PwBD",
+     "amount": 175,
+     "notes": ""
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Is a local language requirement applicable?",
+     "a": "Yes — proficiency in the local language of the state is usually required."
+    }
+   ]
+  },
+  {
+   "slug": "sbi-po",
+   "body_slug": "sbi",
+   "category_slug": "banking",
+   "name": "SBI PO",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Recruitment of Probationary Officers in State Bank of India.",
+   "description_hi": null,
+   "official_url": "https://sbi.co.in/web/careers",
+   "syllabus": [
+    {
+     "subject": "Quantitative Aptitude",
+     "topics": [
+      "Data interpretation",
+      "Arithmetic",
+      "Number series",
+      "Quadratic equations"
+     ]
+    },
+    {
+     "subject": "Reasoning & Computer Aptitude",
+     "topics": [
+      "Puzzles",
+      "Seating arrangement",
+      "Syllogism",
+      "Computer basics"
+     ]
+    },
+    {
+     "subject": "English Language",
+     "topics": [
+      "Reading comprehension",
+      "Cloze test",
+      "Para jumbles",
+      "Error detection"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 60,
+     "total_marks": 100,
+     "negative_marking_note": "0.25 per wrong answer",
+     "sections": [
+      {
+       "name": "English Language",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Quantitative Aptitude",
+       "questions": 35,
+       "marks": 35
+      },
+      {
+       "name": "Reasoning Ability",
+       "questions": 35,
+       "marks": 35
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 750,
+     "notes": ""
+    },
+    {
+     "category": "SC/ST/PwBD",
+     "amount": 0,
+     "notes": "Exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "How many attempts are allowed?",
+     "a": "General category candidates get 4 attempts (relaxations for reserved categories)."
+    }
+   ]
+  },
+  {
+   "slug": "sbi-clerk",
+   "body_slug": "sbi",
+   "category_slug": "banking",
+   "name": "SBI Clerk",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Recruitment of Junior Associates (Customer Support & Sales) in State Bank of India.",
+   "description_hi": null,
+   "official_url": "https://sbi.co.in/web/careers",
+   "syllabus": [
+    {
+     "subject": "Numerical Ability",
+     "topics": [
+      "Simplification",
+      "Data interpretation",
+      "Arithmetic"
+     ]
+    },
+    {
+     "subject": "Reasoning",
+     "topics": [
+      "Puzzles",
+      "Seating arrangement",
+      "Inequalities"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Prelims",
+     "duration_minutes": 60,
+     "total_marks": 100,
+     "negative_marking_note": "0.25 per wrong answer",
+     "sections": [
+      {
+       "name": "English Language",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Numerical Ability",
+       "questions": 35,
+       "marks": 35
+      },
+      {
+       "name": "Reasoning Ability",
+       "questions": 35,
+       "marks": 35
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 750,
+     "notes": ""
+    },
+    {
+     "category": "SC/ST/PwBD",
+     "amount": 0,
+     "notes": "Exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Is there an interview?",
+     "a": "No — SBI Clerk selection is Prelims + Mains, followed by a local-language test."
+    }
+   ]
+  },
+  {
+   "slug": "rbi-grade-b",
+   "body_slug": "rbi",
+   "category_slug": "banking",
+   "name": "RBI Grade B",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Recruitment of Grade B Officers (General & specialist streams) in the Reserve Bank of India.",
+   "description_hi": null,
+   "official_url": "https://opportunities.rbi.org.in",
+   "syllabus": [
+    {
+     "subject": "General Awareness",
+     "topics": [
+      "Economy & banking",
+      "Current affairs",
+      "RBI & monetary policy"
+     ]
+    },
+    {
+     "subject": "Finance & Management (Phase 2)",
+     "topics": [
+      "Financial system",
+      "Basics of management",
+      "Financial markets"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Phase 1",
+     "duration_minutes": 120,
+     "total_marks": 200,
+     "negative_marking_note": "0.25 per wrong answer",
+     "sections": [
+      {
+       "name": "General Awareness",
+       "questions": 80,
+       "marks": 80
+      },
+      {
+       "name": "Quantitative Aptitude",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "English Language",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Reasoning",
+       "questions": 60,
+       "marks": 60
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 850,
+     "notes": ""
+    },
+    {
+     "category": "SC/ST/PwBD",
+     "amount": 100,
+     "notes": "Intimation charges only"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "What is the age limit?",
+     "a": "21–30 years for the General stream, with relaxations for reserved categories."
+    }
+   ]
+  },
+  {
+   "slug": "ctet",
+   "body_slug": "cbse",
+   "category_slug": "teaching",
+   "name": "CTET",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Eligibility test for teacher posts (Classes I–VIII) in central government schools.",
+   "description_hi": null,
+   "official_url": "https://ctet.nic.in",
+   "syllabus": [
+    {
+     "subject": "Child Development & Pedagogy",
+     "topics": [
+      "Concept of development",
+      "Inclusive education",
+      "Learning & pedagogy"
+     ]
+    },
+    {
+     "subject": "Mathematics & EVS",
+     "topics": [
+      "Number system",
+      "Geometry",
+      "Environmental concepts",
+      "Pedagogical issues"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Paper I",
+     "duration_minutes": 150,
+     "total_marks": 150,
+     "negative_marking_note": "No negative marking",
+     "sections": [
+      {
+       "name": "Child Development & Pedagogy",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Language I",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Language II",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Mathematics",
+       "questions": 30,
+       "marks": 30
+      },
+      {
+       "name": "Environmental Studies",
+       "questions": 30,
+       "marks": 30
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General (one paper)",
+     "amount": 1000,
+     "notes": ""
+    },
+    {
+     "category": "SC/ST/PwD (one paper)",
+     "amount": 500,
+     "notes": ""
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Is there an age limit for CTET?",
+     "a": "There is no upper age limit to appear for CTET."
+    },
+    {
+     "q": "How long is the CTET certificate valid?",
+     "a": "The CTET qualifying certificate is valid for a lifetime."
+    }
+   ]
+  },
+  {
+   "slug": "ugc-net",
+   "body_slug": "nta",
+   "category_slug": "teaching",
+   "name": "UGC NET",
+   "name_hi": null,
+   "qualification_code": "pg",
+   "description": "National Eligibility Test for Assistant Professor and Junior Research Fellowship.",
+   "description_hi": null,
+   "official_url": "https://ugcnet.nta.ac.in",
+   "syllabus": [
+    {
+     "subject": "Paper I",
+     "topics": [
+      "Teaching aptitude",
+      "Research aptitude",
+      "Reasoning",
+      "Data interpretation",
+      "ICT",
+      "People, development & environment"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Paper I + II",
+     "duration_minutes": 180,
+     "total_marks": 300,
+     "negative_marking_note": "No negative marking",
+     "sections": [
+      {
+       "name": "Paper I — Teaching & Research Aptitude",
+       "questions": 50,
+       "marks": 100
+      },
+      {
+       "name": "Paper II — Subject",
+       "questions": 100,
+       "marks": 200
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 1150,
+     "notes": ""
+    },
+    {
+     "category": "SC/ST/PwD/Third gender",
+     "amount": 325,
+     "notes": ""
+    }
+   ],
+   "faqs": [
+    {
+     "q": "What is the age limit for JRF?",
+     "a": "Upper age limit for JRF is 30 years (with relaxations); there is no age limit for Assistant Professor."
+    }
+   ]
+  },
+  {
+   "slug": "nda",
+   "body_slug": "upsc",
+   "category_slug": "defense",
+   "name": "NDA",
+   "name_hi": null,
+   "qualification_code": "12th",
+   "description": "Admission to the National Defence Academy and Naval Academy (Army, Navy, Air Force wings).",
+   "description_hi": null,
+   "official_url": "https://upsc.gov.in",
+   "syllabus": [
+    {
+     "subject": "Mathematics",
+     "topics": [
+      "Algebra",
+      "Trigonometry",
+      "Calculus",
+      "Vector algebra",
+      "Statistics"
+     ]
+    },
+    {
+     "subject": "General Ability",
+     "topics": [
+      "English",
+      "Physics",
+      "Chemistry",
+      "General science",
+      "History",
+      "Geography",
+      "Current events"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Written",
+     "duration_minutes": 300,
+     "total_marks": 900,
+     "negative_marking_note": "1/3 per wrong answer",
+     "sections": [
+      {
+       "name": "Mathematics",
+       "questions": 120,
+       "marks": 300
+      },
+      {
+       "name": "General Ability Test",
+       "questions": 150,
+       "marks": 600
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 100,
+     "notes": "SC/ST and eligible candidates exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Who can apply for NDA?",
+     "a": "Unmarried candidates who have passed / are appearing in Class 12; Physics & Maths required for Navy/Air Force."
+    }
+   ]
+  },
+  {
+   "slug": "cds",
+   "body_slug": "upsc",
+   "category_slug": "defense",
+   "name": "CDS",
+   "name_hi": null,
+   "qualification_code": "graduate",
+   "description": "Recruitment to the Indian Military, Naval, Air Force Academy and Officers Training Academy.",
+   "description_hi": null,
+   "official_url": "https://upsc.gov.in",
+   "syllabus": [
+    {
+     "subject": "General Knowledge",
+     "topics": [
+      "Current affairs",
+      "History",
+      "Polity",
+      "Geography",
+      "Economics",
+      "General science"
+     ]
+    },
+    {
+     "subject": "Elementary Mathematics",
+     "topics": [
+      "Arithmetic",
+      "Algebra",
+      "Trigonometry",
+      "Geometry",
+      "Mensuration",
+      "Statistics"
+     ]
+    }
+   ],
+   "pattern": [
+    {
+     "stage_name": "Written",
+     "duration_minutes": 360,
+     "total_marks": 300,
+     "negative_marking_note": "1/3 per wrong answer",
+     "sections": [
+      {
+       "name": "English",
+       "questions": 120,
+       "marks": 100
+      },
+      {
+       "name": "General Knowledge",
+       "questions": 120,
+       "marks": 100
+      },
+      {
+       "name": "Elementary Mathematics",
+       "questions": 100,
+       "marks": 100
+      }
+     ]
+    }
+   ],
+   "fees": [
+    {
+     "category": "General",
+     "amount": 200,
+     "notes": "SC/ST/Women exempted"
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Is the OTA exam different?",
+     "a": "OTA has only English and General Knowledge papers (no Mathematics)."
+    }
+   ]
+  }
+ ],
+ "exam_cycles": [
+  {
+   "id": "ssc-cgl-2026",
+   "exam_slug": "ssc-cgl",
+   "body_slug": "ssc",
+   "title": "SSC CGL 2026",
+   "title_hi": null,
+   "status": "closing_soon",
+   "vacancy": 17727,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 32,
+   "age_relaxation_note": null,
+   "summary": "Combined Graduate Level — Group B & C posts across central government ministries and departments.",
+   "summary_hi": null,
+   "posts": "Assistant Section Officer, Income Tax Inspector, Inspector (CBIC), Auditor",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": "2026-06-28",
+   "application_end": "2026-08-19",
+   "apply_url": "https://ssc.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 1
+  },
+  {
+   "id": "ssc-chsl-2026",
+   "exam_slug": "ssc-chsl",
+   "body_slug": "ssc",
+   "title": "SSC CHSL 2026",
+   "title_hi": null,
+   "status": "application_open",
+   "vacancy": 3712,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 27,
+   "age_relaxation_note": null,
+   "summary": "Combined Higher Secondary Level — LDC, DEO and postal assistant posts for 12th-pass candidates.",
+   "summary_hi": null,
+   "posts": "LDC/JSA, DEO, Postal Assistant",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": "2026-07-26",
+   "application_end": "2026-08-25",
+   "apply_url": "https://ssc.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 2
+  },
+  {
+   "id": "ssc-mts-2026",
+   "exam_slug": "ssc-mts",
+   "body_slug": "ssc",
+   "title": "SSC MTS 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 8000,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 25,
+   "age_relaxation_note": null,
+   "summary": "Multi-Tasking Staff & Havaldar — 10th-pass entry into central government service.",
+   "summary_hi": null,
+   "posts": "MTS, Havaldar (CBIC & CBN)",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": null,
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 3
+  },
+  {
+   "id": "upsc-cse-2026",
+   "exam_slug": "upsc-cse",
+   "body_slug": "upsc",
+   "title": "UPSC Civil Services 2026",
+   "title_hi": null,
+   "status": "admit_card",
+   "vacancy": 979,
+   "vacancy_note": null,
+   "age_min": 21,
+   "age_max": 32,
+   "age_relaxation_note": null,
+   "summary": "The Civil Services Examination — recruitment to IAS, IPS, IFS and allied central services.",
+   "summary_hi": null,
+   "posts": "IAS, IPS, IFS, IRS and allied services",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": "2026-08-16",
+   "apply_url": null,
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 4
+  },
+  {
+   "id": "ibps-po-2026",
+   "exam_slug": "ibps-po",
+   "body_slug": "ibps",
+   "title": "IBPS PO 2026",
+   "title_hi": null,
+   "status": "application_open",
+   "vacancy": 4455,
+   "vacancy_note": null,
+   "age_min": 20,
+   "age_max": 30,
+   "age_relaxation_note": null,
+   "summary": "Probationary Officer / Management Trainee recruitment across public-sector banks.",
+   "summary_hi": null,
+   "posts": "Probationary Officer / Management Trainee",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": "2026-07-30",
+   "application_end": "2026-08-18",
+   "apply_url": "https://ibps.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 5
+  },
+  {
+   "id": "rrb-ntpc-2026",
+   "exam_slug": "rrb-ntpc",
+   "body_slug": "rrb",
+   "title": "RRB NTPC 2026",
+   "title_hi": null,
+   "status": "result_awaited",
+   "vacancy": 11558,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 33,
+   "age_relaxation_note": null,
+   "summary": "Non-Technical Popular Categories — station master, clerk, guard and more across Indian Railways.",
+   "summary_hi": null,
+   "posts": "Station Master, Goods Guard, Senior Clerk, Commercial Apprentice",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": null,
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 6
+  },
+  {
+   "id": "mppsc-ss-2026",
+   "exam_slug": "mppsc-ss",
+   "body_slug": "mppsc",
+   "title": "MPPSC State Service 2026",
+   "title_hi": null,
+   "status": "application_open",
+   "vacancy": 158,
+   "vacancy_note": null,
+   "age_min": 21,
+   "age_max": 40,
+   "age_relaxation_note": null,
+   "summary": "Madhya Pradesh State Service — Deputy Collector, DSP and other state administrative posts.",
+   "summary_hi": null,
+   "posts": "Deputy Collector, DSP, Naib Tehsildar",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": "2026-07-23",
+   "application_end": "2026-08-16",
+   "apply_url": "https://mponline.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 7
+  },
+  {
+   "id": "uppsc-pcs-2026",
+   "exam_slug": "uppsc-pcs",
+   "body_slug": "uppsc",
+   "title": "UPPSC Combined State / Upper Subordinate Services (PCS) Examination 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 500,
+   "vacancy_note": null,
+   "age_min": 21,
+   "age_max": 40,
+   "age_relaxation_note": null,
+   "summary": "Uttar Pradesh state civil services (PCS) recruitment for SDM, Dy SP and allied Group A/B posts.",
+   "summary_hi": null,
+   "posts": "SDM, Dy SP, BDO, and allied state services",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": "2026-06-25",
+   "application_end": "2026-08-03",
+   "apply_url": "https://otr.pariksha.nic.in/",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 8
+  },
+  {
+   "id": "bpsc-cce-2026",
+   "exam_slug": "bpsc-cce",
+   "body_slug": "bpsc",
+   "title": "BPSC 72nd Combined Competitive Examination (CCE) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 1250,
+   "vacancy_note": null,
+   "age_min": 20,
+   "age_max": 37,
+   "age_relaxation_note": null,
+   "summary": "Bihar Combined Competitive Exam for SDM, DSP and other Group A/B state posts.",
+   "summary_hi": null,
+   "posts": "SDM, DSP, and allied Bihar state services",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": "2026-06-10",
+   "application_end": "2026-07-08",
+   "apply_url": "https://onlinebpsc.bihar.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 9
+  },
+  {
+   "id": "rpsc-ras-2026",
+   "exam_slug": "rpsc-ras",
+   "body_slug": "rpsc",
+   "title": "RPSC Rajasthan State and Subordinate Services Combined Competitive Examination (RAS/RTS) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 607,
+   "vacancy_note": null,
+   "age_min": 21,
+   "age_max": 40,
+   "age_relaxation_note": null,
+   "summary": "Rajasthan Administrative & allied services (RAS) recruitment for state civil-service posts.",
+   "summary_hi": null,
+   "posts": "RAS, RPS and allied Rajasthan state services",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": "2026-06-04",
+   "application_end": "2026-07-03",
+   "apply_url": "https://sso.rajasthan.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 10
+  },
+  {
+   "id": "ssc-gd-2026",
+   "exam_slug": "ssc-gd",
+   "body_slug": "ssc",
+   "title": "SSC GD Constable 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 39000,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 23,
+   "age_relaxation_note": null,
+   "summary": "Recruitment of Constables (General Duty) in CAPFs, SSF, Assam Rifles and NCB.",
+   "summary_hi": null,
+   "posts": "Constable (GD) in BSF, CISF, CRPF, ITBP, SSB, AR, SSF",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://ssc.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 11
+  },
+  {
+   "id": "ssc-steno-2026",
+   "exam_slug": "ssc-steno",
+   "body_slug": "ssc",
+   "title": "SSC Stenographer Grade C & D 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 2000,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 27,
+   "age_relaxation_note": null,
+   "summary": "Recruitment of Stenographers Grade C and Grade D in central government ministries.",
+   "summary_hi": null,
+   "posts": "Stenographer Grade C, Stenographer Grade D",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://ssc.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 12
+  },
+  {
+   "id": "rrb-group-d-2026",
+   "exam_slug": "rrb-group-d",
+   "body_slug": "rrb",
+   "title": "RRB Group D (Level 1) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 32000,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 33,
+   "age_relaxation_note": null,
+   "summary": "Recruitment to Level-1 posts in Indian Railways (track maintainer, pointsman, helper, etc.).",
+   "summary_hi": null,
+   "posts": "Track Maintainer Gr-IV, Pointsman, Helper, Assistant, Porter",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://www.rrbcdg.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 13
+  },
+  {
+   "id": "rrb-alp-2026",
+   "exam_slug": "rrb-alp",
+   "body_slug": "rrb",
+   "title": "RRB Assistant Loco Pilot 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 18000,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 30,
+   "age_relaxation_note": null,
+   "summary": "Recruitment of Assistant Loco Pilots in Indian Railways.",
+   "summary_hi": null,
+   "posts": "Assistant Loco Pilot (ALP)",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://www.rrbcdg.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 14
+  },
+  {
+   "id": "ibps-clerk-2026",
+   "exam_slug": "ibps-clerk",
+   "body_slug": "ibps",
+   "title": "IBPS Clerk (CRP Clerical) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 6000,
+   "vacancy_note": null,
+   "age_min": 20,
+   "age_max": 28,
+   "age_relaxation_note": null,
+   "summary": "Common Recruitment Process for Clerical cadre in participating public-sector banks.",
+   "summary_hi": null,
+   "posts": "Clerk (Customer Service Associate)",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://www.ibps.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 15
+  },
+  {
+   "id": "ibps-rrb-2026",
+   "exam_slug": "ibps-rrb",
+   "body_slug": "ibps",
+   "title": "IBPS RRB (Officers & Office Assistant) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 9000,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 40,
+   "age_relaxation_note": null,
+   "summary": "Common Recruitment Process for Regional Rural Banks — Officer Scale I/II/III and Office Assistant.",
+   "summary_hi": null,
+   "posts": "Officer Scale I/II/III, Office Assistant (Multipurpose)",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://www.ibps.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 16
+  },
+  {
+   "id": "sbi-po-2026",
+   "exam_slug": "sbi-po",
+   "body_slug": "sbi",
+   "title": "SBI Probationary Officer 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 2000,
+   "vacancy_note": null,
+   "age_min": 21,
+   "age_max": 30,
+   "age_relaxation_note": null,
+   "summary": "Recruitment of Probationary Officers in State Bank of India.",
+   "summary_hi": null,
+   "posts": "Probationary Officer (PO)",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://sbi.co.in/web/careers",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 17
+  },
+  {
+   "id": "sbi-clerk-2026",
+   "exam_slug": "sbi-clerk",
+   "body_slug": "sbi",
+   "title": "SBI Clerk (Junior Associate) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 8000,
+   "vacancy_note": null,
+   "age_min": 20,
+   "age_max": 28,
+   "age_relaxation_note": null,
+   "summary": "Recruitment of Junior Associates (Customer Support & Sales) in State Bank of India.",
+   "summary_hi": null,
+   "posts": "Junior Associate (Clerk)",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://sbi.co.in/web/careers",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 18
+  },
+  {
+   "id": "rbi-grade-b-2026",
+   "exam_slug": "rbi-grade-b",
+   "body_slug": "rbi",
+   "title": "RBI Grade B Officer 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 90,
+   "vacancy_note": null,
+   "age_min": 21,
+   "age_max": 30,
+   "age_relaxation_note": null,
+   "summary": "Recruitment of Grade B Officers (General & specialist streams) in the Reserve Bank of India.",
+   "summary_hi": null,
+   "posts": "Manager (Grade B) — General, DEPR, DSIM",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://opportunities.rbi.org.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 19
+  },
+  {
+   "id": "ctet-2026",
+   "exam_slug": "ctet",
+   "body_slug": "cbse",
+   "title": "CTET (Central Teacher Eligibility Test) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 1,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 60,
+   "age_relaxation_note": null,
+   "summary": "Eligibility test for teacher posts (Classes I–VIII) in central government schools.",
+   "summary_hi": null,
+   "posts": "Primary (I–V) and Elementary (VI–VIII) teacher eligibility",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://ctet.nic.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 20
+  },
+  {
+   "id": "ugc-net-2026",
+   "exam_slug": "ugc-net",
+   "body_slug": "nta",
+   "title": "UGC-NET (Assistant Professor & JRF) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 1,
+   "vacancy_note": null,
+   "age_min": 18,
+   "age_max": 60,
+   "age_relaxation_note": null,
+   "summary": "National Eligibility Test for Assistant Professor and Junior Research Fellowship.",
+   "summary_hi": null,
+   "posts": "Assistant Professor eligibility, Junior Research Fellowship (JRF)",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://ugcnet.nta.ac.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 21
+  },
+  {
+   "id": "nda-2026",
+   "exam_slug": "nda",
+   "body_slug": "upsc",
+   "title": "UPSC NDA & NA 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 400,
+   "vacancy_note": null,
+   "age_min": 17,
+   "age_max": 20,
+   "age_relaxation_note": null,
+   "summary": "Admission to the National Defence Academy and Naval Academy (Army, Navy, Air Force wings).",
+   "summary_hi": null,
+   "posts": "Cadet — Army, Navy, Air Force, Naval Academy",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://upsc.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 22
+  },
+  {
+   "id": "cds-2026",
+   "exam_slug": "cds",
+   "body_slug": "upsc",
+   "title": "UPSC CDS (Combined Defence Services) 2026",
+   "title_hi": null,
+   "status": "upcoming",
+   "vacancy": 450,
+   "vacancy_note": null,
+   "age_min": 19,
+   "age_max": 25,
+   "age_relaxation_note": null,
+   "summary": "Recruitment to the Indian Military, Naval, Air Force Academy and Officers Training Academy.",
+   "summary_hi": null,
+   "posts": "Officer — IMA, INA, AFA, OTA",
+   "posts_hi": null,
+   "schedule_note": null,
+   "application_start": null,
+   "application_end": null,
+   "apply_url": "https://upsc.gov.in",
+   "views_14d": 0,
+   "views_alltime": 0,
+   "popularity_rank_14d": 23
+  }
+ ],
+ "stages": [
+  {
+   "id": 1,
+   "cycle_id": "ssc-cgl-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-06-28",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 2,
+   "cycle_id": "ssc-cgl-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-06-28",
+   "done": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 3,
+   "cycle_id": "ssc-cgl-2026",
+   "name": "Tier-1 Exam",
+   "name_hi": null,
+   "date": "2026-09-22",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 4,
+   "cycle_id": "ssc-cgl-2026",
+   "name": "Tier-2 Exam",
+   "name_hi": null,
+   "date": "2026-12-05",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 5,
+   "cycle_id": "ssc-cgl-2026",
+   "name": "DV / Doc",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 4
+  },
+  {
+   "id": 6,
+   "cycle_id": "ssc-cgl-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 5
+  },
+  {
+   "id": 7,
+   "cycle_id": "ssc-chsl-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-07-26",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 8,
+   "cycle_id": "ssc-chsl-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-07-26",
+   "done": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 9,
+   "cycle_id": "ssc-chsl-2026",
+   "name": "Tier-1 Exam",
+   "name_hi": null,
+   "date": "2026-10-15",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 10,
+   "cycle_id": "ssc-chsl-2026",
+   "name": "Tier-2 Exam",
+   "name_hi": null,
+   "date": "2027-01-10",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 11,
+   "cycle_id": "ssc-chsl-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 4
+  },
+  {
+   "id": 12,
+   "cycle_id": "ssc-mts-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-08-27",
+   "done": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 13,
+   "cycle_id": "ssc-mts-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-08-27",
+   "done": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 14,
+   "cycle_id": "ssc-mts-2026",
+   "name": "Exam",
+   "name_hi": null,
+   "date": "2026-11-10",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 15,
+   "cycle_id": "ssc-mts-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 3
+  },
+  {
+   "id": 16,
+   "cycle_id": "upsc-cse-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-05-09",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 17,
+   "cycle_id": "upsc-cse-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-06-08",
+   "done": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 18,
+   "cycle_id": "upsc-cse-2026",
+   "name": "Prelims",
+   "name_hi": null,
+   "date": "2026-08-16",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 19,
+   "cycle_id": "upsc-cse-2026",
+   "name": "Mains",
+   "name_hi": null,
+   "date": "2026-12-25",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 20,
+   "cycle_id": "upsc-cse-2026",
+   "name": "Interview",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 4
+  },
+  {
+   "id": 21,
+   "cycle_id": "upsc-cse-2026",
+   "name": "Final Result",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 5
+  },
+  {
+   "id": 22,
+   "cycle_id": "ibps-po-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-07-30",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 23,
+   "cycle_id": "ibps-po-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-07-30",
+   "done": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 24,
+   "cycle_id": "ibps-po-2026",
+   "name": "Prelims",
+   "name_hi": null,
+   "date": "2026-09-16",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 25,
+   "cycle_id": "ibps-po-2026",
+   "name": "Mains",
+   "name_hi": null,
+   "date": "2026-11-05",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 26,
+   "cycle_id": "ibps-po-2026",
+   "name": "Interview",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 4
+  },
+  {
+   "id": 27,
+   "cycle_id": "ibps-po-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 5
+  },
+  {
+   "id": 28,
+   "cycle_id": "rrb-ntpc-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-03-01",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 29,
+   "cycle_id": "rrb-ntpc-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-03-30",
+   "done": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 30,
+   "cycle_id": "rrb-ntpc-2026",
+   "name": "CBT-1",
+   "name_hi": null,
+   "date": "2026-07-08",
+   "done": true,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 31,
+   "cycle_id": "rrb-ntpc-2026",
+   "name": "CBT-2",
+   "name_hi": null,
+   "date": "2026-10-06",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 32,
+   "cycle_id": "rrb-ntpc-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 4
+  },
+  {
+   "id": 33,
+   "cycle_id": "mppsc-ss-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-07-23",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 34,
+   "cycle_id": "mppsc-ss-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-07-23",
+   "done": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 35,
+   "cycle_id": "mppsc-ss-2026",
+   "name": "Prelims",
+   "name_hi": null,
+   "date": "2026-10-01",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 36,
+   "cycle_id": "mppsc-ss-2026",
+   "name": "Mains",
+   "name_hi": null,
+   "date": "2027-01-15",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 37,
+   "cycle_id": "mppsc-ss-2026",
+   "name": "Interview",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 4
+  },
+  {
+   "id": 38,
+   "cycle_id": "uppsc-pcs-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-06-25",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 39,
+   "cycle_id": "uppsc-pcs-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-06-25",
+   "done": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 40,
+   "cycle_id": "uppsc-pcs-2026",
+   "name": "Prelims",
+   "name_hi": null,
+   "date": "2026-12-06",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 41,
+   "cycle_id": "uppsc-pcs-2026",
+   "name": "Mains",
+   "name_hi": null,
+   "date": "2027-05-23",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 42,
+   "cycle_id": "uppsc-pcs-2026",
+   "name": "Interview",
+   "name_hi": null,
+   "date": "2027-09-15",
+   "done": false,
+   "precision": "day",
+   "sort_order": 4
+  },
+  {
+   "id": 43,
+   "cycle_id": "uppsc-pcs-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": "2027-10-30",
+   "done": false,
+   "precision": "day",
+   "sort_order": 5
+  },
+  {
+   "id": 44,
+   "cycle_id": "bpsc-cce-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-06-02",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 45,
+   "cycle_id": "bpsc-cce-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-06-10",
+   "done": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 46,
+   "cycle_id": "bpsc-cce-2026",
+   "name": "Prelims",
+   "name_hi": null,
+   "date": "2026-09-13",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 47,
+   "cycle_id": "bpsc-cce-2026",
+   "name": "Mains",
+   "name_hi": null,
+   "date": "2027-01-10",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 48,
+   "cycle_id": "bpsc-cce-2026",
+   "name": "Interview",
+   "name_hi": null,
+   "date": "2027-06-20",
+   "done": false,
+   "precision": "day",
+   "sort_order": 4
+  },
+  {
+   "id": 49,
+   "cycle_id": "bpsc-cce-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": "2027-07-30",
+   "done": false,
+   "precision": "day",
+   "sort_order": 5
+  },
+  {
+   "id": 50,
+   "cycle_id": "rpsc-ras-2026",
+   "name": "Notification",
+   "name_hi": null,
+   "date": "2026-05-27",
+   "done": true,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 51,
+   "cycle_id": "rpsc-ras-2026",
+   "name": "Apply Online",
+   "name_hi": null,
+   "date": "2026-06-04",
+   "done": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 52,
+   "cycle_id": "rpsc-ras-2026",
+   "name": "Prelims",
+   "name_hi": null,
+   "date": "2026-12-06",
+   "done": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 53,
+   "cycle_id": "rpsc-ras-2026",
+   "name": "Mains",
+   "name_hi": null,
+   "date": "2027-05-01",
+   "done": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 54,
+   "cycle_id": "rpsc-ras-2026",
+   "name": "Interview",
+   "name_hi": null,
+   "date": null,
+   "done": false,
+   "precision": "tentative",
+   "sort_order": 4
+  },
+  {
+   "id": 55,
+   "cycle_id": "rpsc-ras-2026",
+   "name": "Result",
+   "name_hi": null,
+   "date": "2027-09-30",
+   "done": false,
+   "precision": "day",
+   "sort_order": 5
+  }
+ ],
+ "key_dates": [
+  {
+   "id": 1,
+   "cycle_id": "ssc-cgl-2026",
+   "label": "Application Start",
+   "label_hi": null,
+   "date": "2026-06-28",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 2,
+   "cycle_id": "ssc-cgl-2026",
+   "label": "Last Date to Apply",
+   "label_hi": null,
+   "date": "2026-08-19",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 3,
+   "cycle_id": "ssc-cgl-2026",
+   "label": "Last Date to Pay Fee",
+   "label_hi": null,
+   "date": "2026-08-20",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 4,
+   "cycle_id": "ssc-cgl-2026",
+   "label": "Tier-1 Exam",
+   "label_hi": null,
+   "date": "2026-09-22",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 5,
+   "cycle_id": "ssc-chsl-2026",
+   "label": "Application Start",
+   "label_hi": null,
+   "date": "2026-07-26",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 6,
+   "cycle_id": "ssc-chsl-2026",
+   "label": "Last Date to Apply",
+   "label_hi": null,
+   "date": "2026-08-25",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 7,
+   "cycle_id": "ssc-chsl-2026",
+   "label": "Tier-1 Exam",
+   "label_hi": null,
+   "date": "2026-10-15",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 8,
+   "cycle_id": "ssc-mts-2026",
+   "label": "Notification (expected)",
+   "label_hi": null,
+   "date": "2026-08-27",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 9,
+   "cycle_id": "ssc-mts-2026",
+   "label": "Exam (tentative)",
+   "label_hi": null,
+   "date": "2026-11-10",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 10,
+   "cycle_id": "upsc-cse-2026",
+   "label": "Admit Card Released",
+   "label_hi": null,
+   "date": "2026-08-04",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 11,
+   "cycle_id": "upsc-cse-2026",
+   "label": "Prelims Exam",
+   "label_hi": null,
+   "date": "2026-08-16",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 12,
+   "cycle_id": "upsc-cse-2026",
+   "label": "Mains Exam (tentative)",
+   "label_hi": null,
+   "date": "2026-12-25",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 13,
+   "cycle_id": "ibps-po-2026",
+   "label": "Application Start",
+   "label_hi": null,
+   "date": "2026-07-30",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 14,
+   "cycle_id": "ibps-po-2026",
+   "label": "Last Date to Apply",
+   "label_hi": null,
+   "date": "2026-08-18",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 15,
+   "cycle_id": "ibps-po-2026",
+   "label": "Prelims Exam",
+   "label_hi": null,
+   "date": "2026-09-16",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 16,
+   "cycle_id": "rrb-ntpc-2026",
+   "label": "CBT-1 Result (awaited)",
+   "label_hi": null,
+   "date": "2026-08-21",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 17,
+   "cycle_id": "rrb-ntpc-2026",
+   "label": "CBT-2 (tentative)",
+   "label_hi": null,
+   "date": "2026-10-06",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 18,
+   "cycle_id": "mppsc-ss-2026",
+   "label": "Application Start",
+   "label_hi": null,
+   "date": "2026-07-23",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 19,
+   "cycle_id": "mppsc-ss-2026",
+   "label": "Last Date to Apply",
+   "label_hi": null,
+   "date": "2026-08-16",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 20,
+   "cycle_id": "mppsc-ss-2026",
+   "label": "Prelims Exam",
+   "label_hi": null,
+   "date": "2026-10-01",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 21,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Notification",
+   "label_hi": null,
+   "date": "2026-06-25",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 22,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Application Start",
+   "label_hi": null,
+   "date": "2026-06-25",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 23,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Last Date to Apply",
+   "label_hi": null,
+   "date": "2026-08-03",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 24,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Last Date to Pay Fee",
+   "label_hi": null,
+   "date": "2026-08-03",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 25,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Prelims Admit Card",
+   "label_hi": null,
+   "date": "2026-11-27",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 4
+  },
+  {
+   "id": 26,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Prelims Exam",
+   "label_hi": null,
+   "date": "2026-12-06",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 5
+  },
+  {
+   "id": 27,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Prelims Result",
+   "label_hi": null,
+   "date": "2027-01-15",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 6
+  },
+  {
+   "id": 28,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Mains Exam",
+   "label_hi": null,
+   "date": "2027-05-23",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 7
+  },
+  {
+   "id": 29,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Interview / Personality Test",
+   "label_hi": null,
+   "date": "2027-09-15",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 8
+  },
+  {
+   "id": 30,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Final Result",
+   "label_hi": null,
+   "date": "2027-10-30",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 9
+  },
+  {
+   "id": 31,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Notification",
+   "label_hi": null,
+   "date": "2026-06-02",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 32,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Application Start",
+   "label_hi": null,
+   "date": "2026-06-10",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 33,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Last Date to Apply",
+   "label_hi": null,
+   "date": "2026-07-08",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 34,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Prelims Exam",
+   "label_hi": null,
+   "date": "2026-09-13",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 35,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Prelims Result",
+   "label_hi": null,
+   "date": "2026-11-20",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 4
+  },
+  {
+   "id": 36,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Mains Exam",
+   "label_hi": null,
+   "date": "2027-01-10",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 5
+  },
+  {
+   "id": 37,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Interview / Personality Test",
+   "label_hi": null,
+   "date": "2027-06-20",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 6
+  },
+  {
+   "id": 38,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Final Result",
+   "label_hi": null,
+   "date": "2027-07-30",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 7
+  },
+  {
+   "id": 39,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Notification",
+   "label_hi": null,
+   "date": "2026-05-27",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 0
+  },
+  {
+   "id": 40,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Application Start",
+   "label_hi": null,
+   "date": "2026-06-04",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 1
+  },
+  {
+   "id": 41,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Last Date to Apply",
+   "label_hi": null,
+   "date": "2026-07-03",
+   "is_deadline": true,
+   "precision": "day",
+   "sort_order": 2
+  },
+  {
+   "id": 42,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Prelims Admit Card",
+   "label_hi": null,
+   "date": "2026-11-28",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 3
+  },
+  {
+   "id": 43,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Prelims Exam",
+   "label_hi": null,
+   "date": "2026-12-06",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 4
+  },
+  {
+   "id": 44,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Prelims Result",
+   "label_hi": null,
+   "date": "2027-01-22",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 5
+  },
+  {
+   "id": 45,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Mains Exam",
+   "label_hi": null,
+   "date": "2027-05-01",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 6
+  },
+  {
+   "id": 46,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Final Result",
+   "label_hi": null,
+   "date": "2027-09-30",
+   "is_deadline": false,
+   "precision": "day",
+   "sort_order": 7
+  }
+ ],
+ "cutoffs": [
+  {
+   "id": 1,
+   "cycle_id": "ssc-cgl-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 158.9,
+   "sort_order": 0
+  },
+  {
+   "id": 2,
+   "cycle_id": "ssc-cgl-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 154.2,
+   "sort_order": 1
+  },
+  {
+   "id": 3,
+   "cycle_id": "ssc-cgl-2026",
+   "category": "SC",
+   "phase": null,
+   "marks": 140.1,
+   "sort_order": 2
+  },
+  {
+   "id": 4,
+   "cycle_id": "ssc-cgl-2026",
+   "category": "ST",
+   "phase": null,
+   "marks": 132.6,
+   "sort_order": 3
+  },
+  {
+   "id": 5,
+   "cycle_id": "ssc-chsl-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 151.2,
+   "sort_order": 0
+  },
+  {
+   "id": 6,
+   "cycle_id": "ssc-chsl-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 148,
+   "sort_order": 1
+  },
+  {
+   "id": 7,
+   "cycle_id": "ssc-chsl-2026",
+   "category": "SC",
+   "phase": null,
+   "marks": 135.4,
+   "sort_order": 2
+  },
+  {
+   "id": 8,
+   "cycle_id": "ssc-mts-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 79.5,
+   "sort_order": 0
+  },
+  {
+   "id": 9,
+   "cycle_id": "ssc-mts-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 76.2,
+   "sort_order": 1
+  },
+  {
+   "id": 10,
+   "cycle_id": "upsc-cse-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 88,
+   "sort_order": 0
+  },
+  {
+   "id": 11,
+   "cycle_id": "upsc-cse-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 85.9,
+   "sort_order": 1
+  },
+  {
+   "id": 12,
+   "cycle_id": "upsc-cse-2026",
+   "category": "SC",
+   "phase": null,
+   "marks": 84.2,
+   "sort_order": 2
+  },
+  {
+   "id": 13,
+   "cycle_id": "upsc-cse-2026",
+   "category": "ST",
+   "phase": null,
+   "marks": 83.5,
+   "sort_order": 3
+  },
+  {
+   "id": 14,
+   "cycle_id": "ibps-po-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 74.5,
+   "sort_order": 0
+  },
+  {
+   "id": 15,
+   "cycle_id": "ibps-po-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 71.2,
+   "sort_order": 1
+  },
+  {
+   "id": 16,
+   "cycle_id": "ibps-po-2026",
+   "category": "SC",
+   "phase": null,
+   "marks": 63,
+   "sort_order": 2
+  },
+  {
+   "id": 17,
+   "cycle_id": "rrb-ntpc-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 77.4,
+   "sort_order": 0
+  },
+  {
+   "id": 18,
+   "cycle_id": "rrb-ntpc-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 73.1,
+   "sort_order": 1
+  },
+  {
+   "id": 19,
+   "cycle_id": "mppsc-ss-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 145,
+   "sort_order": 0
+  },
+  {
+   "id": 20,
+   "cycle_id": "mppsc-ss-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 139,
+   "sort_order": 1
+  },
+  {
+   "id": 21,
+   "cycle_id": "uppsc-pcs-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 125,
+   "sort_order": 0
+  },
+  {
+   "id": 22,
+   "cycle_id": "uppsc-pcs-2026",
+   "category": "EWS",
+   "phase": null,
+   "marks": 129,
+   "sort_order": 1
+  },
+  {
+   "id": 23,
+   "cycle_id": "uppsc-pcs-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 128,
+   "sort_order": 2
+  },
+  {
+   "id": 24,
+   "cycle_id": "uppsc-pcs-2026",
+   "category": "SC",
+   "phase": null,
+   "marks": 112,
+   "sort_order": 3
+  },
+  {
+   "id": 25,
+   "cycle_id": "uppsc-pcs-2026",
+   "category": "ST",
+   "phase": null,
+   "marks": 109,
+   "sort_order": 4
+  },
+  {
+   "id": 26,
+   "cycle_id": "bpsc-cce-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 99.5,
+   "sort_order": 0
+  },
+  {
+   "id": 27,
+   "cycle_id": "bpsc-cce-2026",
+   "category": "EWS",
+   "phase": null,
+   "marks": 96.25,
+   "sort_order": 1
+  },
+  {
+   "id": 28,
+   "cycle_id": "bpsc-cce-2026",
+   "category": "BC",
+   "phase": null,
+   "marks": 97.75,
+   "sort_order": 2
+  },
+  {
+   "id": 29,
+   "cycle_id": "bpsc-cce-2026",
+   "category": "EBC",
+   "phase": null,
+   "marks": 95.5,
+   "sort_order": 3
+  },
+  {
+   "id": 30,
+   "cycle_id": "bpsc-cce-2026",
+   "category": "SC",
+   "phase": null,
+   "marks": 90.25,
+   "sort_order": 4
+  },
+  {
+   "id": 31,
+   "cycle_id": "bpsc-cce-2026",
+   "category": "ST",
+   "phase": null,
+   "marks": 89.5,
+   "sort_order": 5
+  },
+  {
+   "id": 32,
+   "cycle_id": "rpsc-ras-2026",
+   "category": "UR",
+   "phase": null,
+   "marks": 71.59,
+   "sort_order": 0
+  },
+  {
+   "id": 33,
+   "cycle_id": "rpsc-ras-2026",
+   "category": "EWS",
+   "phase": null,
+   "marks": 71.59,
+   "sort_order": 1
+  },
+  {
+   "id": 34,
+   "cycle_id": "rpsc-ras-2026",
+   "category": "OBC",
+   "phase": null,
+   "marks": 71.59,
+   "sort_order": 2
+  },
+  {
+   "id": 35,
+   "cycle_id": "rpsc-ras-2026",
+   "category": "MBC",
+   "phase": null,
+   "marks": 71.59,
+   "sort_order": 3
+  },
+  {
+   "id": 36,
+   "cycle_id": "rpsc-ras-2026",
+   "category": "SC",
+   "phase": null,
+   "marks": 63.98,
+   "sort_order": 4
+  },
+  {
+   "id": 37,
+   "cycle_id": "rpsc-ras-2026",
+   "category": "ST",
+   "phase": null,
+   "marks": 67.56,
+   "sort_order": 5
+  }
+ ],
+ "cycle_links": [
+  {
+   "id": 1,
+   "cycle_id": "ssc-cgl-2026",
+   "label": "Official Notification (PDF)",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 2,
+   "cycle_id": "ssc-cgl-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 3,
+   "cycle_id": "ssc-cgl-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 4,
+   "cycle_id": "ssc-chsl-2026",
+   "label": "Official Notification (PDF)",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 5,
+   "cycle_id": "ssc-chsl-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 6,
+   "cycle_id": "ssc-mts-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 7,
+   "cycle_id": "upsc-cse-2026",
+   "label": "e-Admit Card",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "other",
+   "verified": true
+  },
+  {
+   "id": 8,
+   "cycle_id": "upsc-cse-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 9,
+   "cycle_id": "ibps-po-2026",
+   "label": "Official Notification (PDF)",
+   "label_hi": null,
+   "url": "https://ibps.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 10,
+   "cycle_id": "ibps-po-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://ibps.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 11,
+   "cycle_id": "rrb-ntpc-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://indianrailways.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 12,
+   "cycle_id": "mppsc-ss-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://mppsc.mp.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 13,
+   "cycle_id": "mppsc-ss-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://mponline.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 14,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://uppsc.up.nic.in/",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 15,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://uppsc.up.nic.in/CandidatePages/Notifications.aspx",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 16,
+   "cycle_id": "uppsc-pcs-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://otr.pariksha.nic.in/",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 17,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://bpsc.bihar.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 18,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://onlinebpsc.bihar.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 19,
+   "cycle_id": "bpsc-cce-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://bpsc.bihar.gov.in/Notices",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 20,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://rpsc.rajasthan.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 21,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://rpsc.rajasthan.gov.in/advertisements",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 22,
+   "cycle_id": "rpsc-ras-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://sso.rajasthan.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 23,
+   "cycle_id": "ssc-gd-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 24,
+   "cycle_id": "ssc-gd-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 25,
+   "cycle_id": "ssc-gd-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 26,
+   "cycle_id": "ssc-steno-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 27,
+   "cycle_id": "ssc-steno-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 28,
+   "cycle_id": "ssc-steno-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://ssc.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 29,
+   "cycle_id": "rrb-group-d-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://www.rrbcdg.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 30,
+   "cycle_id": "rrb-group-d-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://www.rrbcdg.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 31,
+   "cycle_id": "rrb-group-d-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://www.rrbcdg.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 32,
+   "cycle_id": "rrb-alp-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://www.rrbcdg.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 33,
+   "cycle_id": "rrb-alp-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://www.rrbcdg.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 34,
+   "cycle_id": "rrb-alp-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://www.rrbcdg.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 35,
+   "cycle_id": "ibps-clerk-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://www.ibps.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 36,
+   "cycle_id": "ibps-clerk-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://www.ibps.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 37,
+   "cycle_id": "ibps-clerk-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://www.ibps.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 38,
+   "cycle_id": "ibps-rrb-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://www.ibps.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 39,
+   "cycle_id": "ibps-rrb-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://www.ibps.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 40,
+   "cycle_id": "ibps-rrb-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://www.ibps.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 41,
+   "cycle_id": "sbi-po-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://sbi.co.in/web/careers",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 42,
+   "cycle_id": "sbi-po-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://sbi.co.in/web/careers",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 43,
+   "cycle_id": "sbi-po-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://sbi.co.in/web/careers",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 44,
+   "cycle_id": "sbi-clerk-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://sbi.co.in/web/careers",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 45,
+   "cycle_id": "sbi-clerk-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://sbi.co.in/web/careers",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 46,
+   "cycle_id": "sbi-clerk-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://sbi.co.in/web/careers",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 47,
+   "cycle_id": "rbi-grade-b-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://opportunities.rbi.org.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 48,
+   "cycle_id": "rbi-grade-b-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://opportunities.rbi.org.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 49,
+   "cycle_id": "rbi-grade-b-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://opportunities.rbi.org.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 50,
+   "cycle_id": "ctet-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://ctet.nic.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 51,
+   "cycle_id": "ctet-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://ctet.nic.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 52,
+   "cycle_id": "ctet-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://ctet.nic.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 53,
+   "cycle_id": "ugc-net-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://ugcnet.nta.ac.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 54,
+   "cycle_id": "ugc-net-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://ugcnet.nta.ac.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 55,
+   "cycle_id": "ugc-net-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://ugcnet.nta.ac.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 56,
+   "cycle_id": "nda-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 57,
+   "cycle_id": "nda-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 58,
+   "cycle_id": "nda-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "website",
+   "verified": true
+  },
+  {
+   "id": 59,
+   "cycle_id": "cds-2026",
+   "label": "Official Notification",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "notification",
+   "verified": true
+  },
+  {
+   "id": 60,
+   "cycle_id": "cds-2026",
+   "label": "Apply Online",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "apply",
+   "verified": true
+  },
+  {
+   "id": 61,
+   "cycle_id": "cds-2026",
+   "label": "Official Website",
+   "label_hi": null,
+   "url": "https://upsc.gov.in",
+   "kind": "website",
+   "verified": true
+  }
+ ],
+ "updates": [
+  {
+   "id": 1,
+   "cycle_id": "ssc-cgl-2026",
+   "text": "Last date to apply extended to 19 Aug 2026",
+   "text_hi": null,
+   "kind": "date_change",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-15T09:22:57.209Z",
+   "verified_at": "2026-08-15T09:22:57.209Z"
+  },
+  {
+   "id": 2,
+   "cycle_id": "ssc-cgl-2026",
+   "text": "Tier-1 exam city details to be released soon",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-14T11:22:57.209Z",
+   "verified_at": "2026-08-14T11:22:57.209Z"
+  },
+  {
+   "id": 3,
+   "cycle_id": "ssc-chsl-2026",
+   "text": "SSC CHSL 2026 notification released — 3,712 vacancies",
+   "text_hi": null,
+   "kind": "notification",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-03T11:22:57.209Z",
+   "verified_at": "2026-08-03T11:22:57.209Z"
+  },
+  {
+   "id": 4,
+   "cycle_id": "ssc-mts-2026",
+   "text": "SSC MTS 2026 expected to be notified this month",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  },
+  {
+   "id": 5,
+   "cycle_id": "upsc-cse-2026",
+   "text": "Prelims admit card released — download now",
+   "text_hi": null,
+   "kind": "admit_card",
+   "tab_link": "admit_card",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  },
+  {
+   "id": 6,
+   "cycle_id": "ibps-po-2026",
+   "text": "IBPS PO 2026 registration is now open — 4,455 posts",
+   "text_hi": null,
+   "kind": "notification",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-07T11:22:57.209Z",
+   "verified_at": "2026-08-07T11:22:57.209Z"
+  },
+  {
+   "id": 7,
+   "cycle_id": "rrb-ntpc-2026",
+   "text": "CBT-1 result expected within two weeks",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-10T11:22:57.209Z",
+   "verified_at": "2026-08-10T11:22:57.209Z"
+  },
+  {
+   "id": 8,
+   "cycle_id": "mppsc-ss-2026",
+   "text": "MPPSC State Service 2026 applications open — 158 posts",
+   "text_hi": null,
+   "kind": "notification",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-07-31T11:22:57.209Z",
+   "verified_at": "2026-07-31T11:22:57.209Z"
+  },
+  {
+   "id": 9,
+   "cycle_id": "uppsc-pcs-2026",
+   "text": "PCS 2026 last date to apply extended to 3 August 2026; application correction/modification window open till 10 August 2026",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  },
+  {
+   "id": 10,
+   "cycle_id": "uppsc-pcs-2026",
+   "text": "UPPSC releases PCS 2026 notification for around 500 vacancies; online applications open via OTR, Prelims scheduled for 6 December 2026",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  },
+  {
+   "id": 11,
+   "cycle_id": "bpsc-cce-2026",
+   "text": "BPSC has announced that admit cards for the 72nd CCE Prelims will be released in the first week of September 2026 on onlinebpsc.bihar.gov.in; the Prelims is scheduled for 2026-09-13 in a single shift across districts of Bihar.",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  },
+  {
+   "id": 12,
+   "cycle_id": "bpsc-cce-2026",
+   "text": "Online applications for the 72nd BPSC CCE closed on 2026-07-08 with approximately 4.8 lakh registrations against about 1,250 advertised posts, including SDM (Bihar Administrative Service) and DSP (Bihar Police Service) vacancies.",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  },
+  {
+   "id": 13,
+   "cycle_id": "rpsc-ras-2026",
+   "text": "Online applications for RAS 2026 closed on 2026-07-03 on the SSO portal. The Prelims is scheduled for 2026-12-06; admit cards are typically released on the RPSC portal about a week before the exam.",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  },
+  {
+   "id": 14,
+   "cycle_id": "rpsc-ras-2026",
+   "text": "RPSC releases the RAS/RTS Combined Competitive Exam 2026 notification for 607 posts (192 State Services, 415 Subordinate Services); online applications open 2026-06-04 on the SSO portal with 2026-07-03 as the last date. One Time Registration (OTR) on the Rajasthan SSO portal is mandatory before applying.",
+   "text_hi": null,
+   "kind": "info",
+   "tab_link": "overview",
+   "status": "manual_verified",
+   "source_type": "official",
+   "source_ref": null,
+   "published_at": "2026-08-12T11:22:57.209Z",
+   "verified_at": "2026-08-12T11:22:57.209Z"
+  }
+ ],
+ "vacancy_history": [
+  {
+   "id": 1,
+   "exam_slug": "ssc-cgl",
+   "year": 2022,
+   "seats": 20000
+  },
+  {
+   "id": 2,
+   "exam_slug": "ssc-cgl",
+   "year": 2023,
+   "seats": 7500
+  },
+  {
+   "id": 3,
+   "exam_slug": "ssc-cgl",
+   "year": 2024,
+   "seats": 17727
+  },
+  {
+   "id": 4,
+   "exam_slug": "ssc-cgl",
+   "year": 2025,
+   "seats": 14582
+  },
+  {
+   "id": 5,
+   "exam_slug": "ssc-cgl",
+   "year": 2026,
+   "seats": 17727
+  },
+  {
+   "id": 6,
+   "exam_slug": "ssc-chsl",
+   "year": 2023,
+   "seats": 1600
+  },
+  {
+   "id": 7,
+   "exam_slug": "ssc-chsl",
+   "year": 2024,
+   "seats": 3712
+  },
+  {
+   "id": 8,
+   "exam_slug": "ssc-chsl",
+   "year": 2025,
+   "seats": 2049
+  },
+  {
+   "id": 9,
+   "exam_slug": "ssc-chsl",
+   "year": 2026,
+   "seats": 3712
+  },
+  {
+   "id": 10,
+   "exam_slug": "ssc-mts",
+   "year": 2023,
+   "seats": 1558
+  },
+  {
+   "id": 11,
+   "exam_slug": "ssc-mts",
+   "year": 2024,
+   "seats": 9583
+  },
+  {
+   "id": 12,
+   "exam_slug": "ssc-mts",
+   "year": 2025,
+   "seats": 8000
+  },
+  {
+   "id": 13,
+   "exam_slug": "ssc-mts",
+   "year": 2026,
+   "seats": 8000
+  },
+  {
+   "id": 14,
+   "exam_slug": "upsc-cse",
+   "year": 2022,
+   "seats": 1011
+  },
+  {
+   "id": 15,
+   "exam_slug": "upsc-cse",
+   "year": 2023,
+   "seats": 1105
+  },
+  {
+   "id": 16,
+   "exam_slug": "upsc-cse",
+   "year": 2024,
+   "seats": 1056
+  },
+  {
+   "id": 17,
+   "exam_slug": "upsc-cse",
+   "year": 2025,
+   "seats": 979
+  },
+  {
+   "id": 18,
+   "exam_slug": "upsc-cse",
+   "year": 2026,
+   "seats": 979
+  },
+  {
+   "id": 19,
+   "exam_slug": "ibps-po",
+   "year": 2023,
+   "seats": 3049
+  },
+  {
+   "id": 20,
+   "exam_slug": "ibps-po",
+   "year": 2024,
+   "seats": 4455
+  },
+  {
+   "id": 21,
+   "exam_slug": "ibps-po",
+   "year": 2025,
+   "seats": 3955
+  },
+  {
+   "id": 22,
+   "exam_slug": "ibps-po",
+   "year": 2026,
+   "seats": 4455
+  },
+  {
+   "id": 23,
+   "exam_slug": "rrb-ntpc",
+   "year": 2021,
+   "seats": 35281
+  },
+  {
+   "id": 24,
+   "exam_slug": "rrb-ntpc",
+   "year": 2024,
+   "seats": 11558
+  },
+  {
+   "id": 25,
+   "exam_slug": "rrb-ntpc",
+   "year": 2025,
+   "seats": 8113
+  },
+  {
+   "id": 26,
+   "exam_slug": "rrb-ntpc",
+   "year": 2026,
+   "seats": 11558
+  },
+  {
+   "id": 27,
+   "exam_slug": "mppsc-ss",
+   "year": 2023,
+   "seats": 227
+  },
+  {
+   "id": 28,
+   "exam_slug": "mppsc-ss",
+   "year": 2024,
+   "seats": 110
+  },
+  {
+   "id": 29,
+   "exam_slug": "mppsc-ss",
+   "year": 2025,
+   "seats": 158
+  },
+  {
+   "id": 30,
+   "exam_slug": "mppsc-ss",
+   "year": 2026,
+   "seats": 158
+  },
+  {
+   "id": 31,
+   "exam_slug": "uppsc-pcs",
+   "year": 2023,
+   "seats": 253
+  },
+  {
+   "id": 32,
+   "exam_slug": "uppsc-pcs",
+   "year": 2024,
+   "seats": 947
+  },
+  {
+   "id": 33,
+   "exam_slug": "uppsc-pcs",
+   "year": 2025,
+   "seats": 920
+  },
+  {
+   "id": 34,
+   "exam_slug": "uppsc-pcs",
+   "year": 2026,
+   "seats": 500
+  },
+  {
+   "id": 35,
+   "exam_slug": "bpsc-cce",
+   "year": 2023,
+   "seats": 475
+  },
+  {
+   "id": 36,
+   "exam_slug": "bpsc-cce",
+   "year": 2024,
+   "seats": 2035
+  },
+  {
+   "id": 37,
+   "exam_slug": "bpsc-cce",
+   "year": 2025,
+   "seats": 1298
+  },
+  {
+   "id": 38,
+   "exam_slug": "bpsc-cce",
+   "year": 2026,
+   "seats": 1250
+  },
+  {
+   "id": 39,
+   "exam_slug": "rpsc-ras",
+   "year": 2023,
+   "seats": 972
+  },
+  {
+   "id": 40,
+   "exam_slug": "rpsc-ras",
+   "year": 2024,
+   "seats": 733
+  },
+  {
+   "id": 41,
+   "exam_slug": "rpsc-ras",
+   "year": 2026,
+   "seats": 607
+  }
+ ]
+}

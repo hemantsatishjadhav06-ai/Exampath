@@ -1,6 +1,7 @@
 // Server-side data access. Every function tolerates a missing Supabase config
 // (returns empty data) so the app renders empty states — never mock data.
 import { supabase } from "@/lib/supabase/client";
+import { seed, seedActive } from "@/lib/seed";
 import type {
   Body, CategoryRow, Cutoff, Cycle, CycleLink, Exam, KeyDate, Stage, StateRow, Update, VacancyYear,
 } from "@/lib/types";
@@ -8,32 +9,32 @@ import type {
 const empty = <T,>(): T[] => [];
 
 export async function getBodies(): Promise<Body[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.bodies();
   const { data } = await supabase.from("bodies").select("*")
     .order("popularity_rank", { ascending: true, nullsFirst: false });
   return (data as Body[]) ?? [];
 }
 
 export async function getBody(slug: string): Promise<Body | null> {
-  if (!supabase) return null;
+  if (seedActive() || !supabase) return seed.body(slug);
   const { data } = await supabase.from("bodies").select("*").eq("slug", slug).maybeSingle();
   return (data as Body) ?? null;
 }
 
 export async function getStates(): Promise<StateRow[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.states();
   const { data } = await supabase.from("states").select("*").order("sort_order");
   return (data as StateRow[]) ?? [];
 }
 
 export async function getCategories(): Promise<CategoryRow[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.categories();
   const { data } = await supabase.from("categories").select("*").order("sort_order");
   return (data as CategoryRow[]) ?? [];
 }
 
 export async function getExam(slug: string): Promise<Exam | null> {
-  if (!supabase) return null;
+  if (seedActive() || !supabase) return seed.exam(slug);
   const { data } = await supabase.from("exams").select("*").eq("slug", slug).maybeSingle();
   return (data as Exam) ?? null;
 }
@@ -42,7 +43,7 @@ export async function getExam(slug: string): Promise<Exam | null> {
 export async function getCycles(filter?: {
   body?: string; exam?: string; qualification?: string; category?: string; state?: string;
 }): Promise<Cycle[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.cycles(filter);
   let q = supabase.from("cycle_application_state").select("*");
   if (filter?.body) q = q.eq("body_slug", filter.body);
   if (filter?.exam) q = q.eq("exam_slug", filter.exam);
@@ -69,19 +70,20 @@ export async function getCycles(filter?: {
 }
 
 export async function getCycle(id: string): Promise<Cycle | null> {
-  if (!supabase) return null;
+  if (seedActive() || !supabase) return seed.cycle(id);
   const { data } = await supabase.from("cycle_application_state").select("*").eq("id", id).maybeSingle();
   return (data as Cycle) ?? null;
 }
 
 export async function getPopularCycles(limit = 9): Promise<Cycle[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.popular(limit);
   const { data } = await supabase.from("cycle_application_state").select("*")
     .order("popularity_rank_14d", { ascending: true, nullsFirst: false }).limit(limit);
   return (data as Cycle[]) ?? [];
 }
 
 export async function getCycleChildren(cycleId: string) {
+  if (seedActive() || !supabase) return seed.children(cycleId);
   if (!supabase) return { stages: [] as Stage[], keyDates: [] as KeyDate[], cutoffs: [] as Cutoff[], links: [] as CycleLink[], updates: [] as Update[] };
   const [stages, keyDates, cutoffs, links, updates] = await Promise.all([
     supabase.from("stages").select("*").eq("cycle_id", cycleId).order("sort_order"),
@@ -100,7 +102,7 @@ export async function getCycleChildren(cycleId: string) {
 }
 
 export async function getVisibleUpdates(limit = 45): Promise<(Update & { cycle?: Cycle })[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.visibleUpdates(limit);
   const { data } = await supabase.from("visible_updates").select("*").limit(limit);
   const ups = (data as Update[]) ?? [];
   const ids = Array.from(new Set(ups.map((u) => u.cycle_id)));
@@ -111,7 +113,7 @@ export async function getVisibleUpdates(limit = 45): Promise<(Update & { cycle?:
 }
 
 export async function getKeyDatesForMonth(year: number, month1: number): Promise<(KeyDate & { cycle?: Cycle })[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.keyDatesForMonth(year, month1);
   const from = `${year}-${String(month1).padStart(2, "0")}-01`;
   const to = month1 === 12 ? `${year + 1}-01-01` : `${year}-${String(month1 + 1).padStart(2, "0")}-01`;
   const { data } = await supabase.from("key_dates").select("*").gte("date", from).lt("date", to).order("date");
@@ -124,7 +126,7 @@ export async function getKeyDatesForMonth(year: number, month1: number): Promise
 }
 
 export async function getVacancyHistory(examSlug: string): Promise<VacancyYear[]> {
-  if (!supabase) return empty();
+  if (seedActive() || !supabase) return seed.vacancyHistory(examSlug);
   const { data } = await supabase.from("vacancy_history").select("*").eq("exam_slug", examSlug).order("year");
   return (data as VacancyYear[]) ?? [];
 }
