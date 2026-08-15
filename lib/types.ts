@@ -47,4 +47,4 @@ export interface Paper {
   kind: "syllabus" | "answer_key" | "result" | "notice";
 }
 export interface PracticeQuestion { q: string; options: string[]; answer: number; why: string; topic?: string }
-export interface PracticeSet { id: number; title: string; exam_slug: string; subject: string; negative_mark?: number; questions: PracticeQuestion[] }
+export interface PracticeSet { id: number; title: string; exam_slug: string; subject: string; negative_mark?: number; draw?: number; questions: PracticeQuestion[] }

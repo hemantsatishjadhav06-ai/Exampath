@@ -125,9 +125,58 @@
      "answer": 2,
      "why": "LCM(12,18,24) = 72.",
      "topic": "LCM & HCF"
+    },
+    {
+     "q": "Compound interest on ₹10,000 at 10% p.a. for 2 years is:",
+     "options": [
+      "₹2,000",
+      "₹2,100",
+      "₹2,200",
+      "₹1,900"
+     ],
+     "answer": 1,
+     "why": "10000×1.1²=12100 → CI = ₹2,100.",
+     "topic": "Compound Interest"
+    },
+    {
+     "q": "The area of a circle with radius 7 cm is (π = 22/7):",
+     "options": [
+      "144 cm²",
+      "154 cm²",
+      "164 cm²",
+      "148 cm²"
+     ],
+     "answer": 1,
+     "why": "πr² = 22/7 × 49 = 154.",
+     "topic": "Mensuration"
+    },
+    {
+     "q": "A number divided by 5 leaves remainder 3; the same number divided by 4 leaves remainder 2. Smallest such number:",
+     "options": [
+      "18",
+      "23",
+      "13",
+      "38"
+     ],
+     "answer": 0,
+     "why": "18: 18÷5 r3, 18÷4 r2.",
+     "topic": "Number System"
+    },
+    {
+     "q": "If 3x − 7 = 14, then 6x + 5 = ?",
+     "options": [
+      "42",
+      "47",
+      "44",
+      "49"
+     ],
+     "answer": 1,
+     "why": "x=7 → 6×7+5 = 47.",
+     "topic": "Algebraic Identities"
     }
    ],
-   "negative_mark": 0.5
+   "negative_mark": 0.5,
+   "draw": 10
   },
   {
    "id": 2,
@@ -254,9 +303,58 @@
      "answer": 0,
      "why": "The 42nd Amendment (1976) added them.",
      "topic": "Indian Polity"
+    },
+    {
+     "q": "Who was the first President of India?",
+     "options": [
+      "Dr. S. Radhakrishnan",
+      "Dr. Rajendra Prasad",
+      "C. Rajagopalachari",
+      "Zakir Husain"
+     ],
+     "answer": 1,
+     "why": "Dr. Rajendra Prasad (1950–1962).",
+     "topic": "Indian Polity"
+    },
+    {
+     "q": "The Kalinga War transformed which emperor?",
+     "options": [
+      "Chandragupta Maurya",
+      "Ashoka",
+      "Samudragupta",
+      "Harsha"
+     ],
+     "answer": 1,
+     "why": "Ashoka embraced Buddhism after Kalinga (c. 261 BCE).",
+     "topic": "Ancient History"
+    },
+    {
+     "q": "Deficiency of Vitamin C causes:",
+     "options": [
+      "Rickets",
+      "Scurvy",
+      "Beri-beri",
+      "Night blindness"
+     ],
+     "answer": 1,
+     "why": "Scurvy — bleeding gums, poor healing.",
+     "topic": "General Science"
+    },
+    {
+     "q": "The maximum strength of the Lok Sabha is:",
+     "options": [
+      "545",
+      "552",
+      "550",
+      "540"
+     ],
+     "answer": 1,
+     "why": "Constitutional maximum is 552.",
+     "topic": "Indian Polity"
     }
    ],
-   "negative_mark": 0.5
+   "negative_mark": 0.5,
+   "draw": 10
   },
   {
    "id": 3,
@@ -383,9 +481,58 @@
      "answer": 1,
      "why": "Present simple shifts to past in reported speech.",
      "topic": "Grammar (Narration)"
+    },
+    {
+     "q": "Choose the antonym of 'TRANSPARENT':",
+     "options": [
+      "Clear",
+      "Opaque",
+      "Bright",
+      "Fragile"
+     ],
+     "answer": 1,
+     "why": "Opaque = not allowing light through.",
+     "topic": "Vocabulary"
+    },
+    {
+     "q": "One word for 'that which cannot be corrected':",
+     "options": [
+      "Incurable",
+      "Incorrigible",
+      "Indelible",
+      "Illegible"
+     ],
+     "answer": 1,
+     "why": "Incorrigible — beyond correction.",
+     "topic": "Vocabulary"
+    },
+    {
+     "q": "Fill in: 'He is good ___ mathematics.'",
+     "options": [
+      "in",
+      "at",
+      "on",
+      "with"
+     ],
+     "answer": 1,
+     "why": "Idiomatic: good at a subject.",
+     "topic": "Grammar"
+    },
+    {
+     "q": "Fill in: 'She is ___ honest woman.'",
+     "options": [
+      "a",
+      "an",
+      "the",
+      "no article"
+     ],
+     "answer": 1,
+     "why": "'Honest' begins with a vowel sound → an.",
+     "topic": "Grammar"
     }
    ],
-   "negative_mark": 0.5
+   "negative_mark": 0.5,
+   "draw": 10
   },
   {
    "id": 4,
@@ -512,9 +659,58 @@
      "answer": 0,
      "why": "Left +1 (A,B,C,D), right −1 (Z,Y,X,W).",
      "topic": "Letter Series"
+    },
+    {
+     "q": "Book is to Reading as Fork is to:",
+     "options": [
+      "Drawing",
+      "Eating",
+      "Writing",
+      "Stirring"
+     ],
+     "answer": 1,
+     "why": "Function analogy — a fork is used for eating.",
+     "topic": "Analogy"
+    },
+    {
+     "q": "A father is 30 years older than his son. In 5 years he will be 3 times as old. Son's present age:",
+     "options": [
+      "10",
+      "12",
+      "15",
+      "8"
+     ],
+     "answer": 0,
+     "why": "(x+5)×3 = x+35 → x = 10.",
+     "topic": "Age Puzzles"
+    },
+    {
+     "q": "Odd one out: 121, 144, 169, 190",
+     "options": [
+      "121",
+      "144",
+      "169",
+      "190"
+     ],
+     "answer": 3,
+     "why": "Others are perfect squares (11²,12²,13²).",
+     "topic": "Classification"
+    },
+    {
+     "q": "If SOUTH is written as THUOS, how is NORTH written?",
+     "options": [
+      "HTRON",
+      "HTORN",
+      "TRHON",
+      "HRTON"
+     ],
+     "answer": 0,
+     "why": "The word is reversed.",
+     "topic": "Coding-Decoding"
     }
    ],
-   "negative_mark": 0.25
+   "negative_mark": 0.25,
+   "draw": 10
   },
   {
    "id": 5,
@@ -641,9 +837,58 @@
      "answer": 1,
      "why": "c ≈ 3 × 10⁸ m/s.",
      "topic": "Physics"
+    },
+    {
+     "q": "The SI unit of power is:",
+     "options": [
+      "Joule",
+      "Watt",
+      "Newton",
+      "Volt"
+     ],
+     "answer": 1,
+     "why": "Power = energy/time, measured in watts.",
+     "topic": "Physics"
+    },
+    {
+     "q": "Lemon juice is:",
+     "options": [
+      "Basic",
+      "Acidic",
+      "Neutral",
+      "Amphoteric"
+     ],
+     "answer": 1,
+     "why": "Citric acid → pH ~2-3.",
+     "topic": "Chemistry"
+    },
+    {
+     "q": "The green pigment in plants is:",
+     "options": [
+      "Haemoglobin",
+      "Chlorophyll",
+      "Melanin",
+      "Carotene"
+     ],
+     "answer": 1,
+     "why": "Chlorophyll absorbs light for photosynthesis.",
+     "topic": "Biology"
+    },
+    {
+     "q": "The largest planet in our solar system is:",
+     "options": [
+      "Saturn",
+      "Jupiter",
+      "Neptune",
+      "Earth"
+     ],
+     "answer": 1,
+     "why": "Jupiter — ~318 Earth masses.",
+     "topic": "Physics"
     }
    ],
-   "negative_mark": 0.33
+   "negative_mark": 0.33,
+   "draw": 10
   },
   {
    "id": 6,
@@ -770,9 +1015,58 @@
      "answer": 1,
      "why": "26 January 1950 — Republic Day.",
      "topic": "Indian Polity"
+    },
+    {
+     "q": "The national animal of India is:",
+     "options": [
+      "Lion",
+      "Bengal Tiger",
+      "Elephant",
+      "Leopard"
+     ],
+     "answer": 1,
+     "why": "Royal Bengal Tiger since 1973.",
+     "topic": "General Knowledge"
+    },
+    {
+     "q": "The Ganga originates from:",
+     "options": [
+      "Yamunotri",
+      "Gangotri",
+      "Kedarnath",
+      "Amarnath"
+     ],
+     "answer": 1,
+     "why": "Gangotri glacier (as Bhagirathi).",
+     "topic": "Indian Geography"
+    },
+    {
+     "q": "Jallianwala Bagh massacre took place in:",
+     "options": [
+      "1917",
+      "1919",
+      "1921",
+      "1923"
+     ],
+     "answer": 1,
+     "why": "13 April 1919, Amritsar.",
+     "topic": "Modern History"
+    },
+    {
+     "q": "Right to Freedom is covered under Articles:",
+     "options": [
+      "14–18",
+      "19–22",
+      "23–24",
+      "25–28"
+     ],
+     "answer": 1,
+     "why": "Articles 19–22.",
+     "topic": "Indian Polity"
     }
    ],
-   "negative_mark": 0.25
+   "negative_mark": 0.25,
+   "draw": 10
   },
   {
    "id": 7,
@@ -900,8 +1194,57 @@
      "answer": 1,
      "why": "31×13 − 30×12 = 403 − 360 = 43.",
      "topic": "Averages"
+    },
+    {
+     "q": "A trader gains 20% by selling at ₹360. The cost price is:",
+     "options": [
+      "₹280",
+      "₹300",
+      "₹320",
+      "₹288"
+     ],
+     "answer": 1,
+     "why": "360 ÷ 1.2 = ₹300.",
+     "topic": "Profit & Loss"
+    },
+    {
+     "q": "Next in series: 2, 3, 5, 8, 13, 21, ?",
+     "options": [
+      "29",
+      "34",
+      "32",
+      "36"
+     ],
+     "answer": 1,
+     "why": "Fibonacci — 13+21 = 34.",
+     "topic": "Number Series"
+    },
+    {
+     "q": "A and B invest ₹5,000 and ₹7,500. From a profit of ₹5,000, B's share:",
+     "options": [
+      "₹2,000",
+      "₹3,000",
+      "₹2,500",
+      "₹3,500"
+     ],
+     "answer": 1,
+     "why": "Ratio 2:3 → B gets 3/5 × 5000 = ₹3,000.",
+     "topic": "Partnership"
+    },
+    {
+     "q": "The difference between CI and SI on ₹8,000 at 10% for 2 years:",
+     "options": [
+      "₹60",
+      "₹80",
+      "₹100",
+      "₹40"
+     ],
+     "answer": 1,
+     "why": "Diff = P(r/100)² = 8000×0.01 = ₹80.",
+     "topic": "Interest"
     }
-   ]
+   ],
+   "draw": 10
   },
   {
    "id": 8,
@@ -1029,8 +1372,57 @@
      "answer": 0,
      "why": "1885, Bombay — A. O. Hume among the founders.",
      "topic": "Modern History"
+    },
+    {
+     "q": "How many Fundamental Rights does the Constitution currently guarantee?",
+     "options": [
+      "Five",
+      "Six",
+      "Seven",
+      "Eight"
+     ],
+     "answer": 1,
+     "why": "Six — property was removed by the 44th Amendment.",
+     "topic": "Indian Polity"
+    },
+    {
+     "q": "The Governor of a state is appointed by:",
+     "options": [
+      "Chief Minister",
+      "President",
+      "Prime Minister",
+      "Chief Justice"
+     ],
+     "answer": 1,
+     "why": "Article 155 — appointed by the President.",
+     "topic": "Indian Polity"
+    },
+    {
+     "q": "The Revolt of 1857 began from:",
+     "options": [
+      "Delhi",
+      "Meerut",
+      "Jhansi",
+      "Kanpur"
+     ],
+     "answer": 1,
+     "why": "10 May 1857, Meerut sepoys.",
+     "topic": "Modern History"
+    },
+    {
+     "q": "The Simon Commission (1927) was boycotted because:",
+     "options": [
+      "It taxed salt",
+      "It had no Indian member",
+      "It partitioned Bengal",
+      "It banned Congress"
+     ],
+     "answer": 1,
+     "why": "All-white commission — 'Simon Go Back'.",
+     "topic": "Modern History"
     }
-   ]
+   ],
+   "draw": 10
   }
  ]
 }

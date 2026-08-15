@@ -26,7 +26,7 @@ export default async function PracticePage({ params }: { params: { locale: Local
           <Link key={set.id} href={localePath(params.locale, `/practice/${set.id}`)} className="card p-5 hover:border-brand-200 hover:shadow-lift">
             <p className="pill mb-2 bg-accent-50 text-accent-700">{set.subject}</p>
             <h2 className="text-[15px] font-extrabold leading-snug">{set.title}</h2>
-            <p className="mt-2 text-xs text-slate-500">{set.questions.length} {hi ? "प्रश्न" : "questions"} · {hi ? "उत्तर व व्याख्या सहित" : "with answers & explanations"}</p>
+            <p className="mt-2 text-xs text-slate-500">{set.draw ?? set.questions.length} {hi ? "प्रश्न" : "questions"} · {hi ? "उत्तर व व्याख्या सहित" : "with answers & explanations"}</p>
           </Link>
         ))}
       </div>
