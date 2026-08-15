@@ -131,3 +131,19 @@ class SupabaseConfigTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ReleaseDetectionTests(unittest.TestCase):
+    def test_detects_result_and_answer_key(self):
+        html = "<html><body><p>CGL Examination result declared on 10 Aug.</p><p>Answer keys uploaded for Tier-1.</p></body></html>"
+        out = extract_generic(html)
+        self.assertIn("result", out["releases"])
+        self.assertIn("answer_key", out["releases"])
+
+    def test_detects_admit_card(self):
+        out = extract_generic("<p>Admit cards released for Phase 2. Download hall ticket now.</p>")
+        self.assertIn("admit_card", out["releases"])
+
+    def test_plain_page_has_no_releases(self):
+        out = extract_generic("<p>Welcome to the commission website.</p>")
+        self.assertEqual(out["releases"], [])

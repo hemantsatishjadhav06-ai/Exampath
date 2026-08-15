@@ -148,6 +148,18 @@ def extract_generic(html: str, hint: str = "generic") -> dict:
             dates.append({"label": label, "date": iso, "is_deadline": is_deadline})
             seen.add(label)
 
+    # Release signals: does the page announce a result / answer key / admit card?
+    # Used by the pipeline to emit "updates" rows for the site's results feed.
+    signals_found: list[str] = []
+    for phrase, tag in [
+        (r"result[s]?\s+(?:declared|announced|out|published)", "result"),
+        (r"final\s+(?:result|merit\s+list)", "result"),
+        (r"answer\s+key[s]?\s+(?:uploaded|released|published)", "answer_key"),
+        (r"admit\s+card[s]?\s+(?:released|available|out)|hall\s+ticket", "admit_card"),
+    ]:
+        if re.search(phrase, low) and tag not in signals_found:
+            signals_found.append(tag)
+
     signals = (1 if vacancy else 0) + (1 if dates else 0)
     confidence = round(min(0.4 + 0.2 * signals, 0.9), 2) if signals else 0.3
 
@@ -158,6 +170,7 @@ def extract_generic(html: str, hint: str = "generic") -> dict:
         "age_min": None,
         "age_max": None,
         "dates": dates,
+        "releases": signals_found,
         "confidence": confidence,
         "hint": hint,
         "_via": "generic",

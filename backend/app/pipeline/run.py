@@ -107,6 +107,18 @@ def reconcile_live(cycles: dict, bodies_by_slug: dict, log: list[str],
             if ext.get("dates"):
                 c["dates"] = _merge_dates(c.get("dates", []), ext["dates"])
                 applied.append(f"{len(ext['dates'])}d")
+        # Release detection (result / answer key / admit card) works even at low
+        # overall confidence — phrase matches are precise. Each new signal becomes
+        # an "update" row for the site feed (deduped against existing updates).
+        release_label = {"result": ("Result declared on the official website", "result"),
+                         "answer_key": ("Answer key released on the official website", "result"),
+                         "admit_card": ("Admit card released on the official website", "admit")}
+        for tag in ext.get("releases", []):
+            text, ukind = release_label[tag]
+            ups = c.setdefault("updates", [])
+            if not any(u.get("text") == text for u in ups):
+                ups.insert(0, {"text": text, "kind": ukind, "when": "today"})
+                applied.append(f"release:{tag}")
         log.append(
             f"[live   ] {cid:16s} http={res.status} conf={ext['confidence']} "
             f"src={tried}/{len(urls)} applied={','.join(applied) or 'none'}"
