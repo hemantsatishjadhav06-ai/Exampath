@@ -1,32 +1,58 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import PrepReport, { type Attempt } from "@/components/PrepReport";
 import type { PracticeSet } from "@/lib/types";
 import type { Locale } from "@/lib/site-config";
 
-/** Interactive MCQ player: answer -> instant feedback + explanation -> score. */
+/** Interactive MCQ player: instant feedback + per-question timing, ending in a
+ *  full preparation report (topics, exam-pattern impact, test psychology). */
 export default function QuizPlayer({ set, locale }: { set: PracticeSet; locale: Locale }) {
   const hi = locale === "hi";
+  const n = set.questions.length;
   const [i, setI] = useState(0);
-  const [picked, setPicked] = useState<(number | null)[]>(Array(set.questions.length).fill(null));
+  const [attempts, setAttempts] = useState<Attempt[]>(
+    Array.from({ length: n }, () => ({ picked: null, seconds: 0 }))
+  );
+  const [showReport, setShowReport] = useState(false);
+  const startedAt = useRef<number>(Date.now());
+
   const q = set.questions[i];
-  const done = picked.every((p) => p !== null);
-  const score = picked.filter((p, j) => p === set.questions[j].answer).length;
+  const done = attempts.every((a) => a.picked !== null);
+  const score = attempts.filter((a, j) => a.picked === set.questions[j].answer).length;
 
   function pick(j: number) {
-    if (picked[i] !== null) return;
-    const next = [...picked]; next[i] = j; setPicked(next);
+    if (attempts[i].picked !== null) return;
+    const secs = Math.min(300, Math.round((Date.now() - startedAt.current) / 1000));
+    const next = [...attempts];
+    next[i] = { picked: j, seconds: secs };
+    setAttempts(next);
   }
+  function go(to: number) {
+    setI(to);
+    startedAt.current = Date.now();
+  }
+
+  if (showReport) {
+    return (
+      <div className="flex flex-col gap-4">
+        <PrepReport set={set} attempts={attempts} locale={locale} />
+        <button onClick={() => { setAttempts(Array.from({ length: n }, () => ({ picked: null, seconds: 0 }))); setShowReport(false); go(0); }}
+          className="btn-ghost self-center">↺ {hi ? "फिर से प्रयास करें" : "Retake the test"}</button>
+      </div>
+    );
+  }
+
   return (
     <div className="card p-5">
       <div className="mb-3 flex items-center justify-between text-xs font-bold text-slate-500">
-        <span>{hi ? "प्रश्न" : "Question"} {i + 1} / {set.questions.length}</span>
+        <span>{hi ? "प्रश्न" : "Question"} {i + 1} / {n} · {q.topic ?? set.subject}</span>
         <span>{hi ? "स्कोर" : "Score"}: {score}</span>
       </div>
       <h2 className="text-[15.5px] font-extrabold leading-snug">{q.q}</h2>
       <div className="mt-4 flex flex-col gap-2">
         {q.options.map((opt, j) => {
-          const chosen = picked[i] === j;
-          const answered = picked[i] !== null;
+          const chosen = attempts[i].picked === j;
+          const answered = attempts[i].picked !== null;
           const correct = j === q.answer;
           const cls = answered
             ? correct ? "border-emerald-500 bg-emerald-50 text-emerald-800"
@@ -43,16 +69,16 @@ export default function QuizPlayer({ set, locale }: { set: PracticeSet; locale: 
           );
         })}
       </div>
-      {picked[i] !== null && (
+      {attempts[i].picked !== null && (
         <p className="mt-3 rounded-xl bg-brand-50 px-4 py-3 text-sm text-slate-700">
-          <b>{picked[i] === q.answer ? "✓ " + (hi ? "सही!" : "Correct!") : "✕ " + (hi ? "सही उत्तर" : "Correct answer") + ": " + String.fromCharCode(65 + q.answer)}</b> — {q.why}
+          <b>{attempts[i].picked === q.answer ? "✓ " + (hi ? "सही!" : "Correct!") : "✕ " + (hi ? "सही उत्तर" : "Correct answer") + ": " + String.fromCharCode(65 + q.answer)}</b> — {q.why}
         </p>
       )}
       <div className="mt-4 flex items-center justify-between">
-        <button onClick={() => setI(Math.max(0, i - 1))} disabled={i === 0} className="btn-ghost disabled:opacity-40">← {hi ? "पिछला" : "Previous"}</button>
-        {done && i === set.questions.length - 1
-          ? <span className="text-sm font-extrabold text-brand-700">{hi ? "पूर्ण!" : "Done!"} {score}/{set.questions.length}</span>
-          : <button onClick={() => setI(Math.min(set.questions.length - 1, i + 1))} disabled={i === set.questions.length - 1} className="btn-primary disabled:opacity-40">{hi ? "अगला" : "Next"} →</button>}
+        <button onClick={() => go(Math.max(0, i - 1))} disabled={i === 0} className="btn-ghost disabled:opacity-40">← {hi ? "पिछला" : "Previous"}</button>
+        {done
+          ? <button onClick={() => setShowReport(true)} className="btn-accent">📊 {hi ? "रिपोर्ट देखें" : "View my report"}</button>
+          : <button onClick={() => go(Math.min(n - 1, i + 1))} disabled={i === n - 1} className="btn-primary disabled:opacity-40">{hi ? "अगला" : "Next"} →</button>}
       </div>
     </div>
   );
