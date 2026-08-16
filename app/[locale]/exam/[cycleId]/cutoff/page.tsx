@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import CutoffChart from "@/components/CutoffChart";
+import VacancyTrendChart from "@/components/VacancyTrendChart";
 import { ExamShell, loadExamCtx, notFound, tabMetaTitle } from "@/lib/exam-page";
 import { t } from "@/lib/i18n";
 import { getCycleChildren, getVacancyHistory } from "@/lib/queries";
@@ -42,23 +44,8 @@ export default async function CutoffTab({ params }: { params: { locale: Locale; 
           ))}
         </ul>
       </section>
-      {history.length > 0 && (
-        <section className="card p-5">
-          <h2 className="h2 mb-3">📊 {locale === "hi" ? "रिक्ति प्रवृत्ति" : "Vacancy trend"}</h2>
-          <div className="flex h-36 items-end gap-3">
-            {history.map((v) => {
-              const m = Math.max(...history.map((x) => x.seats));
-              return (
-                <div key={v.year} className="flex flex-1 flex-col items-center gap-1.5">
-                  <span className="text-[11px] font-extrabold">{inr(v.seats)}</span>
-                  <div className="w-full max-w-[46px] rounded-t-lg bg-gradient-to-t from-brand-700 to-brand-500" style={{ height: `${Math.max(8, (v.seats / m) * 100)}%` }} />
-                  <span className="text-[11px] text-slate-500">{v.year}</span>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
+      <CutoffChart cutoffs={cutoffs} locale={locale} />
+      <VacancyTrendChart history={history} locale={locale} />
     </ExamShell>
   );
 }

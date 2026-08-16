@@ -6,8 +6,10 @@ import BodyIconGrid from "@/components/BodyIconGrid";
 import PopularGrid from "@/components/PopularGrid";
 import SearchFilterForm from "@/components/SearchFilterForm";
 import UpdatesFeed3Column from "@/components/UpdatesFeed3Column";
+import ClosingSoonStrip from "@/components/ClosingSoonStrip";
+import QuickStatTile from "@/components/QuickStatTile";
 import { localePath, t } from "@/lib/i18n";
-import { getBodies, getPopularCycles, getVisibleUpdates } from "@/lib/queries";
+import { getBodies, getCycles, getPapers, getPopularCycles, getVisibleUpdates } from "@/lib/queries";
 import { pageMeta, jsonLd } from "@/lib/seo";
 import { siteConfig, baseUrl, type Locale } from "@/lib/site-config";
 
@@ -23,9 +25,10 @@ export function generateMetadata({ params }: { params: { locale: Locale } }): Me
 export default async function Home({ params }: { params: { locale: Locale } }) {
   const locale = params.locale;
   const s = t(locale);
-  const [bodies, updates, popular] = await Promise.all([
-    getBodies(), getVisibleUpdates(45), getPopularCycles(9),
+  const [bodies, updates, popular, allCycles, papers] = await Promise.all([
+    getBodies(), getVisibleUpdates(45), getPopularCycles(9), getCycles(), getPapers(),
   ]);
+  const totalVacancy = allCycles.reduce((n, c) => n + (c.vacancy ?? 0), 0);
   const bodyMap = new Map(bodies.map((b) => [b.slug, b]));
   const central = bodies.filter((b) => b.level === "central").slice(0, 8);
   const state = bodies.filter((b) => b.level === "state").slice(0, 8);
@@ -39,7 +42,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(org) }} />
       {/* Hero */}
-      <section className="border-b border-slate-200 bg-gradient-to-b from-white to-slate-50">
+      <section className="mera-only border-b border-slate-200 bg-gradient-to-b from-white to-slate-50">
         <div className="wrap py-10 text-center sm:py-14">
           <p className="mx-auto mb-3 inline-flex rounded-full border border-brand-100 bg-brand-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-brand-700">
             🇮🇳 {locale === "hi" ? "सरकारी परीक्षाओं का भरोसेमंद साथी" : "India's clean, verified exam tracker"}
@@ -55,6 +58,22 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
       </section>
 
       <AdSlot slot="header-banner" />
+
+      {/* Sarkari mode: dense dashboard strip (ported from the sarkari-result build) */}
+      <div className="sarkari-only">
+        <div className="wrap flex flex-col gap-6 pt-8">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <QuickStatTile value={String(allCycles.length)} label={locale === "hi" ? "सक्रिय परीक्षाएँ" : "Active exams"} />
+            <QuickStatTile value={totalVacancy.toLocaleString("en-IN")} label={locale === "hi" ? "कुल रिक्तियाँ" : "Total vacancies"} />
+            <QuickStatTile value={String(bodies.length)} label={locale === "hi" ? "आयोग / बोर्ड" : "Boards & bodies"} />
+            <QuickStatTile value={String(papers.length)} label={locale === "hi" ? "पुराने पेपर" : "Past papers"} />
+          </div>
+          <section aria-label={locale === "hi" ? "जल्द बंद हो रहे आवेदन" : "Closing soon"}>
+            <h2 className="h2 mb-3">⏳ {locale === "hi" ? "आवेदन जल्द बंद" : "Applications closing soon"}</h2>
+            <ClosingSoonStrip cycles={allCycles} locale={locale} />
+          </section>
+        </div>
+      </div>
 
       <div className="wrap flex flex-col gap-12 py-10">
         {/* Latest updates — 3 buckets */}

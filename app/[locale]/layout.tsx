@@ -24,6 +24,12 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
   const locale = params.locale as Locale;
   return (
     <html lang={locale === "hi" ? "hi-IN" : "en-IN"}>
+      <head>
+        {/* Apply the saved MeraSafar/Sarkari mode before first paint (no flash). */}
+        <script dangerouslySetInnerHTML={{ __html:
+          `try{if(localStorage.getItem("site_mode")==="sarkari")document.documentElement.setAttribute("data-mode","sarkari")}catch(e){}`,
+        }} />
+      </head>
       <body>
         <Header locale={locale} />
         <main id="main" className="min-h-[60vh]">{children}</main>
