@@ -64,6 +64,16 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
+        if self.path in ("", "/"):
+            return self._send(200, {
+                "ok": True, "service": "exampath-api",
+                "site": "https://exampath.onrender.com/",
+                "endpoints": [
+                    "GET /health", "GET /api/exams", "GET /api/exams/{id}",
+                    "GET /ai/status", "POST /ai/ask", "POST /ai/digest",
+                    "POST /auth/register", "POST /auth/login", "GET /auth/me",
+                ],
+            })
         if self.path == "/health":
             return self._send(200, {"ok": True, "service": "exampath-api"})
         if self.path == "/api/exams":
