@@ -37,3 +37,13 @@ body { @apply bg-slate-50 text-slate-900 antialiased; }
   .section-title { @apply flex items-center justify-between gap-3 mb-4; }
   .h2 { @apply text-xl font-extrabold tracking-tight; }
 }
+
+/* UI/UX Pro Max (Accessible & Ethical): visible keyboard focus, touch targets,
+   and a reduced-motion path (skill priority-1/2 rules). */
+:where(a,button,summary,input,select,textarea,[tabindex]):focus-visible { outline: 3px solid rgb(var(--brand-600)); outline-offset: 2px; border-radius: 8px; }
+@media (pointer: coarse) {
+  :where(.btn, .btn-primary, .btn-accent, .btn-ghost, .pill a, nav a, button) { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
