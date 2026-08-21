@@ -115,6 +115,10 @@ def extract_generic(html: str, hint: str = "generic") -> dict:
     low = text.lower()
 
     # Vacancy: a number sitting next to a vacancy/post keyword.
+    # Plausibility guards (learned from live runs): year-like numbers
+    # (1900-2100) are almost always the cycle year, not a count, and tiny
+    # numbers (<10) on busy portal pages are incidental ("7 posts of ...",
+    # nav counters) — both would silently corrupt curated data.
     vacancy = None
     for m in re.finditer(
         r"([\d,]{2,})\s*(?:vacanc|post|seat)|"
@@ -122,7 +126,7 @@ def extract_generic(html: str, hint: str = "generic") -> dict:
         low,
     ):
         cand = _to_int(m.group(1) or m.group(2))
-        if cand and 1 <= cand <= 500000:
+        if cand and 10 <= cand <= 500000 and not 1900 <= cand <= 2100:
             vacancy = cand
             break
 

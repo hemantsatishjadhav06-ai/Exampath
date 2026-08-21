@@ -147,3 +147,21 @@ class ReleaseDetectionTests(unittest.TestCase):
     def test_plain_page_has_no_releases(self):
         out = extract_generic("<p>Welcome to the commission website.</p>")
         self.assertEqual(out["releases"], [])
+
+
+class VacancyPlausibilityTests(unittest.TestCase):
+    """Guards learned from live Render runs: portal pages leak year-like and
+    tiny numbers next to 'post'/'vacancy' words, which must never overwrite
+    curated counts."""
+
+    def test_year_like_number_rejected(self):
+        out = extract_generic("<p>UGC NET December 2023 posts and updates.</p>")
+        self.assertIsNone(out["vacancy"])
+
+    def test_tiny_number_rejected(self):
+        out = extract_generic("<p>Recruitment to 7 posts of Sub-Inspector.</p>")
+        self.assertIsNone(out["vacancy"])
+
+    def test_real_count_still_extracted(self):
+        out = extract_generic("<p>Total 17,727 vacancies announced.</p>")
+        self.assertEqual(out["vacancy"], 17727)
