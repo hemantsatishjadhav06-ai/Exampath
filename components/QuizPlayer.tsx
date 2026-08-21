@@ -24,6 +24,23 @@ function drawQuestions(set: PracticeSet): PracticeQuestion[] {
   });
 }
 
+interface PastAttempt { setId: number; ts: number; score: number; n: number }
+const HISTORY_KEY = "ms_practice_history";
+
+/** Per-browser attempt history (localStorage, best-effort — never throws). */
+function loadHistory(setId: number): PastAttempt[] {
+  try {
+    const all = JSON.parse(localStorage.getItem(HISTORY_KEY) ?? "[]") as PastAttempt[];
+    return all.filter((a) => a?.setId === setId && typeof a.score === "number");
+  } catch { return []; }
+}
+function saveAttempt(a: PastAttempt) {
+  try {
+    const all = JSON.parse(localStorage.getItem(HISTORY_KEY) ?? "[]") as PastAttempt[];
+    localStorage.setItem(HISTORY_KEY, JSON.stringify([...all, a].slice(-40)));
+  } catch {}
+}
+
 /** Interactive MCQ player: fresh question draw + shuffled options on every
  *  attempt, optional AI-generated sets, per-question timing, and a final
  *  preparation report (topics, exam-pattern impact, test psychology). */
@@ -35,6 +52,7 @@ export default function QuizPlayer({ set, locale }: { set: PracticeSet; locale: 
   const [showReport, setShowReport] = useState(false);
   const [aiBusy, setAiBusy] = useState(false);
   const [aiNote, setAiNote] = useState<string | null>(null);
+  const [history, setHistory] = useState<PastAttempt[]>([]);
   const startedAt = useRef<number>(Date.now());
 
   function start(qs: PracticeQuestion[]) {
@@ -98,8 +116,26 @@ export default function QuizPlayer({ set, locale }: { set: PracticeSet; locale: 
   function go(to: number) { setI(to); startedAt.current = Date.now(); }
 
   if (showReport) {
+    const prev = history.length >= 2 ? history[history.length - 2] : null;
+    const delta = prev ? Math.round((score / n - prev.score / prev.n) * 100) : null;
     return (
       <div className="flex flex-col gap-4">
+        {history.length >= 2 && (
+          <div className="card flex flex-wrap items-center gap-2 p-4">
+            <b className="mr-1 text-sm">📈 {hi ? "आपकी प्रगति" : "Your progress"}:</b>
+            {history.map((a, k) => (
+              <span key={a.ts} className={`rounded-full px-2.5 py-1 text-xs font-extrabold ${k === history.length - 1 ? "bg-brand-600 text-white" : "bg-brand-50 text-brand-700"}`}
+                title={new Date(a.ts).toLocaleDateString(hi ? "hi-IN" : "en-IN")}>
+                {a.score}/{a.n}
+              </span>
+            ))}
+            {delta !== null && (
+              <span className={`ml-1 text-xs font-bold ${delta >= 0 ? "text-emerald-600" : "text-red-600"}`}>
+                {delta >= 0 ? "▲" : "▼"} {Math.abs(delta)}% {hi ? "पिछले प्रयास से" : "vs last attempt"}
+              </span>
+            )}
+          </div>
+        )}
         <PrepReport set={{ ...set, questions }} attempts={attempts} locale={locale} />
         <div className="flex flex-wrap justify-center gap-3">
           <button onClick={() => start(drawQuestions(set))} className="btn-ghost">
@@ -155,7 +191,11 @@ export default function QuizPlayer({ set, locale }: { set: PracticeSet; locale: 
       <div className="mt-4 flex items-center justify-between">
         <button onClick={() => go(Math.max(0, i - 1))} disabled={i === 0} className="btn-ghost disabled:opacity-40">← {hi ? "पिछला" : "Previous"}</button>
         {done
-          ? <button onClick={() => setShowReport(true)} className="btn-accent">📊 {hi ? "रिपोर्ट देखें" : "View my report"}</button>
+          ? <button onClick={() => {
+              saveAttempt({ setId: set.id, ts: Date.now(), score, n });
+              setHistory(loadHistory(set.id).slice(-8));
+              setShowReport(true);
+            }} className="btn-accent">📊 {hi ? "रिपोर्ट देखें" : "View my report"}</button>
           : <button onClick={() => go(Math.min(n - 1, i + 1))} disabled={i === n - 1} className="btn-primary disabled:opacity-40">{hi ? "अगला" : "Next"} →</button>}
       </div>
     </div>

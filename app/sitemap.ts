@@ -14,8 +14,12 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
     { url: `${baseUrl}/hi${p === "/" ? "" : p}`, lastModified: now },
   ];
   if (id === "static") {
-    return ["/", "/search", "/calendar", "/bodies", "/papers", "/practice", "/about", "/contact", "/privacy-policy", "/disclaimer", "/terms",
+    const { getPracticeSets } = await import("@/lib/queries");
+    const sets = await getPracticeSets();
+    return [
+      "/", "/search", "/calendar", "/bodies", "/papers", "/practice", "/about", "/contact", "/privacy-policy", "/disclaimer", "/terms",
       "/category/qualification/10th", "/category/qualification/12th", "/category/qualification/graduate", "/category/qualification/pg",
+      ...sets.map((s) => `/practice/${s.id}`),
     ].flatMap(both);
   }
   if (id === "bodies") {
