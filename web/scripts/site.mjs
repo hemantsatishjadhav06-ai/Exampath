@@ -202,6 +202,7 @@ function footer() {
       <div class="foot-cols">
         <div><h4>Explore</h4><a href="/notifications/">Notifications</a><a href="/admit-cards/">Admit cards</a><a href="/results/">Results</a><a href="/calendar/">Calendar</a></div>
         <div><h4>Exams</h4><a href="/bodies/">All exams</a><a href="/search/">Search</a>${DATA.bodies.slice(0,3).map((b)=>`<a href="/body/${b.slug}/">${b.short}</a>`).join("")}</div>
+        <div><h4>Prepare</h4><a href="https://merasafar.onrender.com/practice" target="_blank" rel="noopener">Practice tests</a><a href="https://merasafar.onrender.com/papers" target="_blank" rel="noopener">Past papers (8 yrs)</a><a href="https://merasafar.onrender.com" target="_blank" rel="noopener">MeraSafar portal</a></div>
         <div><h4>About</h4><a href="/about/">About</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="/disclaimer/">Disclaimer</a></div>
       </div>
     </div>
@@ -375,6 +376,7 @@ ${rawLD}
       ${navItem("/calendar/", "Calendar", "/calendar")}
       ${navItem("/bodies/", "All Exams", "/bodies")}
       ${navItem("/search/", "Check Eligibility", "/search")}
+      <a href="https://merasafar.onrender.com/practice" target="_blank" rel="noopener">Practice Tests ↗</a>
     </nav>
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
