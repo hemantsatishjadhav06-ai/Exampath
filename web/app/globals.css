@@ -418,3 +418,7 @@ section.page{padding:24px 0 40px;animation:fade .25s ease}
 :root[data-theme="dark"] .tabbar{background:rgba(12,20,36,.94)}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* UI/UX Pro Max (Accessible & Ethical): visible keyboard focus + touch targets. */
+:where(a,button,summary,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:8px}
+@media(pointer:coarse){:where(.btn,.st-btn,.btn-login,.tabbar a,nav.navlinks a,button){min-height:44px;min-width:44px}}
