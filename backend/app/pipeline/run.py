@@ -126,14 +126,16 @@ def reconcile_live(cycles: dict, bodies_by_slug: dict, log: list[str],
 
 
 def run(export_path: str | None = None, verbose: bool = True,
-        live: bool | None = None) -> dict:
+        live: bool | None = None, log_sink: list[str] | None = None) -> dict:
     if live is None:
         live = _env_truthy("EXAMPATH_LIVE")
 
     curated = load_curated()
     bodies_by_slug = {b["slug"]: b for b in curated["bodies"]}
     cycles = {c["id"]: dict(c) for c in curated["cycles"]}
-    log: list[str] = []
+    # Callers (e.g. the API's /pipeline/run) can pass a list to receive the
+    # full per-cycle scrape/gate log for remote debugging.
+    log: list[str] = log_sink if log_sink is not None else []
 
     # 1-3. demonstrate scrape+extract on the bundled sample notices
     fixture = FixtureScraper(BACKEND / "sources")

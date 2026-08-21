@@ -105,9 +105,20 @@ class Handler(BaseHTTPRequestHandler):
             payload = {}
 
         if self.path == "/pipeline/run":
+            # Optional guard: when PIPELINE_RUN_SECRET is set, callers must
+            # present it — the run triggers outbound scrapes of official sites.
+            secret = os.environ.get("PIPELINE_RUN_SECRET", "")
+            if secret and self.headers.get("x-pipeline-secret", "") != secret:
+                return self._send(401, {"ok": False, "error": "invalid pipeline secret"})
             from ..pipeline.run import run
-            ds = run(verbose=False)
-            return self._send(200, {"ok": True, "published_cycles": len(ds["cycles"])})
+            sink: list[str] = []
+            ds = run(verbose=False, log_sink=sink)
+            return self._send(200, {
+                "ok": True,
+                "published_cycles": len(ds["cycles"]),
+                "generated_at": ds["generated_at"],
+                "log": sink,
+            })
 
         if self.path == "/webhook/n8n":
             code, resp = process_webhook(payload, self.headers.get("x-webhook-secret", ""))
