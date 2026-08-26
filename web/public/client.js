@@ -693,3 +693,297 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
+
+/* ------------------------------------------------------------------ Path Finder
+   Self-discovery flow: up to three skippable questions, then a ranked shortlist
+   and a dated action plan. The plan is computed here from the page's embedded
+   dataset so it appears instantly and still works offline; if the AI service is
+   reachable we swap in its written summary (same facts, warmer words). */
+(function () {
+  "use strict";
+  // Self-contained: this IIFE cannot see the helpers defined in the one above.
+  var BASE = (typeof window !== "undefined" && window.__BASE__) || "";
+  function daysLeft(iso) { return Math.ceil((new Date(iso).getTime() - Date.now()) / 86400000); }
+  function inr(n) {
+    var s = String(Math.round(n));
+    if (s.length <= 3) return s;
+    var last3 = s.slice(-3), rest = s.slice(0, -3);
+    return rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + last3;
+  }
+  var QR = { "10th": 1, "12th": 2, graduate: 3, pg: 4 };
+  var INTERESTS = {
+    banking: { label: "bank jobs", bodies: ["ibps", "sbi", "rbi"] },
+    ssc: { label: "SSC & clerical jobs", bodies: ["ssc"] },
+    railway: { label: "railway jobs", bodies: ["rrb"] },
+    teaching: { label: "teaching jobs", bodies: ["cbse", "nta"] },
+    "civil-services": { label: "civil services", bodies: ["upsc", "bpsc", "mppsc", "rpsc", "uppsc"] },
+    "defence-police": { label: "defence & police jobs", bodies: ["upsc", "ssc"], ids: ["nda-2026", "cds-2026", "ssc-gd-2026"] },
+    state: { label: "state government jobs", bodies: ["bpsc", "mppsc", "rpsc", "uppsc"] }
+  };
+  var ACTION = {
+    closing_soon: ["Apply now", "apply"], application_open: ["Apply", "apply"],
+    admit_card: ["Download admit card", "admit"], result_awaited: ["Check result", "result"],
+    upcoming: ["Get ready", "prepare"]
+  };
+
+  function esc2(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function nextDeadline(c) {
+    var best = null;
+    (c.dates || []).forEach(function (d) {
+      if (!d.is_deadline || !d.date) return;
+      if (daysLeft(d.date) < 0) return;
+      if (!best || d.date < best.date) best = d;
+    });
+    return best;
+  }
+  function bucket(days) {
+    if (days == null) return "Later";
+    if (days <= 7) return "This week";
+    if (days <= 30) return "This month";
+    if (days <= 90) return "Next 3 months";
+    return "Later";
+  }
+
+  /* Same ranking the backend uses: eligibility is a hard gate, then fit + urgency. */
+  function rank(cycles, prof) {
+    var want = INTERESTS[prof.interest] || {};
+    var wb = want.bodies || [], wi = want.ids || [];
+    var out = [];
+    cycles.forEach(function (c) {
+      if (prof.education && (QR[c.qualification_code] || 9) > QR[prof.education]) return;
+      if (prof.age != null && !(prof.age >= c.age_min && prof.age <= c.age_max)) return;
+      var score = 0, why = [];
+      if (wb.length || wi.length) {
+        if (wi.indexOf(c.id) >= 0 || wb.indexOf(c.body) >= 0) {
+          score += 40; why.push("matches your interest in " + want.label);
+        } else { score -= 15; }
+      }
+      var nd = nextDeadline(c), days = nd ? daysLeft(nd.date) : null;
+      if (c.status === "closing_soon") score += 30;
+      else if (c.status === "application_open") score += 20;
+      else if (c.status === "admit_card") score += 10;
+      if (days != null) { score += Math.max(0, Math.floor((30 - days) / 3)); why.push(nd.label.toLowerCase() + " in " + days + " days"); }
+      if (c.vacancy) { score += Math.min(10, Math.floor(c.vacancy / 2000)); why.push(inr(c.vacancy) + " vacancies"); }
+      if (prof.education) why.push("open to " + (c.qualification || prof.education));
+      var act = ACTION[c.status] || ["Get ready", "prepare"];
+      out.push({
+        id: c.id, title: c.title || c.exam, action: act[0], kind: act[1],
+        days: days, deadline: nd, when: bucket(days), score: score,
+        next: c.ai_next || null, why: why.slice(0, 3).join("; ") || "matches your profile"
+      });
+    });
+    out.sort(function (a, b) { return b.score - a.score || (a.days == null ? 999 : a.days) - (b.days == null ? 999 : b.days); });
+    return out;
+  }
+
+  function summarise(prof, m) {
+    if (!m.length) return "Nothing in our current data matches that exactly. Try skipping a question — clearing the age or the job type usually opens things up.";
+    var who = [];
+    if (prof.education) who.push(prof.education + " pass");
+    if (prof.age) who.push("age " + prof.age);
+    var urgent = m.filter(function (x) { return x.days != null && x.days <= 30; });
+    return "For " + (who.join(" and ") || "your profile") + ", " + m.length + " exam(s) are open to you. Start with " +
+      m[0].title + " — " + m[0].why + ". " +
+      (urgent.length ? urgent.length + " of them need action within a month, so do " + urgent[0].title + " first (" + urgent[0].days + " days left)."
+                     : "None of them closes this month, so use the time to prepare.");
+  }
+
+  function renderPlan(out, prof, matches, summary, viaAi) {
+    /* Two kinds of item deserve two treatments: things with a real date get a
+       dated step each; things merely awaiting the next notification collapse
+       into one "we're watching these" line instead of repeating one sentence. */
+    var dated = [], watching = [];
+    matches.slice(0, 10).forEach(function (m) {
+      if (m.next && m.next.needs_refresh) watching.push(m); else dated.push(m);
+    });
+    var steps = {}, order = ["This week", "This month", "Next 3 months", "Later"];
+    dated.slice(0, 8).forEach(function (m) { (steps[m.when] = steps[m.when] || []).push(m); });
+    var timeline = order.filter(function (w) { return steps[w]; }).map(function (w) {
+      return '<li class="tl-step"><span class="tl-when">' + w + '</span><ul>' +
+        steps[w].map(function (m) {
+          return '<li><a href="' + BASE + '/exam/' + m.id + '/"><b>' + esc2(m.action) + '</b> — ' + esc2(m.title) + '</a>' +
+            '<span class="tl-detail">' + (m.next ? esc2(m.next.detail) : (m.deadline ? esc2(m.deadline.label + " " + m.deadline.date) : "dates to be announced")) + '</span></li>';
+        }).join("") + '</ul></li>';
+    }).join("");
+    if (watching.length) {
+      timeline += '<li class="tl-step tl-watch"><span class="tl-when">We are watching for you</span><ul><li>' +
+        '<span class="tl-detail">' + watching.length + ' exam' + (watching.length === 1 ? "" : "s") +
+        ' are between notifications — ' +
+        watching.slice(0, 6).map(function (m) { return '<a href="' + BASE + '/exam/' + m.id + '/">' + esc2(m.title) + '</a>'; }).join(", ") +
+        '. Our scrapers re-check the official sites every day; follow one to be reminded the moment its form opens.' +
+        '</span></li></ul></li>';
+    }
+
+    out.innerHTML =
+      '<div class="plan-head"><h2>Your path</h2>' +
+        '<span class="plan-badge">' + (viaAi ? "✨ AI plan" : "⚡ instant match") + '</span>' +
+        '<button type="button" class="btn ghost sm" id="pathRestart">Start over</button></div>' +
+      '<p class="plan-summary">' + esc2(summary) + '</p>' +
+      (matches.length
+        ? '<div class="plan-grid">' +
+            '<section class="plan-list"><h3>' + matches.length + ' exam' + (matches.length === 1 ? "" : "s") + ' you are eligible for</h3>' +
+              matches.slice(0, 6).map(function (m) {
+                return '<a class="plan-card" href="' + BASE + '/exam/' + m.id + '/">' +
+                  '<span class="pc-act pc-' + m.kind + '">' + esc2(m.action) + '</span>' +
+                  '<b>' + esc2(m.title) + '</b><span class="pc-why">' + esc2(m.why) + '</span></a>';
+              }).join("") +
+            '</section>' +
+            '<section class="plan-time"><h3>What to do, and when</h3><ol class="timeline">' + timeline + '</ol></section>' +
+          '</div>'
+        : "") +
+      '<p class="plan-note">Always confirm dates and eligibility on the official website before applying.</p>';
+
+    var again = document.getElementById("pathRestart");
+    if (again) again.addEventListener("click", function () { location.href = BASE + "/path/"; });
+    // The questions have done their job — collapse them and show the answers.
+    var form = document.getElementById("pathForm");
+    if (form) {
+      form.hidden = true;
+      var chips = [];
+      if (prof.education) chips.push(prof.education + " pass");
+      if (prof.age) chips.push("age " + prof.age);
+      if (prof.interest) chips.push((INTERESTS[prof.interest] || {}).label || prof.interest);
+      var recap = document.getElementById("pathRecap");
+      if (!recap) {
+        recap = document.createElement("p");
+        recap.id = "pathRecap";
+        recap.className = "path-recap";
+        form.parentNode.insertBefore(recap, form);
+      }
+      recap.innerHTML = "Your answers: " +
+        (chips.length ? chips.map(function (c) { return "<span>" + esc2(c) + "</span>"; }).join(" ") : "<span>everything</span>") +
+        ' <button type="button" class="linkish" id="pathEdit">Change</button>';
+      var edit = document.getElementById("pathEdit");
+      if (edit) edit.addEventListener("click", function () { location.href = BASE + "/path/"; });
+    }
+    out.hidden = false;
+    out.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function initPath() {
+    var form = document.getElementById("pathForm");
+    var out = document.getElementById("pathResult");
+    var dataEl = document.getElementById("exampath-data");
+    if (!form || !out || !dataEl) return;
+    var data; try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+    var prof = { education: null, age: null, interest: null };
+    var steps = [].slice.call(form.querySelectorAll(".step"));
+    function show(n) {
+      steps.forEach(function (s) {
+        var on = +s.getAttribute("data-step") === n;
+        s.classList.toggle("active", on);
+        if (on) { var h = s.querySelector("h2"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } }
+      });
+    }
+    function finish() {
+      var matches = rank(data.cycles, prof);
+      renderPlan(out, prof, matches, summarise(prof, matches), false);   // instant, offline-safe
+      var api = window.__AI_PATH_API__;
+      if (!api || !matches.length) return;
+      fetch(api, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(prof)
+      }).then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {                                             // upgrade with the AI summary
+          if (j && j.ok && j.summary && j.used_llm) renderPlan(out, prof, matches, j.summary, true);
+        })
+        .catch(function () {});                                          // offline: keep the instant plan
+    }
+    function advance(from) { if (from >= 3) finish(); else show(from + 1); }
+
+    form.addEventListener("change", function (e) {
+      var input = e.target;
+      if (input.type !== "radio") return;
+      var step = input.closest(".step");
+      var key = input.name;
+      prof[key] = input.getAttribute("data-value");
+      advance(+step.getAttribute("data-step"));
+    });
+    form.addEventListener("click", function (e) {
+      var skip = e.target.closest("[data-skip]"), back = e.target.closest("[data-back]"), next = e.target.closest("[data-next]");
+      if (skip) { e.preventDefault(); advance(+skip.getAttribute("data-skip")); }
+      if (back) { e.preventDefault(); show(+back.getAttribute("data-back") - 1); }
+      if (next) {
+        e.preventDefault();
+        var age = document.getElementById("pathAge");
+        var v = age && age.value ? parseInt(age.value, 10) : null;
+        prof.age = (v && v >= 10 && v <= 70) ? v : null;
+        advance(2);
+      }
+    });
+    form.addEventListener("submit", function (e) { if (window.fetch) { e.preventDefault(); finish(); } });
+    show(1);
+  }
+
+  /* Free text -> the same profile the guided flow builds, so a typed sentence
+     ("12th pass, 21, railway job") produces the identical plan. */
+  function profileFromText(q) {
+    var t = (q || "").toLowerCase(), prof = { education: null, age: null, interest: null, query: q || null };
+    if (/post.?grad|master|m\.?a\b|m\.?sc/.test(t)) prof.education = "pg";
+    else if (/graduat|degree|b\.?a\b|b\.?sc|b\.?com|b\.?tech|bachelor/.test(t)) prof.education = "graduate";
+    else if (/12th|inter|higher second/.test(t)) prof.education = "12th";
+    else if (/10th|matric/.test(t)) prof.education = "10th";
+    var m = t.match(/\bage\s*(\d{2})\b/) || t.match(/\b(1[4-9]|[2-5]\d)\s*(?:years|yrs|yr)?\b/);
+    if (m) { var a = parseInt(m[1], 10); if (a >= 14 && a <= 60) prof.age = a; }
+    if (/bank|ibps|sbi|rbi/.test(t)) prof.interest = "banking";
+    else if (/rail|rrb|train|loco/.test(t)) prof.interest = "railway";
+    else if (/teach|ctet|net\b|lecturer/.test(t)) prof.interest = "teaching";
+    else if (/upsc|ias|ips|civil service|pcs\b/.test(t)) prof.interest = "civil-services";
+    else if (/defence|army|navy|nda\b|cds\b|police|constable/.test(t)) prof.interest = "defence-police";
+    else if (/ssc\b|clerk|clerical|steno/.test(t)) prof.interest = "ssc";
+    else if (/state\b|bpsc|mppsc|rpsc|uppsc/.test(t)) prof.interest = "state";
+    return prof;
+  }
+
+  /* Search page: lead with the process, keep the result grid underneath. */
+  function initSearchPlan() {
+    var out = document.getElementById("searchPlan");
+    var dataEl = document.getElementById("exampath-data");
+    if (!out || !dataEl) return;
+    var q = new URLSearchParams(location.search).get("q");
+    if (!q || !q.trim()) return;
+    var data; try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+    var prof = profileFromText(q);
+    // Only plan when the query describes a *person* (education or age). A bare
+    // exam or category name ("SSC CGL", "bank exams") is a browse — the result
+    // grid answers that better than a plan would.
+    if (!prof.education && prof.age == null) return;
+    var matches = rank(data.cycles, prof);
+    if (!matches.length) return;
+    renderPlan(out, prof, matches, summarise(prof, matches), false);
+    // The keyword grid often has nothing for a sentence like this; don't leave
+    // a bare "0 exams found" sitting under a useful plan. The grid is owned by
+    // another module, so observe it rather than racing its render.
+    var grid = document.getElementById("results");
+    var count = document.getElementById("resultCount");
+    if (grid && count) {
+      // The grid renders its own "no results" node, so emptiness is read from
+      // the count (that module's source of truth), not from childElementCount.
+      var sync = function () {
+        if (!/^0\b/.test((count.textContent || "").trim())) return;
+        grid.hidden = true;
+        count.textContent = "Your matches are listed above";
+      };
+      sync();
+      if (window.MutationObserver) {
+        new MutationObserver(sync).observe(count, { childList: true, characterData: true, subtree: true });
+        new MutationObserver(sync).observe(grid, { childList: true });
+      }
+    }
+    var api = window.__AI_PATH_API__;
+    if (!api) return;
+    fetch(api, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(prof) })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { if (j && j.ok && j.summary && j.used_llm) renderPlan(out, prof, matches, j.summary, true); })
+      .catch(function () {});
+  }
+
+  function boot() { initPath(); initSearchPlan(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();

@@ -50,8 +50,13 @@ class TestAssistant(unittest.TestCase):
         r = personal_digest(self.data, {"age": 21, "qualification": "graduate",
                                         "following": ["ssc-cgl-2026"]}, client=self.offline)
         self.assertTrue(r["items"])
-        days = [i["days_left"] for i in r["items"]]
+        # Dated deadlines come first (soonest first); undated "awaiting the next
+        # notification" rows sort last instead of vanishing from the digest.
+        days = [i["days_left"] for i in r["items"] if i["days_left"] is not None]
         self.assertEqual(days, sorted(days))
+        self.assertEqual([i["awaiting"] for i in r["items"]],
+                         sorted(i["awaiting"] for i in r["items"]))
+        self.assertTrue(r["summary"])
 
 
 if __name__ == "__main__":

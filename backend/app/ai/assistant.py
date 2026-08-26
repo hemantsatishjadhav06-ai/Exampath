@@ -160,19 +160,28 @@ def personal_digest(dataset: dict, profile: dict, client: OpenRouterClient | Non
         if not (eligible or c["id"] in following):
             continue
         nd = _next_deadline(c)
-        if not nd:
-            continue
-        items.append({
-            "id": c["id"], "title": c["title"], "label": nd["label"],
-            "date": nd["date"], "days_left": _days_left(nd["date"]),
-            "followed": c["id"] in following, "eligible": eligible,
-        })
-    items.sort(key=lambda x: x["days_left"])
+        if nd:
+            items.append({
+                "id": c["id"], "title": c["title"], "label": nd["label"],
+                "date": nd["date"], "days_left": _days_left(nd["date"]),
+                "followed": c["id"] in following, "eligible": eligible, "awaiting": False,
+            })
+        else:
+            # Between notifications: say so rather than dropping the exam silently.
+            # (The guidance agent flags these for a fresh scrape.)
+            items.append({
+                "id": c["id"], "title": c["title"], "label": "Awaiting the next official notification",
+                "date": None, "days_left": None,
+                "followed": c["id"] in following, "eligible": eligible, "awaiting": True,
+            })
+    items.sort(key=lambda x: (x["days_left"] is None, x["days_left"] if x["days_left"] is not None else 0))
     summary = None
     client = client or OpenRouterClient()
     if client.available and items:
         try:
-            lines = "\n".join(f"- {i['title']}: {i['label']} in {i['days_left']} days" for i in items[:8])
+            lines = "\n".join(
+                f"- {i['title']}: {i['label']}" + (f" in {i['days_left']} days" if i["days_left"] is not None else "")
+                for i in items[:8])
             summary = client.chat([
                 {"role": "system", "content": "You write a short, motivating 2-sentence deadline reminder for an Indian exam aspirant."},
                 {"role": "user", "content": f"My upcoming deadlines:\n{lines}\nWrite a 2-sentence nudge."},
@@ -180,6 +189,12 @@ def personal_digest(dataset: dict, profile: dict, client: OpenRouterClient | Non
         except OpenRouterError:
             summary = None
     if summary is None and items:
-        soon = items[0]
-        summary = f"You have {len(items)} upcoming deadline(s). Most urgent: {soon['title']} — {soon['label']} in {soon['days_left']} days."
+        dated = [i for i in items if i["days_left"] is not None]
+        if dated:
+            soon = dated[0]
+            summary = (f"You have {len(dated)} upcoming deadline(s). Most urgent: {soon['title']} "
+                       f"— {soon['label']} in {soon['days_left']} days.")
+        else:
+            summary = (f"{len(items)} exam(s) match your profile, but none has an open date right now — "
+                       "they are between notifications. We re-check the official sites every day.")
     return {"summary": summary, "items": items, "used_llm": bool(summary) and client.available}

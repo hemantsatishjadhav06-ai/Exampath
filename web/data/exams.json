@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11",
+  "generated_at": "2026-08-26",
   "source": "exampath-pipeline",
   "bodies": [
     {
@@ -155,7 +155,7 @@
       "title": "SSC CGL 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "closing_soon",
+      "status": "admit_card",
       "vacancy": 17727,
       "age_min": 18,
       "age_max": 32,
@@ -467,7 +467,16 @@
           "q": "Is the exam bilingual?",
           "a": "Yes — questions (except the English paper) appear in English and Hindi."
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "prepare",
+        "headline": "Start focused preparation",
+        "detail": "Tier-1 Exam 2026-09-22 — 27 days to go. Work backwards from that date.",
+        "days_left": 27,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "ssc-chsl-2026",
@@ -476,7 +485,7 @@
       "title": "SSC CHSL 2026",
       "qualification": "12th Pass",
       "qualification_code": "12th",
-      "status": "application_open",
+      "status": "upcoming",
       "vacancy": 3712,
       "age_min": 18,
       "age_max": 27,
@@ -926,7 +935,16 @@
           "result_status": "upcoming",
           "result_url": "https://ssc.gov.in"
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "prepare",
+        "headline": "Start focused preparation",
+        "detail": "Tier-1 Exam 2026-10-15 — 50 days to go. Work backwards from that date.",
+        "days_left": 50,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "ssc-mts-2026",
@@ -1293,7 +1311,15 @@
           "result_status": "upcoming",
           "result_url": "https://ssc.gov.in"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "prepare",
+        "headline": "Start focused preparation",
+        "detail": "Exam (tentative) 2026-11-10 — 76 days to go. Work backwards from that date.",
+        "days_left": 76,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "upsc-cse-2026",
@@ -1302,7 +1328,7 @@
       "title": "UPSC Civil Services 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "admit_card",
+      "status": "result_awaited",
       "vacancy": 979,
       "age_min": 21,
       "age_max": 32,
@@ -1525,7 +1551,16 @@
           "q": "What is the age limit?",
           "a": "21–32 years for General, with category relaxations."
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "ibps-po-2026",
@@ -1534,7 +1569,7 @@
       "title": "IBPS PO 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "application_open",
+      "status": "admit_card",
       "vacancy": 4455,
       "age_min": 20,
       "age_max": 30,
@@ -1982,7 +2017,16 @@
           "result_status": "upcoming",
           "result_url": "https://www.ibps.in/"
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "prepare",
+        "headline": "Start focused preparation",
+        "detail": "Prelims Exam 2026-09-16 — 21 days to go. Work backwards from that date.",
+        "days_left": 21,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "rrb-ntpc-2026",
@@ -1991,7 +2035,7 @@
       "title": "RRB NTPC 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "result_awaited",
+      "status": "upcoming",
       "vacancy": 11558,
       "age_min": 18,
       "age_max": 33,
@@ -2458,7 +2502,16 @@
           "result_status": "upcoming",
           "result_url": "https://www.rrbapply.gov.in/"
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "mppsc-ss-2026",
@@ -2467,7 +2520,7 @@
       "title": "MPPSC State Service 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "application_open",
+      "status": "upcoming",
       "vacancy": 158,
       "age_min": 21,
       "age_max": 40,
@@ -2867,7 +2920,16 @@
           "result_status": "upcoming",
           "result_url": "https://mppsc.mp.gov.in"
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "prepare",
+        "headline": "Start focused preparation",
+        "detail": "Prelims Exam 2026-10-01 — 36 days to go. Work backwards from that date.",
+        "days_left": 36,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "uppsc-pcs-2026",
@@ -2876,7 +2938,7 @@
       "title": "UPPSC Combined State / Upper Subordinate Services (PCS) Examination 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "upcoming",
+      "status": "admit_card",
       "vacancy": 500,
       "age_min": 21,
       "age_max": 40,
@@ -3382,7 +3444,16 @@
           "result_status": "upcoming",
           "result_url": "https://uppsc.up.nic.in/"
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "admit",
+        "headline": "Download your admit card",
+        "detail": "Admit card 2026-11-27 — 93 days away. Carry a photo ID.",
+        "days_left": 93,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "bpsc-cce-2026",
@@ -3391,7 +3462,7 @@
       "title": "BPSC 72nd Combined Competitive Examination (CCE) 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "upcoming",
+      "status": "admit_card",
       "vacancy": 1250,
       "age_min": 20,
       "age_max": 37,
@@ -3799,7 +3870,16 @@
           "result_status": "upcoming",
           "result_url": "https://bpsc.bihar.gov.in/Result"
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "prepare",
+        "headline": "Start focused preparation",
+        "detail": "Prelims Exam 2026-09-13 — 18 days to go. Work backwards from that date.",
+        "days_left": 18,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "id": "rpsc-ras-2026",
@@ -3808,7 +3888,7 @@
       "title": "RPSC Rajasthan State and Subordinate Services Combined Competitive Examination (RAS/RTS) 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "upcoming",
+      "status": "admit_card",
       "vacancy": 607,
       "age_min": 21,
       "age_max": 40,
@@ -4200,7 +4280,16 @@
           "result_status": "upcoming",
           "result_url": "https://rpsc.rajasthan.gov.in/results"
         }
-      ]
+      ],
+      "status_source": "agent",
+      "ai_next": {
+        "action": "admit",
+        "headline": "Download your admit card",
+        "detail": "Admit card 2026-11-28 — 94 days away. Carry a photo ID.",
+        "days_left": 94,
+        "needs_refresh": false,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -4365,7 +4454,15 @@
           "url": "https://ssc.gov.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -4482,7 +4579,15 @@
           "url": "https://ssc.gov.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -4626,7 +4731,15 @@
           "url": "https://www.rrbcdg.gov.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -4751,7 +4864,15 @@
           "url": "https://www.rrbcdg.gov.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -4896,7 +5017,15 @@
           "url": "https://www.ibps.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5011,7 +5140,15 @@
           "url": "https://www.ibps.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5158,7 +5295,15 @@
           "url": "https://sbi.co.in/web/careers",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5277,7 +5422,15 @@
           "url": "https://sbi.co.in/web/careers",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5409,7 +5562,15 @@
           "url": "https://opportunities.rbi.org.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5542,7 +5703,15 @@
           "url": "https://ctet.nic.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5650,7 +5819,15 @@
           "url": "https://ugcnet.nta.ac.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5765,7 +5942,15 @@
           "url": "https://upsc.gov.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     },
     {
       "status": "upcoming",
@@ -5885,7 +6070,39 @@
           "url": "https://upsc.gov.in",
           "kind": "Website"
         }
-      ]
+      ],
+      "ai_next": {
+        "action": "watch",
+        "headline": "Waiting for the next official notification",
+        "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
+        "days_left": null,
+        "needs_refresh": true,
+        "checked_on": "2026-08-26"
+      }
     }
-  ]
+  ],
+  "ai_briefing": {
+    "generated_at": "2026-08-26",
+    "headline": "8 exam cycle(s) tracked with live dates; nothing closes in the next 30 days.",
+    "urgent": [],
+    "needs_refresh": [
+      "upsc-cse-2026",
+      "rrb-ntpc-2026",
+      "ssc-gd-2026",
+      "ssc-steno-2026",
+      "rrb-group-d-2026",
+      "rrb-alp-2026",
+      "ibps-clerk-2026",
+      "ibps-rrb-2026",
+      "sbi-po-2026",
+      "sbi-clerk-2026",
+      "rbi-grade-b-2026",
+      "ctet-2026",
+      "ugc-net-2026",
+      "nda-2026",
+      "cds-2026"
+    ],
+    "tracked": 23,
+    "corrected": 9
+  }
 }

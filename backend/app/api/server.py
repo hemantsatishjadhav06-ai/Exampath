@@ -70,7 +70,7 @@ class Handler(BaseHTTPRequestHandler):
                 "site": "https://exampath.onrender.com/",
                 "endpoints": [
                     "GET /health", "GET /api/exams", "GET /api/exams/{id}",
-                    "GET /ai/status", "POST /ai/ask", "POST /ai/digest",
+                    "GET /ai/status", "POST /ai/ask", "POST /ai/path", "POST /ai/digest",
                     "POST /auth/register", "POST /auth/login", "GET /auth/me",
                 ],
             })
@@ -130,6 +130,11 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/ai/ask":
             from ..ai.assistant import answer_question
             return self._send(200, answer_question(payload.get("question", ""), load_data()))
+
+        if self.path == "/ai/path":
+            # Guided self-discovery: profile in, full recommended process out.
+            from ..ai.pathfinder import plan_path
+            return self._send(200, plan_path(load_data(), payload))
 
         if self.path == "/ai/digest":
             from ..ai.assistant import personal_digest

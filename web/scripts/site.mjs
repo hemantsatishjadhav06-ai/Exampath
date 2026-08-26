@@ -86,6 +86,36 @@ export function emblem(b, size = 40) {
   return `<span class="emblem" style="--ec:${c};width:${size}px;height:${size}px;border-radius:${Math.round(size * 0.28)}px" role="img" aria-label="${esc((b && b.short) || "")} emblem"><span style="font-size:${fs}px">${esc(t)}</span></span>`;
 }
 
+/* The guidance agent (backend/app/ai/agent.py) re-reads the dataset after every
+   scrape and writes each cycle's single next action. Rendering it here makes the
+   whole site process-driven: every card says what to DO, not just what exists. */
+export function nextLine(c) {
+  const n = c.ai_next;
+  if (!n) return "";
+  const icon = { apply: "\u{1F4DD}", admit: "\u{1F3AB}", prepare: "\u{1F4DA}", result: "\u{1F4E2}", watch: "\u{1F440}" }[n.action] || "\u{2192}";
+  const urgent = n.action === "apply" && n.days_left !== null && n.days_left <= 15;
+  return `<p class="nextline${urgent ? " urgent" : ""}"><span aria-hidden="true">${icon}</span>
+    <b>${esc(n.headline)}</b>${n.detail ? ` \u2014 ${esc(n.detail)}` : ""}</p>`;
+}
+
+/* Today's agent-written briefing, shown on the home page. */
+export function aiBriefing() {
+  const b = DATA.ai_briefing;
+  if (!b) return "";
+  const chips = (b.urgent || []).slice(0, 3).map((u) =>
+    `<a class="bchip" href="/exam/${u.id}/"><b>${u.days_left}d</b> ${esc(u.title)}</a>`).join("");
+  return `<section class="briefing" aria-labelledby="brief-h">
+    <div class="wrap">
+      <div class="brief-in">
+        <span class="brief-tag">\u{1F916} AI briefing \u00b7 ${esc(b.generated_at)}</span>
+        <p id="brief-h">${esc(b.headline)}</p>
+        ${chips ? `<div class="brief-chips">${chips}</div>` : ""}
+        <a class="brief-cta" href="/path/">Get my own plan \u2192</a>
+      </div>
+    </div>
+  </section>`;
+}
+
 export function examCard(c) {
   const b = BODIES[c.body];
   const dl = c.dates.find((d) => d.is_deadline);
@@ -108,6 +138,7 @@ export function examCard(c) {
       <div class="f"><b>${c.age_min}&ndash;${c.age_max}</b><span>Age</span></div>
       ${factRight}
     </div>
+    ${nextLine(c)}
     <div class="cta">
       <a class="btn pri sm" href="/exam/${c.id}/">View Dashboard</a>
       <button class="heart" data-follow="${c.id}" aria-label="Follow this exam" aria-pressed="false">
@@ -200,7 +231,7 @@ function footer() {
         <p class="small muted" style="margin:8px 0 0;max-width:320px">Every Indian government exam &mdash; notifications, deadlines, vacancies, eligibility and results, in one fast, free place.</p>
       </div>
       <div class="foot-cols">
-        <div><h4>Explore</h4><a href="/notifications/">Notifications</a><a href="/admit-cards/">Admit cards</a><a href="/results/">Results</a><a href="/calendar/">Calendar</a></div>
+        <div><h4>Explore</h4><a href="/path/">Find my path</a><a href="/search/">Check eligibility</a><a href="/notifications/">Notifications</a><a href="/admit-cards/">Admit cards</a><a href="/results/">Results</a><a href="/calendar/">Calendar</a></div>
         <div><h4>Exams</h4><a href="/bodies/">All exams</a><a href="/search/">Search</a>${DATA.bodies.slice(0,3).map((b)=>`<a href="/body/${b.slug}/">${b.short}</a>`).join("")}</div>
         <div><h4>Prepare</h4><a href="https://merasafar.onrender.com/practice" target="_blank" rel="noopener">Practice tests</a><a href="https://merasafar.onrender.com/papers" target="_blank" rel="noopener">Past papers (8 yrs)</a><a href="https://merasafar.onrender.com" target="_blank" rel="noopener">MeraSafar portal</a></div>
         <div><h4>About</h4><a href="/about/">About</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="/disclaimer/">Disclaimer</a></div>
@@ -317,6 +348,7 @@ export function layout({ title, description, body, active = "/", jsonld = [], pa
     vacancy: c.vacancy, qualification: c.qualification, qualification_code: c.qualification_code,
     age_min: c.age_min, age_max: c.age_max, summary: c.summary, posts: c.posts,
     dates: (c.dates || []).map((d) => ({ label: d.label, date: d.date, is_deadline: d.is_deadline })),
+    ai_next: c.ai_next || null,          // written daily by the guidance agent
   }));
   const dataScript = embedData
     ? `<script id="exampath-data" type="application/json">${JSON.stringify({
@@ -373,10 +405,9 @@ ${rawLD}
       ${navItem("/notifications/", "Notifications", "/notifications")}
       ${navItem("/admit-cards/", "Admit Card", "/admit-cards")}
       ${navItem("/results/", "Result", "/results")}
-      ${navItem("/calendar/", "Calendar", "/calendar")}
       ${navItem("/bodies/", "All Exams", "/bodies")}
-      ${navItem("/search/", "Check Eligibility", "/search")}
-      <a href="https://merasafar.onrender.com/practice" target="_blank" rel="noopener">Practice Tests ↗</a>
+      ${navItem("/path/", "Find my path", "/path")}
+      <a href="https://merasafar.onrender.com/practice" target="_blank" rel="noopener">Practice ↗</a>
     </nav>
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -430,7 +461,7 @@ ${aiWidget()}
 
 <div id="toast" role="status" style="position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:var(--sh-l);z-index:80;opacity:0;transition:.25s;pointer-events:none;max-width:90vw;text-align:center"></div>
 ${dataScript}
-<script>window.__AI_API__=${JSON.stringify(AI_API)};</script>
+<script>window.__AI_API__=${JSON.stringify(AI_API)};window.__AI_PATH_API__=${JSON.stringify(AI_API.replace(/\/ai\/ask$/, "/ai/path"))};</script>
 <script src="/assets/client.js" defer></script>
 </body>
 </html>`;
@@ -455,10 +486,14 @@ export function renderHome() {
   <section class="hero">
     <div class="wrap hero-center">
       <span class="eyebrow">\u{1F1EE}\u{1F1F3} ${CYCLES.length} live exams &middot; ${Object.keys(BODIES).length} bodies &middot; updated daily</span>
-      <h1>Every government exam. <span class="u">Every date.</span> One place.</h1>
-      <p class="sub">Notifications, deadlines, vacancies, eligibility, cut-offs and results &mdash; compiled from official sources, in one clean, free place built for students.</p>
+      <h1>Which exam is <span class="u">right for you?</span></h1>
+      <p class="sub">Answer up to three easy questions &mdash; we show only the exams you are actually eligible for, and exactly what to do next. Free, no sign-up.</p>
+      <div class="hero-cta">
+        <a class="btn pri lg" href="/path/">\u{1F9ED} Find my path &mdash; 30 seconds</a>
+        <a class="btn ghost lg" href="/notifications/">Browse all exams</a>
+      </div>
       <form class="searchbig" action="/search/" method="get">
-        <input id="heroSearch" name="q" placeholder="Search an exam, e.g. \u201cSSC CGL\u201d, \u201cgraduate\u201d, or \u201cbank exams\u201d\u2026" aria-label="Search exams">
+        <input id="heroSearch" name="q" placeholder="\u2026or just type it: \u201c12th pass railway job\u201d, \u201cSSC CGL\u201d, \u201cbank exams\u201d" aria-label="Search exams or describe what you want">
         <button class="btn pri" type="submit">Search</button>
       </form>
       <div class="chips">
@@ -468,6 +503,7 @@ export function renderHome() {
         <a class="c" href="/notifications/">\u{1F514} Open notifications</a>
         <a class="c" href="/search/?q=closing%20soon">\u23F0 Closing soon</a>
       </div>
+      ${aiBriefing()}
       <div class="hero-stats">
         <div class="s"><b>${inr(totalVac)}+</b><span>Vacancies tracked</span></div>
         <div class="s"><b>${CYCLES.length}</b><span>Live exams</span></div>
@@ -481,14 +517,19 @@ export function renderHome() {
     <!-- 1. Closing dates / urgent countdowns -->
     <section class="blk" aria-labelledby="h-closing">
       <div class="sec-title"><h2 id="h-closing">\u23F0 Closing soon</h2><a href="/calendar/">Full calendar &rarr;</a></div>
-      <div class="dl-strip">
+      ${soon.length ? `<div class="dl-strip">
         ${soon.map(({ c, d }) => `
           <a class="dl-card" href="/exam/${c.id}/">
             <div class="cd" data-countdown="${d.date}">${daysLeft(d.date)}<small> days left</small></div>
             <h4>${esc(c.title)}</h4>
             <div class="small muted">${esc(d.label)} &middot; ${fmt(d.date)}</div>
           </a>`).join("")}
-      </div>
+      </div>` : `<div class="empty-state">
+        <p><b>No application window is open in our verified data right now.</b>
+        Every tracked cycle is between notifications \u2014 our scrapers re-check the official sites every day and this fills in the moment a form opens.</p>
+        <div class="es-cta"><a class="btn pri sm" href="/path/">See what to prepare for \u2192</a>
+        <a class="btn ghost sm" href="/notifications/">Browse all exams</a></div>
+      </div>`}
     </section>
 
     <!-- 2. Latest updates (focal), each tagged with its exam badge -->
@@ -964,13 +1005,112 @@ function jobPostingLD(c, b) {
 }
 
 /* ---------- SEARCH ---------- */
+/* ---------------------------------------------------------------- Path Finder
+   The self-discovery entry point. Three short, skippable questions instead of a
+   catalogue to sift. The plan is computed on the client from the embedded
+   dataset (instant, works offline), then upgraded with an AI-written summary
+   from /ai/path when the network is available. Without JavaScript the same form
+   posts to /search/, which already understands education/age/body. */
+const PATH_STEPS = [
+  {
+    n: 1, key: "education", q: "What have you studied?",
+    hint: "We only show exams you can actually sit.",
+    opts: [
+      ["10th", "\u{1F4D8} 10th pass", "10th"],
+      ["12th", "\u{1F4D7} 12th pass", "12th"],
+      ["graduate", "\u{1F393} Graduate", "graduate"],
+      ["pg", "\u{1F393} Post-graduate", "pg"],
+    ],
+  },
+  {
+    n: 3, key: "interest", q: "What kind of job do you want?",
+    hint: "Pick one, or skip to see everything you qualify for.",
+    opts: [
+      ["banking", "\u{1F3E6} Bank jobs", "banking"],
+      ["ssc", "\u{1F4C4} SSC / clerical", "body:ssc"],
+      ["railway", "\u{1F686} Railways", "railways"],
+      ["civil-services", "\u{1F3DB} Civil services", "body:upsc"],
+      ["teaching", "\u{1F9D1}‍\u{1F3EB} Teaching", "central"],
+      ["defence-police", "\u{1F6E1} Defence & police", "body:upsc"],
+      ["state", "\u{1F4CD} State government", "state"],
+    ],
+  },
+];
+
+function pathStep(step) {
+  return `<li class="step" data-step="${step.n}">
+    <div class="step-h">
+      <span class="n" aria-hidden="true">${step.n}</span>
+      <div><h2>${step.q}</h2><p class="hint">${step.hint}</p></div>
+      <button type="button" class="skip" data-skip="${step.n}">Skip</button>
+    </div>
+    <div class="opts" role="group" aria-label="${step.q}">
+      ${step.opts.map(([val, label, fallback]) => `
+        <label class="opt">
+          <input type="radio" name="${step.key}" value="${fallback}" data-value="${val}">
+          <span>${label}</span>
+        </label>`).join("")}
+    </div>
+    ${step.n > 1 ? `<button type="button" class="back" data-back="${step.n}">← Back</button>` : ""}
+  </li>`;
+}
+
+export function renderPath() {
+  const body = `<section class="page pathpage"><div class="wrap">
+    <div class="crumb"><a href="/">Home</a> › <span>Find my path</span></div>
+    <header class="path-head">
+      <h1 class="page-title">Find your path</h1>
+      <p>Three quick questions. You get the exams you are eligible for, ranked, with a dated plan of what to do next — free, no sign-up.</p>
+    </header>
+
+    <form id="pathForm" class="path-steps" action="/search/" method="get">
+      <ol class="steps">
+        ${pathStep(PATH_STEPS[0])}
+        <li class="step" data-step="2">
+          <div class="step-h">
+            <span class="n" aria-hidden="true">2</span>
+            <div><h2>How old are you?</h2><p class="hint">Age limits decide eligibility. Optional.</p></div>
+            <button type="button" class="skip" data-skip="2">Skip</button>
+          </div>
+          <div class="opts">
+            <label class="agefield">Your age
+              <input type="number" name="age" id="pathAge" min="14" max="60" inputmode="numeric" placeholder="e.g. 21">
+            </label>
+            <button type="button" class="btn pri" data-next="2">Continue →</button>
+          </div>
+          <button type="button" class="back" data-back="2">← Back</button>
+        </li>
+        ${pathStep(PATH_STEPS[1])}
+      </ol>
+      <noscript><button class="btn pri" type="submit">Show matching exams</button></noscript>
+    </form>
+
+    <div id="pathResult" class="path-result" hidden aria-live="polite"></div>
+
+    <div class="path-fallback">
+      <h2>Prefer to browse?</h2>
+      <p><a href="/search/">Search and filter every exam yourself</a> · <a href="/notifications/">See open notifications</a> · <a href="/calendar/">Exam calendar</a></p>
+    </div>
+    ${footer()}
+  </div></section>`;
+  return layout({
+    title: "Find your path — which government exam should you take? | ExamPath",
+    description:
+      "Answer three quick questions and get the Indian government exams you are eligible for, ranked, with a dated plan of what to do next. Free, no sign-up.",
+    body,
+    active: "/path",
+    path: "/path/",
+    breadcrumbs: [["Home", "/"], ["Find my path", "/path/"]],
+  });
+}
+
 export function renderSearch() {
   const cats = [["", "Any"], ["central", "Central"], ["state", "State"], ["banking", "Banking"], ["railways", "Railway"]];
   const body = `<section class="page"><div class="wrap">
     <div class="crumb"><a href="/">Home</a> \u203A <span>Search / Check Eligibility</span></div>
     <h1 class="page-title" style="margin-bottom:12px">Search exams &amp; check your eligibility</h1>
     <form class="searchbig" action="/search/" method="get" style="max-width:100%;box-shadow:var(--sh-s);border:1px solid var(--line)">
-      <input id="pageSearch" name="q" placeholder="Search exams, eligibility, body\u2026" aria-label="Search exams">
+      <input id="pageSearch" name="q" placeholder="Describe yourself \u2014 \u201c12th pass, 21, railway job\u201d \u2014 or search any exam" aria-label="Search exams or describe what you want">
       <button class="btn pri" type="submit">Search</button>
     </form>
 
@@ -1008,6 +1148,9 @@ export function renderSearch() {
       ${["graduate","12th","banking","closing soon","ssc","upsc"].map((f) => `<a class="fchip" href="/search/?q=${encodeURIComponent(f)}">${f}</a>`).join("")}
     </div>
     <div id="parseNote"></div>
+    <!-- When the query describes a person ("12th pass railway job"), the AI
+         pathfinder answers with a whole plan, not just a list. -->
+    <div id="searchPlan" class="path-result" hidden aria-live="polite"></div>
     <div class="sec-title"><h2 id="resultCount">${CYCLES.length} exams</h2></div>
     <div class="exam-grid" id="results">${CYCLES.map(examCard).join("")}</div>
     ${footer()}
@@ -1182,7 +1325,7 @@ function shade(hex, pct) {
 
 /* ---------- SEO files ---------- */
 export function sitemapXml() {
-  const urls = ["/", "/notifications/", "/admit-cards/", "/results/", "/bodies/",
+  const urls = ["/", "/path/", "/notifications/", "/admit-cards/", "/results/", "/bodies/",
     "/calendar/", "/search/", "/about/", "/faq/", "/contact/", "/disclaimer/"];
   DATA.bodies.forEach((b) => urls.push(`/body/${b.slug}/`));
   urls.push("/states/");
@@ -1505,6 +1648,7 @@ export function allRoutes() {
     { path: "results/index.html", html: renderResults() },
     { path: "bodies/index.html", html: renderBodies() },
     { path: "calendar/index.html", html: renderCalendar() },
+    { path: "path/index.html", html: renderPath() },
     { path: "search/index.html", html: renderSearch() },
     { path: "about/index.html", html: renderAbout() },
     { path: "faq/index.html", html: renderFaq() },

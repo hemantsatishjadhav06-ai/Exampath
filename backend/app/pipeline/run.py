@@ -167,6 +167,15 @@ def run(export_path: str | None = None, verbose: bool = True,
         "bodies": curated["bodies"],
         "cycles": published,
     }
+    # 4b. autonomous guidance agent: reconcile statuses against their own dates
+    #     and write the next-action guidance + daily briefing into the dataset.
+    from ..ai.agent import run_agent
+    rep = run_agent(dataset)
+    log.append(f"[agent  ] status corrections={len(rep['corrections'])} "
+               f"needs_refresh={len(rep['stale'])} urgent={len(rep['urgent'])}")
+    for corr in rep["corrections"]:
+        log.append(f"[agent  ] {corr['id']:16s} status {corr['from']} -> {corr['to']} (from its own dates)")
+
     out = export_path or str(ROOT / "data" / "exams.json")
     export_json(dataset, out)
     save_sqlite(dataset, BACKEND / "exampath.db")
