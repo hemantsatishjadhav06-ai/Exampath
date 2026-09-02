@@ -672,7 +672,37 @@
     if (!("serviceWorker" in navigator)) return;
     if (location.protocol === "file:") return;
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(BASE + "/sw.js").catch(function () {});
+      // Evict any foreign/stale service worker controlling this origin. ExamPath
+      // lives under /Exampath/ on a github.io account whose root once hosted a
+      // different site; that site's root-scoped worker would otherwise keep
+      // intercepting our navigations from a returning visitor's cache. We only
+      // remove workers that are NOT our own sw.js, then (re)register ours.
+      var mine = BASE + "/sw.js";
+      if (navigator.serviceWorker.getRegistrations) {
+        navigator.serviceWorker.getRegistrations().then(function (regs) {
+          var hadForeign = false;
+          regs.forEach(function (reg) {
+            var w = reg.active || reg.waiting || reg.installing;
+            var url = w && w.scriptURL ? w.scriptURL : "";
+            if (url && url.indexOf(mine) === -1) { hadForeign = true; reg.unregister(); }
+          });
+          navigator.serviceWorker.register(mine).catch(function () {});
+          // A foreign worker may have served this very page from its cache;
+          // once it is gone, reload once to get the real ExamPath page.
+          if (hadForeign) {
+            try {
+              if (!sessionStorage.getItem("sw_healed")) {
+                sessionStorage.setItem("sw_healed", "1");
+                location.reload();
+              }
+            } catch (e) {}
+          }
+        }).catch(function () {
+          navigator.serviceWorker.register(mine).catch(function () {});
+        });
+      } else {
+        navigator.serviceWorker.register(mine).catch(function () {});
+      }
     });
   }
 
