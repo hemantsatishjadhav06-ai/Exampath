@@ -69,13 +69,19 @@ class Handler(BaseHTTPRequestHandler):
                 "ok": True, "service": "exampath-api",
                 "site": "https://exampath.onrender.com/",
                 "endpoints": [
-                    "GET /health", "GET /api/exams", "GET /api/exams/{id}",
+                    "GET /health", "GET /pipeline/status", "GET /api/exams", "GET /api/exams/{id}",
                     "GET /ai/status", "POST /ai/ask", "POST /ai/path", "POST /ai/digest",
                     "POST /auth/register", "POST /auth/login", "GET /auth/me",
                 ],
             })
         if self.path == "/health":
             return self._send(200, {"ok": True, "service": "exampath-api"})
+        if self.path == "/pipeline/status":
+            # Freshness of the published data + the auto-updater's last runs.
+            # Public and read-only: lets the site, monitors and humans see
+            # when facts were last refreshed and which sources are failing.
+            from ..pipeline.update import status
+            return self._send(200, {"ok": True, **status()})
         if self.path == "/api/exams":
             return self._send(200, load_data())
         if self.path.startswith("/api/exams/"):

@@ -1,0 +1,23 @@
+{
+  "entries": [
+    {
+      "run_at": "2026-09-04T09:05:12+00:00",
+      "mode": "curated",
+      "published_cycles": 23,
+      "blocked_cycles": 0,
+      "sources_checked": 0,
+      "sources_ok": 0,
+      "changes": [
+        {
+          "cycle": "mppsc-ss-2026",
+          "kind": "changed",
+          "field": "status",
+          "old": "upcoming",
+          "new": "admit_card",
+          "text": "Status: Upcoming → Admit card out"
+        }
+      ]
+    }
+  ],
+  "updated_at": "2026-09-04T09:05:12+00:00"
+}

@@ -2,7 +2,7 @@
 // Wired to `npm run build` so a deployable export exists without a package
 // registry. In an environment with registry access, `npm run build:next`
 // (next build) produces the equivalent export from the App Router source.
-import { mkdirSync, writeFileSync, rmSync, copyFileSync, readdirSync, statSync } from "node:fs";
+import { mkdirSync, writeFileSync, rmSync, copyFileSync, readdirSync, statSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { allRoutes, sitemapXml, robotsTxt, rssXml, CSS, DATA } from "./site.mjs";
@@ -127,6 +127,13 @@ write("robots.txt", robotsTxt());
 write("rss.xml", rssXml());
 write("exams.json", JSON.stringify(DATA));            // stable public JSON endpoint
 write("api/exams.json", JSON.stringify(DATA));
+// Public data changelog written by the auto-updater (data/changelog.json at
+// the repo root). Optional: absent until the first live refresh lands.
+try {
+  const changelog = readFileSync(join(ROOT, "..", "data", "changelog.json"), "utf8");
+  write("changelog.json", changelog);
+  write("api/changelog.json", changelog);
+} catch (e) {}
 
 // ---- PWA: installable + offline ----
 const u = (p) => `${BASE}${p}`;                        // base-aware absolute path

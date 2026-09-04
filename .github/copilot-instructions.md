@@ -20,9 +20,15 @@ MeraSafar (Next.js 14), lives on the `merasafar` branch of this repo.
     → `store.py` (JSON + SQLite) → `app/publish/supabase_publish.py`.
     Live reconcile (`EXAMPATH_LIVE=1`) only overwrites curated values at
     confidence ≥ 0.6; on any fetch error it keeps the curated value.
+  - `app/pipeline/update.py` — the **auto-update tool** (`check` / `apply` /
+    `status`): diffs each run against the published data (`changes.py`),
+    keeps per-source memory and run history (`state.py`), carries last-good
+    live facts forward, refuses regressions, writes `data/changelog.json` +
+    `data/update-state.json`. Design notes in `docs/auto-update.md`.
   - `app/api/server.py` — stdlib HTTP API (health, exams, AI Q&A via
-    OpenRouter, auth, `/pipeline/run`).
-- `.github/workflows/` — Pages deploy and the daily scrape-and-publish cron.
+    OpenRouter, auth, `/pipeline/run`, `/pipeline/status`).
+- `.github/workflows/` — Pages deploy, CI, and the 4×-daily auto data update
+  (`scrape-and-publish.yml`: update → commit → deploy → failure issue).
 - Deploys: Render (`exampath.onrender.com` static, `exampath-api-cq29`)
   and GitHub Pages mirror. Render deploys track the `main` branch.
 

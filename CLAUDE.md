@@ -25,3 +25,8 @@ the 90% validation gate, no secrets in the repo).
 - Site build: `node web/scripts/export-static.mjs` (add `BASE_PATH=/Exampath`
   for the GitHub Pages variant; output in `web/out/`)
 - Live scrape (guarded): POST `/pipeline/run` with `x-pipeline-secret`
+- Auto data update (see `docs/auto-update.md`): from `backend/`,
+  `python -m app.pipeline.update check --live` (dry run report),
+  `... apply --live` (refresh data + changelog + state), `... status`
+  (freshness health). Runs 4×/day via `.github/workflows/scrape-and-publish.yml`.
+- Workflow lint: `actionlint .github/workflows/*.yml` before touching CI.

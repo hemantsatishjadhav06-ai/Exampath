@@ -47,7 +47,9 @@ to update automatically:
    ```bash
    docker compose up            # starts the API (:8000) and n8n (:5678)
    ```
-2. Point the scraper at real official URLs (`HttpScraper`) and schedule the pipeline.
+2. Data refresh is already scheduled: `.github/workflows/scrape-and-publish.yml`
+   runs the auto-update tool 4×/day (see `docs/auto-update.md`); you only need
+   the API server for the AI/auth endpoints and the optional n8n webhook.
 3. Add **n8n**: create a workflow that POSTs scraped documents to
    `http://api:8000/webhook/n8n` with header `x-webhook-secret: $N8N_WEBHOOK_SECRET`.
 4. On publish, re-run `npm run build` and redeploy `web/out` (or wire the Pages/Netlify hook so

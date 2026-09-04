@@ -13,6 +13,7 @@ Mirrors the production n8n flow, but runnable as one Python process:
 from __future__ import annotations
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -31,6 +32,77 @@ FIXTURES = {"ssc-cgl-2026": "ssc-cgl.html", "ibps-po-2026": "ibps-po.html"}
 # Live-reconcile only overwrites a curated value when the scrape is at least this
 # confident — govt pages are noisy, so we bias hard towards the verified KB.
 RECONCILE_MIN_CONFIDENCE = 0.6
+
+# Words too generic to identify an exam on a conducting body's page.
+_GENERIC_WORDS = {
+    "exam", "examination", "examinations", "recruitment", "services", "service",
+    "combined", "competitive", "state", "and", "the", "of", "level", "test", "grade",
+    "officer", "officers", "assistant", "junior", "upper", "subordinate", "central",
+    "office", "group", "eligibility", "national", "commission", "board", "india",
+}
+
+
+def exam_keywords(cycle: dict, body: dict | None = None) -> set[str]:
+    """Words/phrases that identify THIS exam on its conducting body's pages,
+    e.g. {"cgl"} for SSC CGL, {"grade b"} for RBI Grade B, {"po"} for IBPS PO.
+
+    Body names are excluded (every SSC page says "SSC"), as are generic words,
+    so a page must actually talk about the exam before we take facts from it.
+    """
+    body = body or {}
+    body_toks = set(re.findall(r"[a-z0-9]+", " ".join(
+        str(x) for x in (body.get("short", ""), body.get("name", ""), cycle.get("body", ""))).lower()))
+    toks = set(re.findall(r"[a-z0-9]+", f"{cycle.get('exam', '')} {cycle.get('title', '')}".lower()))
+    keys = {t for t in toks - body_toks - _GENERIC_WORDS if len(t) >= 3 and not t.isdigit()}
+    phrase = " ".join(t for t in re.findall(r"[a-z0-9]+", str(cycle.get("exam", "")).lower())
+                      if t not in body_toks and not t.isdigit())
+    if phrase:
+        keys.add(phrase)
+    return keys
+
+
+def _plain_text(html: str) -> str:
+    html = re.sub(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>", " ", html)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).strip()
+
+
+def _keyword_spans(text: str, keywords: set[str]) -> list[tuple[int, int]]:
+    low = text.lower()
+    spans = []
+    for k in keywords:
+        for m in re.finditer(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])", low):
+            spans.append((m.start(), m.end()))
+    return sorted(spans)
+
+
+def page_mentions(html: str, keywords: set[str]) -> bool:
+    """True when the page text contains any keyword as a whole word/phrase."""
+    if not keywords:
+        return True
+    return bool(_keyword_spans(_plain_text(html), keywords))
+
+
+# Characters of page text kept on each side of an exam mention. Portal pages
+# list many exams; a "last date" 3,000 characters away from the only mention
+# of "PO" almost certainly belongs to a different opening.
+FOCUS_WINDOW = 700
+
+
+def focus_text(html: str, keywords: set[str], window: int = FOCUS_WINDOW) -> str:
+    """The parts of a page that are ABOUT this exam: text windows around each
+    keyword mention (merged when they overlap). Facts are extracted from this
+    focused text only, never from the whole page. Empty keywords => whole page."""
+    text = _plain_text(html)
+    if not keywords:
+        return text
+    merged: list[list[int]] = []
+    for a, b in _keyword_spans(text, keywords):
+        lo, hi = max(0, a - window), min(len(text), b + window)
+        if merged and lo <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], hi)
+        else:
+            merged.append([lo, hi])
+    return " … ".join(text[lo:hi] for lo, hi in merged)
 
 
 def _env_truthy(name: str) -> bool:
@@ -66,40 +138,72 @@ def notice_url(cycle: dict, bodies_by_slug: dict) -> str | None:
 
 
 def _merge_dates(existing: list[dict], found: list[dict]) -> list[dict]:
-    by_label = {d["label"]: d for d in existing}
+    """Update dates by label (case-insensitive, so the extractor's
+    "Last date to apply" refreshes the curated "Last Date to Apply" row
+    instead of adding a duplicate). The curated label text is kept."""
+    by_key = {d["label"].lower(): dict(d) for d in existing}
     for d in found:
-        by_label[d["label"]] = {**by_label.get(d["label"], {}), **d}
-    return list(by_label.values())
+        key = d["label"].lower()
+        cur = by_key.get(key, {})
+        by_key[key] = {**cur, **d, "label": cur.get("label", d["label"])}
+    return list(by_key.values())
 
 
 def reconcile_live(cycles: dict, bodies_by_slug: dict, log: list[str],
-                   scraper: HttpScraper | None = None) -> None:
-    """Fetch each cycle's official page and fold confident findings back in."""
+                   scraper: HttpScraper | None = None,
+                   report: dict | None = None) -> None:
+    """Fetch each cycle's official page and fold confident findings back in.
+
+    When `report` is given, one structured entry per cycle is written into
+    it ({cycle id: {url, ok, http, confidence, hash, applied, error}}) so the
+    auto-update tool can track sources across runs without parsing the log.
+    """
     scraper = scraper or HttpScraper()
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    today = now[:10]
     for cid, c in cycles.items():
         urls = notice_urls(c, bodies_by_slug)[:3]   # try up to 3 sources per cycle
         if not urls:
             continue
-        best, best_url, tried = None, None, 0
+        keywords = exam_keywords(c, bodies_by_slug.get(c.get("body")))
+        best, best_url, tried, last_err = None, None, 0, None
         for url in urls:
             try:
                 res = scraper.fetch(url)
-            except Exception:
+            except Exception as e:                   # site down / timeout: try next
+                last_err = f"{type(e).__name__}: {e}"[:160]
                 continue
             tried += 1
-            ext = extract_generic(res.html, hint=cid)
-            if best is None or ext["confidence"] > best[1]["confidence"]:
-                best, best_url = (res, ext), url
-            if ext["confidence"] >= RECONCILE_MIN_CONFIDENCE:
+            # A body's home page is shared by all its exams; only a page that
+            # actually names THIS exam may change its facts, and only from the
+            # text around those mentions. Irrelevant pages still count as
+            # "reachable" (hash + last_checked) but apply nothing.
+            relevant = page_mentions(res.html, keywords)
+            ext = extract_generic(focus_text(res.html, keywords) if relevant else res.html, hint=cid)
+            ext["relevant"] = relevant
+            score = ext["confidence"] if ext["relevant"] else -1
+            if best is None or score > best[2]:
+                best, best_url = (res, ext, score), url
+            if ext["relevant"] and ext["confidence"] >= RECONCILE_MIN_CONFIDENCE:
                 break                                # good enough — stop early
         if best is None:
             log.append(f"[live   ] {cid:16s} all {len(urls)} sources FAILED — kept curated")
+            if report is not None:
+                report[cid] = {"url": urls[0], "ok": False, "http": None, "confidence": None,
+                               "hash": None, "applied": [], "error": last_err}
             continue
-        res, ext = best
+        res, ext, _ = best
         c["source_hash"] = res.content_hash
         c["last_checked"] = now
         applied = []
+        if not ext["relevant"]:
+            log.append(f"[live   ] {cid:16s} http={res.status} page does not mention "
+                       f"{'/'.join(sorted(keywords))} — nothing applied")
+            if report is not None:
+                report[cid] = {"url": best_url, "ok": True, "http": res.status, "relevant": False,
+                               "confidence": ext["confidence"], "hash": res.content_hash,
+                               "applied": [], "error": None}
+            continue
         if ext["confidence"] >= RECONCILE_MIN_CONFIDENCE:
             if ext.get("vacancy"):
                 c["vacancy"] = ext["vacancy"]
@@ -117,16 +221,31 @@ def reconcile_live(cycles: dict, bodies_by_slug: dict, log: list[str],
             text, ukind = release_label[tag]
             ups = c.setdefault("updates", [])
             if not any(u.get("text") == text for u in ups):
-                ups.insert(0, {"text": text, "kind": ukind, "when": "today"})
+                # `published_at` is the machine-readable date the site sorts
+                # and labels by; `when` stays as a fallback for old readers.
+                ups.insert(0, {"text": text, "kind": ukind, "when": "today",
+                               "published_at": today, "source": best_url})
                 applied.append(f"release:{tag}")
         log.append(
             f"[live   ] {cid:16s} http={res.status} conf={ext['confidence']} "
             f"src={tried}/{len(urls)} applied={','.join(applied) or 'none'}"
         )
+        if report is not None:
+            report[cid] = {"url": best_url, "ok": True, "http": res.status, "relevant": True,
+                           "confidence": ext["confidence"], "hash": res.content_hash,
+                           "applied": applied, "error": None}
 
 
 def run(export_path: str | None = None, verbose: bool = True,
-        live: bool | None = None, log_sink: list[str] | None = None) -> dict:
+        live: bool | None = None, log_sink: list[str] | None = None,
+        *, publish: bool = True, scraper: HttpScraper | None = None,
+        report: dict | None = None) -> dict:
+    """Run the whole pipeline once and return the published dataset.
+
+    publish=False skips the Supabase upsert (dry runs / the update tool's
+    `check` mode). `scraper` lets tests inject a fake HttpScraper; `report`
+    receives the per-source outcome (see reconcile_live).
+    """
     if live is None:
         live = _env_truthy("EXAMPATH_LIVE")
 
@@ -150,7 +269,7 @@ def run(export_path: str | None = None, verbose: bool = True,
     # 3b. LIVE: reconcile every cycle against its official page
     if live:
         log.append("[live   ] EXAMPATH_LIVE=1 — reconciling against official sources")
-        reconcile_live(cycles, bodies_by_slug, log)
+        reconcile_live(cycles, bodies_by_slug, log, scraper=scraper, report=report)
 
     # 4. validate everything through the gate
     published, blocked = [], []
@@ -182,7 +301,10 @@ def run(export_path: str | None = None, verbose: bool = True,
     log.append(f"[done   ] published={len(published)} blocked={len(blocked)} -> {out}")
 
     # 5b. durable store + API (no-op unless SUPABASE_URL + service key are set)
-    publish_to_supabase(dataset, log=log)
+    if publish:
+        publish_to_supabase(dataset, log=log)
+    else:
+        log.append("[supabase] publish skipped (dry run)")
 
     if verbose:
         print("\n".join(log))
