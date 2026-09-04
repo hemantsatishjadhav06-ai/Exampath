@@ -345,9 +345,12 @@ class UpdateToolTests(unittest.TestCase):
         self.assertEqual(r["change_summary"]["added"], r["published"])
 
     def test_status_reports_freshness(self):
-        now = datetime(2026, 9, 4, 12, 0, tzinfo=timezone.utc)
-        s = upd.status(root=self.tmp, max_age_hours=36, now=now)
-        self.assertFalse(s["ok"])                       # committed dataset is days old
+        # Staleness is measured against the dataset's own date, so the test
+        # does not depend on how recently the committed dataset was refreshed.
+        gen0 = self._read(self.paths.dataset)["generated_at"]
+        stale_now = datetime.fromisoformat(gen0).replace(tzinfo=timezone.utc) + timedelta(days=10)
+        s = upd.status(root=self.tmp, max_age_hours=36, now=stale_now)
+        self.assertFalse(s["ok"])
         self.assertGreater(s["age_hours"], 36)
         upd.run_update("apply", live=False, root=self.tmp, publish=False, force=True)
         gen = self._read(self.paths.dataset)["generated_at"]
