@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26",
+  "generated_at": "2026-09-04",
   "source": "exampath-pipeline",
   "bodies": [
     {
@@ -472,10 +472,10 @@
       "ai_next": {
         "action": "prepare",
         "headline": "Start focused preparation",
-        "detail": "Tier-1 Exam 2026-09-22 — 27 days to go. Work backwards from that date.",
-        "days_left": 27,
+        "detail": "Tier-1 Exam 2026-09-22 — 18 days to go. Work backwards from that date.",
+        "days_left": 18,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -940,10 +940,10 @@
       "ai_next": {
         "action": "prepare",
         "headline": "Start focused preparation",
-        "detail": "Tier-1 Exam 2026-10-15 — 50 days to go. Work backwards from that date.",
-        "days_left": 50,
+        "detail": "Tier-1 Exam 2026-10-15 — 41 days to go. Work backwards from that date.",
+        "days_left": 41,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -1315,10 +1315,10 @@
       "ai_next": {
         "action": "prepare",
         "headline": "Start focused preparation",
-        "detail": "Exam (tentative) 2026-11-10 — 76 days to go. Work backwards from that date.",
-        "days_left": 76,
+        "detail": "Exam (tentative) 2026-11-10 — 67 days to go. Work backwards from that date.",
+        "days_left": 67,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -1559,7 +1559,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -2022,10 +2022,10 @@
       "ai_next": {
         "action": "prepare",
         "headline": "Start focused preparation",
-        "detail": "Prelims Exam 2026-09-16 — 21 days to go. Work backwards from that date.",
-        "days_left": 21,
+        "detail": "Prelims Exam 2026-09-16 — 12 days to go. Work backwards from that date.",
+        "days_left": 12,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -2510,7 +2510,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -2520,7 +2520,7 @@
       "title": "MPPSC State Service 2026",
       "qualification": "Graduate",
       "qualification_code": "graduate",
-      "status": "upcoming",
+      "status": "admit_card",
       "vacancy": 158,
       "age_min": 21,
       "age_max": 40,
@@ -2925,10 +2925,10 @@
       "ai_next": {
         "action": "prepare",
         "headline": "Start focused preparation",
-        "detail": "Prelims Exam 2026-10-01 — 36 days to go. Work backwards from that date.",
-        "days_left": 36,
+        "detail": "Prelims Exam 2026-10-01 — 27 days to go. Work backwards from that date.",
+        "days_left": 27,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -3449,10 +3449,10 @@
       "ai_next": {
         "action": "admit",
         "headline": "Download your admit card",
-        "detail": "Admit card 2026-11-27 — 93 days away. Carry a photo ID.",
-        "days_left": 93,
+        "detail": "Admit card 2026-11-27 — 84 days away. Carry a photo ID.",
+        "days_left": 84,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -3875,10 +3875,10 @@
       "ai_next": {
         "action": "prepare",
         "headline": "Start focused preparation",
-        "detail": "Prelims Exam 2026-09-13 — 18 days to go. Work backwards from that date.",
-        "days_left": 18,
+        "detail": "Prelims Exam 2026-09-13 — 9 days to go. Work backwards from that date.",
+        "days_left": 9,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -4285,10 +4285,10 @@
       "ai_next": {
         "action": "admit",
         "headline": "Download your admit card",
-        "detail": "Admit card 2026-11-28 — 94 days away. Carry a photo ID.",
-        "days_left": 94,
+        "detail": "Admit card 2026-11-28 — 85 days away. Carry a photo ID.",
+        "days_left": 85,
         "needs_refresh": false,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -4461,7 +4461,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -4586,7 +4586,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -4738,7 +4738,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -4871,7 +4871,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5024,7 +5024,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5147,7 +5147,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5302,7 +5302,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5429,7 +5429,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5569,7 +5569,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5710,7 +5710,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5826,7 +5826,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -5949,7 +5949,7 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     },
     {
@@ -6077,12 +6077,12 @@
         "detail": "Our latest verified dates for this cycle have passed. We re-check the official site daily.",
         "days_left": null,
         "needs_refresh": true,
-        "checked_on": "2026-08-26"
+        "checked_on": "2026-09-04"
       }
     }
   ],
   "ai_briefing": {
-    "generated_at": "2026-08-26",
+    "generated_at": "2026-09-04",
     "headline": "8 exam cycle(s) tracked with live dates; nothing closes in the next 30 days.",
     "urgent": [],
     "needs_refresh": [
@@ -6103,6 +6103,6 @@
       "cds-2026"
     ],
     "tracked": 23,
-    "corrected": 9
+    "corrected": 0
   }
 }

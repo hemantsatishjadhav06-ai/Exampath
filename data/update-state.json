@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "last_run": {
+    "run_at": "2026-09-04T09:05:12+00:00",
+    "mode": "apply",
+    "live": false,
+    "published": 23,
+    "blocked": 0,
+    "sources_checked": 0,
+    "sources_ok": 0,
+    "sources_changed": 0,
+    "changes": 1,
+    "feed_rows": 0,
+    "wrote": true,
+    "refused": null
+  },
+  "last_change_at": "2026-09-04T09:05:12+00:00",
+  "sources": {},
+  "runs": [
+    {
+      "run_at": "2026-09-04T09:05:12+00:00",
+      "mode": "apply",
+      "live": false,
+      "published": 23,
+      "blocked": 0,
+      "sources_checked": 0,
+      "sources_ok": 0,
+      "sources_changed": 0,
+      "changes": 1,
+      "feed_rows": 0,
+      "wrote": true,
+      "refused": null
+    }
+  ]
+}
