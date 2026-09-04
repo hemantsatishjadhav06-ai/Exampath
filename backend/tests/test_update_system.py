@@ -20,7 +20,7 @@ from app.pipeline.changes import (Change, diff_datasets, changes_to_feed_rows, m
 from app.pipeline.state import (empty_state, record_sources, record_run, alerting_sources,
                                 load_state, save_state, MAX_RUNS)
 from app.pipeline import update as upd
-from app.pipeline.run import _merge_dates, exam_keywords, page_mentions, reconcile_live
+from app.pipeline.run import _merge_dates, exam_keywords, page_mentions, focus_text, reconcile_live
 from app.scrapers.base import FetchResult, content_hash
 
 BACKEND = Path(__file__).resolve().parents[1]
@@ -167,6 +167,27 @@ class PageRelevanceTests(unittest.TestCase):
         self.assertFalse(page_mentions("<p>SSC CHSL 2026 notice</p>", {"cgl"}))
         self.assertFalse(page_mentions("<p>Import/export portal</p>", {"po"}))
         self.assertTrue(page_mentions("<p>IBPS PO 2026</p>", {"po"}))
+
+    def test_focus_text_keeps_only_windows_around_mentions(self):
+        far = "<p>Specialist Officers: last date to apply 30/09/2026.</p>" + "<p>filler text</p>" * 80
+        html = (far + "<h2>Probationary Officers (PO)</h2><p>Last date to apply 25/09/2026.</p>"
+                + "<p>filler text</p>" * 80 + far)
+        focused = focus_text(html, {"po"}, window=120)
+        self.assertIn("25/09/2026", focused)
+        self.assertNotIn("30/09/2026", focused)
+        self.assertEqual(focus_text("<p>a b</p>", set()), "a b")
+
+    def test_reconcile_takes_dates_only_near_the_exam_mention(self):
+        filler = "<p>filler</p>" * 200
+        page = ("<p>Specialist Cadre Officers: Last date to apply 30/09/2026</p>" + filler
+                + "<h2>SBI PO 2026</h2><p>Last date to apply 25/09/2026</p>")
+        cycles = {"sbi-po-2026": _cycle(id="sbi-po-2026", body="sbi", exam="SBI PO", title="SBI PO 2026",
+                                        links=[{"kind": "Website", "url": "https://sbi.co.in", "label": "w"}])}
+        log, report = [], {}
+        reconcile_live(cycles, {"sbi": {"slug": "sbi", "short": "SBI", "name": "State Bank of India"}}, log,
+                       scraper=FakeScraper({"https://sbi.co.in": page}), report=report)
+        got = {d["label"].lower(): d["date"] for d in cycles["sbi-po-2026"]["dates"]}
+        self.assertEqual(got["last date to apply"], "2026-09-25")
 
     def test_reconcile_applies_only_to_the_named_exam(self):
         page = ("<p>SSC CGL 2026: Total Vacancies: 12,256 posts. Last date to apply 25/08/2026.</p>"

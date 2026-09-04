@@ -61,12 +61,48 @@ def exam_keywords(cycle: dict, body: dict | None = None) -> set[str]:
     return keys
 
 
+def _plain_text(html: str) -> str:
+    html = re.sub(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>", " ", html)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).strip()
+
+
+def _keyword_spans(text: str, keywords: set[str]) -> list[tuple[int, int]]:
+    low = text.lower()
+    spans = []
+    for k in keywords:
+        for m in re.finditer(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])", low):
+            spans.append((m.start(), m.end()))
+    return sorted(spans)
+
+
 def page_mentions(html: str, keywords: set[str]) -> bool:
     """True when the page text contains any keyword as a whole word/phrase."""
     if not keywords:
         return True
-    text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).lower()
-    return any(re.search(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])", text) for k in keywords)
+    return bool(_keyword_spans(_plain_text(html), keywords))
+
+
+# Characters of page text kept on each side of an exam mention. Portal pages
+# list many exams; a "last date" 3,000 characters away from the only mention
+# of "PO" almost certainly belongs to a different opening.
+FOCUS_WINDOW = 700
+
+
+def focus_text(html: str, keywords: set[str], window: int = FOCUS_WINDOW) -> str:
+    """The parts of a page that are ABOUT this exam: text windows around each
+    keyword mention (merged when they overlap). Facts are extracted from this
+    focused text only, never from the whole page. Empty keywords => whole page."""
+    text = _plain_text(html)
+    if not keywords:
+        return text
+    merged: list[list[int]] = []
+    for a, b in _keyword_spans(text, keywords):
+        lo, hi = max(0, a - window), min(len(text), b + window)
+        if merged and lo <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], hi)
+        else:
+            merged.append([lo, hi])
+    return " … ".join(text[lo:hi] for lo, hi in merged)
 
 
 def _env_truthy(name: str) -> bool:
@@ -138,11 +174,13 @@ def reconcile_live(cycles: dict, bodies_by_slug: dict, log: list[str],
                 last_err = f"{type(e).__name__}: {e}"[:160]
                 continue
             tried += 1
-            ext = extract_generic(res.html, hint=cid)
             # A body's home page is shared by all its exams; only a page that
-            # actually names THIS exam may change its facts. Irrelevant pages
-            # still count as "reachable" (hash + last_checked) but apply nothing.
-            ext["relevant"] = page_mentions(res.html, keywords)
+            # actually names THIS exam may change its facts, and only from the
+            # text around those mentions. Irrelevant pages still count as
+            # "reachable" (hash + last_checked) but apply nothing.
+            relevant = page_mentions(res.html, keywords)
+            ext = extract_generic(focus_text(res.html, keywords) if relevant else res.html, hint=cid)
+            ext["relevant"] = relevant
             score = ext["confidence"] if ext["relevant"] else -1
             if best is None or score > best[2]:
                 best, best_url = (res, ext, score), url
