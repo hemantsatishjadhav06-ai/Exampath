@@ -17,6 +17,15 @@ description: 'Conventions for the ExamPath Python scraper/pipeline/API code: std
 - **The 90% validation gate is the contract.** `validate.py` blocks any
   cycle scoring ≤ 90 from publishing. Never weaken the gate to make a test
   pass — fix the data instead.
+- **A page may only change the exam it names.** `reconcile_live` gates
+  every fetched page through `page_mentions(html, exam_keywords(cycle))`;
+  a body home page shared by ten exams must not push one exam's vacancy
+  count into the other nine. Keep that gate in front of both fact
+  application and release detection.
+- **Updater bookkeeping is not data.** `app/pipeline/update.py` decides
+  what to publish by diffing tracked facts (`changes.TRACKED_FIELDS`), not
+  file bytes; new fields that are derived (timestamps, hashes, AI guidance)
+  stay out of that list. Feed rows written by code carry `published_at`.
 - **Scrapes must never fail the run.** Wrap fetches so a down site logs
   `kept curated` and continues; timeouts stay short (site outages are
   normal for government portals).

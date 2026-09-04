@@ -24,6 +24,19 @@ export const CSS = readFileSync(join(ROOT, "app/globals.css"), "utf8");
 
 export const BODIES = Object.fromEntries(DATA.bodies.map((b) => [b.slug, b]));
 export const CYCLES = DATA.cycles;
+
+// Feed rows written by the auto-updater carry a machine-readable
+// `published_at` (ISO date). Turn it into the relative label the feed shows,
+// measured against the dataset's own build date so labels age correctly on
+// every rebuild instead of freezing at "today".
+export function whenLabel(publishedAt, today = DATA.generated_at) {
+  const days = Math.round((new Date(today) - new Date(publishedAt)) / 86400000);
+  if (!Number.isFinite(days) || days <= 0) return "Today";
+  return `${days}d ago`;
+}
+for (const c of CYCLES) for (const u of c.updates || []) {
+  if (u.published_at) u.when = whenLabel(u.published_at);
+}
 export const byId = (id) => CYCLES.find((c) => c.id === id);
 
 export const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -244,7 +257,8 @@ function footer() {
 }
 
 const whenRank = (when) => {
-  const m = when.match(/(\d+)\s*([hdmw])/i);
+  if (/^(today|just now|now)$/i.test(String(when).trim())) return 0;
+  const m = String(when).match(/(\d+)\s*([hdmw])/i);
   if (!m) return 9999;
   const n = parseInt(m[1], 10), u = m[2].toLowerCase();
   return n * (u === "h" ? 1 / 24 : u === "w" ? 7 : 1);
@@ -940,6 +954,7 @@ export function renderExam(id) {
           ${c.links.map((l) => `<a class="src" href="${esc(l.url)}" target="_blank" rel="noopener">
             <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
             <div><b>${esc(l.label)}</b><br><span>${esc(l.kind)} &middot; verified</span></div><span class="go">Open \u2197</span></a>`).join("")}
+          ${lastCheckedLine(c)}
         </div>
 
         <div class="panel">
@@ -1557,7 +1572,15 @@ function howToPanel(c, b) {
       <a class="btn saf" style="margin-top:10px" href="${esc(officialLink(c, b, "apply"))}" target="_blank" rel="noopener">Apply on the official site ↗</a></div>`
     : `<div class="panel"><h3>🚀 How to apply</h3><p class="muted">Apply online on the official portal when the window opens.</p>
       <a class="btn saf" href="${esc(officialLink(c, b, "apply"))}" target="_blank" rel="noopener">Official apply portal ↗</a></div>`}
-    ${(c.links || []).length ? `<div class="panel"><h3>🔗 Official sources</h3>${c.links.map(srcRow).join("")}</div>` : ""}`;
+    ${(c.links || []).length ? `<div class="panel"><h3>🔗 Official sources</h3>${c.links.map(srcRow).join("")}${lastCheckedLine(c)}</div>` : ""}`;
+}
+
+/* "Last checked" provenance line: only shown for cycles the auto-updater has
+   actually read from the official site (they carry `last_checked`). */
+function lastCheckedLine(c) {
+  if (!c.last_checked) return "";
+  const d = String(c.last_checked).slice(0, 10);
+  return `<p class="small muted" style="margin:10px 0 0">Official site last checked on ${esc(fmt(d))} &middot; auto-updated several times a day.</p>`;
 }
 
 function prevPapersPanel(c, b) {

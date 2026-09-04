@@ -1,69 +1,138 @@
-name: Scrape, publish to Supabase & deploy
+name: Auto data update (check · refresh · deploy)
 
-# Automated data refresh: scrape official sources -> validate (>90% gate) ->
-# update data/exams.json -> upsert to Supabase -> rebuild & deploy the site.
+# The website's data refresh loop. Several times a day:
+#   1. run the pipeline against the official sources
+#      (scrape -> extract -> 90% validation gate -> guidance agent),
+#   2. diff the result against the published dataset,
+#   3. when a fact changed (or the day rolled over): commit the refreshed
+#      data + changelog + updater state, publish to Supabase, rebuild and
+#      deploy the site,
+#   4. on failure: open (or update) one tracking issue so nobody has to
+#      watch the Actions tab.
+# Tool: backend/app/pipeline/update.py  (docs/auto-update.md explains the design).
 on:
   schedule:
-    - cron: "30 1 * * *"        # daily at 01:30 UTC
+    # 4x daily: 07:00 / 13:00 / 19:00 / 01:00 IST — covers the Indian working
+    # day, when conducting bodies publish notices. UTC in cron.
+    - cron: "30 1,7,13,19 * * *"
   workflow_dispatch:
     inputs:
       live:
-        description: "Fetch live official sources (else use the curated dataset)"
+        description: "Fetch live official sources (off = curated dataset only)"
         type: boolean
         default: true
+      mode:
+        description: "check = dry run report only · apply = refresh & deploy"
+        type: choice
+        options: [apply, check]
+        default: apply
+      force:
+        description: "Rewrite the data files even when nothing changed"
+        type: boolean
+        default: false
 
 permissions:
   contents: write               # commit refreshed data back to main
   pages: write                  # deploy the rebuilt site
   id-token: write
+  issues: write                 # failure tracking issue
 
 concurrency:
   group: pages                  # serialise with the push-triggered Pages deploy
   cancel-in-progress: false
 
+env:
+  # Booleans from workflow_dispatch arrive as strings; the schedule has none.
+  UPDATE_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'apply' }}
+  UPDATE_LIVE: ${{ github.event_name == 'workflow_dispatch' && (inputs.live && 'true' || 'false') || 'true' }}
+  UPDATE_FORCE: ${{ github.event_name == 'workflow_dispatch' && (inputs.force && 'true' || 'false') || 'false' }}
+
 jobs:
-  refresh-and-deploy:
+  update:
+    name: Check official sources & refresh data
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 30
+    outputs:
+      changed: ${{ steps.update.outputs.changed }}
+      wrote: ${{ steps.update.outputs.wrote }}
+      material: ${{ steps.update.outputs.material }}
+      committed: ${{ steps.commit.outputs.committed }}
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
 
       - name: Install backend dependencies
         working-directory: backend
         run: pip install -r requirements.txt
 
-      - name: Run pipeline (scrape -> validate -> publish -> Supabase)
+      - name: Run the auto-update tool
+        id: update
         working-directory: backend
         env:
-          # Live by default on schedule; honour the manual toggle otherwise.
-          EXAMPATH_LIVE: ${{ github.event_name == 'workflow_dispatch' && inputs.live || 'true' }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: python -m app.pipeline.run
+        run: |
+          set -o pipefail
+          LIVE_FLAG=$([ "$UPDATE_LIVE" = "true" ] && echo "--live" || echo "--no-live")
+          FORCE_FLAG=$([ "$UPDATE_FORCE" = "true" ] && [ "$UPDATE_MODE" = "apply" ] && echo "--force" || echo "")
+          python -m app.pipeline.update "$UPDATE_MODE" $LIVE_FLAG $FORCE_FLAG \
+            --report ../update-report.json | tee ../update-log.txt
 
-      - name: Sync dataset into the web build input
-        run: cp data/exams.json web/data/exams.json
+      - name: Upload run report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: update-report-${{ github.run_number }}
+          path: |
+            update-report.json
+            update-log.txt
+          retention-days: 30
+          if-no-files-found: ignore
 
-      - name: Commit refreshed dataset (if changed)
+      - name: Commit refreshed data (if changed)
+        id: commit
+        if: env.UPDATE_MODE == 'apply' && steps.update.outputs.wrote == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- data/exams.json web/data/exams.json; then
-            echo "No data changes to commit."
+          git add data/exams.json web/data/exams.json data/changelog.json data/update-state.json
+          if git diff --cached --quiet; then
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            echo "Files rewritten but byte-identical — nothing to commit."
           else
-            git add data/exams.json web/data/exams.json
-            git commit -m "chore(data): automated refresh $(date -u +%Y-%m-%d)"
-            git push
+            git commit -m "chore(data): automated refresh $(date -u +%Y-%m-%dT%H:%MZ) (${{ steps.update.outputs.material }} change(s))"
+            # Someone may have pushed while we ran; replay our data commit on top.
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+            echo "committed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # ---- rebuild & deploy the site from the refreshed data ----
+      - name: Data freshness status
+        if: always()
+        working-directory: backend
+        run: python -m app.pipeline.update status || echo "::warning::dataset is older than the freshness limit"
+
+  deploy:
+    name: Rebuild & deploy the site
+    needs: update
+    # Only rebuild when the data actually moved; pushes to main deploy via deploy.yml.
+    if: needs.update.outputs.committed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}     # pick up the data commit just pushed
+
       - id: pages
         uses: actions/configure-pages@v5
 
@@ -76,13 +145,16 @@ jobs:
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
           SITE_URL: https://exampath.onrender.com
+          MINIFY: "1"
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           # Optional: build directly from the latest Supabase snapshot.
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           node scripts/fetch-data.mjs || echo "using committed dataset"
+          node scripts/validate-data.mjs
           node scripts/export-static.mjs
+          test -f out/index.html && test -f out/sitemap.xml
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -91,15 +163,41 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-      # Instant indexing (Bing/Yandex/etc.) — no-op unless INDEXNOW_KEY is set.
+      # Instant indexing (Bing/Yandex/etc.). The `secrets` context cannot be
+      # used in a step `if`, so the guard lives in the shell: no key, no call.
       - name: Submit to IndexNow
-        if: ${{ secrets.INDEXNOW_KEY != '' }}
         env:
           KEY: ${{ secrets.INDEXNOW_KEY }}
           BASE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
+          if [ -z "$KEY" ]; then echo "INDEXNOW_KEY not set — skipping"; exit 0; fi
           host=$(echo "$BASE_URL" | sed -E 's#https?://([^/]+)/?.*#\1#')
           curl -sS -m 30 "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json" \
-            -d "{\"host\":\"$host\",\"key\":\"$KEY\",\"keyLocation\":\"${BASE_URL}${KEY}.txt\",\"urlList\":[\"${BASE_URL}\",\"${BASE_URL}sitemap.xml\"]}" \
+            -d "{\"host\":\"$host\",\"key\":\"$KEY\",\"keyLocation\":\"${BASE_URL}${KEY}.txt\",\"urlList\":[\"${BASE_URL}\",\"${BASE_URL}sitemap.xml\",\"${BASE_URL}rss.xml\"]}" \
             && echo "IndexNow submitted" || echo "IndexNow ping skipped"
+
+  report-failure:
+    name: Track failure in an issue
+    needs: [update, deploy]
+    if: always() && (needs.update.result == 'failure' || needs.deploy.result == 'failure')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or update the tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          UPDATE_RESULT: ${{ needs.update.result }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+        run: |
+          title="Auto data update is failing"
+          body=$(printf 'The scheduled data refresh failed.\n\n- Run: %s\n- Update job: %s\n- Deploy job: %s\n- When: %s\n\nSee the run summary and the `update-report` artifact for the per-source log. This issue is updated automatically on every failure and can be closed once a run succeeds.' \
+                 "$RUN_URL" "$UPDATE_RESULT" "$DEPLOY_RESULT" "$(date -u +%Y-%m-%dT%H:%M:%SZ)")
+          existing=$(gh issue list --label auto-update --state open --search "$title in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh label create auto-update --description "Automated data refresh" --color D93F0B 2>/dev/null || true
+            gh issue create --title "$title" --label auto-update --body "$body"
+          fi

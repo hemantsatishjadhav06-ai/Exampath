@@ -21,6 +21,8 @@ jobs:
         run: python -m unittest discover -s tests -t . -v
       - name: Run the pipeline (smoke)
         run: python -m app.pipeline.run
+      - name: Auto-update tool dry run (curated sources, writes nothing)
+        run: python -m app.pipeline.update check --no-live --quiet
 
   frontend:
     runs-on: ubuntu-latest
@@ -32,6 +34,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Data audit (provenance / date-format checks)
+        run: node scripts/validate-data.mjs
       - name: Build static site (zero-dependency)
         run: node scripts/export-static.mjs
       - name: Check output exists

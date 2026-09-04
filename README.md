@@ -56,7 +56,7 @@ cd backend
 pip install -r requirements.txt          # httpx, beautifulsoup4, lxml, pydantic
 python -m app.pipeline.run               # scrape → extract → validate → publish
 python -m app.api.server 8000            # API + n8n webhook at http://localhost:8000
-python -m unittest discover -s tests -t . -v   # tests (8, all green)
+python -m unittest discover -s tests -t . -v   # tests (81, all green)
 
 # 2) Frontend — build the static site (no npm install needed for the zero-dep build)
 cd ../web
@@ -67,6 +67,23 @@ npm run test:e2e                         # Playwright e2e (19, all green)
 
 > The web app also has the full Next.js toolchain wired up: in an environment with npm
 > registry access, run `npm install` then `npm run build:next` / `npm run dev:next`.
+
+## Keeping the data current (auto-update)
+
+The site refreshes itself. Four times a day a GitHub Actions workflow runs the
+auto-update tool against the official sources, and only when a fact changed
+(vacancy, a date, a new notice) does it commit the new dataset, publish to
+Supabase, rebuild and deploy — with a public changelog (`/changelog.json`) and
+"Official site last checked on …" provenance on every refreshed exam page.
+
+```bash
+cd backend
+python -m app.pipeline.update check --live    # dry run: what WOULD change?
+python -m app.pipeline.update apply --live    # refresh data + changelog + state
+python -m app.pipeline.update status          # freshness health (exit 1 if stale)
+```
+
+Design, safety rules and monitoring: **[docs/auto-update.md](docs/auto-update.md)**.
 
 ## Deploy → get a live URL
 
